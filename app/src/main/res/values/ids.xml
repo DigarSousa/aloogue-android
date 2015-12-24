@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="invaliduser" type="id">Nome de usuário inválido.</item>
+    <item name="verifyConnection" type="id">Verifique sua conexão com a Internet e tente
+        novamente.
+    </item>
+</resources>

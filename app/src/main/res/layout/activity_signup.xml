@@ -1,0 +1,501 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".MainAct"
+    android:orientation="vertical">
+
+    <!-- TOOLBAR -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/mainToolbar"
+        android:elevation="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary">
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/mainToolbar"
+        android:padding="10dp"
+        android:layout_marginTop="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!-- ______________________________________________________ SOU UM -->
+
+            <!--
+            <TextView
+                android:id="@+id/useAsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/useAsLabel"
+                android:textColor="@color/colorPrimary"
+                />
+
+            <RelativeLayout
+                android:id="@+id/useAsArea"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/useAsLabel"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/border_frame">
+
+                <RadioGroup
+                    android:id="@+id/radioIAm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/iAmAnUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/commonUser"
+                        android:checked="true"
+                        android:textColor="@color/colorAccent"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/iAmAnTenant"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tenant"
+                        android:layout_below="@+id/iAmAnContractor"
+                        android:checked="false"
+                        android:textColor="@color/colorAccent"/>
+                </RadioGroup>
+            </RelativeLayout>
+            -->
+            <!-- ______________________________________________________ DADOS GERAIS -->
+
+            <TextView
+                android:id="@+id/generalDataLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/generalData"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorPrimary"/>
+                <!--android:layout_below="@+id/useAsArea"-->
+
+            <RelativeLayout
+                android:id="@+id/generalDataArea"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/generalDataLabel"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/border_frame"
+                android:elevation="2dp">
+
+                <!--
+                <EditText
+                    android:id="@+id/cpfCnpjText"
+                    style="@style/editTextLight"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="@string/cpfCnpjLable"
+                    android:inputType="number"/>
+                -->
+                <EditText
+                    android:id="@+id/nameText"
+                    style="@style/editTextLight"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="@string/nameLabel"
+                    android:inputType="textPersonName"/>
+                    <!--android:layout_below="@+id/cpfCnpjText"-->
+
+            </RelativeLayout>
+
+            <!-- ______________________________________________________ ENDEREÇO -->
+
+            <TextView
+                android:id="@+id/addressLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/addressLabel"
+                android:textColor="@color/colorPrimary"
+                android:layout_below="@+id/generalDataArea"
+                android:layout_marginTop="20dp"
+                />
+
+            <RelativeLayout
+                android:id="@+id/addressArea"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/addressLabel"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/border_frame"
+                android:elevation="2dp">
+
+                <EditText
+                    android:id="@+id/zipCodeText"
+                    style="@style/editTextLight"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:maxLength="8"
+                    android:hint="@string/zipCodeLabel"
+                    android:inputType="number"/>
+
+
+                <LinearLayout
+                    android:id="@+id/streetLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/zipCodeText"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="2">
+
+                    <EditText
+                        android:id="@+id/addressText"
+                        style="@style/editTextLight"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:hint="@string/streetLabel"
+                        android:inputType="textCapSentences"
+                        android:layout_weight="0.7"/>
+
+                    <EditText
+                        android:id="@+id/streetNumberText"
+                        style="@style/editTextLight"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:hint="@string/streetNumberLabel"
+                        android:textSize="13sp"
+                        android:layout_marginLeft="10dp"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:layout_toRightOf="@+id/addressText"
+                        android:layout_weight="1.3"/>
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/neighbourhoodText"
+                    style="@style/editTextLight"
+                    android:hint="@string/neighbourhoodLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:inputType="textCapSentences"
+                    android:layout_below="@+id/streetLine" />
+
+                <LinearLayout
+                    android:id="@+id/cityLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:layout_below="@+id/neighbourhoodText"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/cityText"
+                        style="@style/editTextLight"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:hint="@string/cityLabel"
+                        android:layout_marginTop="10dp"
+                        android:inputType="textCapSentences"
+                        android:layout_weight="0.7"/>
+
+                    <Spinner
+                        android:id="@+id/stateSpinner"
+                        style="@style/spinnerLight"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1.3"
+                        />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <!-- ______________________________________________________ DADOS DA CONTA -->
+            <TextView
+                android:id="@+id/accountLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accountData"
+                android:textColor="@color/colorPrimary"
+                android:layout_below="@+id/addressArea"
+                android:layout_marginTop="20dp"
+                />
+
+            <RelativeLayout
+                android:id="@+id/accountArea"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/accountLabel"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/border_frame"
+                android:elevation="2dp">
+
+                <EditText
+                    android:id="@+id/emailText"
+                    style="@style/editTextLight"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="@string/emailLabel"
+                    android:inputType="textEmailAddress" />
+
+                <EditText
+                    android:id="@+id/passwordText"
+                    style="@style/editTextLight"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="@string/passwordLabel"
+                    android:layout_marginTop="10dp"
+                    android:inputType="textPassword"
+                    android:layout_below="@+id/emailText"/>
+
+                <TextView
+                    android:id="@+id/minMaxPasswordText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/minMaxPasswordText"
+                    android:textSize="10dp"
+                    android:layout_marginTop="3dp"
+                    android:textColor="@color/colorSecondaryText"
+                    android:layout_below="@+id/passwordText"
+                    android:layout_alignRight="@+id/passwordText"
+                    />
+
+                <EditText
+                    android:id="@+id/passwordConfirmText"
+                    style="@style/editTextLight"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/passwordConfirmLabel"
+                    android:inputType="textPassword"
+                    android:layout_below="@+id/minMaxPasswordText"/>
+
+            </RelativeLayout>
+
+            <!-- ______________________________________________________ PERFIL  -->
+
+            <!--
+            <TextView
+                android:id="@+id/profileLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profileLabel"
+                android:textColor="@color/colorPrimary"
+                android:layout_below="@+id/accountArea"
+                android:layout_marginTop="20dp"
+                />
+
+            <RelativeLayout
+                android:id="@+id/profileArea"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/profileLabel"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/border_frame">
+
+            <TextView
+                android:id="@+id/businessHoursLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/businessHoursLabel"
+                android:layout_below="@+id/profileSub"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                />
+
+            <RelativeLayout
+                android:id="@+id/businessHoursArea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/businessHoursLabel">
+
+                <TextView
+                    android:id="@+id/fromHours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/from"
+                    android:textColor="@color/colorSecondaryText"
+                    android:layout_marginLeft="5dp"
+                    />
+
+                <Spinner
+                    android:id="@+id/initialHoursText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/fromHours"
+                    android:textColor="@color/colorSecondaryText"
+                    android:layout_marginLeft="5dp"
+                    android:layout_alignBaseline="@+id/fromHours"/>
+
+                <TextView
+                    android:id="@+id/toHours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/toHours"
+                    android:textColor="@color/colorSecondaryText"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/initialHoursText"
+                    android:layout_alignBaseline="@+id/initialHoursText"
+                    />
+
+                <Spinner
+                    android:id="@+id/finalHoursText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/toHours"
+                    android:textColor="@color/colorSecondaryText"
+                    android:layout_marginLeft="5dp"
+                    android:layout_alignBaseline="@+id/toHours"/>
+
+                <TextView
+                    android:id="@+id/hoursParenthesis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hoursParentesis"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/colorSecondaryText"
+                    android:layout_centerHorizontal="true"
+                    android:layout_toRightOf="@+id/finalHoursText"
+                    />
+
+            </RelativeLayout>
+            -->
+            <!-- TODO: Inserir Telefone do usuário no cadastro-->
+            <!--
+            <TextView
+                android:id="@+id/pictureLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pictureLabel"
+                android:layout_below="@+id/businessHoursArea"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                />
+
+            <alugueis.alugueis.view.RoundedImageView
+                android:id="@+id/pictureImage"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_below="@+id/pictureLabel"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:elevation="2dp"
+                android:scaleType="centerCrop"
+                android:layout_centerHorizontal="true"
+                />
+
+            <Button
+                android:id="@+id/selectPictureButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/select"
+                android:textColorHint="@color/colorSecondaryText"
+                android:textColor="@color/colorPrimary"
+                android:background="@android:color/transparent"
+                android:layout_below="@+id/pictureImage"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/maxPictureSizeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:textColor="@color/colorSecondaryText"
+                android:text="@string/maxPictureSizeLabel"
+                android:layout_below="@+id/selectPictureButton"
+                android:layout_centerHorizontal="true"
+                />
+
+            <TextView
+                android:id="@+id/selfDescriptionLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/whatUHaveToRent"
+                android:layout_below="@+id/maxPictureSizeLabel"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="10dp"
+                />
+
+            <EditText
+                android:id="@+id/selfDescriptionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/selfDescriptionLabel"
+                android:inputType="textMultiLine"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="15sp"
+                android:maxLength="1000"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:id="@+id/maxDescriptionLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/maxDescriptionLabel"
+                android:textSize="12dp"
+                android:textColor="@color/colorSecondaryText"
+                android:layout_below="@+id/selfDescriptionText"
+                android:layout_alignRight="@+id/selfDescriptionText"
+                />
+            -->
+
+            <RelativeLayout
+                android:id="@+id/finishArea"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/accountArea"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/border_frame"
+                android:elevation="2dp">
+
+                <CheckBox
+                    android:id="@+id/acceptTermsCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/acceptContractTermsLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/acceptTerms"
+                    android:textSize="12dp"
+                    android:textColor="@color/colorSecondaryText"
+                    android:layout_toRightOf="@+id/acceptTermsCheck"
+                    android:layout_alignBaseline="@+id/acceptTermsCheck"/>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/iAmDoneButton"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:text="@string/iAmDone"
+                android:background="@drawable/raised_button"
+                android:layout_below="@+id/finishArea"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

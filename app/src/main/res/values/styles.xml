@@ -1,0 +1,45 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!--   darker variant for the status bar and contextual app bars -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--   theme UI controls like checkboxes and text fields -->
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Button style-->
+    <!--<style name="buttonStyle">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:color">#2fbf7a</item>
+        <item name="android:background">@drawable/raised_button</item>
+    </style>-->
+
+    <style name="editTextLight" parent="@android:style/Widget.EditText">
+        <item name="android:textColorHint">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorSecondaryText</item>
+        <item name="android:layout_height">45dip</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:background">@drawable/edit_text_light</item>
+    </style>
+
+    <style name="spinnerLight" parent="@android:style/Widget.DropDownItem.Spinner">
+        <item name="android:textColorHint">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorSecondaryText</item>
+        <item name="android:layout_height">45dip</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:background">@drawable/edit_text_light</item>
+        <item name="android:checkMark">@drawable/ic_arrow_drop_down_black_24dp</item>
+    </style>
+
+</resources>

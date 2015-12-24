@@ -1,0 +1,145 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainAct">
+
+    <!-- TOOLBAR -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/mainToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@android:color/transparent">
+        <!--android:background="?attr/colorPrimary"-->
+        <!--android:elevation="4dp"-->
+
+        <!--LOGO-->
+        <ImageView
+            android:layout_width="140dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo_normal" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/loginArea"
+        android:layout_width="320dp"
+        android:layout_height="400dp"
+        android:background="@drawable/border_frame"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:elevation="2dp">
+
+        <alugueis.alugueis.view.RoundedImageView
+            android:id="@+id/pictureImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:id="@+id/welcomeUser"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="@string/welcomeUser"
+            android:textColor="@color/colorSecondaryText"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/pictureImage" />
+
+        <EditText
+            android:id="@+id/userNameLogin"
+            style="@style/editTextLight"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="@string/emailLabel"
+            android:layout_marginTop="30dp"
+            android:inputType="textEmailAddress"
+            android:layout_below="@+id/welcomeUser" />
+
+
+        <EditText
+            android:id="@+id/passwordLogin"
+            style="@style/editTextLight"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="@string/passwordLabel"
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword"
+            android:layout_below="@+id/userNameLogin" />
+        
+        
+        <Button
+            android:id="@+id/enterButton"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:text="@string/enter"
+            android:background="@drawable/raised_button"
+            android:layout_below="@+id/passwordLogin"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="28dp"/>
+
+        <Button
+            android:id="@+id/signinButton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="@string/createaccount"
+            android:textColorHint="@color/colorSecondaryText"
+            android:textColor="@color/colorPrimary"
+            android:background="@android:color/transparent"
+            android:layout_below="@+id/enterButton"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_centerHorizontal="true"/>
+
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="56dp"
+        android:background="@android:color/transparent">
+
+        <LinearLayout
+            android:id="@+id/iconsArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageButton
+                android:id="@+id/facebookButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_facebook"
+                android:background="#00000000"/>
+
+            <ImageButton
+                android:id="@+id/twitterButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_twitter"
+                android:background="#00000000"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+
+
+</RelativeLayout>
