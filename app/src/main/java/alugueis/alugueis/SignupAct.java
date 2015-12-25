@@ -1,39 +1,21 @@
 package alugueis.alugueis;
 
-import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.location.Address;
-import android.location.Geocoder;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-
-import android.widget.RadioButton;
-import android.widget.Spinner;
-import android.widget.Toast;
-
-import java.io.IOException;
-import java.util.List;
-
-import alugueis.alugueis.model.AddressApp;
-import alugueis.alugueis.model.City;
-import alugueis.alugueis.model.Country;
-import alugueis.alugueis.model.LoggedUser;
-import alugueis.alugueis.model.Neighbourhood;
-import alugueis.alugueis.model.StateFU;
-import alugueis.alugueis.model.Street;
+import alugueis.alugueis.model.*;
 import alugueis.alugueis.util.ImageUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.*;
+
+import java.io.IOException;
+import java.util.List;
 
 public class SignupAct extends ActionBarActivity {
 
@@ -78,7 +60,7 @@ public class SignupAct extends ActionBarActivity {
     }
 
     private void initializeStartLoginThread() {
-        startLogin = new Thread(){
+        startLogin = new Thread() {
             @Override
             public void run() {
                 try {
@@ -146,7 +128,7 @@ public class SignupAct extends ActionBarActivity {
         loggedUser.setName(nameEditText.getText().toString());
         loggedUser.setEmail(emailEditText.getText().toString());
         loggedUser.setPassword(passwordEditText.getText().toString());
-        loggedUser.setPicture(ImageUtil.BitmapToByteArray(BitmapFactory.decodeResource(getResources(),R.drawable.emoticon_cool)));
+        loggedUser.setPicture(ImageUtil.BitmapToByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.emoticon_cool)));
         //Logged as common user: 1, tenant: 2.
         loggedUser.setLoggedAs(1);
         //loggedUser.setBusinessInitialHour(businessInitialHourSpinner.getSelectedItem().toString());
@@ -185,7 +167,7 @@ public class SignupAct extends ActionBarActivity {
             Geocoder geocoder = new Geocoder(this);
             List<Address> addresses;
             addresses = geocoder.getFromLocationName(completeAddress, 1);
-            if(addresses.size() > 0) {
+            if (addresses.size() > 0) {
                 loggedUser.setLatitude(addresses.get(0).getLatitude());
                 loggedUser.setLongitude(addresses.get(0).getLongitude());
             }
@@ -208,42 +190,42 @@ public class SignupAct extends ActionBarActivity {
             validated = false;
         }
         */
-        if(!validateName()){
+        if (!validateName()) {
             nameEditText.setError(getResources().getString(R.string.emptyName));
             validated = false;
         }
-        if(!validateZipCode()){
+        if (!validateZipCode()) {
             zipCodeText.setError(getResources().getString(R.string.emptyZipCode));
             validated = false;
         }
 
-        if(!validateStreet()){
+        if (!validateStreet()) {
             addressEditText.setError(getResources().getString(R.string.emptyStreet));
             validated = false;
         }
-        if(!validateStreetNumber()){
+        if (!validateStreetNumber()) {
             streetNumberEditText.setError(getResources().getString(R.string.emptyStreetNumber));
             validated = false;
         }
-        if(!validateNeighbourhood()){
+        if (!validateNeighbourhood()) {
             neighbourhoodEditText.setError(getResources().getString(R.string.emptyStreetNeighbourhood));
             validated = false;
         }
-        if(!validateCity()){
+        if (!validateCity()) {
             cityEditText.setError(getResources().getString(R.string.emptyCity));
             validated = false;
         }
-        if(!validateEmail()){
+        if (!validateEmail()) {
             emailEditText.setError(getResources().getString(R.string.invalidEmail));
             validated = false;
         }
-        if(!validatePassword()){
+        if (!validatePassword()) {
             validated = false;
         }
-        if(!validatePasswordConfirm()){
+        if (!validatePasswordConfirm()) {
             validated = false;
         }
-        if(!validateAcceptedTerms()){
+        if (!validateAcceptedTerms()) {
             acceptTermsCheckBox.setError(getResources().getString(R.string.acceptTermsError));
             validated = false;
         }
@@ -251,14 +233,14 @@ public class SignupAct extends ActionBarActivity {
     }
 
     private boolean validateEmail() {
-        if(!Util.isValidEmail(emailEditText.getText().toString())){
+        if (!Util.isValidEmail(emailEditText.getText().toString())) {
             return false;
         }
         return true;
     }
 
     private boolean validateCity() {
-        if(cityEditText.getText().toString().equals("")){
+        if (cityEditText.getText().toString().equals("")) {
             return false;
         }
         return true;
@@ -266,18 +248,18 @@ public class SignupAct extends ActionBarActivity {
 
     private boolean validateAcceptedTerms() {
         //TODO: Validar accept changes apenas com toast
-        if(!acceptTermsCheckBox.isChecked()){
+        if (!acceptTermsCheckBox.isChecked()) {
             return false;
         }
         return true;
     }
 
     private boolean validatePasswordConfirm() {
-        if(!passwordConfirmEditText.getText().toString().equals(passwordEditText.getText().toString())){
+        if (!passwordConfirmEditText.getText().toString().equals(passwordEditText.getText().toString())) {
             passwordConfirmEditText.setError(getResources().getString(R.string.wrongPasswordConfirm));
             return false;
         }
-        if(passwordConfirmEditText.getText().toString().equals("")){
+        if (passwordConfirmEditText.getText().toString().equals("")) {
             passwordConfirmEditText.setError(getResources().getString(R.string.emptyPasswordConfirm));
             return false;
         }
@@ -285,11 +267,10 @@ public class SignupAct extends ActionBarActivity {
     }
 
     private boolean validatePassword() {
-        if(passwordEditText.getText().toString().equals("")){
+        if (passwordEditText.getText().toString().equals("")) {
             passwordEditText.setError(getResources().getString(R.string.emptyPassword));
             return false;
-        }
-        else if(passwordEditText.getText().toString().length() < 4 || passwordEditText.getText().toString().length() > 10) {
+        } else if (passwordEditText.getText().toString().length() < 4 || passwordEditText.getText().toString().length() > 10) {
             passwordEditText.setError(getResources().getString(R.string.minMaxPasswordTextError));
             return false;
         }
@@ -297,28 +278,28 @@ public class SignupAct extends ActionBarActivity {
     }
 
     private boolean validateNeighbourhood() {
-        if(neighbourhoodEditText.getText().toString().equals("")){
+        if (neighbourhoodEditText.getText().toString().equals("")) {
             return false;
         }
         return true;
     }
 
     private boolean validateStreetNumber() {
-        if(streetNumberEditText.getText().toString().equals("")){
+        if (streetNumberEditText.getText().toString().equals("")) {
             return false;
         }
         return true;
     }
 
     private boolean validateStreet() {
-        if(addressEditText.getText().toString().equals("")){
+        if (addressEditText.getText().toString().equals("")) {
             return false;
         }
         return true;
     }
 
     private boolean validateName() {
-        if(nameEditText.getText().toString().equals("")){
+        if (nameEditText.getText().toString().equals("")) {
             return false;
         }
         return true;
@@ -333,7 +314,7 @@ public class SignupAct extends ActionBarActivity {
     }
 
     private boolean validateZipCode() {
-        if(zipCodeText.getText().toString().equals("")){
+        if (zipCodeText.getText().toString().equals("")) {
             return false;
         }
         return true;

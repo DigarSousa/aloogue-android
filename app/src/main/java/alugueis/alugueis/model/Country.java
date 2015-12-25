@@ -8,7 +8,8 @@ import com.orm.SugarRecord;
 public class Country extends SugarRecord {
 
 
-    public Country(){}
+    public Country() {
+    }
 
     private Integer id;
     private String description;

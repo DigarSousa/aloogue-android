@@ -1,11 +1,7 @@
 package alugueis.alugueis.model;
 
-import android.graphics.Bitmap;
-import android.location.Address;
-
 import com.orm.SugarRecord;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -13,7 +9,9 @@ import java.util.List;
  */
 public class User extends SugarRecord {
 
-    public User(){}
+    public User() {
+    }
+
     private Long id;
     private String cpfCnpj;
     private String name;

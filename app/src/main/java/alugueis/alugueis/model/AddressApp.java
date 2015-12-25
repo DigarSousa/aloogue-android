@@ -5,9 +5,10 @@ import com.orm.SugarRecord;
 /**
  * Created by Pedreduardo on 30/11/2015.
  */
-public class AddressApp extends SugarRecord{
+public class AddressApp extends SugarRecord {
 
-    public AddressApp(){}
+    public AddressApp() {
+    }
 
     private Long id;
     private StateFU stateFU;
@@ -79,18 +80,17 @@ public class AddressApp extends SugarRecord{
     }
 
 
-
     //Concatening all address components
     //----------------------------------------------------------------------
-    public String makeAddress(){
+    public String makeAddress() {
 
         return
-                this.street                                         + ", " +
-                this.number                                         + "- " +
-                this.neighbourhood                                  + "- " +
-                this.city.getDescription()                          + "- " +
-                this.stateFU.getDescription()                       + "- " +
-                this.country.getDescription();
+                this.street + ", " +
+                        this.number + "- " +
+                        this.neighbourhood + "- " +
+                        this.city.getDescription() + "- " +
+                        this.stateFU.getDescription() + "- " +
+                        this.country.getDescription();
     }
     //----------------------------------------------------------------------
 

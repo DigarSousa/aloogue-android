@@ -1,38 +1,15 @@
 package alugueis.alugueis.util;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.drawable.BitmapDrawable;
-import android.media.ExifInterface;
-import android.net.Uri;
+import android.graphics.*;
 import android.os.Build;
-import android.provider.MediaStore;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.ByteBuffer;
-
-import alugueis.alugueis.R;
-
-import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 /**
  * Created by Pedreduardo on 01/12/2015.
@@ -40,7 +17,7 @@ import static android.support.v4.app.ActivityCompat.startActivityForResult;
 public class ImageUtil {
 
 
-    public static Bitmap rotateImage(Bitmap image, int degree){
+    public static Bitmap rotateImage(Bitmap image, int degree) {
         Matrix matrix = new Matrix();
         matrix.postRotate(degree);
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(image, (int) (image.getWidth()), (int) (image.getHeight()), true);
@@ -48,7 +25,7 @@ public class ImageUtil {
         return rotatedBitmap;
     }
 
-    public static byte[] BitmapToByteArray(Bitmap b){
+    public static byte[] BitmapToByteArray(Bitmap b) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         b.compress(Bitmap.CompressFormat.PNG, 100, stream);
         return stream.toByteArray();
@@ -299,8 +276,7 @@ public class ImageUtil {
         return (bitmap);
     }
 
-    public static Bitmap adjustedContrast(Bitmap src, double value)
-    {
+    public static Bitmap adjustedContrast(Bitmap src, double value) {
         // image size
         int width = src.getWidth();
         int height = src.getHeight();
@@ -324,26 +300,35 @@ public class ImageUtil {
         double contrast = Math.pow((100 + value) / 100, 2);
 
         // scan through all pixels
-        for(int x = 0; x < width; ++x) {
-            for(int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            for (int y = 0; y < height; ++y) {
                 // get pixel color
                 pixel = src.getPixel(x, y);
                 A = Color.alpha(pixel);
                 // apply filter contrast for every channel R, G, B
                 R = Color.red(pixel);
-                R = (int)(((((R / 255.0) - 0.5) * contrast) + 0.5) * 255.0);
-                if(R < 0) { R = 0; }
-                else if(R > 255) { R = 255; }
+                R = (int) (((((R / 255.0) - 0.5) * contrast) + 0.5) * 255.0);
+                if (R < 0) {
+                    R = 0;
+                } else if (R > 255) {
+                    R = 255;
+                }
 
                 G = Color.green(pixel);
-                G = (int)(((((G / 255.0) - 0.5) * contrast) + 0.5) * 255.0);
-                if(G < 0) { G = 0; }
-                else if(G > 255) { G = 255; }
+                G = (int) (((((G / 255.0) - 0.5) * contrast) + 0.5) * 255.0);
+                if (G < 0) {
+                    G = 0;
+                } else if (G > 255) {
+                    G = 255;
+                }
 
                 B = Color.blue(pixel);
-                B = (int)(((((B / 255.0) - 0.5) * contrast) + 0.5) * 255.0);
-                if(B < 0) { B = 0; }
-                else if(B > 255) { B = 255; }
+                B = (int) (((((B / 255.0) - 0.5) * contrast) + 0.5) * 255.0);
+                if (B < 0) {
+                    B = 0;
+                } else if (B > 255) {
+                    B = 255;
+                }
 
                 // set new pixel color to output bitmap
                 bmOut.setPixel(x, y, Color.argb(A, R, G, B));
@@ -352,12 +337,12 @@ public class ImageUtil {
         return bmOut;
     }
 
-    public static Bitmap adjustBrightness(Bitmap src, int brightnessValue){
+    public static Bitmap adjustBrightness(Bitmap src, int brightnessValue) {
         Bitmap dest = Bitmap.createBitmap(
                 src.getWidth(), src.getHeight(), src.getConfig());
 
-        for(int x = 0; x < src.getWidth(); x++){
-            for(int y = 0; y < src.getHeight(); y++){
+        for (int x = 0; x < src.getWidth(); x++) {
+            for (int y = 0; y < src.getHeight(); y++) {
                 int pixelColor = src.getPixel(x, y);
                 int pixelAlpha = Color.alpha(pixelColor);
 
@@ -365,21 +350,21 @@ public class ImageUtil {
                 int pixelGreen = Color.green(pixelColor) + brightnessValue;
                 int pixelBlue = Color.blue(pixelColor) + brightnessValue;
 
-                if(pixelRed > 255){
+                if (pixelRed > 255) {
                     pixelRed = 255;
-                }else if(pixelRed < 0){
+                } else if (pixelRed < 0) {
                     pixelRed = 0;
                 }
 
-                if(pixelGreen > 255){
+                if (pixelGreen > 255) {
                     pixelGreen = 255;
-                }else if(pixelGreen < 0){
+                } else if (pixelGreen < 0) {
                     pixelGreen = 0;
                 }
 
-                if(pixelBlue > 255){
+                if (pixelBlue > 255) {
                     pixelBlue = 255;
-                }else if(pixelBlue < 0){
+                } else if (pixelBlue < 0) {
                     pixelBlue = 0;
                 }
 

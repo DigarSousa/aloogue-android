@@ -7,7 +7,8 @@ import com.orm.SugarRecord;
  */
 public class StateFU extends SugarRecord {
 
-    public StateFU(){}
+    public StateFU() {
+    }
 
     private Long id;
     private String description;

@@ -1,8 +1,5 @@
 package alugueis.alugueis.model;
 
-import android.graphics.Bitmap;
-import android.location.Address;
-
 import com.orm.SugarRecord;
 
 import java.util.List;
@@ -10,12 +7,12 @@ import java.util.List;
 /**
  * Created by Pedreduardo on 02/12/2015.
  */
-public class LoggedUser extends SugarRecord{
+public class LoggedUser extends SugarRecord {
 
     private static LoggedUser logged;
 
-    public LoggedUser(){}
-
+    public LoggedUser() {
+    }
 
 
     private Long id;

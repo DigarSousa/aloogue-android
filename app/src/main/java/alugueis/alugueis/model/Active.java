@@ -1,7 +1,5 @@
 package alugueis.alugueis.model;
 
-import android.graphics.Bitmap;
-
 import com.orm.SugarRecord;
 
 /**
@@ -9,7 +7,8 @@ import com.orm.SugarRecord;
  */
 public class Active extends SugarRecord {
 
-    public Active(){}
+    public Active() {
+    }
 
     public Long getActiveCategory() {
         return activeCategory;

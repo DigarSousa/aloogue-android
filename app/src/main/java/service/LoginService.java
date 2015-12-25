@@ -1,6 +1,8 @@
 package service;
 
 import android.os.AsyncTask;
+import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,7 +24,6 @@ public class LoginService extends AsyncTask<Void, Boolean, Void> {
 
     @Override
     protected Void doInBackground(Void... params) {
-
         HttpURLConnection connection;
         OutputStreamWriter out;
         InputStreamReader in;
@@ -33,14 +34,15 @@ public class LoginService extends AsyncTask<Void, Boolean, Void> {
 
             url = new URL(httpUrl);
             connection = (HttpURLConnection) url.openConnection();
-            connection.setDoOutput(true);
             connection.setDoInput(true);
+            connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-
+            connection.setRequestMethod("POST");
 
             out = new OutputStreamWriter(connection.getOutputStream());
-
-            out.write("");
+            Gson g = new Gson();
+            String json = g.toJson("Treta");
+            out.write(json);
             out.flush();
             out.close();
 

@@ -5,9 +5,10 @@ import com.orm.SugarRecord;
 /**
  * Created by Pedreduardo on 16/10/2015.
  */
-public class Rating extends SugarRecord{
+public class Rating extends SugarRecord {
 
-    public Rating(){}
+    public Rating() {
+    }
 
     private Long id;
     private User offerer;

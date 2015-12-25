@@ -5,9 +5,10 @@ import com.orm.SugarRecord;
 /**
  * Created by Pedreduardo on 16/10/2015.
  */
-public class Phone extends SugarRecord{
+public class Phone extends SugarRecord {
 
-    public Phone(){}
+    public Phone() {
+    }
 
     private Long id;
     private String number;

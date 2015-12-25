@@ -7,7 +7,8 @@ import com.orm.SugarRecord;
  */
 public class Neighbourhood extends SugarRecord {
 
-    public Neighbourhood(){}
+    public Neighbourhood() {
+    }
 
     private Long id;
 

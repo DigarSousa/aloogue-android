@@ -9,7 +9,8 @@ import java.util.Date;
  */
 public class RentContract extends SugarRecord {
 
-    public RentContract(){}
+    public RentContract() {
+    }
 
     private Long id;
     private Long description;

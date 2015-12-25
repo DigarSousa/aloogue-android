@@ -1,5 +1,8 @@
 package alugueis.alugueis;
 
+import alugueis.alugueis.classes.maps.GPSTracker;
+import alugueis.alugueis.classes.maps.GeocoderJSONParser;
+import alugueis.alugueis.util.MapsUtil;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationListener;
@@ -10,33 +13,22 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
-import alugueis.alugueis.classes.maps.GPSTracker;
-import alugueis.alugueis.classes.maps.GeocoderJSONParser;
-import alugueis.alugueis.util.MapsUtil;
 
 public class MapAct extends FragmentActivity implements OnMapReadyCallback {
 
@@ -116,10 +108,10 @@ public class MapAct extends FragmentActivity implements OnMapReadyCallback {
         map = googleMap;
 
         // check if GPS enabled
-        if(gps.canGetLocation()){
+        if (gps.canGetLocation()) {
             myLatitude = gps.getLatitude();
             myLongitude = gps.getLongitude();
-        }else{
+        } else {
             gps.showSettingsAlert();
         }
 
@@ -146,7 +138,7 @@ public class MapAct extends FragmentActivity implements OnMapReadyCallback {
         String data = "";
         InputStream iStream = null;
         HttpURLConnection urlConnection = null;
-        try{
+        try {
             URL url = new URL(strUrl);
             // Creating an http connection to communicate with url
             urlConnection = (HttpURLConnection) url.openConnection();
@@ -158,39 +150,43 @@ public class MapAct extends FragmentActivity implements OnMapReadyCallback {
             StringBuffer sb = new StringBuffer();
 
             String line = "";
-            while( ( line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
 
             data = sb.toString();
             br.close();
 
-        }catch(Exception e){
+        } catch (Exception e) {
             Log.d("Error downloading url", e.toString());
-        }finally{
+        } finally {
             iStream.close();
             urlConnection.disconnect();
         }
         return data;
     }
-    /** A class, to download Places from Geocoding webservice */
+
+    /**
+     * A class, to download Places from Geocoding webservice
+     */
     private class DownloadTask extends AsyncTask<String, Integer, String> {
 
         String data = null;
+
         // Invoked by execute() method of this object
         @Override
         protected String doInBackground(String... url) {
-            try{
+            try {
                 data = downloadUrl(url[0]);
-            }catch(Exception e){
-                Log.d("Background Task",e.toString());
+            } catch (Exception e) {
+                Log.d("Background Task", e.toString());
             }
             return data;
         }
 
         // Executed after the complete execution of doInBackground() method
         @Override
-        protected void onPostExecute(String result){
+        protected void onPostExecute(String result) {
 
             // Instantiating ParserTask which parses the json data from Geocoding webservice
             // in a non-ui thread
@@ -202,37 +198,40 @@ public class MapAct extends FragmentActivity implements OnMapReadyCallback {
         }
     }
 
-    /** A class to parse the Geocoding Places in non-ui thread */
-    class ParserTask extends AsyncTask<String, Integer, List<HashMap<String,String>>>{
+    /**
+     * A class to parse the Geocoding Places in non-ui thread
+     */
+    class ParserTask extends AsyncTask<String, Integer, List<HashMap<String, String>>> {
 
         JSONObject jObject;
+
         // Invoked by execute() method of this object
         @Override
-        protected List<HashMap<String,String>> doInBackground(String... jsonData) {
+        protected List<HashMap<String, String>> doInBackground(String... jsonData) {
 
             List<HashMap<String, String>> places = null;
             GeocoderJSONParser parser = new GeocoderJSONParser();
 
-            try{
+            try {
                 jObject = new JSONObject(jsonData[0]);
 
                 /** Getting the parsed data as a an ArrayList */
                 places = parser.parse(jObject);
 
-            }catch(Exception e){
-                Log.d("Exception",e.toString());
+            } catch (Exception e) {
+                Log.d("Exception", e.toString());
             }
             return places;
         }
 
         // Executed after the complete execution of doInBackground() method
         @Override
-        protected void onPostExecute(List<HashMap<String,String>> list){
+        protected void onPostExecute(List<HashMap<String, String>> list) {
 
             // Clears all the existing markers
             map.clear();
 
-            for(int i=0;i<list.size();i++){
+            for (int i = 0; i < list.size(); i++) {
                 // Creating a marker
                 MarkerOptions markerOptions = new MarkerOptions();
                 // Getting a place from the places list
@@ -244,7 +243,7 @@ public class MapAct extends FragmentActivity implements OnMapReadyCallback {
                 // Getting name
                 String name = hmPlace.get("formatted_address");
                 LatLng latLng = new LatLng(lat, lng);
-                if(i==0)
+                if (i == 0)
                     MapsUtil.setMyLocation(MapAct.this, map, latLng.latitude, latLng.longitude, name);
             }
         }

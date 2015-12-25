@@ -6,7 +6,8 @@ import com.orm.SugarRecord;
  * Created by Pedreduardo on 30/11/2015.
  */
 public class Category extends SugarRecord {
-    public Category(){}
+    public Category() {
+    }
 
 
     public void setId(Long id) {

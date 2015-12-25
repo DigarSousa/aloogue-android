@@ -7,7 +7,8 @@ import com.orm.SugarRecord;
  */
 public class City extends SugarRecord {
 
-    public City(){}
+    public City() {
+    }
 
     private Long id;
 
