@@ -124,7 +124,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
     }
 
     private void enterButtonAction() {
-        LoginService login=new LoginService("http://192.168.0.105:8080/login");
+        LoginService login=new LoginService("http://192.168.0.32:5051/login");
         login.execute();
 
        /*if (Util.isOnlineWithToast(context)) {

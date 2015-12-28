@@ -1,5 +1,6 @@
 package service;
 
+import alugueis.alugueis.model.User;
 import android.os.AsyncTask;
 import com.google.gson.Gson;
 
@@ -40,9 +41,13 @@ public class LoginService extends AsyncTask<Void, Boolean, Void> {
             connection.setRequestMethod("POST");
 
             out = new OutputStreamWriter(connection.getOutputStream());
-            Gson g = new Gson();
-            String json = g.toJson("Treta");
-            out.write(json);
+
+            User user = new User();
+            user.setName("treta");
+            user.setEmail("doida");
+            Gson jason = new Gson();
+            String s = jason.toJson(user,User.class);
+            out.write(s);
             out.flush();
             out.close();
 

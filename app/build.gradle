@@ -32,5 +32,8 @@ dependencies {
     compile 'com.google.maps.android:android-maps-utils:0.3+'
     compile 'com.android.support:design:22.2.0'
     compile 'com.google.code.gson:gson:2.3'
+    compile "org.projectlombok:lombok:1.16.6"
+    compile "javax.annotation:javax.annotation-api:1.2-b01"
+
 
 }

@@ -162,7 +162,7 @@ public class SignupAct extends ActionBarActivity {
 
         loggedUser.setAddressApp(addressApp);
         try {
-            String completeAddress = addressApp.makeAddress().toString();
+            String completeAddress = addressApp.toString();
 
             Geocoder geocoder = new Geocoder(this);
             List<Address> addresses;
@@ -416,8 +416,6 @@ public class SignupAct extends ActionBarActivity {
         //Util.populeHoursSpinner(this, businessInitialHourSpinner);
         //Util.populeHoursSpinner(this, businessFinalHourSpinner);
         //-------------------------------------------
-
-
     }
 
 }

@@ -1,11 +1,15 @@
 package alugueis.alugueis.model;
 
 import com.orm.SugarRecord;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * Created by Pedreduardo on 30/11/2015.
  */
-public class AddressApp extends SugarRecord {
+@Data
+@EqualsAndHashCode(callSuper = false)
+public class AddressApp extends SugarRecord{
 
     public AddressApp() {
     }
@@ -18,72 +22,10 @@ public class AddressApp extends SugarRecord {
     private String additional;
     private Neighbourhood neighbourhood;
     private Country country;
+    private double latitude;
+    private double longitute;
 
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public StateFU getStateFU() {
-        return stateFU;
-    }
-
-    public void setStateFU(StateFU stateFU) {
-        this.stateFU = stateFU;
-    }
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
-
-    public Street getStreet() {
-        return street;
-    }
-
-    public void setStreet(Street street) {
-        this.street = street;
-    }
-
-    public Neighbourhood getNeighbourhood() {
-        return neighbourhood;
-    }
-
-    public void setNeighbourhood(Neighbourhood neighbourhood) {
-        this.neighbourhood = neighbourhood;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public String getAdditional() {
-        return additional;
-    }
-
-    public void setAdditional(String additional) {
-        this.additional = additional;
-    }
-
-
-    //Concatening all address components
-    //----------------------------------------------------------------------
-    public String makeAddress() {
-
+    public String toString() {
         return
                 this.street + ", " +
                         this.number + "- " +
@@ -92,6 +34,5 @@ public class AddressApp extends SugarRecord {
                         this.stateFU.getDescription() + "- " +
                         this.country.getDescription();
     }
-    //----------------------------------------------------------------------
-
+    // todo: Discutir a sobrescrita do toString, equals e hadhcode em todos os models...
 }

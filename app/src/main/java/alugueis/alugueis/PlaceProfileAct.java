@@ -87,7 +87,7 @@ public class PlaceProfileAct extends ActionBarActivity {
         }
 
         if (loggedUser.getAddressApp() != null) {
-            placeAddressText.setText(loggedUser.getAddressApp().makeAddress().toString());
+            placeAddressText.setText(loggedUser.getAddressApp().toString());
         }
 
         workText.setText("De 08h às 15h");
