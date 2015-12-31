@@ -13,4 +13,5 @@ public class Payment extends SugarRecord{
 
     private Long id;
     private String description;
+    //commit
 }
