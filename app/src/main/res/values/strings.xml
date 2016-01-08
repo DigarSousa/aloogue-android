@@ -91,4 +91,14 @@
     <string name="useAsLabel">USAR ALOOGUE COMO</string>
     <string name="zipCodeLabel">CEP</string>
     <string name="emptyZipCode">Por favor, insira um CEP.</string>
+    <string name="title_activity_dashboard_nav">DashboardNavAct</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="addShop">Adicionar loja</string>
+    <string name="locationLabel">Localização</string>
+    <string name="profile">Perfil</string>
+    <string name="changeData">Alterar meus dados</string>
+    <string name="getOut">Sair</string>
+    <string name="action_menu">Menu</string>
 </resources>

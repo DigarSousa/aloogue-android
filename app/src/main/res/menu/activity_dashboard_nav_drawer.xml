@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:title="@string/locationLabel">
+            <menu>
+                <item
+                    android:id="@+id/nav_add_shop"
+                    android:icon="@drawable/pin_laranja"
+                    android:title="@string/addShop" />
+            </menu>
+        </item>
+    </group>
+
+    <item android:title="@string/profile">
+        <menu>
+            <item
+                android:id="@+id/nav_change_data"
+                android:icon="@drawable/ic_account_circle"
+                android:title="@string/changeData" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/abc_ic_clear_mtrl_alpha"
+        android:title="@string/getOut" />
+
+</menu>

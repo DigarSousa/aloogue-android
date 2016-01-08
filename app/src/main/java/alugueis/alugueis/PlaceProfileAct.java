@@ -10,7 +10,11 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,10 +23,9 @@ import android.widget.TextView;
 /**
  * Created by Pedreduardo on 22/12/2015.
  */
-public class PlaceProfileAct extends ActionBarActivity {
+public class PlaceProfileAct extends DashboardNavAct {
 
     private LoggedUser loggedUser;
-    private Toolbar mainToolbar;
     private ImageView bannerImage;
     private RoundedImageView pictureImage;
     private Button callButton;
@@ -32,7 +35,8 @@ public class PlaceProfileAct extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_place_profile);
+        //Utilizado para levar o layout da activity para o pai (nav drawer)
+        getLayoutInflater().inflate(R.layout.activity_place_profile, frameLayout);
 
         this.loggedUser = UserUtil.getLogged();
 
@@ -53,18 +57,7 @@ public class PlaceProfileAct extends ActionBarActivity {
     }
 
     private void initializeToolbar() {
-        mainToolbar = (Toolbar) findViewById(R.id.mainToolbar);
-        //TODO: Nome do perfil da loja
         mainToolbar.setTitle("Perfil da loja");
-        setSupportActionBar(mainToolbar);
-        mainToolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-
-        mainToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     private void initializeComponents() {
@@ -79,8 +72,8 @@ public class PlaceProfileAct extends ActionBarActivity {
 
             Bitmap userPicBitmap = BitmapFactory.decodeByteArray(userPic, 0, userPic.length);
             Bitmap bluredBackground = ImageUtil.fastblur(userPicBitmap, this, 25);
-            bluredBackground = ImageUtil.adjustBrightness(bluredBackground, -50);
-            bluredBackground = ImageUtil.adjustedContrast(bluredBackground, -10);
+            //bluredBackground = ImageUtil.adjustBrightness(bluredBackground, -50);
+            //bluredBackground = ImageUtil.adjustedContrast(bluredBackground, -10);
 
             pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
             bannerImage.setImageBitmap(bluredBackground);
