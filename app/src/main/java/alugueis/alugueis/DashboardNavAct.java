@@ -1,6 +1,7 @@
 package alugueis.alugueis;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -109,10 +110,20 @@ public class DashboardNavAct extends AppCompatActivity implements NavigationView
         int id = item.getItemId();
 
         if (id == R.id.nav_add_shop) {
+            Intent intent = new Intent(DashboardNavAct.this, CreatePlaceAct.class);
+            startActivity(intent);
         }
         else if (id == R.id.nav_change_data) {
+            Intent intent = new Intent(DashboardNavAct.this, SignupAct.class);
+            intent.putExtra("source", "changeData");
+            startActivity(intent);
+            finish();
         }
         else if (id == R.id.logout) {
+            LoggedUser.deleteAll(LoggedUser.class);
+            Intent intent = new Intent(DashboardNavAct.this, MainAct.class);
+            startActivity(intent);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

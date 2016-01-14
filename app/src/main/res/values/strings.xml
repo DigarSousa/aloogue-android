@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Alugueis</string>
+    <string name="app_name">Aloogue</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -28,7 +28,7 @@
     <string name="professionLabel">PROFISSÃO</string>
     <string name="professionalLabel">DADOS PROFISSIONAIS</string>
     <string name="professionNameLabel">PROFISSÃO</string>
-    <string name="pictureLabel">FOTO</string>
+    <string name="pictureLabel">Foto</string>
     <string name="select">SELECIONE</string>
     <string name="maxPictureSizeLabel">Tamanho da imagem: 250 x 250 (px)</string>
     <string name="selfDescriptionLabel">DESCRIÇÃO PROFISSIONAL</string>
@@ -52,8 +52,9 @@
     <string name="cityLabel">CIDADE</string>
     <string name="stateLabel">ESTADO</string>
     <string name="profileLabel">PERFIL</string>
-    <string name="businessHoursLabel">HORÁRIO DE FUNCIONAMENTO</string>
-    <string name="from">DE</string>
+    <string name="businessHoursLabel">Horário de funcionamento</string>
+    <string name="openning">Abertura:</string>
+    <string name="closing">Fechamento:</string>
     <string name="toHours">ÀS</string>
     <string name="hoursParentesis">(horas)</string>
     <string name="verifyConnection">Verifique sua conexão com a Internet.</string>
@@ -101,4 +102,8 @@
     <string name="changeData">Alterar meus dados</string>
     <string name="getOut">Sair</string>
     <string name="action_menu">Menu</string>
+    <string name="phoneLabel">TELEFONE</string>
+    <string name="placeLabel">LOJA</string>
+    <string name="createPlace">CRIAR LOJA</string>
+    <string name="emptyPhone">Por favor, insira um telefone para contato.</string>
 </resources>

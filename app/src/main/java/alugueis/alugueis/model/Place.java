@@ -11,14 +11,14 @@ import java.util.List;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class LoggedUser extends SugarRecord {
+public class Place extends SugarRecord {
 
-    private static LoggedUser logged;
-
-    public LoggedUser() {
+    public Place() {
     }
 
     private Long id;
+    private Long idUser;
+    private String cpfCnpj;
     private String name;
     private String email;
     private String password;
@@ -26,11 +26,9 @@ public class LoggedUser extends SugarRecord {
     private double longitude;
     private AddressApp addressApp;
     private byte[] picture;
+    private int loggedAs;
     private List<Phone> phones;
+    private String businessInitialHour;
+    private String businessFinalHour;
 
-    public static LoggedUser getInstance() {
-        if (logged == null)
-            logged = new LoggedUser();
-        return logged;
-    }
 }

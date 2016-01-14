@@ -37,7 +37,7 @@
             android:value="aloogue.db" />
         <meta-data
             android:name="VERSION"
-            android:value="12" />
+            android:value="14" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="false" />
@@ -67,7 +67,11 @@
             android:label="@string/title_activity_place_profile"
             android:theme="@style/AppTheme"></activity>
         <activity
-            android:name=".DashboardNavAct"
+        android:name=".DashboardNavAct"
+        android:label="@string/title_activity_dashboard_nav"
+        android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".CreatePlaceAct"
             android:label="@string/title_activity_dashboard_nav"
             android:theme="@style/AppTheme"></activity>
     </application>

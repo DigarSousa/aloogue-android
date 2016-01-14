@@ -9,12 +9,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -70,13 +64,13 @@ public class PlaceProfileAct extends DashboardNavAct {
         if (loggedUser.getPicture() != null) {
             byte[] userPic = loggedUser.getPicture();
 
-            Bitmap userPicBitmap = BitmapFactory.decodeByteArray(userPic, 0, userPic.length);
-            Bitmap bluredBackground = ImageUtil.fastblur(userPicBitmap, this, 25);
+            //Bitmap userPicBitmap = BitmapFactory.decodeByteArray(userPic, 0, userPic.length);
+            //Bitmap bluredBackground = ImageUtil.fastblur(userPicBitmap, this, 25);
             //bluredBackground = ImageUtil.adjustBrightness(bluredBackground, -50);
             //bluredBackground = ImageUtil.adjustedContrast(bluredBackground, -10);
 
             pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
-            bannerImage.setImageBitmap(bluredBackground);
+            //bannerImage.setImageBitmap(bluredBackground);
         }
 
         if (loggedUser.getAddressApp() != null) {
