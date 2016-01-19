@@ -43,4 +43,11 @@
         <item name="android:background">@drawable/edit_text_light</item>
     </style>
 
+    <style name="itemListWhite">
+        <item name="android:layout_height">45dip</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:background">@drawable/edit_text_light</item>
+    </style>
+
 </resources>
