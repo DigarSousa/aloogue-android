@@ -28,9 +28,6 @@ public class LoggedUser extends SugarRecord {
     private byte[] picture;
     private List<Phone> phones;
 
-    public static LoggedUser getInstance() {
-        if (logged == null)
-            logged = new LoggedUser();
-        return logged;
-    }
+    //todo: Pedro... migrar para arquivo Android.
 }
+

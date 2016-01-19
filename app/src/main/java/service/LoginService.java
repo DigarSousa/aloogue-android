@@ -43,8 +43,7 @@ public class LoginService extends AsyncTask<Void, Boolean, Void> {
             out = new OutputStreamWriter(connection.getOutputStream());
 
             User user = new User();
-            user.setName("treta");
-            user.setEmail("doida");
+            user.setEmail("digarsg@gmail.com");
             Gson jason = new Gson();
             String s = jason.toJson(user,User.class);
             out.write(s);

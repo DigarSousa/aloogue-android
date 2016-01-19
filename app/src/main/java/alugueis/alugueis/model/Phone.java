@@ -13,7 +13,6 @@ public class Phone extends SugarRecord{
 
     public Phone() {
     }
-
     private Long id;
     private String number;
 }

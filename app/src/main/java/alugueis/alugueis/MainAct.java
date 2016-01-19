@@ -45,7 +45,9 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
 
         context = getApplicationContext();
         User u = new User();
-        loggedUser = LoggedUser.getInstance();
+
+        //todo: arruma saporra
+        loggedUser = new LoggedUser();
 
         tryToGetLogged();
         initializeToolbar();
@@ -124,10 +126,10 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
     }
 
     private void enterButtonAction() {
-        //LoginService login=new LoginService("http://192.168.0.32:5051/login");
-        //login.execute();
+        LoginService login=new LoginService("http://192.168.0.32:8080/galo");
+        login.execute();
 
-       if (Util.isOnlineWithToast(context)) {
+       /*if (Util.isOnlineWithToast(context)) {
             String emailLogin = userEditText.getText().toString();
             String passwordLogin = passwordEditText.getText().toString();
             if (userEditText.getText().toString().trim().equals("") || !UserUtil.validateLogin(emailLogin, passwordLogin)) {
@@ -138,6 +140,6 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
                 startActivity(intent);
                 finish();
             }
-       }
+       }*/
     }
 }

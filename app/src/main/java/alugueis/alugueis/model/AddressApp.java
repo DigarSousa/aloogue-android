@@ -25,6 +25,7 @@ public class AddressApp extends SugarRecord{
     private double latitude;
     private double longitute;
 
+    @Override
     public String toString() {
         return
                 this.street + ", " +
@@ -34,5 +35,5 @@ public class AddressApp extends SugarRecord{
                         this.stateFU.getDescription() + "- " +
                         this.country.getDescription();
     }
-    // todo: Discutir a sobrescrita do toString, equals e hadhcode em todos os models...
+    //todo: sobrescrever métodos equals...hash...tostring
 }

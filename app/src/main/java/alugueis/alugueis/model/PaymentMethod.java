@@ -9,9 +9,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Payment extends SugarRecord{
+public class PaymentMethod extends SugarRecord{
 
     private Long id;
     private String description;
-    //commit
 }

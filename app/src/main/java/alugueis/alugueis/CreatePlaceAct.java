@@ -67,7 +67,7 @@ public class CreatePlaceAct extends DashboardNavAct {
 
         dialogCoord = new ProgressDialog(CreatePlaceAct.this);
         this.context = getApplicationContext();
-        this.loggedUser = LoggedUser.getInstance();
+        //todo: this.loggedUser = LoggedUser.getInstance();
         this.place = new Place();
 
         initializeToolbar();

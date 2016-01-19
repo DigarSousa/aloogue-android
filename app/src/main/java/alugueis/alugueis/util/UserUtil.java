@@ -11,7 +11,7 @@ public class UserUtil {
 
     public static Boolean validateLogin(String email, String password) {
         //TODO: WebService de validação de usuário
-        LoggedUser logged = LoggedUser.getInstance();
+        LoggedUser logged=new LoggedUser();
 
         List<LoggedUser> loggedUsers = LoggedUser.listAll(LoggedUser.class);
         if (loggedUsers.size() > 0) {
