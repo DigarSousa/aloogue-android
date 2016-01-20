@@ -1,11 +1,10 @@
 package alugueis.alugueis;
 
-import alugueis.alugueis.model.LoggedUser;
-import alugueis.alugueis.util.ImageUtil;
+import alugueis.alugueis.model.User;
 import alugueis.alugueis.util.UserUtil;
 import alugueis.alugueis.view.RoundedImageView;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,12 +18,13 @@ import android.widget.TextView;
  */
 public class PlaceProfileAct extends DashboardNavAct {
 
-    private LoggedUser loggedUser;
+    private User loggedUser;
     private ImageView bannerImage;
     private RoundedImageView pictureImage;
     private Button callButton;
     private TextView placeAddressText;
     private TextView workText;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +32,18 @@ public class PlaceProfileAct extends DashboardNavAct {
         //Utilizado para levar o layout da activity para o pai (nav drawer)
         getLayoutInflater().inflate(R.layout.activity_place_profile, frameLayout);
 
-        this.loggedUser = UserUtil.getLogged();
+        context = getApplicationContext();
+        getLogged();
 
         initializeToolbar();
         initializeComponents();
         initializeListeners();
+    }
+
+    private void getLogged() {
+        try {
+            loggedUser = (User) UserUtil.getLogged(context);
+        }catch(Exception ex){}
     }
 
     private void initializeListeners() {

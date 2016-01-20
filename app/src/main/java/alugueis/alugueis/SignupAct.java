@@ -4,24 +4,20 @@ import alugueis.alugueis.model.*;
 import alugueis.alugueis.util.ImageUtil;
 import alugueis.alugueis.util.UserUtil;
 import alugueis.alugueis.util.Util;
-import alugueis.alugueis.view.RoundedImageView;
+
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.*;
 
-import java.io.IOException;
-import java.util.List;
-
 public class SignupAct extends ActionBarActivity {
 
     private Toolbar mainToolbar;
-    private LoggedUser loggedUser;
+    private User loggedUser;
     private EditText nameEditText;
     private EditText emailEditText;
     private EditText passwordEditText;
@@ -31,14 +27,16 @@ public class SignupAct extends ActionBarActivity {
     //For image upload
     private Thread startSecondActivity;
     String sourceAct;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-
+        this.context = getApplicationContext();
         Bundle extras = getIntent().getExtras();
+        loggedUser = new User();
 
         initializeToolbar();
         initializeComponents();
@@ -49,10 +47,17 @@ public class SignupAct extends ActionBarActivity {
             sourceAct = extras.getString("source");
             //Se o extra vier da edição de cadastro (:
             if(sourceAct.equals("changeData")){
-                this.loggedUser = UserUtil.getLogged();
+                getLogged();
                 populateControls();
             }
         }
+    }
+
+
+    private void getLogged() {
+        try {
+            loggedUser = (User) UserUtil.getLogged(context);
+        }catch(Exception ex){}
     }
 
     private void populateControls() {
@@ -108,8 +113,10 @@ public class SignupAct extends ActionBarActivity {
         loggedUser.setPassword(passwordEditText.getText().toString());
         loggedUser.setPicture(ImageUtil.BitmapToByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.emoticon_cool)));
 
-        LoggedUser.deleteAll(LoggedUser.class);
-        loggedUser.save();
+        try {
+            UserUtil.login(context, loggedUser);
+        }catch(Exception ex){}
+
         Toast.makeText(getApplicationContext(), "Usuário salvo com sucesso. (:", Toast.LENGTH_LONG).show();
         startSecondActivity.start();
     }

@@ -1,7 +1,5 @@
 package alugueis.alugueis;
 
-
-import alugueis.alugueis.model.LoggedUser;
 import alugueis.alugueis.model.User;
 import alugueis.alugueis.util.UserUtil;
 import alugueis.alugueis.util.Util;
@@ -36,7 +34,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
     private RoundedImageView pictureImageView;
     private TextView welcomeUser;
 
-    private LoggedUser loggedUser;
+    private User loggedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,23 +42,18 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
 
         context = getApplicationContext();
-        User u = new User();
+        loggedUser = new User();
+        getLogged();
 
-        //todo: arruma saporra
-        loggedUser = new LoggedUser();
-
-        tryToGetLogged();
         initializeToolbar();
         initializeComponents();
         initializeBehaviours();
     }
 
-    private void tryToGetLogged() {
-
-        List<LoggedUser> loggedUsers = LoggedUser.listAll(LoggedUser.class);
-        if (loggedUsers.size() > 0) {
-            loggedUser = loggedUsers.get(0);
-        }
+    private void getLogged() {
+        try {
+            loggedUser = (User) UserUtil.getLogged(context);
+        }catch(Exception ex){}
     }
 
     private void initializeToolbar() {
@@ -126,13 +119,13 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
     }
 
     private void enterButtonAction() {
-        LoginService login=new LoginService("http://192.168.0.32:8080/galo");
-        login.execute();
+        //LoginService login=new LoginService("http://192.168.0.32:8080/galo");
+        //login.execute();
 
-       /*if (Util.isOnlineWithToast(context)) {
+       if (Util.isOnlineWithToast(context)) {
             String emailLogin = userEditText.getText().toString();
             String passwordLogin = passwordEditText.getText().toString();
-            if (userEditText.getText().toString().trim().equals("") || !UserUtil.validateLogin(emailLogin, passwordLogin)) {
+            if (userEditText.getText().toString().trim().equals("") || !UserUtil.validateLogin(context, emailLogin, passwordLogin)) {
                 userEditText.setError(getResources().getString(R.string.invalidUser));
             } else {
 
@@ -140,6 +133,6 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
                 startActivity(intent);
                 finish();
             }
-       }*/
+       }
     }
 }

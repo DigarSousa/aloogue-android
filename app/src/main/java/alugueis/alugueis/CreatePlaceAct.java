@@ -3,6 +3,7 @@ package alugueis.alugueis;
 import alugueis.alugueis.classes.maps.GeocoderJSONParser;
 import alugueis.alugueis.model.*;
 import alugueis.alugueis.util.ImageUtil;
+import alugueis.alugueis.util.UserUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
 
@@ -38,7 +39,7 @@ public class CreatePlaceAct extends DashboardNavAct {
 
     private Context context;
     private Place place;
-    private LoggedUser loggedUser;
+    private User loggedUser;
     private EditText cpfCnpjEditText;
     private EditText nameEditText;
     private EditText phoneEditText;
@@ -67,7 +68,9 @@ public class CreatePlaceAct extends DashboardNavAct {
 
         dialogCoord = new ProgressDialog(CreatePlaceAct.this);
         this.context = getApplicationContext();
-        //todo: this.loggedUser = LoggedUser.getInstance();
+
+        getLogged();
+
         this.place = new Place();
 
         initializeToolbar();
@@ -75,6 +78,13 @@ public class CreatePlaceAct extends DashboardNavAct {
         initializeListeners();
         initializeBehaviours();
         initializeStartLoginThread();
+    }
+
+    private void getLogged() {
+        loggedUser = new User();
+        try {
+            loggedUser = (User) UserUtil.getLogged(context);
+        }catch(Exception ex){}
     }
 
     private void initializeStartLoginThread() {
@@ -481,7 +491,6 @@ public class CreatePlaceAct extends DashboardNavAct {
             if (dialogCoord.isShowing()) {
                 dialogCoord.dismiss();
 
-                //place.deleteAll(LoggedUser.class);
                 place.save();
                 Toast.makeText(getApplicationContext(), "Loja salva com sucesso. Seja bem vindo. (:", Toast.LENGTH_LONG).show();
                 startLogin.start();

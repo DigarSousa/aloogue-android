@@ -1,14 +1,8 @@
 package alugueis.alugueis;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,35 +10,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import java.util.List;
-
-import alugueis.alugueis.model.LoggedUser;
-import alugueis.alugueis.util.ImageUtil;
 import alugueis.alugueis.util.UserUtil;
-import alugueis.alugueis.view.RoundedImageView;
 
 public class DashboardNavAct extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActionBarDrawerToggle toggle;
     private DrawerLayout drawer;
-    private Toolbar toolbar;
     private NavigationView navigationView;
-    private View headerView;
-    private LoggedUser loggedUser;
-    private LinearLayout bannerImage;
-    private RoundedImageView pictureImage;
-    private TextView nameUser;
-    private TextView emailUser;
     protected Toolbar mainToolbar;
     protected FrameLayout frameLayout;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +34,7 @@ public class DashboardNavAct extends AppCompatActivity implements NavigationView
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        context = getApplicationContext();
         initializeToolbar();
     }
 
@@ -120,7 +98,9 @@ public class DashboardNavAct extends AppCompatActivity implements NavigationView
             finish();
         }
         else if (id == R.id.logout) {
-            LoggedUser.deleteAll(LoggedUser.class);
+            try {
+                UserUtil.logout(context);
+            }catch(Exception ex){}
             Intent intent = new Intent(DashboardNavAct.this, MainAct.class);
             startActivity(intent);
             finish();

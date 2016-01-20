@@ -4,6 +4,7 @@ import com.orm.SugarRecord;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -12,7 +13,7 @@ import java.util.List;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class User extends SugarRecord {
+public class User extends SugarRecord implements Serializable {
     public User() {
     }
 
