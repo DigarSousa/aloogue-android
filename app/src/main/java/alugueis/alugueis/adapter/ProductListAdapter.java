@@ -78,8 +78,6 @@ public class ProductListAdapter extends ArrayAdapter<Product>{
                         Integer tag = (Integer) view.getTag();
                         newDialogBuilder(tag);
 
-                        notifyDataSetChanged();
-
                         String yes = context.getResources().getString(R.string.yes);
                         String no = context.getResources().getString(R.string.no);
 

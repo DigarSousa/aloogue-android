@@ -1,7 +1,10 @@
 package alugueis.alugueis;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -17,7 +20,7 @@ import alugueis.alugueis.util.Util;
 /**
  * Created by Pedreduardo on 19/01/2016.
  */
-public class ManageProductsAct extends DashboardNavAct{
+public class ManageProductsAct extends DashboardNavAct implements View.OnClickListener{
 
     private Context context;
     private User loggedUser;
@@ -26,6 +29,7 @@ public class ManageProductsAct extends DashboardNavAct{
     private ArrayList<Product> products;
     private RelativeLayout productsArea;
     private ProductListAdapter productAdapter;
+    private FloatingActionButton saveProductsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +75,7 @@ public class ManageProductsAct extends DashboardNavAct{
     }
 
     private void initializeToolbar() {
-        mainToolbar.setTitle("Produtos");
+        mainToolbar.setTitle("Seus produtos");
     }
 
     private void initializeComponents() {
@@ -103,6 +107,9 @@ public class ManageProductsAct extends DashboardNavAct{
             }
 
        });
+
+        saveProductsButton = (FloatingActionButton) findViewById(R.id.saveProductsButton);
+        saveProductsButton.setOnClickListener(this);
     }
 
     private boolean validateEmptyProductName() {
@@ -112,5 +119,43 @@ public class ManageProductsAct extends DashboardNavAct{
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.equals(saveProductsButton)){
+            try{
+                AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
+                    public ProgressDialog pd;
+
+                    @Override
+                    protected void onPreExecute(){
+                        pd = new ProgressDialog(ManageProductsAct.this);
+                        pd.setMessage("Atualizando seus produtos");
+                        pd.setCancelable(false);
+                        pd.setIndeterminate(true);
+                        pd.show();
+                    }
+                    @Override
+                    protected Void doInBackground(Void... arg0){
+                        //Saving place products
+                        for(Product p : products){
+                            p.save();
+                        }
+                        return null;
+                    }
+                    @Override
+                    protected void onPostExecute(Void result){
+                        if (pd!=null){
+                            pd.dismiss();
+                            Util.createToast(context, "Produtos atualizados com sucesso! (:");
+                        }
+                    }
+                };
+                task.execute((Void[])null);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 }
