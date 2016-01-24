@@ -107,4 +107,11 @@
     <string name="createPlace">CRIAR LOJA</string>
     <string name="emptyPhone">Por favor, insira um telefone para contato.</string>
     <string name="addAProduct">Adicione um produto...</string>
+    <string name="yourProducts">SEUS PRODUTOS</string>
+    <string name="emptyProductName">Por favor, insira um nome ao produto para adicioná-lo.</string>
+    <string name="place">Loja</string>
+    <string name="manageProducts">Gerenciar produtos</string>
+    <string name="areYouSureDelete">Tem certeza que deseja deletar esse item?</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
 </resources>

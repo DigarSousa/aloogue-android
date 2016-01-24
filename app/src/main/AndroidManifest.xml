@@ -74,6 +74,10 @@
             android:name=".CreatePlaceAct"
             android:label="@string/title_activity_dashboard_nav"
             android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".ManageProductsAct"
+            android:label="@string/title_activity_dashboard_nav"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

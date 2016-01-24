@@ -9,9 +9,9 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Active extends SugarRecord {
+public class Product extends SugarRecord {
 
-    public Active() {
+    public Product() {
     }
 
     private Long id;

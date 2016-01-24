@@ -35,6 +35,13 @@ public class Util {
         return true;
     }
 
+
+    public static void createToast(Context c, String message) {
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(c, message, duration);
+        toast.show();
+    }
+
     public static void populeStatesSpinner(Context c, Spinner stateSpinner) {
 
         String[] arrayState = new String[]{

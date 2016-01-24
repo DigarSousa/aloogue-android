@@ -6,7 +6,7 @@
     android:background="#fff">
 
     <RelativeLayout
-        android:id="@+id/generalDataArea"
+        android:id="@+id/productNameArea"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,4 +25,34 @@
             android:drawableRight="@drawable/ic_add_circle_orange"/>
 
     </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/yourProductsLabel"
+        android:layout_below="@+id/productNameArea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/yourProducts"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorPrimary"/>
+
+    <RelativeLayout
+        android:id="@+id/productsArea"
+        android:layout_below="@+id/yourProductsLabel"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/border_frame"
+        android:elevation="2dp">
+
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        </ListView>
+
+    </RelativeLayout>
+
 </RelativeLayout>
