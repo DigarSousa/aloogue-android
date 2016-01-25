@@ -3,6 +3,7 @@ package alugueis.alugueis;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,7 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import alugueis.alugueis.util.UserUtil;
+
+import alugueis.alugueis.util.StaticUtil;
 
 public class DashboardNavAct extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,7 +30,7 @@ public class DashboardNavAct extends AppCompatActivity implements NavigationView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_nav);
 
-        frameLayout = (FrameLayout)findViewById(R.id.content_frame);
+        frameLayout = (FrameLayout) findViewById(R.id.content_frame);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -40,7 +42,7 @@ public class DashboardNavAct extends AppCompatActivity implements NavigationView
 
     private void initializeToolbar() {
 
-        toggle = new ActionBarDrawerToggle(this, drawer, mainToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+        toggle = new ActionBarDrawerToggle(this, drawer, mainToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
 
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
@@ -58,9 +60,10 @@ public class DashboardNavAct extends AppCompatActivity implements NavigationView
         };
 
         drawer.setDrawerListener(toggle);
-
         mainToolbar = (Toolbar) findViewById(R.id.mainToolbar);
         setSupportActionBar(mainToolbar);
+
+        assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
@@ -90,21 +93,19 @@ public class DashboardNavAct extends AppCompatActivity implements NavigationView
         if (id == R.id.nav_add_shop) {
             Intent intent = new Intent(DashboardNavAct.this, CreatePlaceAct.class);
             startActivity(intent);
-        }
-        else if (id == R.id.nav_manage_products) {
+        } else if (id == R.id.nav_manage_products) {
             Intent intent = new Intent(DashboardNavAct.this, ManageProductsAct.class);
             startActivity(intent);
-        }
-        else if (id == R.id.nav_change_data) {
+        } else if (id == R.id.nav_change_data) {
             Intent intent = new Intent(DashboardNavAct.this, SignupAct.class);
             intent.putExtra("source", "changeData");
             startActivity(intent);
             finish();
-        }
-        else if (id == R.id.logout) {
+        } else if (id == R.id.logout) {
             try {
-                UserUtil.logout(context);
-            }catch(Exception ex){}
+                StaticUtil.remove(context, StaticUtil.LOGGED_USER);
+            } catch (Exception ex) {
+            }
             Intent intent = new Intent(DashboardNavAct.this, MainAct.class);
             startActivity(intent);
             finish();

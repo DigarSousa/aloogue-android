@@ -13,8 +13,8 @@ import java.util.List;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class User extends SugarRecord implements Serializable {
-    public User() {
+public class UserApp extends SugarRecord implements Serializable {
+    public UserApp() {
     }
 
     private Long id;

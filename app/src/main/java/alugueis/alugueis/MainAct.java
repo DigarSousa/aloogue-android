@@ -1,9 +1,11 @@
 package alugueis.alugueis;
 
-import alugueis.alugueis.model.User;
-import alugueis.alugueis.util.UserUtil;
+import alugueis.alugueis.model.UserApp;
+import alugueis.alugueis.model.UserApp;
+import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -16,9 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import service.LoginService;
-
-import java.util.List;
 
 public class MainAct extends ActionBarActivity implements View.OnClickListener {
 
@@ -34,7 +33,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
     private RoundedImageView pictureImageView;
     private TextView welcomeUser;
 
-    private User loggedUser;
+    private UserApp loggedUserApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
 
         context = getApplicationContext();
-        loggedUser = new User();
+        loggedUserApp = new UserApp();
         getLogged();
 
         initializeToolbar();
@@ -52,8 +51,9 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
 
     private void getLogged() {
         try {
-            loggedUser = (User) UserUtil.getLogged(context);
-        }catch(Exception ex){}
+            loggedUserApp = (UserApp) StaticUtil.getObject(context, StaticUtil.LOGGED_USER);
+        } catch (Exception ex) {
+        }
     }
 
     private void initializeToolbar() {
@@ -72,20 +72,21 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
         pictureImageView = (RoundedImageView) findViewById(R.id.pictureImage);
         welcomeUser = (TextView) findViewById(R.id.welcomeUser);
 
-        if (loggedUser.getName() != null) {
-            String userNamer = loggedUser.getName();
-            welcomeUser.setText(getResources().getString(R.string.welcomeCustomized) + " " + userNamer + "! (:");
+        if (loggedUserApp.getName() != null) {
+            String userNamer = loggedUserApp.getName();
+            String customWelcome = getResources().getString(R.string.welcomeCustomized) + " " + userNamer + "!";
+            welcomeUser.setText(customWelcome);
         }
 
-        if (loggedUser.getPicture() != null) {
-            byte[] userPic = loggedUser.getPicture();
+        if (loggedUserApp.getPicture() != null) {
+            byte[] userPic = loggedUserApp.getPicture();
             pictureImageView.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
         } else {
             pictureImageView.setImageBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.emoticon_cool));
         }
 
-        if (loggedUser.getEmail() != null) {
-            userEditText.setText(loggedUser.getEmail());
+        if (loggedUserApp.getEmail() != null) {
+            userEditText.setText(loggedUserApp.getEmail());
         }
 
         facebookImageButton = (ImageButton) findViewById(R.id.facebookButton);
@@ -119,20 +120,18 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
     }
 
     private void enterButtonAction() {
-        //LoginService login=new LoginService("http://192.168.0.32:8080/galo");
-        //login.execute();
 
-       if (Util.isOnlineWithToast(context)) {
+        if (Util.isOnlineWithToast(context)) {
             String emailLogin = userEditText.getText().toString();
             String passwordLogin = passwordEditText.getText().toString();
-            if (userEditText.getText().toString().trim().equals("") || !UserUtil.validateLogin(context, emailLogin, passwordLogin)) {
-                userEditText.setError(getResources().getString(R.string.invalidUser));
-            } else {
+            //todo: Busca no servidor¬¬
 
-                Intent intent = new Intent(MainAct.this, MapAct.class);
-                startActivity(intent);
-                finish();
-            }
-       }
+            //LoginService setOject=new LoginService(emailLogin,passwordLogin);
+            //setOject.execute();
+
+            Intent intent = new Intent(MainAct.this, MapAct.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

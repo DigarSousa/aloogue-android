@@ -19,7 +19,7 @@ public class Place extends SugarRecord {
     private Long id;
     private String cpfCnpj;
     private String name;
-    private User user;
+    private UserApp userApp;
     private AddressApp addressApp;
     private byte[] picture;
     private List<Phone> phones;

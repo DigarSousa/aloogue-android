@@ -18,7 +18,7 @@ public class RentContract extends SugarRecord {
 
     private Long id;
     private String description;
-    private User user;
+    private UserApp userApp;
     private Place place;
     //todo: Criar model ... private Long chargeEvent;
     private Date initialEffective;
