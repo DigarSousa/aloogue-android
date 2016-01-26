@@ -2,7 +2,7 @@ package alugueis.alugueis;
 
 import alugueis.alugueis.model.*;
 import alugueis.alugueis.util.ImageUtil;
-import alugueis.alugueis.util.UserUtil;
+import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 
 import android.content.Context;
@@ -17,7 +17,7 @@ import android.widget.*;
 public class SignupAct extends ActionBarActivity {
 
     private Toolbar mainToolbar;
-    private User loggedUser;
+    private UserApp loggedUserApp;
     private EditText nameEditText;
     private EditText emailEditText;
     private EditText passwordEditText;
@@ -36,17 +36,18 @@ public class SignupAct extends ActionBarActivity {
 
         this.context = getApplicationContext();
         Bundle extras = getIntent().getExtras();
-        loggedUser = new User();
+        loggedUserApp = new UserApp();
 
         initializeToolbar();
         initializeComponents();
         initializeListeners();
         initializeSecondActivityThread();
 
-        if(extras != null){
+        if (extras != null) {
             sourceAct = extras.getString("source");
             //Se o extra vier da edição de cadastro (:
-            if(sourceAct.equals("changeData")){
+            assert sourceAct != null;
+            if (sourceAct.equals("changeData")) {
                 getLogged();
                 populateControls();
             }
@@ -56,16 +57,17 @@ public class SignupAct extends ActionBarActivity {
 
     private void getLogged() {
         try {
-            loggedUser = (User) UserUtil.getLogged(context);
-        }catch(Exception ex){}
+            loggedUserApp = (UserApp) StaticUtil.getObject(context, StaticUtil.LOGGED_USER);
+        } catch (Exception ex) {
+        }
     }
 
     private void populateControls() {
 
-        nameEditText.setText(this.loggedUser.getName().toString());
+        nameEditText.setText(this.loggedUserApp.getName());
 
         //Account
-        emailEditText.setText(this.loggedUser.getEmail().toString());
+        emailEditText.setText(this.loggedUserApp.getEmail());
     }
 
     private void initializeSecondActivityThread() {
@@ -75,10 +77,9 @@ public class SignupAct extends ActionBarActivity {
                 try {
                     Thread.sleep(3500); // As I am using LENGTH_LONG in Toast
                     Intent intent;
-                    if(sourceAct != null && sourceAct.equals("changeData")){
+                    if (sourceAct != null && sourceAct.equals("changeData")) {
                         intent = new Intent(SignupAct.this, MapAct.class);
-                    }
-                    else{
+                    } else {
                         intent = new Intent(SignupAct.this, MainAct.class);
                     }
                     startActivity(intent);
@@ -108,14 +109,17 @@ public class SignupAct extends ActionBarActivity {
 
     private void saveNewUser() {
 
-        loggedUser.setName(nameEditText.getText().toString());
-        loggedUser.setEmail(emailEditText.getText().toString());
-        loggedUser.setPassword(passwordEditText.getText().toString());
-        loggedUser.setPicture(ImageUtil.BitmapToByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.emoticon_cool)));
+        loggedUserApp.setName(nameEditText.getText().toString());
+        loggedUserApp.setEmail(emailEditText.getText().toString());
+        loggedUserApp.setPassword(passwordEditText.getText().toString());
+        loggedUserApp.setPicture(ImageUtil.BitmapToByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.emoticon_cool)));
 
         try {
-            UserUtil.login(context, loggedUser);
-        }catch(Exception ex){}
+
+            StaticUtil.setOject(context, StaticUtil.LOGGED_USER, loggedUserApp);
+        } catch (Exception ex) {
+            //todo: tratar... chama a tela de setOject =D
+        }
 
         Toast.makeText(getApplicationContext(), "Usuário salvo com sucesso. (:", Toast.LENGTH_LONG).show();
         startSecondActivity.start();
@@ -218,7 +222,7 @@ public class SignupAct extends ActionBarActivity {
         //Done
         doneButton = (Button) findViewById(R.id.iAmDoneButton);
 
-        if(this.loggedUser != null){
+        if (this.loggedUserApp != null) {
             //Desabilitando os termos de uso
             acceptTermsCheckBox.setChecked(true);
             acceptTermsCheckBox.setClickable(false);

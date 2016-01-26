@@ -1,7 +1,7 @@
 package alugueis.alugueis;
 
-import alugueis.alugueis.model.User;
-import alugueis.alugueis.util.UserUtil;
+import alugueis.alugueis.model.UserApp;
+import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.view.RoundedImageView;
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,7 @@ import android.widget.TextView;
  */
 public class PlaceProfileAct extends DashboardNavAct {
 
-    private User loggedUser;
+    private UserApp loggedUserApp;
     private ImageView bannerImage;
     private RoundedImageView pictureImage;
     private Button callButton;
@@ -42,7 +42,7 @@ public class PlaceProfileAct extends DashboardNavAct {
 
     private void getLogged() {
         try {
-            loggedUser = (User) UserUtil.getLogged(context);
+            loggedUserApp = (UserApp) StaticUtil.getObject(context, StaticUtil.LOGGED_USER);
         }catch(Exception ex){}
     }
 
@@ -68,8 +68,8 @@ public class PlaceProfileAct extends DashboardNavAct {
         placeAddressText = (TextView) findViewById(R.id.placeAddressText);
         workText = (TextView) findViewById(R.id.workText);
 
-        if (loggedUser.getPicture() != null) {
-            byte[] userPic = loggedUser.getPicture();
+        if (loggedUserApp.getPicture() != null) {
+            byte[] userPic = loggedUserApp.getPicture();
 
             //Bitmap userPicBitmap = BitmapFactory.decodeByteArray(userPic, 0, userPic.length);
             //Bitmap bluredBackground = ImageUtil.fastblur(userPicBitmap, this, 25);
@@ -80,8 +80,8 @@ public class PlaceProfileAct extends DashboardNavAct {
             //bannerImage.setImageBitmap(bluredBackground);
         }
 
-        if (loggedUser.getAddressApp() != null) {
-            placeAddressText.setText(loggedUser.getAddressApp().toString());
+        if (loggedUserApp.getAddressApp() != null) {
+            placeAddressText.setText(loggedUserApp.getAddressApp().toString());
         }
 
         workText.setText("De 08h às 15h");

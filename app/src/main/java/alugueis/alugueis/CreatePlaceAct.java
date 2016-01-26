@@ -3,7 +3,7 @@ package alugueis.alugueis;
 import alugueis.alugueis.classes.maps.GeocoderJSONParser;
 import alugueis.alugueis.model.*;
 import alugueis.alugueis.util.ImageUtil;
-import alugueis.alugueis.util.UserUtil;
+import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
 
@@ -39,7 +39,7 @@ public class CreatePlaceAct extends DashboardNavAct {
 
     private Context context;
     private Place place;
-    private User loggedUser;
+    private UserApp loggedUserApp;
     private EditText cpfCnpjEditText;
     private EditText nameEditText;
     private EditText phoneEditText;
@@ -81,9 +81,9 @@ public class CreatePlaceAct extends DashboardNavAct {
     }
 
     private void getLogged() {
-        loggedUser = new User();
+        loggedUserApp = new UserApp();
         try {
-            loggedUser = (User) UserUtil.getLogged(context);
+            loggedUserApp = (UserApp) StaticUtil.getObject(context, StaticUtil.LOGGED_USER);
         }catch(Exception ex){}
     }
 
@@ -140,7 +140,7 @@ public class CreatePlaceAct extends DashboardNavAct {
         phones.add(phone);
         place.setPhones(phones);
 
-        loggedUser.setPicture(ImageUtil.BitmapToByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.emoticon_cool)));
+        loggedUserApp.setPicture(ImageUtil.BitmapToByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.emoticon_cool)));
         place.setBusinessInitialHour(businessInitialHourSpinner.getSelectedItem().toString());
         place.setBusinessFinalHour(businessFinalHourSpinner.getSelectedItem().toString());
 
