@@ -140,7 +140,7 @@ public class CreatePlaceAct extends DashboardNavAct {
         phones.add(phone);
         place.setPhones(phones);
 
-        loggedUserApp.setPicture(ImageUtil.BitmapToByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.emoticon_cool)));
+        //loggedUserApp.setPicture(ImageUtil.BitmapToByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.emoticon_cool)));
         place.setBusinessInitialHour(businessInitialHourSpinner.getSelectedItem().toString());
         place.setBusinessFinalHour(businessFinalHourSpinner.getSelectedItem().toString());
 

@@ -1,9 +1,12 @@
 package service;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 
 import com.google.common.eventbus.AsyncEventBus;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,16 +16,19 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import alugueis.alugueis.MapAct;
 import alugueis.alugueis.model.UserApp;
 
 /**
  * Created by edgar on 23/12/15.
  */
 public class SignUpService extends AsyncTask<Void, Boolean, Void> {
-    private String httpUrl;
+    private UserApp userApp;
+    private Context context;
 
-    public SignUpService(String httpUrl) {
-        this.httpUrl = httpUrl;
+    public SignUpService(UserApp userApp, Context context) {
+        this.userApp = userApp;
+        this.context = context;
     }
 
 
@@ -32,18 +38,19 @@ public class SignUpService extends AsyncTask<Void, Boolean, Void> {
         OutputStreamWriter out;
         InputStreamReader in;
         BufferedReader reader;
-        Gson gson = new Gson();
-        String json = gson.toJson(null, UserApp.class);
+        Gson gson = new GsonBuilder().serializeNulls().create();
 
         URL url;
         try {
+            userApp.setPicture(null);
+            String json = gson.toJson(userApp, UserApp.class);
 
-            url = new URL(httpUrl);
+            url = new URL(ConstantsService.USER);
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoInput(true);
             connection.setDoOutput(true);
-            connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-            connection.setRequestMethod("POST");
+            connection.setRequestProperty(ConstantsService.CONTENT, ConstantsService.JSON);
+            connection.setRequestMethod(ConstantsService.POST);
 
             out = new OutputStreamWriter(connection.getOutputStream());
 
@@ -66,5 +73,11 @@ public class SignUpService extends AsyncTask<Void, Boolean, Void> {
         }
 
         return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        Intent intent = new Intent(context, MapAct.class);
+        context.startActivity(intent);
     }
 }

@@ -39,8 +39,8 @@ public class LoginService extends AsyncTask<Void, Boolean, Void> {
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoInput(true);
             connection.setDoOutput(true);
-            connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-            connection.setRequestMethod("POST");
+            connection.setRequestProperty(ConstantsService.CONTENT, ConstantsService.JSON);
+            connection.setRequestMethod(ConstantsService.POST);
 
             out = new OutputStreamWriter(connection.getOutputStream());
 

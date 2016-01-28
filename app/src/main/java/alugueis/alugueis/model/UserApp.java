@@ -21,11 +21,11 @@ public class UserApp extends SugarRecord implements Serializable {
     private String name;
     private String email;
     private String password;
-    private double latitude;
-    private double longitude;
-    private AddressApp addressApp;
+    //private double latitude;
+    //private double longitude;
+    //private AddressApp addressApp;
     private byte[] picture;
-    private List<Phone> phones;
+    //private List<Phone> phones;
 
 
 }

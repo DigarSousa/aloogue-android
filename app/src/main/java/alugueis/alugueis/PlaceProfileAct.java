@@ -80,9 +80,9 @@ public class PlaceProfileAct extends DashboardNavAct {
             //bannerImage.setImageBitmap(bluredBackground);
         }
 
-        if (loggedUserApp.getAddressApp() != null) {
-            placeAddressText.setText(loggedUserApp.getAddressApp().toString());
-        }
+       // if (loggedUserApp.getAddressApp() != null) {
+      //      placeAddressText.setText(loggedUserApp.getAddressApp().toString());
+      // }
 
         workText.setText("De 08h às 15h");
 

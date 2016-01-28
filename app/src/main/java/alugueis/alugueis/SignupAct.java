@@ -4,6 +4,7 @@ import alugueis.alugueis.model.*;
 import alugueis.alugueis.util.ImageUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
+import service.SignUpService;
 
 import android.content.Context;
 import android.content.Intent;
@@ -114,15 +115,8 @@ public class SignupAct extends ActionBarActivity {
         loggedUserApp.setPassword(passwordEditText.getText().toString());
         loggedUserApp.setPicture(ImageUtil.BitmapToByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.emoticon_cool)));
 
-        try {
+        new SignUpService(loggedUserApp,getApplicationContext()).execute();
 
-            StaticUtil.setOject(context, StaticUtil.LOGGED_USER, loggedUserApp);
-        } catch (Exception ex) {
-            //todo: tratar... chama a tela de setOject =D
-        }
-
-        Toast.makeText(getApplicationContext(), "Usuário salvo com sucesso. (:", Toast.LENGTH_LONG).show();
-        startSecondActivity.start();
     }
 
     private boolean validateComponents() {
