@@ -5,6 +5,7 @@ import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
+import service.ConstantsService;
 
 import android.content.Context;
 import android.content.Intent;
@@ -110,11 +111,11 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
 
         } else if (v.equals(facebookImageButton)) {
             Intent it = new Intent();
-            it.setData(Uri.parse("http://facebook.com"));
+            it.setData(Uri.parse(ConstantsService.FACEBOOK));
             startActivity(it);
         } else if (v.equals(twitterImageButton)) {
             Intent it = new Intent();
-            it.setData(Uri.parse("http://twitter.com"));
+            it.setData(Uri.parse(ConstantsService.TWITTER));
             startActivity(it);
         }
     }

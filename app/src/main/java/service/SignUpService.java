@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 
 import com.google.common.eventbus.AsyncEventBus;
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -38,12 +40,11 @@ public class SignUpService extends AsyncTask<Void, Boolean, Void> {
         OutputStreamWriter out;
         InputStreamReader in;
         BufferedReader reader;
-        Gson gson = new GsonBuilder().serializeNulls().create();
+        Gson gson = new GsonBuilder().create();
+        String json = gson.toJson(userApp, UserApp.class);
 
         URL url;
         try {
-            userApp.setPicture(null);
-            String json = gson.toJson(userApp, UserApp.class);
 
             url = new URL(ConstantsService.USER);
             connection = (HttpURLConnection) url.openConnection();
@@ -67,17 +68,17 @@ public class SignUpService extends AsyncTask<Void, Boolean, Void> {
                 sb.append(line);
             }
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            //todo: seta no arquivo o erro... mostra que houve problema no tost
         } catch (IOException e) {
-            e.printStackTrace();
-        }
 
+        }
         return null;
     }
 
     @Override
-    protected void onPostExecute(Void aVoid) {
+    protected void onPostExecute(Void aBoolean) {
         Intent intent = new Intent(context, MapAct.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
     }
 }
