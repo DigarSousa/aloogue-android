@@ -1,6 +1,9 @@
 package alugueis.alugueis.model;
 
 import com.orm.SugarRecord;
+
+import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -9,7 +12,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Product extends SugarRecord {
+public class Product extends SugarRecord implements Serializable{
 
     public Product() {
     }

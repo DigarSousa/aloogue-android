@@ -2,6 +2,7 @@ package alugueis.alugueis;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -41,10 +42,22 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
 
         initializeAttributes();
 
+
         getLogged();
 
         initializeToolbar();
         initializeComponents();
+        getProductList();
+    }
+
+    private void getProductList() {
+        Intent it = getIntent();
+        Bundle extras = it.getExtras();
+
+        if (extras != null) {
+            products = (ArrayList<Product>)extras.get("products");
+            loadProductList();
+        }
     }
 
     private void loadProductList() {
@@ -66,7 +79,7 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         loggedUser = new UserApp();
         //todo: Buscar produtos do cliente aqui
         products = new ArrayList<Product>();
-        productAdapter = new ProductListAdapter(context, android.R.layout.simple_list_item_1, products);
+        productAdapter = new ProductListAdapter(context, android.R.layout.simple_list_item_1, products, this);
     }
 
     private void getLogged() {
