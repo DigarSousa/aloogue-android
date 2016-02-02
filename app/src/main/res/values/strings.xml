@@ -115,4 +115,7 @@
     <string name="areYouSureDelete">Tem certeza que deseja deletar esse item?</string>
     <string name="yes">Sim</string>
     <string name="no">Não</string>
+    <string name="okButton">OK</string>
+    <string name="cancelButton">CANCELAR</string>
+    <string name="editProduct">Editar Produto</string>
 </resources>

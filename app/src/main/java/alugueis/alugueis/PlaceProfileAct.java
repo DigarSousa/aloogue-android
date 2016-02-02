@@ -68,17 +68,18 @@ public class PlaceProfileAct extends DashboardNavAct {
         placeAddressText = (TextView) findViewById(R.id.placeAddressText);
         workText = (TextView) findViewById(R.id.workText);
 
-        if (loggedUserApp.getPicture() != null) {
-            byte[] userPic = loggedUserApp.getPicture();
+        if(loggedUserApp != null) {
+            if (loggedUserApp.getPicture() != null) {
+                byte[] userPic = loggedUserApp.getPicture();
 
-            //Bitmap userPicBitmap = BitmapFactory.decodeByteArray(userPic, 0, userPic.length);
-            //Bitmap bluredBackground = ImageUtil.fastblur(userPicBitmap, this, 25);
-            //bluredBackground = ImageUtil.adjustBrightness(bluredBackground, -50);
-            //bluredBackground = ImageUtil.adjustedContrast(bluredBackground, -10);
+                //Bitmap userPicBitmap = BitmapFactory.decodeByteArray(userPic, 0, userPic.length);
+                //Bitmap bluredBackground = ImageUtil.fastblur(userPicBitmap, this, 25);
+                //bluredBackground = ImageUtil.adjustBrightness(bluredBackground, -50);
+                //bluredBackground = ImageUtil.adjustedContrast(bluredBackground, -10);
 
-            pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
-            //bannerImage.setImageBitmap(bluredBackground);
-        }
+                pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
+                //bannerImage.setImageBitmap(bluredBackground);
+            }
 
        // if (loggedUserApp.getAddressApp() != null) {
       //      placeAddressText.setText(loggedUserApp.getAddressApp().toString());

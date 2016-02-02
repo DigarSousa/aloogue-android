@@ -33,6 +33,17 @@
         <item name="android:background">@drawable/edit_text_light</item>
     </style>
 
+    <style name="buttonTransparent" parent="@android:style/Widget.EditText">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
     <style name="spinnerLight" parent="@android:style/Widget.DropDownItem.Spinner">
         <item name="android:textColorHint">@color/colorAccent</item>
         <item name="android:textColor">@color/colorSecondaryText</item>

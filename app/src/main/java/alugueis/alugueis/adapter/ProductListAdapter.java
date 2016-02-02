@@ -1,35 +1,42 @@
 package alugueis.alugueis.adapter;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import java.util.ArrayList;
+
+import alugueis.alugueis.ManageProductsAct;
 import alugueis.alugueis.R;
 import alugueis.alugueis.model.Product;
+import alugueis.alugueis.view.EditProductAct;
 
 public class ProductListAdapter extends ArrayAdapter<Product>{
+
     private ArrayList<Product> productList;
     private DialogInterface.OnClickListener dialogDelete;
     private Context context;
-    private ArrayList<ViewHolder> holders;
+    private Activity fromActivity;
 
-    public ProductListAdapter(Context context, int textViewResourceId, ArrayList<Product> productList) {
+    public ProductListAdapter(Context context, int textViewResourceId, ArrayList<Product> productList, Activity fromActivity) {
         super(context, textViewResourceId, productList);
         this.productList = productList;
         this.context = context;
-        holders = new ArrayList<>();
+        this.fromActivity = fromActivity;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        //final ViewHolder holder;
         View v = convertView;
         final int pos = position;
 
@@ -42,7 +49,7 @@ public class ProductListAdapter extends ArrayAdapter<Product>{
             if (productList.size() > 0) {
                 //Product name
                 final Product product = productList.get(position);
-                final TextView productName = (TextView) v.findViewById(R.id.productName);
+                final EditText productName = (EditText) v.findViewById(R.id.productName);
                 productName.setEnabled(false);
 
                 //Edit Button
@@ -51,6 +58,7 @@ public class ProductListAdapter extends ArrayAdapter<Product>{
                 //Delete button
                 final ImageButton  deleteButton = (ImageButton) v.findViewById(R.id.deleteButton);
                 deleteButton.setTag(position);
+                editButton.setTag(position);
 
                 try {
                     if (productName != null)
@@ -64,8 +72,13 @@ public class ProductListAdapter extends ArrayAdapter<Product>{
                 editButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        productName.setEnabled(true);
-                        productName.requestFocus();
+
+                        Integer tag = (Integer) view.getTag();
+                        Intent it = new Intent(context, EditProductAct.class);
+                        it.putExtra("products", productList);
+                        it.putExtra("position", tag);
+                        it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(it);
                     }
                 });
 
@@ -100,8 +113,6 @@ public class ProductListAdapter extends ArrayAdapter<Product>{
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
 
-
-                        //ESSA PUTA ATUALIZA O ARRAY MAS ATUALIZA O LISTVIEW ERRADO.
                         productList.remove(position);
                         ProductListAdapter.this.notifyDataSetChanged();
                         break;
@@ -117,15 +128,5 @@ public class ProductListAdapter extends ArrayAdapter<Product>{
     public Product getItem(int position) {
         return productList.get(position);
     }
-
-    public static class ViewHolder
-    {
-        Product product;
-        TextView productName;
-        ImageButton editButton;
-        ImageButton deleteButton;
-        int position;
-    }
-
 }
 

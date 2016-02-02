@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/background_floating_material_light">
+
+    <EditText
+        android:id="@+id/productName"
+        style="@style/editTextLight"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:text="Unknown Product"
+        android:textSize="16dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_centerHorizontal="true" />
+
+
+    <Button
+        android:id="@+id/buttonCancel"
+        android:text="@string/cancelButton"
+        android:layout_below="@+id/productName"
+        android:layout_toLeftOf="@+id/buttonOk"
+        style="@style/buttonTransparent"
+        />
+
+    <Button
+        android:id="@+id/buttonOk"
+        android:text="@string/okButton"
+        android:layout_below="@+id/productName"
+        style="@style/buttonTransparent"
+        android:layout_alignParentRight="true"
+        />
+
+</RelativeLayout>
