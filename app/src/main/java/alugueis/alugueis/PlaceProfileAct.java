@@ -68,7 +68,7 @@ public class PlaceProfileAct extends DashboardNavAct {
         placeAddressText = (TextView) findViewById(R.id.placeAddressText);
         workText = (TextView) findViewById(R.id.workText);
 
-        if(loggedUserApp != null) {
+        if (loggedUserApp != null) {
             if (loggedUserApp.getPicture() != null) {
                 byte[] userPic = loggedUserApp.getPicture();
 
@@ -81,12 +81,12 @@ public class PlaceProfileAct extends DashboardNavAct {
                 //bannerImage.setImageBitmap(bluredBackground);
             }
 
-       // if (loggedUserApp.getAddressApp() != null) {
-      //      placeAddressText.setText(loggedUserApp.getAddressApp().toString());
-      // }
+            // if (loggedUserApp.getAddressApp() != null) {
+            //      placeAddressText.setText(loggedUserApp.getAddressApp().toString());
+            // }
 
-        workText.setText("De 08h às 15h");
+            workText.setText("De 08h às 15h");
 
+        }
     }
-
 }
