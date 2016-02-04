@@ -4,14 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+
 import alugueis.alugueis.MapAct;
 import alugueis.alugueis.model.UserApp;
-import alugueis.alugueis.util.ServerConnection;
 import alugueis.alugueis.util.StaticUtil;
+
+import java.io.IOException;
 
 
 public class SignUpService extends AsyncTask<Void, Void, Void> {
@@ -25,22 +23,7 @@ public class SignUpService extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... params) {
-        ServerConnection serverConnection;
-        Gson gson = new GsonBuilder().create();
-        String json = gson.toJson(userApp, UserApp.class);
-        OutputStreamWriter out;
-        try {
-            serverConnection = new ServerConnection(ConstantsService.USER, ConstantsService.POST);
 
-            out = serverConnection.getWriter();
-
-            out.write(json);
-            out.flush();
-            out.close();
-            serverConnection.getResponse();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return null;
     }
 

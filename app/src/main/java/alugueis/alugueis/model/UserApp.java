@@ -1,5 +1,7 @@
 package alugueis.alugueis.model;
 
+import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -8,8 +10,7 @@ import lombok.EqualsAndHashCode;
  * Created by Pedreduardo on 16/10/2015.
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-public class UserApp {
+public class UserApp implements Serializable{
     public UserApp() {
     }
 

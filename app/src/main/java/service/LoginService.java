@@ -1,19 +1,22 @@
 package service;
 
 import alugueis.alugueis.util.ServerConnection;
+import alugueis.alugueis.util.ServerUtil;
 
 import android.os.AsyncTask;
+import android.util.Pair;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.net.MalformedURLException;
 
 public class LoginService extends AsyncTask<Void, Boolean, Boolean> {
-    private String login;
+    private String email;
+    private String password;
 
     public LoginService(String email, String password) {
-        this.login = email + ";" + password;
+        this.email = email;
+        this.password = password;
     }
 
     @Override
@@ -23,13 +26,12 @@ public class LoginService extends AsyncTask<Void, Boolean, Boolean> {
         OutputStreamWriter out;
         InputStreamReader in;
         try {
-            serviceConnection = new ServerConnection(ConstantsService.USER, ConstantsService.POST);
-            in = serviceConnection.getReader();
-            out = serviceConnection.getWriter();
 
-            out.write(login);
-            out.flush();
-            out.close();
+            String url = ServerUtil.buildUrl(ConstantsService.USER,
+                    new Pair<String, String>("email", email),
+                    new Pair<String, String>("password", password));
+            serviceConnection = new ServerConnection(url, ConstantsService.GET);
+            serviceConnection.connect();
             resposne = serviceConnection.getResponse();
 
         } catch (IOException e) {

@@ -2,7 +2,6 @@ package alugueis.alugueis;
 
 import alugueis.alugueis.classes.maps.GeocoderJSONParser;
 import alugueis.alugueis.model.*;
-import alugueis.alugueis.util.ImageUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
@@ -83,7 +82,7 @@ public class CreatePlaceAct extends DashboardNavAct {
     private void getLogged() {
         loggedUserApp = new UserApp();
         try {
-            loggedUserApp = (UserApp) StaticUtil.getObject(context, StaticUtil.LOGGED_USER);
+            loggedUserApp = (UserApp) StaticUtil.readObject(context, StaticUtil.LOGGED_USER);
         }catch(Exception ex){}
     }
 
