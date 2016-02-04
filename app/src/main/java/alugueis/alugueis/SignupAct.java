@@ -58,7 +58,7 @@ public class SignupAct extends ActionBarActivity {
 
     private void getLogged() {
         try {
-            loggedUserApp = (UserApp) StaticUtil.getObject(context, StaticUtil.LOGGED_USER);
+            loggedUserApp = (UserApp) StaticUtil.readObject(context, StaticUtil.LOGGED_USER);
         } catch (Exception ex) {
         }
     }

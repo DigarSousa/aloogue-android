@@ -84,7 +84,7 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
 
     private void getLogged() {
         try {
-            loggedUser = (UserApp) StaticUtil.getObject(context, StaticUtil.LOGGED_USER);
+            loggedUser = (UserApp) StaticUtil.readObject(context, StaticUtil.LOGGED_USER);
         } catch (Exception ex) {
         }
     }
