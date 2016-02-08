@@ -22,14 +22,12 @@ public class LoginService extends AsyncTask<Void, Boolean, Boolean> {
     @Override
     protected Boolean doInBackground(Void... params) {
         ServerConnection serviceConnection;
-        String resposne = "false";
-        OutputStreamWriter out;
-        InputStreamReader in;
+        String resposne = "";
         try {
 
             String url = ServerUtil.buildUrl(ConstantsService.USER,
-                    new Pair<String, String>("email", email),
-                    new Pair<String, String>("password", password));
+                    new Pair<>("email", email),
+                    new Pair<>("password", password));
             serviceConnection = new ServerConnection(url, ConstantsService.GET);
             serviceConnection.connect();
             resposne = serviceConnection.getResponse();
