@@ -1,5 +1,6 @@
 package alugueis.alugueis;
 
+import alugueis.alugueis.model.PictureFile;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.view.RoundedImageView;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.IOException;
 
 /**
  * Created by Pedreduardo on 22/12/2015.
@@ -68,25 +71,30 @@ public class PlaceProfileAct extends DashboardNavAct {
         placeAddressText = (TextView) findViewById(R.id.placeAddressText);
         workText = (TextView) findViewById(R.id.workText);
 
-        if (loggedUserApp != null) {
-            if (loggedUserApp.getPicture() != null) {
-                byte[] userPic = loggedUserApp.getPicture();
+        try {
+             PictureFile pictureFile = (PictureFile) StaticUtil.readObject(getApplicationContext(), StaticUtil.PROFILE_PICTURE);
+            if (pictureFile != null) {
+                byte[] userPic = pictureFile.getSourceFile();
 
-                //Bitmap userPicBitmap = BitmapFactory.decodeByteArray(userPic, 0, userPic.length);
-                //Bitmap bluredBackground = ImageUtil.fastblur(userPicBitmap, this, 25);
-                //bluredBackground = ImageUtil.adjustBrightness(bluredBackground, -50);
-                //bluredBackground = ImageUtil.adjustedContrast(bluredBackground, -10);
+            //Bitmap userPicBitmap = BitmapFactory.decodeByteArray(userPic, 0, userPic.length);
+            //Bitmap bluredBackground = ImageUtil.fastblur(userPicBitmap, this, 25);
+            //bluredBackground = ImageUtil.adjustBrightness(bluredBackground, -50);
+            //bluredBackground = ImageUtil.adjustedContrast(bluredBackground, -10);
 
                 pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
                 //bannerImage.setImageBitmap(bluredBackground);
             }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
-            // if (loggedUserApp.getAddressApp() != null) {
-            //      placeAddressText.setText(loggedUserApp.getAddressApp().toString());
-            // }
+       // if (loggedUserApp.getAddressApp() != null) {
+      //      placeAddressText.setText(loggedUserApp.getAddressApp().toString());
+      // }
 
             workText.setText("De 08h às 15h");
 
         }
     }
+
 }

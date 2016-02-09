@@ -21,7 +21,6 @@ public class UserApp implements Serializable{
     //private double latitude;
     //private double longitude;
     //private AddressApp addressApp;
-    private byte[] picture;
     //private List<Phone> phones;
 
 

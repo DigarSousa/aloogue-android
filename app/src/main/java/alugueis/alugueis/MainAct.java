@@ -79,12 +79,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
             welcomeUser.setText(customWelcome);
         }
 
-        if (loggedUserApp.getPicture() != null) {
-            byte[] userPic = loggedUserApp.getPicture();
-            pictureImageView.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
-        } else {
-            pictureImageView.setImageBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.emoticon_cool));
-        }
+        pictureImageView.setImageBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.emoticon_cool));
 
         if (loggedUserApp.getEmail() != null) {
             userEditText.setText(loggedUserApp.getEmail());
@@ -125,7 +120,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
         if (Util.isOnlineWithToast(context)) {
             String emailLogin = userEditText.getText().toString();
             String passwordLogin = passwordEditText.getText().toString();
-            new LoginService(emailLogin, passwordLogin).execute();
+            new LoginService(getApplicationContext(), emailLogin, passwordLogin).execute();
         }
     }
 }
