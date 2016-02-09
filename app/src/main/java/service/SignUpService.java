@@ -31,6 +31,7 @@ public class SignUpService extends AsyncTask<Void, Void, Void> {
         Gson gson = new Gson();
         String json = gson.toJson(userApp, UserApp.class);
         OutputStreamWriter out;
+
         try {
             serverConnection = new ServerConnection(ConstantsService.USER, ConstantsService.POST);
 

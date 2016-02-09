@@ -1,27 +1,36 @@
 package service;
 
+import alugueis.alugueis.MapAct;
+import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.util.ServerConnection;
 import alugueis.alugueis.util.ServerUtil;
+import alugueis.alugueis.util.StaticUtil;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Pair;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 
-public class LoginService extends AsyncTask<Void, Boolean, Boolean> {
+public class LoginService extends AsyncTask<Void, Boolean, UserApp> {
     private String email;
     private String password;
+    private Context context;
 
-    public LoginService(String email, String password) {
+    public LoginService(Context context, String email, String password) {
+        this.context = context;
         this.email = email;
         this.password = password;
     }
 
     @Override
-    protected Boolean doInBackground(Void... params) {
+    protected UserApp doInBackground(Void... params) {
         ServerConnection serviceConnection;
+        Gson gson = new Gson();
         String resposne = "";
         try {
 
@@ -36,11 +45,22 @@ public class LoginService extends AsyncTask<Void, Boolean, Boolean> {
             e.printStackTrace();
         }
 
-        return Boolean.valueOf(resposne);
+        return gson.fromJson(resposne, UserApp.class);
     }
 
     @Override
-    protected void onPostExecute(Boolean aBoolean) {
-        super.onPostExecute(aBoolean);
+    protected void onPostExecute(UserApp loggedUser) {
+        if (loggedUser != null) {
+            try {
+                StaticUtil.setOject(context, StaticUtil.LOGGED_USER, loggedUser);
+                Intent intent = new Intent(context, MapAct.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                context.startActivity(intent);
+            } catch (IOException e) {
+                Toast.makeText(context, "Houve uma falha ao realizar seu login :( ", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(context, "Email ou senha invalidos :( ", Toast.LENGTH_SHORT).show();
+        }
     }
 }

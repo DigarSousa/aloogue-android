@@ -24,17 +24,6 @@ public class ServerConnection {
         this.method = method;
     }
 
-    public ServerConnection(String url, Boolean doOut) {
-        this.url = url;
-        this.doOut = doOut;
-    }
-
-    public ServerConnection(String url, String method, Boolean doOut) {
-        this.url = url;
-        this.method = method;
-        this.doOut = doOut;
-    }
-
     private HttpURLConnection getConnection() throws IOException {
         if (connection != null) {
             return connection;
@@ -42,9 +31,9 @@ public class ServerConnection {
 
         connection = (HttpURLConnection) new URL(url).openConnection();
         if (method != null && method.equals(ConstantsService.POST)) {
-            connection.setDoOutput(doOut == null ? true : doOut);
+            connection.setDoOutput(true);
             connection.setRequestProperty(ConstantsService.CONTENT, ConstantsService.JSON);
-            connection.setRequestMethod(method == null ? ConstantsService.GET : method);
+            connection.setRequestMethod(method);
         }
         return connection;
     }
