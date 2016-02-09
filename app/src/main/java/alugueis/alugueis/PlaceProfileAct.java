@@ -4,6 +4,7 @@ import alugueis.alugueis.model.PictureFile;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.view.RoundedImageView;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -16,9 +17,6 @@ import android.widget.TextView;
 
 import java.io.IOException;
 
-/**
- * Created by Pedreduardo on 22/12/2015.
- */
 public class PlaceProfileAct extends DashboardNavAct {
 
     private UserApp loggedUserApp;
@@ -46,7 +44,8 @@ public class PlaceProfileAct extends DashboardNavAct {
     private void getLogged() {
         try {
             loggedUserApp = (UserApp) StaticUtil.readObject(context, StaticUtil.LOGGED_USER);
-        }catch(Exception ex){}
+        } catch (Exception ex) {
+        }
     }
 
     private void initializeListeners() {
@@ -72,14 +71,14 @@ public class PlaceProfileAct extends DashboardNavAct {
         workText = (TextView) findViewById(R.id.workText);
 
         try {
-             PictureFile pictureFile = (PictureFile) StaticUtil.readObject(getApplicationContext(), StaticUtil.PROFILE_PICTURE);
+            PictureFile pictureFile = (PictureFile) StaticUtil.readObject(getApplicationContext(), StaticUtil.PROFILE_PICTURE);
             if (pictureFile != null) {
                 byte[] userPic = pictureFile.getSourceFile();
 
-            //Bitmap userPicBitmap = BitmapFactory.decodeByteArray(userPic, 0, userPic.length);
-            //Bitmap bluredBackground = ImageUtil.fastblur(userPicBitmap, this, 25);
-            //bluredBackground = ImageUtil.adjustBrightness(bluredBackground, -50);
-            //bluredBackground = ImageUtil.adjustedContrast(bluredBackground, -10);
+                //Bitmap userPicBitmap = BitmapFactory.decodeByteArray(userPic, 0, userPic.length);
+                //Bitmap bluredBackground = ImageUtil.fastblur(userPicBitmap, this, 25);
+                //bluredBackground = ImageUtil.adjustBrightness(bluredBackground, -50);
+                //bluredBackground = ImageUtil.adjustedContrast(bluredBackground, -10);
 
                 pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
                 //bannerImage.setImageBitmap(bluredBackground);
@@ -88,13 +87,11 @@ public class PlaceProfileAct extends DashboardNavAct {
             e.printStackTrace();
         }
 
-       // if (loggedUserApp.getAddressApp() != null) {
-      //      placeAddressText.setText(loggedUserApp.getAddressApp().toString());
-      // }
+        // if (loggedUserApp.getAddressApp() != null) {
+        //      placeAddressText.setText(loggedUserApp.getAddressApp().toString());
+        // }
 
-            workText.setText("De 08h às 15h");
-
-        }
+        workText.setText("De 08h às 15h");
     }
-
 }
+
