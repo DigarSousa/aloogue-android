@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import service.ConstantsService;
+import static  service.ConstantsService.*;
 
 public class ServerConnection {
     private String url;
@@ -32,7 +33,7 @@ public class ServerConnection {
         connection = (HttpURLConnection) new URL(url).openConnection();
         if (method != null && method.equals(ConstantsService.POST)) {
             connection.setDoOutput(true);
-            connection.setRequestProperty(ConstantsService.CONTENT, ConstantsService.JSON);
+            connection.setRequestProperty(CONTENT, ConstantsService.JSON);
             connection.setRequestMethod(method);
         }
         return connection;
