@@ -10,6 +10,8 @@ import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.zip.Deflater;
 
 /**
  * Created by Pedreduardo on 01/12/2015.

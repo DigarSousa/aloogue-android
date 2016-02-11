@@ -1,14 +1,12 @@
 package alugueis.alugueis;
 
 import alugueis.alugueis.model.*;
-import alugueis.alugueis.util.ImageUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import service.SignUpService;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -58,7 +56,7 @@ public class SignupAct extends ActionBarActivity {
 
     private void getLogged() {
         try {
-            loggedUserApp = (UserApp) StaticUtil.getObject(context, StaticUtil.LOGGED_USER);
+            loggedUserApp = (UserApp) StaticUtil.readObject(context, StaticUtil.LOGGED_USER);
         } catch (Exception ex) {
         }
     }
@@ -109,14 +107,10 @@ public class SignupAct extends ActionBarActivity {
     }
 
     private void saveNewUser() {
-
         loggedUserApp.setName(nameEditText.getText().toString());
         loggedUserApp.setEmail(emailEditText.getText().toString());
         loggedUserApp.setPassword(passwordEditText.getText().toString());
-        loggedUserApp.setPicture(ImageUtil.BitmapToByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.emoticon_cool)));
-
-        new SignUpService(loggedUserApp,getApplicationContext()).execute();
-
+        new SignUpService(loggedUserApp, getApplicationContext()).execute();
     }
 
     private boolean validateComponents() {
@@ -223,5 +217,4 @@ public class SignupAct extends ActionBarActivity {
         }
 
     }
-
 }

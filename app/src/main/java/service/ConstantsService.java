@@ -6,6 +6,7 @@ package service;
 public class ConstantsService {
     //servicos
     public static final String USER = "http://192.168.0.32:8080/user";
+    public static final String PROFILE_PICTURE="http://192.168.0.32:8080/user/picture";
     //methos
     public static final String POST = "POST";
     public static final String GET = "GET";
