@@ -61,4 +61,16 @@
         <item name="android:background">@drawable/edit_text_light</item>
     </style>
 
+    <style name="NavigationTabWhite" parent="Widget.Design.TabLayout">
+        <item name="tabBackground">@color/white</item>
+        <item name="tabSelectedTextColor">@color/colorAccent</item>
+        <item name="tabIndicatorColor">@color/colorAccent</item>
+        <item name="tabTextAppearance">@style/NavigationTabTextAppeareance</item>
+    </style>
+
+    <style name="NavigationTabTextAppeareance" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">@color/colorSecondaryText</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

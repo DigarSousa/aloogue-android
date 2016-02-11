@@ -7,7 +7,7 @@
     android:padding="5dp"
     style="@style/itemListWhite">
 
-    <TextView
+    <EditText
         android:id="@+id/productName"
         style="@style/editTextLight"
         android:layout_width="280dp"
@@ -21,6 +21,25 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true">
+
+        <ImageButton
+            android:id="@+id/editButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_mode_edit_black_24px"
+            android:scaleType="centerInside"
+            android:background="#00000000"/>
+
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_marginLeft="5dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_delete_black_24px"
+            android:scaleType="centerInside"
+            android:layout_toRightOf="@+id/editButton"
+            android:background="#00000000"/>
+
 
     </RelativeLayout>
 

@@ -76,7 +76,13 @@
             android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".ManageProductsAct"
+            android:launchMode="singleInstance"
             android:label="@string/products"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".EditProductAct"
+            android:label="@string/editProduct"
+            android:launchMode="singleInstance"
             android:theme="@style/AppTheme"></activity>
     </application>
 

@@ -1,5 +1,6 @@
 package alugueis.alugueis;
 
+import alugueis.alugueis.adapter.ViewPageAdapter;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.view.RoundedImageView;
@@ -8,6 +9,8 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,9 +25,9 @@ public class PlaceProfileAct extends DashboardNavAct {
     private ImageView bannerImage;
     private RoundedImageView pictureImage;
     private Button callButton;
-    private TextView placeAddressText;
-    private TextView workText;
+    private TabLayout tabLayout;
     private Context context;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +68,12 @@ public class PlaceProfileAct extends DashboardNavAct {
         bannerImage = (ImageView) findViewById(R.id.bannerImage);
         pictureImage = (RoundedImageView) findViewById(R.id.pictureImage);
         callButton = (Button) findViewById(R.id.callButton);
-        placeAddressText = (TextView) findViewById(R.id.placeAddressText);
-        workText = (TextView) findViewById(R.id.workText);
+
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
         if (loggedUserApp != null) {
             if (loggedUserApp.getPicture() != null) {
@@ -84,9 +91,20 @@ public class PlaceProfileAct extends DashboardNavAct {
             // if (loggedUserApp.getAddressApp() != null) {
             //      placeAddressText.setText(loggedUserApp.getAddressApp().toString());
             // }
-
-            workText.setText("De 08h às 15h");
-
         }
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPageAdapter adapter = new ViewPageAdapter(getSupportFragmentManager());
+        adapter.addFragment(new PlaceInfoFgm(), getResources().getString(R.string.infoTab));
+
+        PlaceProductsFgm placeProductsFgm = new PlaceProductsFgm();
+        adapter.addFragment(placeProductsFgm, getResources().getString(R.string.productsTab));
+        //// TODO: descomente as linhas abaixo para levar os produtos pro fragment (popule a lista antes).
+        //Bundle args = new Bundle();
+        //args.putSerializable("products", products);
+        //placeProductsFgm.setArguments(args);
+
+        viewPager.setAdapter(adapter);
     }
 }
