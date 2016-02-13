@@ -13,7 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.*;
 
-public class SignupAct extends ActionBarActivity {
+public class EditProfileAct extends DashboardNavAct {
 
     private Toolbar mainToolbar;
     private UserApp loggedUserApp;
@@ -24,22 +24,40 @@ public class SignupAct extends ActionBarActivity {
     private CheckBox acceptTermsCheckBox;
     private Button doneButton;
     //For image upload
+    private Thread startSecondActivity;
+    String sourceAct;
     private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        //Utilizado para levar o layout da activity para o pai (nav drawer)
+        getLayoutInflater().inflate(R.layout.activity_edit_profile, frameLayout);
 
         this.context = getApplicationContext();
         Bundle extras = getIntent().getExtras();
         loggedUserApp = new UserApp();
 
-        initializeToolbar();
         initializeComponents();
         initializeListeners();
+
+        if (extras != null) {
+            sourceAct = extras.getString("source");
+            //Se o extra vier da edição de cadastro (:
+            assert sourceAct != null;
+            if (sourceAct.equals("changeData")) {
+                getLogged();
+                populateControls();
+            }
+        }
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        finish();
+        super.onBackPressed();
+    }
 
     private void getLogged() {
         try {
@@ -64,7 +82,7 @@ public class SignupAct extends ActionBarActivity {
             public void onClick(View v) {
                 boolean validated = validateComponents();
                 if (validated) {
-                    saveNewUser();
+                    saveUser();
                 } else {
                     Toast.makeText(getApplicationContext(), "O formulário contém alguns erros. Corrija-os e tente novamente! (:", Toast.LENGTH_LONG).show();
                 }
@@ -73,11 +91,12 @@ public class SignupAct extends ActionBarActivity {
 
     }
 
-    private void saveNewUser() {
+    private void saveUser() {
         loggedUserApp.setName(nameEditText.getText().toString());
         loggedUserApp.setEmail(emailEditText.getText().toString());
         loggedUserApp.setPassword(passwordEditText.getText().toString());
-        new SignUpService(loggedUserApp, getApplicationContext()).execute();
+        //todo: chamar serviço de atualizar o cadastro, ao invés de criar um novo usuário
+        //new SignUpService(loggedUserApp, getApplicationContext()).execute();
     }
 
     private boolean validateComponents() {
@@ -151,14 +170,6 @@ public class SignupAct extends ActionBarActivity {
         return true;
     }
 
-    private void initializeToolbar() {
-        mainToolbar = (Toolbar) findViewById(R.id.mainToolbar);
-        mainToolbar.setTitle(R.string.signup);
-        setSupportActionBar(mainToolbar);
-        //mainToolbar.setSubtitle("v. 1.0.0");
-        //mainToolbar.setLogo(R.drawable.logo_branco);
-    }
-
     private void initializeComponents() {
 
 
@@ -183,12 +194,5 @@ public class SignupAct extends ActionBarActivity {
             acceptTermsCheckBox.setClickable(false);
         }
 
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-        finish();
-        super.onBackPressed();
     }
 }

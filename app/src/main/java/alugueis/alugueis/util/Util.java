@@ -93,15 +93,13 @@ public class Util {
 
     public static void populeHoursSpinner(Context c, Spinner businessInitialHourSpinner) {
         String[] arrayHours = new String[]{
-                "01", "02", "03", "04", "05",
-                "06", "07", "08", "09", "10",
-                "11", "12", "13", "14", "15",
-                "16", "17", "18", "19", "20",
-                "21", "22", "23", "24"
+                "01H", "02H", "03H", "04H", "05H",
+                "06H", "07H", "08H", "09H", "10H",
+                "11H", "12H", "13H", "14H", "15H",
+                "16H", "17H", "18H", "19H", "20H",
+                "21H", "22H", "23H", "24H"
         };
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(c.getApplicationContext(),
-                android.R.layout.simple_spinner_item,
-                arrayHours);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(c.getApplicationContext(), R.layout.component_spinner_item_light,arrayHours);
         businessInitialHourSpinner.setAdapter(adapter);
     }
 

@@ -57,10 +57,10 @@ public class LoginService extends AsyncTask<Void, Boolean, UserApp> {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 context.startActivity(intent);
             } catch (IOException e) {
-                Toast.makeText(context, "Houve uma falha ao realizar seu login :( ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Houve uma falha ao realizar o login. :( ", Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(context, "Email ou senha invalidos :( ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Email ou senha inválidos. :( ", Toast.LENGTH_SHORT).show();
         }
     }
 }

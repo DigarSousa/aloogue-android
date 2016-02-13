@@ -1,31 +1,33 @@
 package alugueis.alugueis;
 
-import alugueis.alugueis.model.PictureFile;
+import alugueis.alugueis.adapter.ViewPageAdapter;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.view.RoundedImageView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.IOException;
-
+/**
+ * Created by Pedreduardo on 22/12/2015.
+ */
 public class PlaceProfileAct extends DashboardNavAct {
 
     private UserApp loggedUserApp;
     private ImageView bannerImage;
     private RoundedImageView pictureImage;
     private Button callButton;
-    private TextView placeAddressText;
-    private TextView workText;
+    private TabLayout tabLayout;
     private Context context;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +46,7 @@ public class PlaceProfileAct extends DashboardNavAct {
     private void getLogged() {
         try {
             loggedUserApp = (UserApp) StaticUtil.readObject(context, StaticUtil.LOGGED_USER);
-        } catch (Exception ex) {
-        }
+        }catch(Exception ex){}
     }
 
     private void initializeListeners() {
@@ -67,13 +68,18 @@ public class PlaceProfileAct extends DashboardNavAct {
         bannerImage = (ImageView) findViewById(R.id.bannerImage);
         pictureImage = (RoundedImageView) findViewById(R.id.pictureImage);
         callButton = (Button) findViewById(R.id.callButton);
-        placeAddressText = (TextView) findViewById(R.id.placeAddressText);
-        workText = (TextView) findViewById(R.id.workText);
 
-        try {
-            PictureFile pictureFile = (PictureFile) StaticUtil.readObject(getApplicationContext(), StaticUtil.PROFILE_PICTURE);
-            if (pictureFile != null) {
-                byte[] userPic = pictureFile.getSourceFile();
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+        //todo: Carregar as informaçoes da loja aqui
+        /*
+        if (loggedUserApp != null) {
+            if (loggedUserApp.getPicture() != null) {
+                byte[] userPic = loggedUserApp.getPicture();
 
                 //Bitmap userPicBitmap = BitmapFactory.decodeByteArray(userPic, 0, userPic.length);
                 //Bitmap bluredBackground = ImageUtil.fastblur(userPicBitmap, this, 25);
@@ -83,15 +89,25 @@ public class PlaceProfileAct extends DashboardNavAct {
                 pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
                 //bannerImage.setImageBitmap(bluredBackground);
             }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+
+            // if (loggedUserApp.getAddressApp() != null) {
+            //      placeAddressText.setText(loggedUserApp.getAddressApp().toString());
+            // }
         }
+        */
+    }
 
-        // if (loggedUserApp.getAddressApp() != null) {
-        //      placeAddressText.setText(loggedUserApp.getAddressApp().toString());
-        // }
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPageAdapter adapter = new ViewPageAdapter(getSupportFragmentManager());
+        adapter.addFragment(new PlaceInfoFgm(), getResources().getString(R.string.infoTab));
 
-        workText.setText("De 08h às 15h");
+        PlaceProductsFgm placeProductsFgm = new PlaceProductsFgm();
+        adapter.addFragment(placeProductsFgm, getResources().getString(R.string.productsTab));
+        //// TODO: descomente as linhas abaixo para levar os produtos pro fragment (popule a lista antes).
+        //Bundle args = new Bundle();
+        //args.putSerializable("products", products);
+        //placeProductsFgm.setArguments(args);
+
+        viewPager.setAdapter(adapter);
     }
 }
-

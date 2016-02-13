@@ -3,71 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#fff">
+    android:background="@color/background_material_light">
 
-    <RelativeLayout
-            android:id="@+id/bannerArea"
-            android:layout_width="match_parent"
-            android:layout_height="310dp"
-            android:layout_below="@+id/mainToolbar">
 
-        <ImageView
-            android:id="@+id/bannerImage"
-            android:layout_width="match_parent"
-            android:layout_height="292dp"
-            android:background="@drawable/banner_land"
-            android:scaleType="centerCrop">
-        </ImageView>
-
-        <alugueis.alugueis.view.RoundedImageView
-                android:id="@+id/pictureImage"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:elevation="4dp"
-                android:scaleType="centerCrop"
-                android:layout_centerInParent="true"/>
-
-        <TextView
-                android:id="@+id/placeNameText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="25dp"
-                android:textColor="#fff"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/pictureImage"
-                android:text="Nome da sua loja"
-                android:textSize="25sp"
-        />
-
-        <Button
-                android:id="@+id/callButton"
-                android:layout_width="250dp"
-                android:layout_height="36dp"
-                android:text="@string/call"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/raised_button_secondary"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"/>
-
-    </RelativeLayout>
-
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bannerArea"
-        app:tabMode="fixed"
-        app:tabGravity="fill"
-        style="@style/NavigationTabWhite"/>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/tabs"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
-
-    <!--
     <ImageView
             android:id="@+id/addressIcon"
             android:layout_width="18dp"
@@ -81,7 +19,7 @@
 
     <TextView
             android:id="@+id/placeAddressText"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="Rua Senhor do Bonfim, 123 - Bairro de Lourdes, Belo Horizonte / MG"
             android:textSize="15sp"
@@ -133,8 +71,5 @@
         android:layout_alignTop="@+id/workIcon"
             android:layout_toRightOf="@+id/workIcon"
             android:layout_marginLeft="10dp"/>
-            -->
-
-
 
 </RelativeLayout>

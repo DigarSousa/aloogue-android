@@ -1,22 +1,20 @@
-package alugueis.alugueis.view;
+package alugueis.alugueis;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import java.util.ArrayList;
 
-import alugueis.alugueis.DashboardNavAct;
-import alugueis.alugueis.ManageProductsAct;
-import alugueis.alugueis.R;
 import alugueis.alugueis.model.Product;
 
 /**
  * Created by Pedreduardo on 01/02/2016.
  */
-public class EditProductAct extends DashboardNavAct implements View.OnClickListener {
+public class EditProductAct extends DashboardNavAct implements View.OnTouchListener {
 
     private Context context;
     private EditText productName;
@@ -56,27 +54,25 @@ public class EditProductAct extends DashboardNavAct implements View.OnClickListe
 
         finishEdit = (Button) findViewById(R.id.buttonOk);
         cancelEdit = (Button) findViewById(R.id.buttonCancel);
-        finishEdit.setOnClickListener(this);
-        cancelEdit.setOnClickListener(this);
+        finishEdit.setOnTouchListener(this);
+        cancelEdit.setOnTouchListener(this);
     }
 
     @Override
-    public void onClick(View view) {
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+            if(view.equals(finishEdit)){
+                Intent it = new Intent(EditProductAct.this, ManageProductsAct.class);
+                products.get(position).setDescription(productName.getText().toString());
+                it.putExtra("products", products);
+                setResult(1,it);
+                finish();
+            }
 
-        if(view.equals(finishEdit)){
-            Intent it = new Intent(EditProductAct.this, ManageProductsAct.class);
-            products.get(position).setDescription(productName.getText().toString());
-            it.putExtra("products", products);
-            startActivity(it);
-            finish();
-        }
-
-        else if(view.equals(finishEdit)){
-            Intent it = new Intent(EditProductAct.this, ManageProductsAct.class);
-            startActivity(it);
-            finish();
-        }
+            else if(view.equals(finishEdit)){
+                Intent it = new Intent(EditProductAct.this, ManageProductsAct.class);
+                startActivity(it);
+                finish();
+            }
+        return true;
     }
-
-
 }

@@ -97,7 +97,7 @@ public class DashboardNavAct extends AppCompatActivity implements NavigationView
             Intent intent = new Intent(DashboardNavAct.this, ManageProductsAct.class);
             startActivity(intent);
         } else if (id == R.id.nav_change_data) {
-            Intent intent = new Intent(DashboardNavAct.this, SignupAct.class);
+            Intent intent = new Intent(DashboardNavAct.this, EditProfileAct.class);
             intent.putExtra("source", "changeData");
             startActivity(intent);
             finish();

@@ -14,7 +14,7 @@ import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
-import alugueis.alugueis.adapter.ProductListAdapter;
+import alugueis.alugueis.adapter.ProductListManageAdapter;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.util.StaticUtil;
@@ -31,7 +31,7 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
     private ListView lvProducts;
     private ArrayList<Product> products;
     private RelativeLayout productsArea;
-    private ProductListAdapter productAdapter;
+    private ProductListManageAdapter productAdapter;
     private FloatingActionButton saveProductsButton;
 
     @Override
@@ -68,6 +68,7 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
             //lvProducts.setAdapter(null);
             lvProducts.destroyDrawingCache();
             lvProducts.refreshDrawableState();
+            productAdapter = new ProductListManageAdapter(context, android.R.layout.simple_list_item_1, products, this);
             lvProducts.setAdapter(productAdapter);
             productAdapter.notifyDataSetChanged();
         }
@@ -79,7 +80,7 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         loggedUser = new UserApp();
         //todo: Buscar produtos do cliente aqui
         products = new ArrayList<Product>();
-        productAdapter = new ProductListAdapter(context, android.R.layout.simple_list_item_1, products, this);
+        productAdapter = new ProductListManageAdapter(context, android.R.layout.simple_list_item_1, products, this);
     }
 
     private void getLogged() {
@@ -175,4 +176,14 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
             }
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (resultCode == 1) {
+                products = (ArrayList<Product>)data.getExtras().getSerializable("products");
+                loadProductList();
+            }
+        }
+      }
 }

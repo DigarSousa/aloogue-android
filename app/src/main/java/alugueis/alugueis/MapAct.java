@@ -30,7 +30,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 
-public class MapAct extends FragmentActivity implements OnMapReadyCallback {
+public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
 
     private LocationManager myLocation;
     private LocationListener myLocationListener;
@@ -47,7 +47,9 @@ public class MapAct extends FragmentActivity implements OnMapReadyCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_map_rent);
+        //Utilizado para levar o layout da activity para o pai (nav drawer)
+        getLayoutInflater().inflate(R.layout.fragment_map_rent, frameLayout);
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
