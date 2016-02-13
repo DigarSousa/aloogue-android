@@ -45,7 +45,7 @@ public class PlaceProfileAct extends DashboardNavAct {
 
     private void getLogged() {
         try {
-            loggedUserApp = (UserApp) StaticUtil.getObject(context, StaticUtil.LOGGED_USER);
+            loggedUserApp = (UserApp) StaticUtil.readObject(context, StaticUtil.LOGGED_USER);
         }catch(Exception ex){}
     }
 
@@ -75,6 +75,8 @@ public class PlaceProfileAct extends DashboardNavAct {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+        //todo: Carregar as informaçoes da loja aqui
+        /*
         if (loggedUserApp != null) {
             if (loggedUserApp.getPicture() != null) {
                 byte[] userPic = loggedUserApp.getPicture();
@@ -92,6 +94,7 @@ public class PlaceProfileAct extends DashboardNavAct {
             //      placeAddressText.setText(loggedUserApp.getAddressApp().toString());
             // }
         }
+        */
     }
 
     private void setupViewPager(ViewPager viewPager) {

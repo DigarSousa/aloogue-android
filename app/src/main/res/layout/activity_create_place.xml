@@ -227,14 +227,12 @@
                 <Spinner
                     android:id="@+id/initialHoursText"
                     style="@style/spinnerLight"
-                    android:layout_width="50dp"
+                    android:layout_width="65dp"
                     android:layout_height="40dp"
-                    android:layout_toRightOf="@+id/fromHours"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1.3"
-                    android:textColor="@color/colorSecondaryText"
                     android:layout_marginLeft="5dp"
-                    android:layout_alignBaseline="@+id/fromHours"
+                    android:layout_below="@+id/fromHours"
                     />
 
                 <TextView
@@ -247,17 +245,16 @@
                     android:layout_marginTop="5dp"
                     android:layout_below="@+id/initialHoursText"
                     />
+
                 <Spinner
                     android:id="@+id/finalHoursText"
                     style="@style/spinnerLight"
-                    android:layout_width="50dp"
+                    android:layout_width="65dp"
                     android:layout_height="40dp"
-                    android:layout_toRightOf="@+id/toHours"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1.3"
-                    android:textColor="@color/colorSecondaryText"
                     android:layout_marginLeft="5dp"
-                    android:layout_alignBaseline="@+id/toHours"
+                    android:layout_below="@+id/toHours"
                     />
 
 

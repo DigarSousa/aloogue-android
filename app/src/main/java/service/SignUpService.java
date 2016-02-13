@@ -55,7 +55,7 @@ public class SignUpService extends AsyncTask<Void, Void, Void> {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             context.startActivity(intent);
         } catch (IOException e) {
-            Toast.makeText(context, "Houve uma falha ao realizer seu cadastro :( ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Houve uma falha ao realizar seu cadastro. :( ", Toast.LENGTH_SHORT).show();
         }
     }
 }

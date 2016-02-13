@@ -84,6 +84,9 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
         if (loggedUserApp.getEmail() != null) {
             userEditText.setText(loggedUserApp.getEmail());
         }
+        if (loggedUserApp.getPassword() != null) {
+            passwordEditText.setText(loggedUserApp.getPassword());
+        }
 
         facebookImageButton = (ImageButton) findViewById(R.id.facebookButton);
         twitterImageButton = (ImageButton) findViewById(R.id.twitterButton);
