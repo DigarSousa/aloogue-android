@@ -1,18 +1,12 @@
 package alugueis.alugueis.model;
 
-import com.orm.SugarRecord;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-/**
- * Created by Pedreduardo on 16/10/2015.
- */
+import java.io.Serializable;
+
 @Data
-@EqualsAndHashCode(callSuper = false)
-public class Phone extends SugarRecord{
+public class Phone implements Serializable{
 
-    public Phone() {
-    }
     private Long id;
     private String number;
 }

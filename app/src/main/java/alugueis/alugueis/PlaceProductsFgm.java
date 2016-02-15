@@ -14,9 +14,7 @@ import alugueis.alugueis.adapter.ProductListAdapter;
 import alugueis.alugueis.adapter.ProductListManageAdapter;
 import alugueis.alugueis.model.Product;
 
-/**
- * Created by Pedreduardo on 05/02/2016.
- */
+
 public class PlaceProductsFgm extends Fragment {
 
     private View view;

@@ -3,10 +3,9 @@ package alugueis.alugueis;
 import alugueis.alugueis.model.*;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
-import service.SignUpService;
+import service.ServiceSignup;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -77,7 +76,7 @@ public class SignupAct extends ActionBarActivity {
         loggedUserApp.setName(nameEditText.getText().toString());
         loggedUserApp.setEmail(emailEditText.getText().toString());
         loggedUserApp.setPassword(passwordEditText.getText().toString());
-        new SignUpService(loggedUserApp, getApplicationContext()).execute();
+        new ServiceSignup(loggedUserApp, getApplicationContext()).execute();
     }
 
     private boolean validateComponents() {

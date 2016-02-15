@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 
 public class StaticUtil {
     public static final String LOGGED_USER = "loggedUser";
-    public static final String PROFILE_PICTURE="profilePicture";
+
     public static Object readObject(Context context, String key) throws IOException, ClassNotFoundException {
         FileInputStream fis = context.openFileInput(key);
         ObjectInputStream ois = new ObjectInputStream(fis);

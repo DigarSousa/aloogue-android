@@ -5,6 +5,7 @@ import alugueis.alugueis.model.*;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
+import service.ServicePlace;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -20,8 +21,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
+
 import com.google.android.gms.maps.model.LatLng;
+
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,7 +57,8 @@ public class CreatePlaceAct extends DashboardNavAct {
     private Button selectPictureButton;
     private Button doneButton;
     //For image upload
-    private int RESULT_LOAD_IMAGE = 1;
+
+    private static final Integer RESULT_LOAD_IMAGE = 1;
     private Thread startLogin;
     private EditText zipCodeText;
     private ProgressDialog dialogCoord;
@@ -83,7 +88,8 @@ public class CreatePlaceAct extends DashboardNavAct {
         loggedUserApp = new UserApp();
         try {
             loggedUserApp = (UserApp) StaticUtil.readObject(context, StaticUtil.LOGGED_USER);
-        }catch(Exception ex){}
+        } catch (Exception ex) {
+        }
     }
 
     private void initializeStartLoginThread() {
@@ -117,7 +123,7 @@ public class CreatePlaceAct extends DashboardNavAct {
             @Override
             public void onClick(View v) {
                 boolean validated = validateComponents();
-                if(Util.isOnlineWithToast(context)) {
+                if (Util.isOnlineWithToast(context)) {
                     if (validated) {
                         saveNewPlace();
                     } else {
@@ -129,52 +135,54 @@ public class CreatePlaceAct extends DashboardNavAct {
     }
 
     private void saveNewPlace() {
+        try {
+            UserApp loggedUser = (UserApp) StaticUtil.readObject(getApplicationContext(), StaticUtil.LOGGED_USER);
+            place.setCpfCnpj(cpfCnpjEditText.getText().toString());
+            place.setName(nameEditText.getText().toString());
 
-        place.setCpfCnpj(cpfCnpjEditText.getText().toString());
-        place.setName(nameEditText.getText().toString());
+            Phone phone = new Phone();
+            phone.setNumber(phoneEditText.getText().toString());
+            ArrayList<Phone> phones = new ArrayList<Phone>();
+            phones.add(phone);
+            place.setPhones(phones);
 
-        Phone phone = new Phone();
-        phone.setNumber(phoneEditText.getText().toString());
-        ArrayList<Phone> phones = new ArrayList<Phone>();
-        phones.add(phone);
-        place.setPhones(phones);
+            //loggedUserApp.setPicture(ImageUtil.BitmapToByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.emoticon_cool)));
+            place.setBusinessInitialHour(businessInitialHourSpinner.getSelectedItem().toString());
+            place.setBusinessFinalHour(businessFinalHourSpinner.getSelectedItem().toString());
 
-        //loggedUserApp.setPicture(ImageUtil.BitmapToByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.emoticon_cool)));
-        place.setBusinessInitialHour(businessInitialHourSpinner.getSelectedItem().toString());
-        place.setBusinessFinalHour(businessFinalHourSpinner.getSelectedItem().toString());
+            //ADDRESS
+            //-----------------------------------------------------------------------
+            AddressApp addressApp = new AddressApp();
 
-        //ADDRESS
-        //-----------------------------------------------------------------------
-        AddressApp addressApp = new AddressApp();
+            Street street = new Street();
+            street.setDescription(addressEditText.getText().toString());
+            addressApp.setStreet(street);
 
-        Street street = new Street();
-        street.setDescription(addressEditText.getText().toString());
-        addressApp.setStreet(street);
+            addressApp.setNumber(streetNumberEditText.getText().toString());
 
-        addressApp.setNumber(streetNumberEditText.getText().toString());
+            Neighbourhood neighbourhood = new Neighbourhood();
+            neighbourhood.setDescription(neighbourhoodEditText.getText().toString());
+            addressApp.setNeighbourhood(neighbourhood);
 
-        Neighbourhood neighbourhood = new Neighbourhood();
-        neighbourhood.setDescription(neighbourhoodEditText.getText().toString());
-        addressApp.setNeighbourhood(neighbourhood);
+            City city = new City();
+            city.setDescription(cityEditText.getText().toString());
+            addressApp.setCity(city);
 
-        City city = new City();
-        city.setDescription(cityEditText.getText().toString());
-        addressApp.setCity(city);
+            StateFU stateFU = new StateFU();
+            stateFU.setDescription(stateSpinner.getSelectedItem().toString());
+            addressApp.setStateFU(stateFU);
 
-        StateFU stateFU = new StateFU();
-        stateFU.setDescription(stateSpinner.getSelectedItem().toString());
-        addressApp.setStateFU(stateFU);
+            Country country = new Country();
+            country.setDescription("Brasil");
+            addressApp.setCountry(country);
+            place.setUserApp(loggedUser);
+            place.setAddressApp(addressApp);
 
-        Country country = new Country();
-        country.setDescription("Brasil");
-        addressApp.setCountry(country);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
-        place.setAddressApp(addressApp);
-
-        //A partir daqui, inicia-se threads pra pegar coordenadas. No final delas, o model é salvo.
-        getCoordinatesFromAddress();
-
-        //-----------------------------------------------------------------------
+        new ServicePlace(getApplicationContext(), place).execute();
     }
 
     private void getCoordinatesFromAddress() {
@@ -205,7 +213,7 @@ public class CreatePlaceAct extends DashboardNavAct {
     private boolean validateComponents() {
         boolean validated = true;
 
-        if(!validateCpfCnpj()){
+        if (!validateCpfCnpj()) {
             cpfCnpjEditText.setError(getResources().getString(R.string.invalidCpfCnpj));
             validated = false;
         }
@@ -306,7 +314,7 @@ public class CreatePlaceAct extends DashboardNavAct {
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
             Cursor cursor = getContentResolver().query(selectedImage,
                     filePathColumn, null, null, null);
@@ -485,14 +493,6 @@ public class CreatePlaceAct extends DashboardNavAct {
                     place.getAddressApp().setLatitude(lat);
                     place.getAddressApp().setLongitute(lng);
                 }
-            }
-
-            if (dialogCoord.isShowing()) {
-                dialogCoord.dismiss();
-
-                place.save();
-                Toast.makeText(getApplicationContext(), "Loja salva com sucesso. Seja bem vindo. (:", Toast.LENGTH_LONG).show();
-                startLogin.start();
             }
         }
     }

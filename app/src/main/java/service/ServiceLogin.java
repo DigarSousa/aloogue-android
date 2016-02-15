@@ -16,12 +16,12 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
-public class LoginService extends AsyncTask<Void, Boolean, UserApp> {
+public class ServiceLogin extends AsyncTask<Void, Boolean, UserApp> {
     private String email;
     private String password;
     private Context context;
 
-    public LoginService(Context context, String email, String password) {
+    public ServiceLogin(Context context, String email, String password) {
         this.context = context;
         this.email = email;
         this.password = password;
@@ -37,7 +37,7 @@ public class LoginService extends AsyncTask<Void, Boolean, UserApp> {
             String url = ServerUtil.buildUrl(ConstantsService.USER,
                     new Pair<>("email", email),
                     new Pair<>("password", password));
-            serviceConnection = new ServerConnection(url, ConstantsService.GET);
+            serviceConnection = new ServerConnection(url);
             serviceConnection.connect();
             resposne = serviceConnection.getResponse();
 

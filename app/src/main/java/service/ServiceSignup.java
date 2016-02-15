@@ -2,6 +2,7 @@ package service;
 
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.usb.UsbRequest;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -16,22 +17,22 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 
-public class SignUpService extends AsyncTask<Void, Void, Void> {
+public class ServiceSignup extends AsyncTask<Void, Void, UserApp> {
     private UserApp userApp;
     private Context context;
 
-    public SignUpService(UserApp userApp, Context context) {
+    public ServiceSignup(UserApp userApp, Context context) {
         this.userApp = userApp;
         this.context = context;
     }
 
     @Override
-    protected Void doInBackground(Void... params) {
+    protected UserApp doInBackground(Void... params) {
         ServerConnection serverConnection;
         Gson gson = new Gson();
-        String json = gson.toJson(userApp, UserApp.class);
         OutputStreamWriter out;
-
+        String json = gson.toJson(userApp, UserApp.class);
+        String response = "";
         try {
             serverConnection = new ServerConnection(ConstantsService.USER, ConstantsService.POST);
 
@@ -40,17 +41,17 @@ public class SignUpService extends AsyncTask<Void, Void, Void> {
             out.write(json);
             out.flush();
             out.close();
-            serverConnection.getResponse();
+            response = serverConnection.getResponse();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return gson.fromJson(response, UserApp.class);
     }
 
     @Override
-    protected void onPostExecute(Void aBoolean) {
+    protected void onPostExecute(UserApp createdUser) {
         try {
-            StaticUtil.setOject(context, StaticUtil.LOGGED_USER, userApp);
+            StaticUtil.setOject(context, StaticUtil.LOGGED_USER, createdUser);
             Intent intent = new Intent(context, MapAct.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             context.startActivity(intent);

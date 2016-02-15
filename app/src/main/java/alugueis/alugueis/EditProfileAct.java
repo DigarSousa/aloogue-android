@@ -3,12 +3,9 @@ package alugueis.alugueis;
 import alugueis.alugueis.model.*;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
-import service.SignUpService;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.*;
@@ -96,7 +93,7 @@ public class EditProfileAct extends DashboardNavAct {
         loggedUserApp.setEmail(emailEditText.getText().toString());
         loggedUserApp.setPassword(passwordEditText.getText().toString());
         //todo: chamar serviço de atualizar o cadastro, ao invés de criar um novo usuário
-        //new SignUpService(loggedUserApp, getApplicationContext()).execute();
+        //new ServiceSignup(loggedUserApp, getApplicationContext()).execute();
     }
 
     private boolean validateComponents() {

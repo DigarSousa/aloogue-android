@@ -5,9 +5,8 @@ import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
 import service.ConstantsService;
-import service.LoginService;
+import service.ServiceLogin;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -22,7 +21,6 @@ import android.widget.TextView;
 
 public class MainAct extends ActionBarActivity implements View.OnClickListener {
 
-    private Context context;
     private Toolbar mainToolbar;
     private Toolbar bottomToolbar;
     private EditText userEditText;
@@ -34,27 +32,30 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
     private RoundedImageView pictureImageView;
     private TextView welcomeUser;
 
-    private UserApp loggedUserApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*if (getLogged() != null) {
+            Intent intent = new Intent(getApplicationContext(), MapAct.class);
+            startActivity(intent);
+            this.finish();
+        }*/
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        context = getApplicationContext();
-        loggedUserApp = new UserApp();
-        getLogged();
 
         initializeToolbar();
         initializeComponents();
         initializeBehaviours();
     }
 
-    private void getLogged() {
+    private UserApp getLogged() {
         try {
-            loggedUserApp = (UserApp) StaticUtil.readObject(context, StaticUtil.LOGGED_USER);
+            return (UserApp) StaticUtil.readObject(getApplicationContext(), StaticUtil.LOGGED_USER);
         } catch (Exception ex) {
+            //todo:colocar log no arquivo de log =D
         }
+        return null;
     }
 
     private void initializeToolbar() {
@@ -73,21 +74,18 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
         pictureImageView = (RoundedImageView) findViewById(R.id.pictureImage);
         welcomeUser = (TextView) findViewById(R.id.welcomeUser);
 
-        if (loggedUserApp.getName() != null) {
+        /*if (loggedUserApp.getName() != null) {
             String userNamer = loggedUserApp.getName();
             String customWelcome = getResources().getString(R.string.welcomeCustomized) + " " + userNamer + "!";
             welcomeUser.setText(customWelcome);
-        }
+        }*/
 
         pictureImageView.setImageBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.emoticon_cool));
 
-        if (loggedUserApp.getEmail() != null) {
+        /*if (loggedUserApp.getEmail() != null) {
             userEditText.setText(loggedUserApp.getEmail());
-        }
-        if (loggedUserApp.getPassword() != null) {
-            passwordEditText.setText(loggedUserApp.getPassword());
-        }
-
+        }*/
+        
         facebookImageButton = (ImageButton) findViewById(R.id.facebookButton);
         twitterImageButton = (ImageButton) findViewById(R.id.twitterButton);
     }
@@ -104,7 +102,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
         if (v.equals(enterButton)) {
             enterButtonAction();
         } else if (v.equals(signinButton)) {
-            Intent it = new Intent(context, SignupAct.class);
+            Intent it = new Intent(getApplicationContext(), SignupAct.class);
             startActivity(it);
 
         } else if (v.equals(facebookImageButton)) {
@@ -119,11 +117,10 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
     }
 
     private void enterButtonAction() {
-
-        if (Util.isOnlineWithToast(context)) {
+        if (Util.isOnlineWithToast(getApplicationContext())) {
             String emailLogin = userEditText.getText().toString();
             String passwordLogin = passwordEditText.getText().toString();
-            new LoginService(getApplicationContext(), emailLogin, passwordLogin).execute();
+            new ServiceLogin(getApplicationContext(), emailLogin, passwordLogin).execute();
         }
     }
 }
