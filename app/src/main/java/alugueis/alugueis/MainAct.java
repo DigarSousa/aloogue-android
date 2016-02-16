@@ -100,7 +100,9 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.equals(enterButton)) {
-            enterButtonAction();
+            //todo: voltar à verificação original acima
+            Intent intent = new Intent(MainAct.this, MapAct.class);
+            startActivity(intent);
         } else if (v.equals(signinButton)) {
             Intent it = new Intent(getApplicationContext(), SignupAct.class);
             startActivity(it);

@@ -96,6 +96,11 @@
             android:label="@string/editProfile"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".EditPlaceAct"
+            android:label="@string/editShop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

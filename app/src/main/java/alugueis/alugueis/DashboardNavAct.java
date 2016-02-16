@@ -36,6 +36,8 @@ public class DashboardNavAct extends AppCompatActivity implements NavigationView
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //todo: colocar regra de existencia de loja e edição, etc (se existir loja, sumir com criação dela, etcs)
+
         context = getApplicationContext();
         initializeToolbar();
     }
@@ -95,6 +97,9 @@ public class DashboardNavAct extends AppCompatActivity implements NavigationView
             startActivity(intent);
         } else if (id == R.id.nav_manage_products) {
             Intent intent = new Intent(DashboardNavAct.this, ManageProductsAct.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_edit_shop) {
+            Intent intent = new Intent(DashboardNavAct.this, EditPlaceAct.class);
             startActivity(intent);
         } else if (id == R.id.nav_change_data) {
             Intent intent = new Intent(DashboardNavAct.this, EditProfileAct.class);

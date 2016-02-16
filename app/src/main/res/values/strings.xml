@@ -121,4 +121,6 @@
     <string name="editProduct">Editar Produto</string>
     <string name="infoTab">INFO</string>
     <string name="editProfile">Editar Perfil</string>
+    <string name="savePlace">SALVAR LOJA</string>
+    <string name="editShop">Editar Loja</string>
 </resources>
