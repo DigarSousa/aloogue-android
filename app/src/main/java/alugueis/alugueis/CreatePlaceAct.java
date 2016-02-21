@@ -42,7 +42,6 @@ public class CreatePlaceAct extends DashboardNavAct {
 
     private Context context;
     private Place place;
-    private UserApp loggedUserApp;
     private EditText cpfCnpjEditText;
     private EditText nameEditText;
     private EditText phoneEditText;
@@ -85,7 +84,7 @@ public class CreatePlaceAct extends DashboardNavAct {
     }
 
     private void getLogged() {
-        loggedUserApp = new UserApp();
+        UserApp loggedUserApp = new UserApp();
         try {
             loggedUserApp = (UserApp) StaticUtil.readObject(context, StaticUtil.LOGGED_USER);
         } catch (Exception ex) {
@@ -177,7 +176,7 @@ public class CreatePlaceAct extends DashboardNavAct {
             addressApp.setCountry(country);
             place.setUserApp(loggedUser);
             place.setAddressApp(addressApp);
-
+            //todo: Pegar coordenadas
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

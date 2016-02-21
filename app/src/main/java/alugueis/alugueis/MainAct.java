@@ -5,6 +5,7 @@ import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
 import service.ConstantsService;
+import service.Service;
 import service.ServiceLogin;
 
 import android.content.Intent;
@@ -35,11 +36,13 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        /*if (getLogged() != null) {
-            Intent intent = new Intent(getApplicationContext(), MapAct.class);
+        Object o = new UserApp();
+        new Service().simpleFind(1l, UserApp.class);
+        if (getLogged() != null) {
+            Intent intent = new Intent(this, MapAct.class);
             startActivity(intent);
             this.finish();
-        }*/
+        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -85,7 +88,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
         /*if (loggedUserApp.getEmail() != null) {
             userEditText.setText(loggedUserApp.getEmail());
         }*/
-        
+
         facebookImageButton = (ImageButton) findViewById(R.id.facebookButton);
         twitterImageButton = (ImageButton) findViewById(R.id.twitterButton);
     }

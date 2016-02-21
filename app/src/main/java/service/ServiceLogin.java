@@ -3,7 +3,7 @@ package service;
 import alugueis.alugueis.MapAct;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.util.ServerConnection;
-import alugueis.alugueis.util.ServerUtil;
+import alugueis.alugueis.util.URLBuilder;
 import alugueis.alugueis.util.StaticUtil;
 
 import android.content.Context;
@@ -33,10 +33,12 @@ public class ServiceLogin extends AsyncTask<Void, Boolean, UserApp> {
         Gson gson = new Gson();
         String resposne = "";
         try {
+            String url = new URLBuilder(UserApp.class)
+                    .putParams(
+                            new Pair<>("email", email),
+                            new Pair<>("password", password))
+                    .build();
 
-            String url = ServerUtil.buildUrl(ConstantsService.USER,
-                    new Pair<>("email", email),
-                    new Pair<>("password", password));
             serviceConnection = new ServerConnection(url);
             serviceConnection.connect();
             resposne = serviceConnection.getResponse();

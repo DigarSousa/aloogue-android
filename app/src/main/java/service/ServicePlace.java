@@ -10,6 +10,7 @@ import java.io.OutputStreamWriter;
 
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.util.ServerConnection;
+import alugueis.alugueis.util.URLBuilder;
 
 public class ServicePlace extends AsyncTask<Void, Void, Place> {
     private Place place;
@@ -28,7 +29,7 @@ public class ServicePlace extends AsyncTask<Void, Void, Place> {
         String response = "";
         try {
             ServerConnection serverConnection;
-            serverConnection = new ServerConnection(ConstantsService.PLACE, ConstantsService.POST);
+            serverConnection = new ServerConnection(new URLBuilder(Place.class).build(), ConstantsService.POST);
             out = serverConnection.getWriter();
             out.write(json);
             out.flush();

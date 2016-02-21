@@ -2,7 +2,6 @@ package service;
 
 import android.content.Context;
 import android.content.Intent;
-import android.hardware.usb.UsbRequest;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -12,6 +11,7 @@ import alugueis.alugueis.MapAct;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.util.ServerConnection;
 import alugueis.alugueis.util.StaticUtil;
+import alugueis.alugueis.util.URLBuilder;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -33,8 +33,10 @@ public class ServiceSignup extends AsyncTask<Void, Void, UserApp> {
         OutputStreamWriter out;
         String json = gson.toJson(userApp, UserApp.class);
         String response = "";
+
+        String url = new URLBuilder(UserApp.class).build();
         try {
-            serverConnection = new ServerConnection(ConstantsService.USER, ConstantsService.POST);
+            serverConnection = new ServerConnection(url, ConstantsService.POST);
 
             out = serverConnection.getWriter();
 
