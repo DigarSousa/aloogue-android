@@ -5,8 +5,8 @@ import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
 import service.ConstantsService;
-import service.Service;
-import service.ServiceLogin;
+import service.httputil.OnFinishTask;
+import service.httputil.Service;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -14,13 +14,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainAct extends ActionBarActivity implements View.OnClickListener {
+import java.io.IOException;
+
+public class MainAct extends ActionBarActivity implements View.OnClickListener, OnFinishTask {
 
     private Toolbar mainToolbar;
     private Toolbar bottomToolbar;
@@ -36,14 +40,11 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Object o = new UserApp();
-        new Service().simpleFind(1l, UserApp.class);
-        if (getLogged() != null) {
+        /*if (getLogged() != null) {
             Intent intent = new Intent(this, MapAct.class);
             startActivity(intent);
             this.finish();
-        }
-
+        }*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -103,9 +104,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.equals(enterButton)) {
-            //todo: voltar à verificação original acima
-            Intent intent = new Intent(MainAct.this, MapAct.class);
-            startActivity(intent);
+            enterButtonAction();
         } else if (v.equals(signinButton)) {
             Intent it = new Intent(getApplicationContext(), SignupAct.class);
             startActivity(it);
@@ -125,7 +124,27 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener {
         if (Util.isOnlineWithToast(getApplicationContext())) {
             String emailLogin = userEditText.getText().toString();
             String passwordLogin = passwordEditText.getText().toString();
-            new ServiceLogin(getApplicationContext(), emailLogin, passwordLogin).execute();
+            new Service(this).find(UserApp.class,
+                    new Pair<String, Object>("email", emailLogin),
+                    new Pair<String, Object>("password", passwordLogin)).execute();
+        }
+    }
+
+
+    @Override
+    public void onFinishTask(Object result) {
+        UserApp loggedUser = (UserApp) result;
+        if (loggedUser != null) {
+            try {
+                StaticUtil.setOject(this, StaticUtil.LOGGED_USER, loggedUser);
+                Intent intent = new Intent(this, MapAct.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                this.startActivity(intent);
+            } catch (IOException e) {
+                Toast.makeText(this, "Houve uma falha ao realizar o login. :( ", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Email ou senha inválidos. :( ", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import alugueis.alugueis.model.Product;
-import alugueis.alugueis.util.ServerConnection;
+import service.httputil.ConnectionManeger;
 import alugueis.alugueis.util.StaticUtil;
-import alugueis.alugueis.util.URLBuilder;
+import service.httputil.URLBuilder;
 import alugueis.alugueis.util.Util;
 
 public class ServiceSaveProducts extends AsyncTask<Void, Void, List<Product>> {
@@ -45,14 +45,14 @@ public class ServiceSaveProducts extends AsyncTask<Void, Void, List<Product>> {
         String json = gson.toJson(products);
         String url = new URLBuilder(Product.class).build();
 
-        ServerConnection serverConnection = new ServerConnection(url, ConstantsService.POST);
+        ConnectionManeger connectionManeger = new ConnectionManeger(url, ConstantsService.POST);
         String response = "";
         try {
-            out = serverConnection.getWriter();
+            out = connectionManeger.getWriter();
             out.write(json);
             out.flush();
             out.close();
-            response = serverConnection.getResponse();
+            response = connectionManeger.getResponse();
         } catch (IOException e) {
             e.printStackTrace();
         }

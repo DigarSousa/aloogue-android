@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 import alugueis.alugueis.model.Place;
-import alugueis.alugueis.util.ServerConnection;
-import alugueis.alugueis.util.URLBuilder;
+import service.httputil.ConnectionManeger;
+import service.httputil.URLBuilder;
 
 public class ServicePlace extends AsyncTask<Void, Void, Place> {
     private Place place;
@@ -28,13 +28,13 @@ public class ServicePlace extends AsyncTask<Void, Void, Place> {
         String json = gson.toJson(place, Place.class);
         String response = "";
         try {
-            ServerConnection serverConnection;
-            serverConnection = new ServerConnection(new URLBuilder(Place.class).build(), ConstantsService.POST);
-            out = serverConnection.getWriter();
+            ConnectionManeger connectionManeger;
+            connectionManeger = new ConnectionManeger(new URLBuilder(Place.class).build(), ConstantsService.POST);
+            out = connectionManeger.getWriter();
             out.write(json);
             out.flush();
             out.close();
-            response = serverConnection.getResponse();
+            response = connectionManeger.getResponse();
         } catch (IOException e) {
             e.printStackTrace();
         }

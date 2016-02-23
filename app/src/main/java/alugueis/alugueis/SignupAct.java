@@ -3,16 +3,20 @@ package alugueis.alugueis;
 import alugueis.alugueis.model.*;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
-import service.ServiceSignup;
+import service.httputil.OnFinishTask;
+import service.httputil.Service;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.*;
 
-public class SignupAct extends ActionBarActivity {
+import java.io.IOException;
+
+public class SignupAct extends ActionBarActivity implements OnFinishTask {
 
     private Toolbar mainToolbar;
     private UserApp loggedUserApp;
@@ -76,7 +80,7 @@ public class SignupAct extends ActionBarActivity {
         loggedUserApp.setName(nameEditText.getText().toString());
         loggedUserApp.setEmail(emailEditText.getText().toString());
         loggedUserApp.setPassword(passwordEditText.getText().toString());
-        new ServiceSignup(loggedUserApp, getApplicationContext()).execute();
+        new Service(this).save(loggedUserApp, UserApp.class).execute();
     }
 
     private boolean validateComponents() {
@@ -185,9 +189,21 @@ public class SignupAct extends ActionBarActivity {
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         finish();
         super.onBackPressed();
+    }
+
+    @Override
+    public void onFinishTask(Object result) {
+        try {
+            UserApp createdUser = (UserApp) result;
+            StaticUtil.setOject(context, StaticUtil.LOGGED_USER, createdUser);
+            Intent intent = new Intent(context, MapAct.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            context.startActivity(intent);
+        } catch (IOException e) {
+            Toast.makeText(context, "Houve uma falha ao realizar seu cadastro. :( ", Toast.LENGTH_SHORT).show();
+        }
     }
 }

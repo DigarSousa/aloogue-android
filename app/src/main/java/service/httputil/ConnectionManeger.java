@@ -1,24 +1,25 @@
-package alugueis.alugueis.util;
+package service.httputil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import service.ConstantsService;
 
-public class ServerConnection {
+public class ConnectionManeger {
     private String url;
     private HttpURLConnection connection;
     private String method;
 
-    public ServerConnection(String url) {
+    public ConnectionManeger(String url) {
         this.url = url;
     }
 
-    public ServerConnection(String url, String method) {
+    public ConnectionManeger(String url, String method) {
         this.url = url;
         this.method = method;
     }
@@ -30,7 +31,7 @@ public class ServerConnection {
 
         connection = (HttpURLConnection) new URL(url).openConnection();
         if (method != null) {
-            connection.setDoOutput(true);
+            connection.setDoOutput(Boolean.TRUE);
             connection.setRequestProperty(ConstantsService.CONTENT, ConstantsService.JSON);
             connection.setRequestMethod(method);
         }
@@ -60,4 +61,5 @@ public class ServerConnection {
         }
         return sb.toString();
     }
+
 }

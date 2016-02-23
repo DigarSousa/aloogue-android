@@ -21,7 +21,7 @@ import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import service.ServiceSaveProducts;
 
-public class ManageProductsAct extends DashboardNavAct implements View.OnClickListener {
+public class ManageProductsAct extends DashboardNavAct implements View.OnClickListener{
 
     private Context context;
     private UserApp loggedUser;
