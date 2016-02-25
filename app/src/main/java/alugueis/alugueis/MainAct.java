@@ -1,5 +1,6 @@
 package alugueis.alugueis;
 
+import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
@@ -45,6 +46,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
             startActivity(intent);
             this.finish();
         }*/
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

@@ -23,7 +23,7 @@ public class URLBuilder {
     }
 
     public URLBuilder putParams(Pair... params) {
-        if (params.length > 0) {
+        if (params!=null && params.length > 0) {
 
             StringBuilder builder = new StringBuilder();
             String getParams = "";
@@ -40,7 +40,6 @@ public class URLBuilder {
             this.url = builder.toString();
 
         }
-
         return this;
     }
 

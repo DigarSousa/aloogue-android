@@ -10,24 +10,22 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import alugueis.alugueis.adapter.ProductListManageAdapter;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
-import service.ServiceSaveProducts;
+import service.httputil.OnFinishTask;
 
-public class ManageProductsAct extends DashboardNavAct implements View.OnClickListener{
+public class ManageProductsAct extends DashboardNavAct implements View.OnClickListener, OnFinishTask {
 
     private Context context;
     private UserApp loggedUser;
     private EditText nameText;
     private ListView lvProducts;
-    private List<Product> products;
+    private ArrayList<Product> products;
     private RelativeLayout productsArea;
     private ProductListManageAdapter productAdapter;
     private FloatingActionButton saveProductsButton;
@@ -53,7 +51,7 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         Bundle extras = it.getExtras();
 
         if (extras != null) {
-            products = (ArrayList<Product>) extras.get("products");
+            products = (ArrayList<Product>)extras.get("products");
             loadProductList();
         }
     }
@@ -76,14 +74,9 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
     private void initializeAttributes() {
         context = getApplicationContext();
         loggedUser = new UserApp();
-        try {
-            products = (ArrayList) StaticUtil.readObject(this, StaticUtil.PRODUCT_LIST);
-            productAdapter = new ProductListManageAdapter(context, android.R.layout.simple_list_item_1, products, this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        //todo: Buscar produtos do cliente aqui
+        products = new ArrayList<Product>();
+        productAdapter = new ProductListManageAdapter(context, android.R.layout.simple_list_item_1, products, this);
     }
 
     private void getLogged() {
@@ -103,6 +96,7 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         productsArea = (RelativeLayout) findViewById(R.id.productsArea);
 
         nameText = (EditText) findViewById(R.id.nameText);
+
         nameText.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -142,18 +136,10 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        if (view.equals(saveProductsButton)) {
-            new ServiceSaveProducts(this, products).execute();
-        }
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == 1) {
-                products = (ArrayList<Product>) data.getExtras().getSerializable("products");
-                loadProductList();
-            }
-        }
+    public void onFinishTask(Object result) {
+
     }
 }

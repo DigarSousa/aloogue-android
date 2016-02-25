@@ -5,7 +5,8 @@ import alugueis.alugueis.model.*;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
-import service.ServicePlace;
+import service.httputil.OnFinishTask;
+import service.httputil.Service;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -38,7 +39,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CreatePlaceAct extends DashboardNavAct {
+public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
 
     private Context context;
     private Place place;
@@ -181,7 +182,13 @@ public class CreatePlaceAct extends DashboardNavAct {
             e.printStackTrace();
         }
 
-        new ServicePlace(getApplicationContext(), place).execute();
+        new Service(this).save(place, Place.class).execute();
+    }
+
+    @Override
+    public void onFinishTask(Object result) {
+        String galo="galo";
+        //todo:chamar o q?
     }
 
     private void getCoordinatesFromAddress() {
@@ -250,42 +257,42 @@ public class CreatePlaceAct extends DashboardNavAct {
     }
 
     private boolean validateCity() {
-        if (cityEditText.getText().toString().equals("")) {
+        if (cityEditText.getText().toString().isEmpty()) {
             return false;
         }
         return true;
     }
 
     private boolean validateNeighbourhood() {
-        if (neighbourhoodEditText.getText().toString().equals("")) {
+        if (neighbourhoodEditText.getText().toString().isEmpty()) {
             return false;
         }
         return true;
     }
 
     private boolean validateStreetNumber() {
-        if (streetNumberEditText.getText().toString().equals("")) {
+        if (streetNumberEditText.getText().toString().isEmpty()) {
             return false;
         }
         return true;
     }
 
     private boolean validateStreet() {
-        if (addressEditText.getText().toString().equals("")) {
+        if (addressEditText.getText().toString().isEmpty()) {
             return false;
         }
         return true;
     }
 
     private boolean validateName() {
-        if (nameEditText.getText().toString().equals("")) {
+        if (nameEditText.getText().toString().isEmpty()) {
             return false;
         }
         return true;
     }
 
     private boolean validatePhone() {
-        if (phoneEditText.getText().toString().equals("")) {
+        if (phoneEditText.getText().toString().isEmpty()) {
             return false;
         }
         return true;
@@ -365,6 +372,7 @@ public class CreatePlaceAct extends DashboardNavAct {
         doneButton = (Button) findViewById(R.id.iAmDoneButton);
 
     }
+
 
     private void initializeBehaviours() {
 

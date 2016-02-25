@@ -5,7 +5,6 @@ import alugueis.alugueis.model.*;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
-import service.ServicePlace;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -113,8 +112,7 @@ public class EditPlaceAct extends DashboardNavAct {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(0, 0, 0, "History").setIcon(R.drawable.ic_delete_white_24dp)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         //todo: colocar ação de delete no botão
@@ -204,7 +202,7 @@ public class EditPlaceAct extends DashboardNavAct {
             e.printStackTrace();
         }
 
-        new ServicePlace(getApplicationContext(), place).execute();
+        //      new ServicePlace(getApplicationContext(), place).execute();
     }
 
     private void getCoordinatesFromAddress() {
@@ -519,12 +517,11 @@ public class EditPlaceAct extends DashboardNavAct {
         }
     }
 
-    private int getIndex(Spinner spinner, String myString)
-    {
+    private int getIndex(Spinner spinner, String myString) {
         int index = 0;
 
-        for (int i=0;i<spinner.getCount();i++){
-            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)){
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)) {
                 index = i;
                 break;
             }

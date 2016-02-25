@@ -56,10 +56,7 @@ public class ServiceSaveProducts extends AsyncTask<Void, Void, List<Product>> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Type iterable = new TypeToken<ArrayList<Product>>() {
-        }.getType();
-        List<Product> products = gson.fromJson(response, iterable);
-        return products;
+           return products;
     }
 
     @Override
