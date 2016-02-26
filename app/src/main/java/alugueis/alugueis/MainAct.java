@@ -1,6 +1,5 @@
 package alugueis.alugueis;
 
-import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
@@ -140,8 +139,8 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
             try {
                 StaticUtil.setOject(this, StaticUtil.LOGGED_USER, loggedUser);
                 Intent intent = new Intent(this, MapAct.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 this.startActivity(intent);
+                this.finish();
             } catch (IOException e) {
                 Toast.makeText(this, "Houve uma falha ao realizar o login. :( ", Toast.LENGTH_SHORT).show();
             }

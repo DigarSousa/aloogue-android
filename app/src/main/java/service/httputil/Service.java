@@ -1,5 +1,6 @@
 package service.httputil;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Pair;
 
@@ -10,6 +11,7 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.Collection;
+import java.util.List;
 
 import service.ConstantsService;
 
@@ -21,6 +23,7 @@ public class Service extends AsyncTask<Void, Void, String> {
     private Object object;
     private String method;
     private Pair[] params;
+    private ProgressDialog progressDialog;
 
     private static final String POST = "POST";
     private static final String PUT = "PUT";
@@ -28,6 +31,20 @@ public class Service extends AsyncTask<Void, Void, String> {
 
     public Service(OnFinishTask onFinishTask) {
         this.onFinishTask = onFinishTask;
+    }
+
+    public Service(OnFinishTask onFinishTask, ProgressDialog progressDialog) {
+        this.onFinishTask = onFinishTask;
+        this.progressDialog = progressDialog;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+
+        if(progressDialog!=null){
+            progressDialog.show();
+        }
     }
 
     @Override
@@ -85,7 +102,10 @@ public class Service extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String json) {
         if (method.equals(GET)) {
             try {
-                object = Util.fromJsonArray(json,T);
+                List objects = Util.fromJsonArray(json, T);
+                if (objects.size() == 1) {
+                    object = objects.get(0);
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
