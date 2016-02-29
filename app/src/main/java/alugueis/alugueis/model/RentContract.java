@@ -13,7 +13,6 @@ public class RentContract implements Serializable {
     private String description;
     private UserApp userApp;
     private Place place;
-    //todo: Criar model ... private Long chargeEvent;
     private Date initialEffective;
     private Date finalEffective;
     private Long quantity;

@@ -1,5 +1,6 @@
 package alugueis.alugueis;
 
+import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
@@ -134,18 +135,30 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
 
     @Override
     public void onFinishTask(Object result) {
-        UserApp loggedUser = (UserApp) result;
-        if (loggedUser != null) {
+        final String USER_ID="userId";
+        if (result != null) {
             try {
+                UserApp loggedUser = (UserApp) result;
                 StaticUtil.setOject(this, StaticUtil.LOGGED_USER, loggedUser);
-                Intent intent = new Intent(this, MapAct.class);
-                this.startActivity(intent);
-                this.finish();
+                new Service(new OnFinishTask() {
+                    @Override
+                    public void onFinishTask(Object result) {
+                        try {
+                            Place place = (Place) result;
+                            StaticUtil.setOject(MainAct.this, StaticUtil.PLACE, place);
+                            Intent intent = new Intent(MainAct.this, MapAct.class);
+                            MainAct.this.startActivity(intent);
+                            MainAct.this.finish();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).find(Place.class, new Pair<>(USER_ID, loggedUser.getId())).execute();
             } catch (IOException e) {
-                Toast.makeText(this, "Houve uma falha ao realizar o login. :( ", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
             }
         } else {
-            Toast.makeText(this, "Email ou senha inválidos. :( ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Email ou senha inválidos", Toast.LENGTH_LONG).show();
         }
     }
 }

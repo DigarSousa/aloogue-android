@@ -12,6 +12,7 @@ import java.io.ObjectOutputStream;
 public class StaticUtil {
     public static final String LOGGED_USER = "loggedUser";
     public static final String PRODUCT_LIST="productList";
+    public static final String PLACE="place";
 
     public static Object readObject(Context context, String key) throws IOException, ClassNotFoundException {
         FileInputStream fis = context.openFileInput(key);

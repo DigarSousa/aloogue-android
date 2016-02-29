@@ -14,15 +14,12 @@ import java.util.ArrayList;
 
 import alugueis.alugueis.adapter.ProductListManageAdapter;
 import alugueis.alugueis.model.Product;
-import alugueis.alugueis.model.UserApp;
-import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import service.httputil.OnFinishTask;
 
 public class ManageProductsAct extends DashboardNavAct implements View.OnClickListener, OnFinishTask {
 
     private Context context;
-    private UserApp loggedUser;
     private EditText nameText;
     private ListView lvProducts;
     private ArrayList<Product> products;
@@ -73,7 +70,6 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
 
     private void initializeAttributes() {
         context = getApplicationContext();
-        loggedUser = new UserApp();
         //todo: Buscar produtos do cliente aqui
         products = new ArrayList<Product>();
         productAdapter = new ProductListManageAdapter(context, android.R.layout.simple_list_item_1, products, this);
@@ -81,7 +77,6 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
 
     private void getLogged() {
         try {
-            loggedUser = (UserApp) StaticUtil.readObject(context, StaticUtil.LOGGED_USER);
         } catch (Exception ex) {
         }
     }

@@ -187,8 +187,12 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
 
     @Override
     public void onFinishTask(Object result) {
-        String galo="galo";
-        //todo:chamar o q?
+        Place place= (Place) result;
+        try {
+            StaticUtil.setOject(this,StaticUtil.PLACE,place);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void getCoordinatesFromAddress() {

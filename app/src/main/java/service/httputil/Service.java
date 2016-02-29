@@ -11,7 +11,6 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.Collection;
-import java.util.List;
 
 import service.ConstantsService;
 
@@ -42,7 +41,7 @@ public class Service extends AsyncTask<Void, Void, String> {
     protected void onPreExecute() {
         super.onPreExecute();
 
-        if(progressDialog!=null){
+        if (progressDialog != null) {
             progressDialog.show();
         }
     }
@@ -100,19 +99,11 @@ public class Service extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String json) {
-        if (method.equals(GET)) {
-            try {
-                List objects = Util.fromJsonArray(json, T);
-                if (objects.size() == 1) {
-                    object = objects.get(0);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        } else {
-            object = gson.fromJson(json, T);
+        try {
+            object = Util.fromJson(json, T);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-
         onFinishTask.onFinishTask(object);
     }
 }
