@@ -41,11 +41,11 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        /*if (getLogged() != null) {
+        if (getLogged() != null) {
             Intent intent = new Intent(this, MapAct.class);
             startActivity(intent);
             this.finish();
-        }*/
+        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

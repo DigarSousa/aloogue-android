@@ -10,7 +10,6 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.util.Collection;
 
 import service.ConstantsService;
 
@@ -59,7 +58,7 @@ public class Service extends AsyncTask<Void, Void, String> {
                 connection = new ConnectionManeger(urlBuilder.build());
                 connection.connect();
             } else {
-                String json = gson.toJson(object, T);
+                String json = gson.toJson(object);
                 connection = new ConnectionManeger(urlBuilder.build(), method);
                 OutputStreamWriter out = connection.getWriter();
                 out.write(json);
@@ -83,13 +82,6 @@ public class Service extends AsyncTask<Void, Void, String> {
         return this;
     }
 
-    public Service saveCollection(Collection collection, Class T) {
-        this.object = collection;
-        this.T = T;
-        return this;
-
-    }
-
     public Service find(Class T, Pair... params) {
         this.T = T;
         this.params = params;
@@ -105,5 +97,6 @@ public class Service extends AsyncTask<Void, Void, String> {
             e.printStackTrace();
         }
         onFinishTask.onFinishTask(object);
+        progressDialog.dismiss();
     }
 }

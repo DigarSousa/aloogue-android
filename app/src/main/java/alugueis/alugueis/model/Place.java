@@ -17,5 +17,4 @@ public class Place implements Serializable {
     private List<Phone> phones;
     private String businessInitialHour;
     private String businessFinalHour;
-    private Collection<Product> products;
 }

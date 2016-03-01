@@ -1,5 +1,6 @@
 package alugueis.alugueis;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,18 +12,22 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import alugueis.alugueis.adapter.ProductListManageAdapter;
+import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
+import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import service.httputil.OnFinishTask;
+import service.httputil.Service;
 
 public class ManageProductsAct extends DashboardNavAct implements View.OnClickListener, OnFinishTask {
 
     private Context context;
     private EditText nameText;
     private ListView lvProducts;
-    private ArrayList<Product> products;
+    private List<Product> products;
     private RelativeLayout productsArea;
     private ProductListManageAdapter productAdapter;
     private FloatingActionButton saveProductsButton;
@@ -33,24 +38,20 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         //Utilizado para levar o layout da activity para o pai (nav drawer)
         getLayoutInflater().inflate(R.layout.activity_manage_products, frameLayout);
 
-        initializeAttributes();
-
-
-        getLogged();
-
         initializeToolbar();
+        initializeAttributes();
         initializeComponents();
-        getProductList();
     }
 
-    private void getProductList() {
+    private ArrayList<Product> getProductList() {
         Intent it = getIntent();
         Bundle extras = it.getExtras();
 
         if (extras != null) {
-            products = (ArrayList<Product>)extras.get("products");
-            loadProductList();
+            return (ArrayList<Product>) extras.get("products");
         }
+
+        return null;
     }
 
     private void loadProductList() {
@@ -70,15 +71,16 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
 
     private void initializeAttributes() {
         context = getApplicationContext();
-        //todo: Buscar produtos do cliente aqui
-        products = new ArrayList<Product>();
-        productAdapter = new ProductListManageAdapter(context, android.R.layout.simple_list_item_1, products, this);
+        products = new ArrayList<>();
     }
 
-    private void getLogged() {
+    private Place getPlace() {
         try {
+            return (Place) StaticUtil.readObject(context, StaticUtil.PLACE);
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
+        return null;
     }
 
     private void initializeToolbar() {
@@ -91,7 +93,6 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         productsArea = (RelativeLayout) findViewById(R.id.productsArea);
 
         nameText = (EditText) findViewById(R.id.nameText);
-
         nameText.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -131,6 +132,23 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
+        if (view.equals(saveProductsButton)
+                && products != null
+                && !products.isEmpty()) {
+
+            ProgressDialog progress = new ProgressDialog(this);
+            new Service(this, progress).save(products, Product.class).execute();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (resultCode == 1) {
+                products = (ArrayList<Product>) data.getExtras().getSerializable("products");
+                loadProductList();
+            }
+        }
     }
 
     @Override
