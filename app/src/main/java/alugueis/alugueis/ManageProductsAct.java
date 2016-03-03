@@ -5,12 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,7 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
     private RelativeLayout productsArea;
     private ProductListManageAdapter productAdapter;
     private FloatingActionButton saveProductsButton;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +42,8 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         getLayoutInflater().inflate(R.layout.activity_manage_products, frameLayout);
 
         initializeToolbar();
-        initializeAttributes();
         initializeComponents();
+        initializeAttributes();
     }
 
     private ArrayList<Product> getProductList() {
@@ -66,12 +69,24 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
             lvProducts.setAdapter(productAdapter);
             productAdapter.notifyDataSetChanged();
         }
-
     }
 
+
     private void initializeAttributes() {
+        progressDialog = new ProgressDialog(this);
         context = getApplicationContext();
-        products = new ArrayList<>();
+        Place place = getPlace();
+        try {
+            products = (List<Product>) StaticUtil.readObject(this, StaticUtil.PRODUCT_LIST);
+            if (products == null && place != null) {
+                progressDialog.setMessage("Carregando produtos...");
+                new Service(this,progressDialog).find(Product.class, new Pair<String, Long>("id", place.getId())).execute();
+            } else {
+                loadProductList();
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private Place getPlace() {
@@ -136,23 +151,28 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
                 && products != null
                 && !products.isEmpty()) {
 
-            ProgressDialog progress = new ProgressDialog(this);
-            new Service(this, progress).save(products, Product.class).execute();
-        }
-    }
+            progressDialog.setMessage("Salvando produtos...");
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == 1) {
-                products = (ArrayList<Product>) data.getExtras().getSerializable("products");
-                loadProductList();
+            Place place = getPlace();
+            for (Product produto : products) {
+                produto.setPlace(place);
+
             }
+
+            new Service(this, progressDialog).save(products, Product.class).execute();
         }
     }
 
     @Override
     public void onFinishTask(Object result) {
+        products = (List<Product>) result;
+        try {
+            StaticUtil.setOject(this, StaticUtil.PRODUCT_LIST, products);
+            progressDialog.dismiss();
+            loadProductList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

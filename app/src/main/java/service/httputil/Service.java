@@ -97,6 +97,5 @@ public class Service extends AsyncTask<Void, Void, String> {
             e.printStackTrace();
         }
         onFinishTask.onFinishTask(object);
-        progressDialog.dismiss();
     }
 }

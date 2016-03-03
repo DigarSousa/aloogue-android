@@ -199,9 +199,9 @@ public class SignupAct extends ActionBarActivity implements OnFinishTask {
         try {
             UserApp createdUser = (UserApp) result;
             StaticUtil.setOject(context, StaticUtil.LOGGED_USER, createdUser);
-            Intent intent = new Intent(context, MapAct.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            context.startActivity(intent);
+            Intent intent = new Intent(this, MapAct.class);
+            this.startActivity(intent);
+            this.finish();
         } catch (IOException e) {
             Toast.makeText(context, "Houve uma falha ao realizar seu cadastro. :( ", Toast.LENGTH_SHORT).show();
         }

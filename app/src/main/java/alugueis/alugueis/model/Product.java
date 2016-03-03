@@ -10,4 +10,5 @@ public class Product implements Serializable {
     private Long id;
     private String code;
     private String description;
+    private Place place;
 }
