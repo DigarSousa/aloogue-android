@@ -14,7 +14,8 @@ public class Util {
     private static Gson gson = new Gson();
 
     public static Object fromJson(String json, Class T) throws JSONException {
-        Object jsonToken = new JSONTokener(json).nextValue();
+
+        Object jsonToken = json.isEmpty() ? new JSONObject() : new JSONTokener(json).nextValue();
 
         if (jsonToken instanceof JSONObject) {
             return gson.fromJson(json, T);

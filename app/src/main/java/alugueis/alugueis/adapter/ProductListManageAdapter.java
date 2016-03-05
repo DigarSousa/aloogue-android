@@ -22,6 +22,7 @@ import alugueis.alugueis.EditProductAct;
 public class ProductListManageAdapter extends ArrayAdapter<Product> {
 
     private List<Product> productList;
+    private List<Product> removedProducts;
     private DialogInterface.OnClickListener dialogDelete;
     private Context context;
     private Activity fromActivity;
@@ -31,6 +32,8 @@ public class ProductListManageAdapter extends ArrayAdapter<Product> {
         this.productList = productList;
         this.context = context;
         this.fromActivity = fromActivity;
+
+        removedProducts = new ArrayList<>();
     }
 
     @Override
@@ -115,7 +118,7 @@ public class ProductListManageAdapter extends ArrayAdapter<Product> {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
 
-                        productList.remove(position);
+                        removedProducts.add(productList.remove(position));
                         ProductListManageAdapter.this.notifyDataSetChanged();
                         break;
 
@@ -130,5 +133,16 @@ public class ProductListManageAdapter extends ArrayAdapter<Product> {
     public Product getItem(int position) {
         return productList.get(position);
     }
+
+    public List getRemovedProducts() {
+        List removed = new ArrayList();
+        for (Product product : removedProducts) {
+            if (product.getId() != null) {
+                removed.add(product);
+            }
+        }
+        return removed;
+    }
+
 }
 

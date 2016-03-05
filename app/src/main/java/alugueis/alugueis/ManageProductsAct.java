@@ -2,7 +2,6 @@ package alugueis.alugueis;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Pair;
@@ -46,18 +45,15 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         initializeAttributes();
     }
 
-    private ArrayList<Product> getProductList() {
-        Intent it = getIntent();
-        Bundle extras = it.getExtras();
+    private void loadProductList() {
+        Place place = getPlace();
 
-        if (extras != null) {
-            return (ArrayList<Product>) extras.get("products");
+        if (products == null || products.isEmpty() && place != null) {
+            progressDialog.setMessage("Carregando produtos...");
+            new Service(this, progressDialog).find(Product.class, new Pair<String, Long>("id", place.getId())).execute();
         }
 
-        return null;
-    }
 
-    private void loadProductList() {
         if (products.size() == 0) {
             productsArea.setVisibility(View.INVISIBLE);
         } else {
@@ -75,18 +71,14 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
     private void initializeAttributes() {
         progressDialog = new ProgressDialog(this);
         context = getApplicationContext();
-        Place place = getPlace();
+
         try {
             products = (List<Product>) StaticUtil.readObject(this, StaticUtil.PRODUCT_LIST);
-            if (products == null && place != null) {
-                progressDialog.setMessage("Carregando produtos...");
-                new Service(this,progressDialog).find(Product.class, new Pair<String, Long>("id", place.getId())).execute();
-            } else {
-                loadProductList();
-            }
+            loadProductList();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+
     }
 
     private Place getPlace() {
@@ -165,10 +157,18 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
 
     @Override
     public void onFinishTask(Object result) {
+        List removedProducts = productAdapter.getRemovedProducts();
+
         products = (List<Product>) result;
+
         try {
             StaticUtil.setOject(this, StaticUtil.PRODUCT_LIST, products);
-            progressDialog.dismiss();
+            new Service(new OnFinishTask() {
+                @Override
+                public void onFinishTask(Object result) {
+                    progressDialog.dismiss();
+                }
+            }, progressDialog).delete(removedProducts, Product.class).execute();
             loadProductList();
         } catch (IOException e) {
             e.printStackTrace();

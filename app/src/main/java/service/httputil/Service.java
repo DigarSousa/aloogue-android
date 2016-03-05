@@ -26,6 +26,7 @@ public class Service extends AsyncTask<Void, Void, String> {
     private static final String POST = "POST";
     private static final String PUT = "PUT";
     private static final String GET = "GET";
+    private static final String DELETE = "DELETE";
 
     public Service(OnFinishTask onFinishTask) {
         this.onFinishTask = onFinishTask;
@@ -86,6 +87,13 @@ public class Service extends AsyncTask<Void, Void, String> {
         this.T = T;
         this.params = params;
         this.method = GET;
+        return this;
+    }
+
+    public Service delete(Object object,Class T) {
+        this.T=T;
+        this.object = object;
+        this.method = DELETE;
         return this;
     }
 
