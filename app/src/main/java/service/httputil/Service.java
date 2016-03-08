@@ -54,7 +54,7 @@ public class Service extends AsyncTask<Void, Void, String> {
         try {
 
             URLBuilder urlBuilder = new URLBuilder(T);
-            if (method.equals(ConstantsService.GET)) {
+            if (method.equals(GET)) {
                 urlBuilder.putParams(params);
                 connection = new ConnectionManeger(urlBuilder.build());
                 connection.connect();

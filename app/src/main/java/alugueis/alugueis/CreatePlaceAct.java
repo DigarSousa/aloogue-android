@@ -41,6 +41,7 @@ import java.util.List;
 
 public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
 
+    public static final String GOOGLE_MAPS_URL = "https://maps.googleapis.com/maps/api/geocode/json?";
     private Context context;
     private Place place;
     private EditText cpfCnpjEditText;
@@ -83,6 +84,41 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
         initializeBehaviours();
         initializeStartLoginThread();
     }
+
+    private void initializeToolbar() {
+        mainToolbar.setTitle("Novo estabelecimento");
+    }
+
+    private void initializeComponents() {
+
+
+        mainToolbar = (Toolbar) findViewById(R.id.mainToolbar);
+
+        //General
+        cpfCnpjEditText = (EditText) findViewById(R.id.cpfCnpjText);
+        nameEditText = (EditText) findViewById(R.id.nameText);
+        phoneEditText = (EditText) findViewById(R.id.phoneText);
+
+        //Address
+        zipCodeText = (EditText) findViewById(R.id.zipCodeText);
+        addressEditText = (EditText) findViewById(R.id.addressText);
+        streetNumberEditText = (EditText) findViewById(R.id.streetNumberText);
+        neighbourhoodEditText = (EditText) findViewById(R.id.neighbourhoodText);
+        cityEditText = (EditText) findViewById(R.id.cityText);
+        stateSpinner = (Spinner) findViewById(R.id.stateSpinner);
+
+        //Profile
+        businessInitialHourSpinner = (Spinner) findViewById(R.id.initialHoursText);
+        businessFinalHourSpinner = (Spinner) findViewById(R.id.finalHoursText);
+        pictureImageView = (RoundedImageView) findViewById(R.id.pictureImage);
+        pictureImageView.setImageBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.emoticon_cool));
+        selectPictureButton = (Button) findViewById(R.id.selectPictureButton);
+
+        //Done
+        doneButton = (Button) findViewById(R.id.iAmDoneButton);
+
+    }
+
 
     private void getLogged() {
         UserApp loggedUserApp = new UserApp();
@@ -146,12 +182,9 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             phones.add(phone);
             place.setPhones(phones);
 
-            //loggedUserApp.setPicture(ImageUtil.BitmapToByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.emoticon_cool)));
             place.setBusinessInitialHour(businessInitialHourSpinner.getSelectedItem().toString());
             place.setBusinessFinalHour(businessFinalHourSpinner.getSelectedItem().toString());
 
-            //ADDRESS
-            //-----------------------------------------------------------------------
             AddressApp addressApp = new AddressApp();
 
             Street street = new Street();
@@ -177,30 +210,19 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             addressApp.setCountry(country);
             place.setUserApp(loggedUser);
             place.setAddressApp(addressApp);
-            //todo: Pegar coordenadas
+
+            getCoordinatesFromAddress();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
-        new Service(this).save(place, Place.class).execute();
     }
 
-    @Override
-    public void onFinishTask(Object result) {
-        Place place= (Place) result;
-        try {
-            StaticUtil.setOject(this,StaticUtil.PLACE,place);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     private void getCoordinatesFromAddress() {
-        // Getting the place entered
         String location = place.getAddressApp().toString();
-        String url = "https://maps.googleapis.com/maps/api/geocode/json?";
+        String url = GOOGLE_MAPS_URL;
         try {
-            // encoding special characters like space in the user input place
             location = URLEncoder.encode(location, "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -209,15 +231,9 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
         String address = "address=" + location;
         String sensor = "sensor=false";
 
-        // url , from where the geocoding data is fetched
         url = url + address + "&" + sensor;
 
-        // Instantiating DownloadTask to get places from Google Geocoding service
-        // in a non-ui thread
-        DownloadTask downloadTask = new DownloadTask();
-
-        // Start downloading the geocoding places
-        downloadTask.execute(url);
+        new DownloadTask().execute(url);
     }
 
     private boolean validateComponents() {
@@ -343,58 +359,13 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
     }
 
 
-    private void initializeToolbar() {
-        mainToolbar.setTitle("Novo estabelecimento");
-    }
-
-    private void initializeComponents() {
-
-
-        mainToolbar = (Toolbar) findViewById(R.id.mainToolbar);
-
-        //General
-        cpfCnpjEditText = (EditText) findViewById(R.id.cpfCnpjText);
-        nameEditText = (EditText) findViewById(R.id.nameText);
-        phoneEditText = (EditText) findViewById(R.id.phoneText);
-
-        //Address
-        zipCodeText = (EditText) findViewById(R.id.zipCodeText);
-        addressEditText = (EditText) findViewById(R.id.addressText);
-        streetNumberEditText = (EditText) findViewById(R.id.streetNumberText);
-        neighbourhoodEditText = (EditText) findViewById(R.id.neighbourhoodText);
-        cityEditText = (EditText) findViewById(R.id.cityText);
-        stateSpinner = (Spinner) findViewById(R.id.stateSpinner);
-
-        //Profile
-        businessInitialHourSpinner = (Spinner) findViewById(R.id.initialHoursText);
-        businessFinalHourSpinner = (Spinner) findViewById(R.id.finalHoursText);
-        pictureImageView = (RoundedImageView) findViewById(R.id.pictureImage);
-        pictureImageView.setImageBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.emoticon_cool));
-        selectPictureButton = (Button) findViewById(R.id.selectPictureButton);
-
-        //Done
-        doneButton = (Button) findViewById(R.id.iAmDoneButton);
-
-    }
-
-
     private void initializeBehaviours() {
-
-        //State list
-        //-------------------------------------------
         Util.populeStatesSpinner(this, stateSpinner);
-        //-------------------------------------------
-
-        //Hours list
-        //-------------------------------------------
         Util.populeHoursSpinner(this, businessInitialHourSpinner);
         Util.populeHoursSpinner(this, businessFinalHourSpinner);
-        //-------------------------------------------
     }
 
 
-    //CLASSES THAT HELP ON FIND COORDINATES
-    //----------------------------------------------------------------------------------------------
     private String downloadUrl(String strUrl) throws IOException {
         String data = "";
         InputStream iStream = null;
@@ -439,7 +410,6 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             dialogCoord.show();
         }
 
-        // Invoked by execute() method of this object
         @Override
         protected String doInBackground(String... url) {
             try {
@@ -450,16 +420,10 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             return data;
         }
 
-        // Executed after the complete execution of doInBackground() method
         @Override
         protected void onPostExecute(String result) {
 
-            // Instantiating ParserTask which parses the json data from Geocoding webservice
-            // in a non-ui thread
             ParserTask parserTask = new ParserTask();
-
-            // Start parsing the places in JSON format
-            // Invokes the "doInBackground()" method of the class ParseTask
             parserTask.execute(result);
         }
     }
@@ -471,7 +435,6 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
 
         JSONObject jObject;
 
-        // Invoked by execute() method of this object
         @Override
         protected List<HashMap<String, String>> doInBackground(String... jsonData) {
 
@@ -490,22 +453,31 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             return places;
         }
 
-        // Executed after the complete execution of doInBackground() method
         @Override
         protected void onPostExecute(List<HashMap<String, String>> list) {
 
-            for (int i = 0; i < list.size(); i++) {
+            HashMap<String, String> hmPlace = list.get(0);
 
-                HashMap<String, String> hmPlace = list.get(i);
-                double lat = Double.parseDouble(hmPlace.get("lat"));
-                double lng = Double.parseDouble(hmPlace.get("lng"));
-                LatLng latLng = new LatLng(lat, lng);
-                if (i == 0) {
-                    place.getAddressApp().setLatitude(lat);
-                    place.getAddressApp().setLongitute(lng);
-                }
-            }
+            double lat = Double.parseDouble(hmPlace.get("lat"));
+            double lng = Double.parseDouble(hmPlace.get("lng"));
+
+            LatLng latLng = new LatLng(lat, lng);
+            place.getAddressApp().setLatitude(lat);
+            place.getAddressApp().setLongitute(lng);
+
+            new Service(CreatePlaceAct.this).save(place, Place.class).execute();
         }
     }
 
+    @Override
+    public void onFinishTask(Object result) {
+        Place place = (Place) result;
+        try {
+            StaticUtil.setOject(this, StaticUtil.PLACE, place);
+            dialogCoord.dismiss();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
