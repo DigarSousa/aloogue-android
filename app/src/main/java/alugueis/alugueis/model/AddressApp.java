@@ -20,12 +20,12 @@ public class AddressApp implements Serializable{
     @Override
     public String toString() {
         return
-                this.street + ", " +
-                        this.number + "- " +
-                        this.neighbourhood + "- " +
-                        this.city.getDescription() + "- " +
-                        this.stateFU.getDescription() + "- " +
-                        this.country.getDescription();
+                this.street.getDescription() + ", " +
+                this.number + " - " +
+                this.neighbourhood.getDescription() + " - " +
+                this.city.getDescription() + " - " +
+                this.stateFU.getDescription() + " - " +
+                this.country.getDescription();
     }
     //todo: sobrescrever métodos equals...hash...tostring
 }
