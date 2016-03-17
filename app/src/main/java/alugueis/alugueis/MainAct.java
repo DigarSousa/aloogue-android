@@ -2,6 +2,7 @@ package alugueis.alugueis;
 
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.UserApp;
+import alugueis.alugueis.util.MapsUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
@@ -23,6 +24,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.IOException;
 
 public class MainAct extends ActionBarActivity implements View.OnClickListener, OnFinishTask {
@@ -37,7 +40,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
     private ImageButton twitterImageButton;
     private RoundedImageView pictureImageView;
     private TextView welcomeUser;
-
+    private LatLng whereAmI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,10 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
         initializeToolbar();
         initializeComponents();
         initializeBehaviours();
+        getMyLocation();
     }
+
+
 
     private UserApp getLogged() {
         try {
@@ -106,7 +112,9 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
     @Override
     public void onClick(View v) {
         if (v.equals(enterButton)) {
-            enterButtonAction();
+            //enterButtonAction();
+            Intent intent = new Intent(MainAct.this, MapAct.class);
+            MainAct.this.startActivity(intent);
         } else if (v.equals(signinButton)) {
             Intent it = new Intent(getApplicationContext(), SignupAct.class);
             startActivity(it);
@@ -160,5 +168,10 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
         } else {
             Toast.makeText(this, "Email ou senha inválidos", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void getMyLocation() {
+        this.whereAmI = MapsUtil.whereAmI(this);
+        //todo: DIVIRTA-SE! (:
     }
 }

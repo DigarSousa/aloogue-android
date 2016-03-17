@@ -105,18 +105,7 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        gps = new GPSTracker(MapAct.this);
-        map = googleMap;
-
-        // check if GPS enabled
-        if (gps.canGetLocation()) {
-            myLatitude = gps.getLatitude();
-            myLongitude = gps.getLongitude();
-        } else {
-            gps.showSettingsAlert();
-        }
-
-        whereAmI = new LatLng(myLatitude, myLongitude);
+        whereAmI = MapsUtil.whereAmI(this);
         MapsUtil.setMyLocation(this, map, myLatitude, myLongitude, getResources().getString(R.string.youAreHere));
         MapsUtil.getPlacesAroundMe(this, map, whereAmI, 3000); // meters
         setMarkersListeners();
