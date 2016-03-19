@@ -3,6 +3,7 @@ package alugueis.alugueis;
 import alugueis.alugueis.classes.maps.GPSTracker;
 import alugueis.alugueis.classes.maps.GeocoderJSONParser;
 import alugueis.alugueis.util.MapsUtil;
+
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationListener;
@@ -14,12 +15,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 import org.json.JSONObject;
 
 import java.io.*;
@@ -41,12 +44,11 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
     private EditText placeText;
     private GoogleMap map;
     private LatLng whereAmI;
-    private Marker lastOpened; //For marker click
+    private Marker lastOpened;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Utilizado para levar o layout da activity para o pai (nav drawer)
         getLayoutInflater().inflate(R.layout.fragment_map_rent, frameLayout);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -65,23 +67,19 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
     }
 
     private void setListeners() {
-        // Setting click event listener for the find button
         searchButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                // Getting the place entered
                 String location = placeText.getText().toString();
-
-                if (location == null || location.equals("")) {
-                    Toast.makeText(getBaseContext(), "No Place is entered", Toast.LENGTH_SHORT).show();
+                if (location.isEmpty()) {
+                    Toast.makeText(getBaseContext(), "Defina", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 String url = "https://maps.googleapis.com/maps/api/geocode/json?";
                 try {
-                    // encoding special characters like space in the user input place
                     location = URLEncoder.encode(location, "utf-8");
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
@@ -90,14 +88,10 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
                 String address = "address=" + location;
                 String sensor = "sensor=false";
 
-                // url , from where the geocoding data is fetched
                 url = url + address + "&" + sensor;
 
-                // Instantiating DownloadTask to get places from Google Geocoding service
-                // in a non-ui thread
                 DownloadTask downloadTask = new DownloadTask();
 
-                // Start downloading the geocoding places
                 downloadTask.execute(url);
             }
         });
@@ -105,14 +99,14 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        map = googleMap;
         whereAmI = MapsUtil.whereAmI(this);
-        MapsUtil.setMyLocation(this, map, myLatitude, myLongitude, getResources().getString(R.string.youAreHere));
-        MapsUtil.getPlacesAroundMe(this, map, whereAmI, 3000); // meters
+        MapsUtil.setMyLocation(this, map, whereAmI, getResources().getString(R.string.youAreHere));
+        MapsUtil.getPlacesAroundMe(this, map, whereAmI, 3000);
         setMarkersListeners();
     }
 
     private void setMarkersListeners() {
-        //TODO:
         map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
@@ -122,19 +116,15 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
         });
     }
 
-    //CLASSES THAT HELP ON SEARCHES
-    //----------------------------------------------------------------------------------------------
     private String downloadUrl(String strUrl) throws IOException {
         String data = "";
         InputStream iStream = null;
         HttpURLConnection urlConnection = null;
+
         try {
             URL url = new URL(strUrl);
-            // Creating an http connection to communicate with url
             urlConnection = (HttpURLConnection) url.openConnection();
-            // Connecting to url
             urlConnection.connect();
-            // Reading data from url
             iStream = urlConnection.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
             StringBuffer sb = new StringBuffer();
@@ -156,14 +146,10 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
         return data;
     }
 
-    /**
-     * A class, to download Places from Geocoding webservice
-     */
     private class DownloadTask extends AsyncTask<String, Integer, String> {
 
         String data = null;
 
-        // Invoked by execute() method of this object
         @Override
         protected String doInBackground(String... url) {
             try {
@@ -174,28 +160,18 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
             return data;
         }
 
-        // Executed after the complete execution of doInBackground() method
         @Override
         protected void onPostExecute(String result) {
 
-            // Instantiating ParserTask which parses the json data from Geocoding webservice
-            // in a non-ui thread
             ParserTask parserTask = new ParserTask();
-
-            // Start parsing the places in JSON format
-            // Invokes the "doInBackground()" method of the class ParseTask
             parserTask.execute(result);
         }
     }
 
-    /**
-     * A class to parse the Geocoding Places in non-ui thread
-     */
     class ParserTask extends AsyncTask<String, Integer, List<HashMap<String, String>>> {
 
         JSONObject jObject;
 
-        // Invoked by execute() method of this object
         @Override
         protected List<HashMap<String, String>> doInBackground(String... jsonData) {
 
@@ -205,7 +181,6 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
             try {
                 jObject = new JSONObject(jsonData[0]);
 
-                /** Getting the parsed data as a an ArrayList */
                 places = parser.parse(jObject);
 
             } catch (Exception e) {
@@ -214,27 +189,20 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
             return places;
         }
 
-        // Executed after the complete execution of doInBackground() method
         @Override
         protected void onPostExecute(List<HashMap<String, String>> list) {
 
-            // Clears all the existing markers
             map.clear();
 
             for (int i = 0; i < list.size(); i++) {
-                // Creating a marker
                 MarkerOptions markerOptions = new MarkerOptions();
-                // Getting a place from the places list
                 HashMap<String, String> hmPlace = list.get(i);
-                // Getting latitude of the place
                 double lat = Double.parseDouble(hmPlace.get("lat"));
-                // Getting longitude of the place
                 double lng = Double.parseDouble(hmPlace.get("lng"));
-                // Getting name
                 String name = hmPlace.get("formatted_address");
                 LatLng latLng = new LatLng(lat, lng);
                 if (i == 0)
-                    MapsUtil.setMyLocation(MapAct.this, map, latLng.latitude, latLng.longitude, name);
+                    MapsUtil.setMyLocation(MapAct.this, map, latLng, name);
             }
         }
     }

@@ -15,9 +15,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.SphericalUtil;
 
-/**
- * Created by Pedreduardo on 09/12/2015.
- */
 public class MapsUtil {
 
     public static void addPlace(Context c, GoogleMap map, LatLng latLng, String title, String snippet) {
@@ -35,8 +32,7 @@ public class MapsUtil {
         Marker marker = map.addMarker(options);
     }
 
-    public static void setMyLocation(Context c, GoogleMap map, double myLatitude, double myLongitude, String title) {
-        LatLng whereAmI = new LatLng(myLatitude, myLongitude);
+    public static void setMyLocation(Context c, GoogleMap map, LatLng whereAmI, String title) {
 
         Bitmap pinIcon = BitmapFactory.decodeResource(c.getResources(), R.drawable.pin_laranja);
         Bitmap myMarker = Bitmap.createScaledBitmap(pinIcon, pinIcon.getWidth() / 5, pinIcon.getHeight() / 5, false);

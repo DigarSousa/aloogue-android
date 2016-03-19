@@ -31,7 +31,7 @@
 
     <item
         android:id="@+id/logout"
-        android:icon="@drawable/abc_ic_clear_mtrl_alpha"
         android:title="@string/getOut" />
+        <!--android:icon="@drawable/abc_ic_clear_mtrl_alpha"-->
 
 </menu>

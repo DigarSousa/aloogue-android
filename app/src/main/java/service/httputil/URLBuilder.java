@@ -2,8 +2,6 @@ package service.httputil;
 
 import android.util.Pair;
 
-import com.orm.dsl.NotNull;
-
 import service.ConstantsService;
 
 public class URLBuilder {
@@ -13,11 +11,11 @@ public class URLBuilder {
         this.url = ConstantsService.URL;
     }
 
-    public URLBuilder(@NotNull Class T) {
+    public URLBuilder( Class T) {
         this.url = ConstantsService.URL + "/" + T.getSimpleName().toLowerCase();
     }
 
-    public URLBuilder append(@NotNull String path) {
+    public URLBuilder append(String path) {
         this.url += path;
         return this;
     }
