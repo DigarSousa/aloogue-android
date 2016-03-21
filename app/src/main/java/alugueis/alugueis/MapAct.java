@@ -219,9 +219,10 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
                 double lng = Double.parseDouble(hmPlace.get("lng"));
                 String name = hmPlace.get("formatted_address");
                 LatLng latLng = new LatLng(lat, lng);
-                if (i == 0)
+                if (i == 0) {
                     myMarker.remove();
-                myMarker = map.addMarker(MapsUtil.setMyLocation(MapAct.this, map, latLng, name));
+                    myMarker = map.addMarker(MapsUtil.setMyLocation(MapAct.this, map, latLng, name));
+                }
             }
         }
     }
