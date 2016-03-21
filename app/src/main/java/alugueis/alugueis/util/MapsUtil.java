@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.Toast;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -32,18 +33,17 @@ public class MapsUtil {
         Marker marker = map.addMarker(options);
     }
 
-    public static void setMyLocation(Context c, GoogleMap map, LatLng whereAmI, String title) {
-
+    public static MarkerOptions setMyLocation(Context c, GoogleMap map, LatLng whereAmI, String title) {
         Bitmap pinIcon = BitmapFactory.decodeResource(c.getResources(), R.drawable.pin_laranja);
         Bitmap myMarker = Bitmap.createScaledBitmap(pinIcon, pinIcon.getWidth() / 5, pinIcon.getHeight() / 5, false);
 
-        map.addMarker(new MarkerOptions()
+        map.moveCamera(CameraUpdateFactory.newLatLng(whereAmI));
+        map.animateCamera(CameraUpdateFactory.zoomTo(15f));
+
+        return new MarkerOptions()
                 .position(whereAmI)
                 .title(title)
-                .icon(BitmapDescriptorFactory.fromBitmap(myMarker)));
-
-        map.moveCamera(CameraUpdateFactory.newLatLng(whereAmI));
-        map.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
+                .icon(BitmapDescriptorFactory.fromBitmap(myMarker));
     }
 
     public static void getPlacesAroundMe(Context c, GoogleMap map, LatLng whereAmI, double distance) {
@@ -64,7 +64,7 @@ public class MapsUtil {
         }
     }
 
-    public static LatLng whereAmI(Context context){
+    public static LatLng whereAmI(Context context) {
         GPSTracker gps = new GPSTracker(context);
         Double lat = 0.0;
         Double lon = 0.0;
@@ -76,7 +76,6 @@ public class MapsUtil {
         } else {
             gps.showSettingsAlert();
         }
-
         return new LatLng(lat, lon);
     }
 }

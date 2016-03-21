@@ -1,21 +1,23 @@
 package alugueis.alugueis;
 
-import alugueis.alugueis.classes.maps.GPSTracker;
 import alugueis.alugueis.classes.maps.GeocoderJSONParser;
 import alugueis.alugueis.util.MapsUtil;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.location.LocationListener;
+import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -35,16 +37,13 @@ import java.util.List;
 public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
 
     private LocationManager myLocation;
-    private LocationListener myLocationListener;
-    private GPSTracker gps;
-    private double myLatitude;
-    private double myLongitude;
     private FloatingActionButton searchButton;
     private EditText productText;
     private EditText placeText;
     private GoogleMap map;
     private LatLng whereAmI;
     private Marker lastOpened;
+    private Marker myMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,8 +100,27 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
         whereAmI = MapsUtil.whereAmI(this);
-        MapsUtil.setMyLocation(this, map, whereAmI, getResources().getString(R.string.youAreHere));
+        myMarker = map.addMarker(MapsUtil.setMyLocation(MapAct.this, map, whereAmI, getResources().getString(R.string.youAreHere)));
         MapsUtil.getPlacesAroundMe(this, map, whereAmI, 3000);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            return;
+        }
+
+        map.setMyLocationEnabled(true);
+        map.setPadding(20, 1000, 0, 0);
+        map.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+                whereAmI = MapsUtil.whereAmI(MapAct.this);
+                myMarker.remove();
+                map.moveCamera(CameraUpdateFactory.newLatLng(whereAmI));
+                map.animateCamera(CameraUpdateFactory.zoomTo(15f));
+                myMarker = map.addMarker(MapsUtil.setMyLocation(MapAct.this, map, whereAmI, getResources().getString(R.string.youAreHere)));
+                return true;
+            }
+        });
         setMarkersListeners();
     }
 
@@ -202,9 +220,9 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
                 String name = hmPlace.get("formatted_address");
                 LatLng latLng = new LatLng(lat, lng);
                 if (i == 0)
-                    MapsUtil.setMyLocation(MapAct.this, map, latLng, name);
+                    myMarker.remove();
+                myMarker = map.addMarker(MapsUtil.setMyLocation(MapAct.this, map, latLng, name));
             }
         }
     }
-
 }
