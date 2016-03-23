@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.Toast;
 
+import com.google.android.gms.location.places.Place;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -33,15 +34,15 @@ public class MapsUtil {
         Marker marker = map.addMarker(options);
     }
 
-    public static MarkerOptions setMyLocation(Context c, GoogleMap map, LatLng whereAmI, String title) {
+    public static MarkerOptions setMyLocation(Context c, GoogleMap map, Place place, String title) {
         Bitmap pinIcon = BitmapFactory.decodeResource(c.getResources(), R.drawable.pin_laranja);
         Bitmap myMarker = Bitmap.createScaledBitmap(pinIcon, pinIcon.getWidth() / 5, pinIcon.getHeight() / 5, false);
 
-        map.moveCamera(CameraUpdateFactory.newLatLng(whereAmI));
-        map.animateCamera(CameraUpdateFactory.zoomTo(15f));
+        map.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
+        map.animateCamera(CameraUpdateFactory.zoomTo(16f));
 
         return new MarkerOptions()
-                .position(whereAmI)
+                .position(place.getLatLng())
                 .title(title)
                 .icon(BitmapDescriptorFactory.fromBitmap(myMarker));
     }

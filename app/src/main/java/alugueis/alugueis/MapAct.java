@@ -1,49 +1,51 @@
 package alugueis.alugueis;
 
-import alugueis.alugueis.classes.maps.GeocoderJSONParser;
-import alugueis.alugueis.util.MapsUtil;
-
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.PlaceLikelihood;
+import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
+import com.google.android.gms.location.places.Places;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.json.JSONObject;
+import alugueis.alugueis.util.MapsUtil;
+import service.httputil.Service;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.List;
+public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
+        View.OnClickListener,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
 
-public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
+    private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
+    public static final int PERMISSION_ACESS_FINE_LOCATION = 25;
 
-    private LocationManager myLocation;
     private FloatingActionButton searchButton;
     private EditText productText;
     private EditText placeText;
     private GoogleMap map;
     private LatLng whereAmI;
-    private Marker lastOpened;
     private Marker myMarker;
+    private Place place;
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,75 +55,59 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        createGoogleLocationAPI();
         initiateComponents();
         setListeners();
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
+    private void createGoogleLocationAPI() {
+        mGoogleApiClient = new GoogleApiClient
+                .Builder(this)
+                .addApi(Places.GEO_DATA_API)
+                .addApi(Places.PLACE_DETECTION_API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+    }
+
     private void initiateComponents() {
-        myLocation = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         searchButton = (FloatingActionButton) findViewById(R.id.searchButton);
         productText = (EditText) findViewById(R.id.productText);
         placeText = (EditText) findViewById(R.id.placeText);
-        lastOpened = null;
     }
 
     private void setListeners() {
-        searchButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                String location = placeText.getText().toString();
-                if (location.isEmpty()) {
-                    Toast.makeText(getBaseContext(), "Defina", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                String url = "https://maps.googleapis.com/maps/api/geocode/json?";
-                try {
-                    location = URLEncoder.encode(location, "utf-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-
-                String address = "address=" + location;
-                String sensor = "sensor=false";
-
-                url = url + address + "&" + sensor;
-
-                DownloadTask downloadTask = new DownloadTask();
-
-                downloadTask.execute(url);
-            }
-        });
+        placeText.setOnClickListener(this);
+        searchButton.setOnClickListener(this);
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-        whereAmI = MapsUtil.whereAmI(this);
-        myMarker = map.addMarker(MapsUtil.setMyLocation(MapAct.this, map, whereAmI, getResources().getString(R.string.youAreHere)));
-        MapsUtil.getPlacesAroundMe(this, map, whereAmI, 3000);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-            return;
-        }
-
-        map.setMyLocationEnabled(true);
-        map.setPadding(20, 1000, 0, 0);
-        map.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
-            @Override
-            public boolean onMyLocationButtonClick() {
-                whereAmI = MapsUtil.whereAmI(MapAct.this);
-                myMarker.remove();
-                map.moveCamera(CameraUpdateFactory.newLatLng(whereAmI));
-                map.animateCamera(CameraUpdateFactory.zoomTo(15f));
-                myMarker = map.addMarker(MapsUtil.setMyLocation(MapAct.this, map, whereAmI, getResources().getString(R.string.youAreHere)));
-                return true;
-            }
-        });
+        getActualLocation();
         setMarkersListeners();
+    }
+
+    private void putMyMarker() {
+        if (place != null) {
+            if (myMarker != null) {
+                myMarker.remove();
+            }
+            myMarker = map.addMarker(MapsUtil.setMyLocation(this, map, place, getResources().getString(R.string.youAreHere)));
+        }
     }
 
     private void setMarkersListeners() {
@@ -134,96 +120,90 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback {
         });
     }
 
-    private String downloadUrl(String strUrl) throws IOException {
-        String data = "";
-        InputStream iStream = null;
-        HttpURLConnection urlConnection = null;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE && resultCode == RESULT_OK) {
+            place = PlaceAutocomplete.getPlace(this, data);
+            placeText.setText(place.getAddress());
+            putMyMarker();
+            map.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
+            map.animateCamera(CameraUpdateFactory.zoomTo(16f));
 
-        try {
-            URL url = new URL(strUrl);
-            urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.connect();
-            iStream = urlConnection.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
-            StringBuffer sb = new StringBuffer();
-
-            String line = "";
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-
-            data = sb.toString();
-            br.close();
-
-        } catch (Exception e) {
-            Log.d("Error downloading url", e.toString());
-        } finally {
-            iStream.close();
-            urlConnection.disconnect();
-        }
-        return data;
-    }
-
-    private class DownloadTask extends AsyncTask<String, Integer, String> {
-
-        String data = null;
-
-        @Override
-        protected String doInBackground(String... url) {
-            try {
-                data = downloadUrl(url[0]);
-            } catch (Exception e) {
-                Log.d("Background Task", e.toString());
-            }
-            return data;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            ParserTask parserTask = new ParserTask();
-            parserTask.execute(result);
         }
     }
 
-    class ParserTask extends AsyncTask<String, Integer, List<HashMap<String, String>>> {
-
-        JSONObject jObject;
-
-        @Override
-        protected List<HashMap<String, String>> doInBackground(String... jsonData) {
-
-            List<HashMap<String, String>> places = null;
-            GeocoderJSONParser parser = new GeocoderJSONParser();
-
+    @Override
+    public void onClick(View v) {
+        if (v.equals(placeText)) {
             try {
-                jObject = new JSONObject(jsonData[0]);
+                Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
+                        .build(MapAct.this);
+                startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
 
-                places = parser.parse(jObject);
-
-            } catch (Exception e) {
-                Log.d("Exception", e.toString());
+            } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+                e.printStackTrace();
             }
-            return places;
+        } else if (v.equals(searchButton)) {
+            //todo:service...
         }
+    }
 
-        @Override
-        protected void onPostExecute(List<HashMap<String, String>> list) {
-
-            map.clear();
-
-            for (int i = 0; i < list.size(); i++) {
-                MarkerOptions markerOptions = new MarkerOptions();
-                HashMap<String, String> hmPlace = list.get(i);
-                double lat = Double.parseDouble(hmPlace.get("lat"));
-                double lng = Double.parseDouble(hmPlace.get("lng"));
-                String name = hmPlace.get("formatted_address");
-                LatLng latLng = new LatLng(lat, lng);
-                if (i == 0) {
-                    myMarker.remove();
-                    myMarker = map.addMarker(MapsUtil.setMyLocation(MapAct.this, map, latLng, name));
+    public void getActualLocation() {
+        checkPermission();
+        PendingResult<PlaceLikelihoodBuffer> pendingResult = Places.PlaceDetectionApi.getCurrentPlace(mGoogleApiClient, null);
+        pendingResult.setResultCallback(new ResultCallback<PlaceLikelihoodBuffer>() {
+            @Override
+            public void onResult(PlaceLikelihoodBuffer placeLikelihoods) {
+                for (PlaceLikelihood placeLikelihood : placeLikelihoods) {
+                    if (placeLikelihood.getLikelihood() > 0.55) {
+                        place = placeLikelihood.getPlace();
+                        break;
+                    }
                 }
+                placeText.setText(place != null ? place.getAddress() : "");
+                putMyMarker();
+            }
+        });
+    }
+
+    private void checkPermission() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        PERMISSION_ACESS_FINE_LOCATION);
             }
         }
     }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == PERMISSION_ACESS_FINE_LOCATION) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            }
+        } else {
+
+        }
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
+    }
+
 }
+
