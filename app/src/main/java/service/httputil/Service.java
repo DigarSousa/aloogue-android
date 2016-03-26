@@ -11,9 +11,6 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
-import service.ConstantsService;
-
-
 public class Service extends AsyncTask<Void, Void, String> {
     private OnFinishTask onFinishTask;
     private Gson gson;
@@ -22,6 +19,7 @@ public class Service extends AsyncTask<Void, Void, String> {
     private String method;
     private Pair[] params;
     private ProgressDialog progressDialog;
+    private String path = "";
 
     private static final String POST = "POST";
     private static final String PUT = "PUT";
@@ -54,6 +52,7 @@ public class Service extends AsyncTask<Void, Void, String> {
         try {
 
             URLBuilder urlBuilder = new URLBuilder(T);
+            urlBuilder.append(path);
             if (method.equals(GET)) {
                 urlBuilder.putParams(params);
                 connection = new ConnectionManeger(urlBuilder.build());
@@ -90,10 +89,15 @@ public class Service extends AsyncTask<Void, Void, String> {
         return this;
     }
 
-    public Service delete(Object object,Class T) {
-        this.T=T;
+    public Service delete(Object object, Class T) {
+        this.T = T;
         this.object = object;
         this.method = DELETE;
+        return this;
+    }
+
+    public Service putPath(String path) {
+        this.path = path;
         return this;
     }
 

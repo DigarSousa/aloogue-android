@@ -2,7 +2,6 @@ package alugueis.alugueis;
 
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.UserApp;
-import alugueis.alugueis.util.MapsUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
@@ -56,7 +55,6 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
         initializeToolbar();
         initializeComponents();
         initializeBehaviours();
-        getMyLocation();
     }
 
 
@@ -168,10 +166,5 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
         } else {
             Toast.makeText(this, "Email ou senha inválidos", Toast.LENGTH_LONG).show();
         }
-    }
-
-    private void getMyLocation() {
-        this.whereAmI = MapsUtil.whereAmI(this);
-        //todo: DIVIRTA-SE! (:
     }
 }

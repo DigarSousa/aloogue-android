@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
+import android.util.Pair;
 import android.view.View;
 import android.widget.EditText;
 
@@ -27,13 +28,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
+import java.util.List;
+
 import alugueis.alugueis.util.MapsUtil;
+import service.httputil.OnFinishTask;
 import service.httputil.Service;
 
 public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
-        View.OnClickListener,
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener {
+        View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, OnFinishTask {
 
     private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
     public static final int PERMISSION_ACESS_FINE_LOCATION = 25;
@@ -42,7 +44,6 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
     private EditText productText;
     private EditText placeText;
     private GoogleMap map;
-    private LatLng whereAmI;
     private Marker myMarker;
     private Place place;
     private GoogleApiClient mGoogleApiClient;
@@ -97,8 +98,19 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
+        map.setPadding(0, 700, 0, 0);
+        checkPermission();
+        map.setMyLocationEnabled(true);
         getActualLocation();
         setMarkersListeners();
+
+        map.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+                getActualLocation();
+                return true;
+            }
+        });
     }
 
     private void putMyMarker() {
@@ -144,7 +156,21 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
                 e.printStackTrace();
             }
         } else if (v.equals(searchButton)) {
-            //todo:service...
+            new Service(this).putPath("/around").find(alugueis.alugueis.model.Place.class,
+                    new Pair<String, Object>("latitude", place.getLatLng().latitude),
+                    new Pair<String, Object>("longitude", place.getLatLng().longitude),
+                    new Pair<String, Object>("distance", 3))
+                    .execute();
+
+        }
+    }
+
+    @Override
+    public void onFinishTask(Object result) {
+        List<alugueis.alugueis.model.Place> places = (List) result;
+        for (alugueis.alugueis.model.Place place : places) {
+            LatLng latLng = new LatLng(place.getLatitude(), place.getLongitude());
+            MapsUtil.addPlace(this, map, latLng, "coco", "bosta");
         }
     }
 
@@ -154,12 +180,14 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
         pendingResult.setResultCallback(new ResultCallback<PlaceLikelihoodBuffer>() {
             @Override
             public void onResult(PlaceLikelihoodBuffer placeLikelihoods) {
+                float bigger = 0f;
                 for (PlaceLikelihood placeLikelihood : placeLikelihoods) {
-                    if (placeLikelihood.getLikelihood() > 0.55) {
+                    if (placeLikelihood.getLikelihood() > bigger) {
+                        bigger = placeLikelihood.getLikelihood();
                         place = placeLikelihood.getPlace();
-                        break;
                     }
                 }
+
                 placeText.setText(place != null ? place.getAddress() : "");
                 putMyMarker();
             }
@@ -190,6 +218,7 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
         }
     }
 
+
     @Override
     public void onConnected(Bundle bundle) {
 
@@ -204,6 +233,7 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
     public void onConnectionFailed(ConnectionResult connectionResult) {
 
     }
+
 
 }
 

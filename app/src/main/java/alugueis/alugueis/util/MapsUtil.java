@@ -19,7 +19,7 @@ import com.google.maps.android.SphericalUtil;
 
 public class MapsUtil {
 
-    public static void addPlace(Context c, GoogleMap map, LatLng latLng, String title, String snippet) {
+    public static Marker addPlace(Context c, GoogleMap map, LatLng latLng, String title, String snippet) {
 
         MarkerOptions options = new MarkerOptions();
         options.position(latLng);
@@ -31,7 +31,7 @@ public class MapsUtil {
         Bitmap myMarker = Bitmap.createScaledBitmap(pinIcon, pinIcon.getWidth() / 5, pinIcon.getHeight() / 5, false);
         options.icon(BitmapDescriptorFactory.fromBitmap(myMarker));
 
-        Marker marker = map.addMarker(options);
+        return map.addMarker(options);
     }
 
     public static MarkerOptions setMyLocation(Context c, GoogleMap map, Place place, String title) {

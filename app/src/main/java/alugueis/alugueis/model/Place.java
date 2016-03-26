@@ -15,6 +15,8 @@ public class Place implements Serializable {
     private UserApp userApp;
     private AddressApp addressApp;
     private List<Phone> phones;
+    private Double latitude;
+    private Double longitude;
     private String businessInitialHour;
     private String businessFinalHour;
 }
