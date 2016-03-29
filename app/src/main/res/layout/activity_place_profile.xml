@@ -67,7 +67,6 @@
         android:layout_below="@+id/tabs"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
 
-    <!--
     <ImageView
             android:id="@+id/addressIcon"
             android:layout_width="18dp"
@@ -103,15 +102,15 @@
     </ImageView>
 
     <TextView
-            android:id="@+id/placePhoneText"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:text="(31) 3333-3333"
-            android:textSize="15sp"
+        android:id="@+id/placePhoneText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="(31) 3333-3333"
+        android:textSize="15sp"
         android:textColor="@color/colorSecondaryText"
         android:layout_alignTop="@+id/telIcon"
-            android:layout_toRightOf="@+id/telIcon"
-            android:layout_marginLeft="10dp"/>
+        android:layout_toRightOf="@+id/telIcon"
+        android:layout_marginLeft="10dp"/>
 
     <ImageView
             android:id="@+id/workIcon"
@@ -133,8 +132,5 @@
         android:layout_alignTop="@+id/workIcon"
             android:layout_toRightOf="@+id/workIcon"
             android:layout_marginLeft="10dp"/>
-            -->
-
-
 
 </RelativeLayout>

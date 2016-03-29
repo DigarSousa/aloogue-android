@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 import lombok.Data;
 @Data
-public class PictureFile implements Serializable{
+public class ProductPicture implements Serializable{
 
     private Long id;
     private byte[] sourceFile;
-    private UserApp userApp;
+    private Place place;
 }
