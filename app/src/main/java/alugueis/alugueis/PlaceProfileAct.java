@@ -3,6 +3,7 @@ package alugueis.alugueis;
 import alugueis.alugueis.adapter.ViewPageAdapter;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.UserApp;
+import alugueis.alugueis.util.CompressionUtil;
 import alugueis.alugueis.util.ImageUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.view.RoundedImageView;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.zip.DataFormatException;
 
 public class PlaceProfileAct extends DashboardNavAct {
 
@@ -92,6 +94,7 @@ public class PlaceProfileAct extends DashboardNavAct {
 
             //Imagem
             byte[] userPic = place.getPicture();
+            userPic = CompressionUtil.decompress(userPic);
             pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
             //Nome
             placeNameText.setText(place.getName());
@@ -103,6 +106,8 @@ public class PlaceProfileAct extends DashboardNavAct {
             workText.setText(place.getBusinessInitialHour()+"h - "+ place.getBusinessFinalHour()+"h");
 
         } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (DataFormatException e) {
             e.printStackTrace();
         }
 

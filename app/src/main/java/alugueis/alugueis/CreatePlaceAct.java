@@ -2,6 +2,7 @@ package alugueis.alugueis;
 
 import alugueis.alugueis.classes.maps.GeocoderJSONParser;
 import alugueis.alugueis.model.*;
+import alugueis.alugueis.util.CompressionUtil;
 import alugueis.alugueis.util.ImageUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
@@ -217,7 +218,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             pictureImageView.setDrawingCacheEnabled(true);
             pictureImageView.buildDrawingCache();
             Bitmap bm = pictureImageView.getDrawingCache();
-            place.setPicture(ImageUtil.BitmapToByteArray(bm));
+            place.setPicture(CompressionUtil.compress(ImageUtil.BitmapToByteArray(bm)));
 
             getCoordinatesFromAddress();
         } catch (IOException | ClassNotFoundException e) {
