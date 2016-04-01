@@ -8,10 +8,12 @@ import alugueis.alugueis.view.RoundedImageView;
 import service.ConstantsService;
 import service.httputil.OnFinishTask;
 import service.httputil.Service;
+import service.httputil.URLBuilder;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -25,7 +27,12 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class MainAct extends ActionBarActivity implements View.OnClickListener, OnFinishTask {
 
@@ -56,7 +63,6 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
         initializeComponents();
         initializeBehaviours();
     }
-
 
 
     private UserApp getLogged() {
@@ -110,9 +116,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
     @Override
     public void onClick(View v) {
         if (v.equals(enterButton)) {
-            //enterButtonAction();
-            Intent intent = new Intent(MainAct.this, MapAct.class);
-            MainAct.this.startActivity(intent);
+            enterButtonAction();
         } else if (v.equals(signinButton)) {
             Intent it = new Intent(getApplicationContext(), SignupAct.class);
             startActivity(it);
@@ -141,7 +145,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
 
     @Override
     public void onFinishTask(Object result) {
-        final String USER_ID="userId";
+        final String USER_ID = "userId";
         if (result != null) {
             try {
                 UserApp loggedUser = (UserApp) result;

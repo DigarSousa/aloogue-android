@@ -34,15 +34,15 @@ public class MapsUtil {
         return map.addMarker(options);
     }
 
-    public static MarkerOptions setMyLocation(Context c, GoogleMap map, Place place, String title) {
+    public static MarkerOptions setMyLocation(Context c, GoogleMap map, LatLng latLng, String title) {
         Bitmap pinIcon = BitmapFactory.decodeResource(c.getResources(), R.drawable.pin_laranja);
         Bitmap myMarker = Bitmap.createScaledBitmap(pinIcon, pinIcon.getWidth() / 5, pinIcon.getHeight() / 5, false);
 
-        map.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
+        map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         map.animateCamera(CameraUpdateFactory.zoomTo(16f));
 
         return new MarkerOptions()
-                .position(place.getLatLng())
+                .position(latLng)
                 .title(title)
                 .icon(BitmapDescriptorFactory.fromBitmap(myMarker));
     }

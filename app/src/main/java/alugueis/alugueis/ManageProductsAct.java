@@ -33,6 +33,7 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
     private ProductListManageAdapter productAdapter;
     private FloatingActionButton saveProductsButton;
     private ProgressDialog progressDialog;
+    private Boolean findProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,18 +44,11 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         initializeToolbar();
         initializeComponents();
         initializeAttributes();
+
     }
 
     private void loadProductList() {
-        Place place = getPlace();
-
-        if (products == null || products.isEmpty() && place != null) {
-            progressDialog.setMessage("Carregando produtos...");
-            new Service(this, progressDialog).find(Product.class, new Pair<String, Long>("id", place.getId())).execute();
-        }
-
-
-        if (products.size() == 0) {
+        if (products.isEmpty()) {
             productsArea.setVisibility(View.INVISIBLE);
         } else {
 
@@ -74,6 +68,17 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
 
         try {
             products = (List<Product>) StaticUtil.readObject(this, StaticUtil.PRODUCT_LIST);
+            if (products == null || products.isEmpty()) {
+                products = new ArrayList<>();
+
+                Place place = getPlace();
+
+                if (place != null) {
+                    progressDialog.setMessage("Carregando produtos...");
+                    new Service(this, progressDialog).find(Product.class, new Pair<String, Object>("id", place.getId())).execute();
+                }
+
+            }
             loadProductList();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -150,19 +155,18 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
                 produto.setPlace(place);
 
             }
-
             new Service(this, progressDialog).save(products, Product.class).execute();
         }
     }
 
     @Override
     public void onFinishTask(Object result) {
-        List removedProducts = productAdapter.getRemovedProducts();
 
         products = (List<Product>) result;
 
         try {
             StaticUtil.setOject(this, StaticUtil.PRODUCT_LIST, products);
+            List removedProducts = productAdapter != null ? productAdapter.getRemovedProducts() : new ArrayList();
             new Service(new OnFinishTask() {
                 @Override
                 public void onFinishTask(Object result) {

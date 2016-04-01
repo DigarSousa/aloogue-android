@@ -2,6 +2,8 @@ package service.httputil;
 
 import android.util.Pair;
 
+import java.net.URL;
+
 import service.ConstantsService;
 
 public class URLBuilder {
@@ -11,7 +13,11 @@ public class URLBuilder {
         this.url = ConstantsService.URL;
     }
 
-    public URLBuilder( Class T) {
+    public URLBuilder(String url) {
+        this.url = url;
+    }
+
+    public URLBuilder(Class T) {
         this.url = ConstantsService.URL + "/" + T.getSimpleName().toLowerCase();
     }
 
@@ -21,7 +27,7 @@ public class URLBuilder {
     }
 
     public URLBuilder putParams(Pair... params) {
-        if (params!=null && params.length > 0) {
+        if (params != null && params.length > 0) {
 
             StringBuilder builder = new StringBuilder();
             String getParams = "";

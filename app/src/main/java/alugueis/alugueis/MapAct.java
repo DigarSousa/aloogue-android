@@ -3,6 +3,7 @@ package alugueis.alugueis;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
@@ -28,11 +29,22 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 import alugueis.alugueis.util.MapsUtil;
+import service.ConstantsService;
 import service.httputil.OnFinishTask;
 import service.httputil.Service;
+import service.httputil.URLBuilder;
 
 public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
         View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, OnFinishTask {
@@ -98,16 +110,19 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-        map.setPadding(0, 700, 0, 0);
         checkPermission();
+        new GetActualPlace(MapsUtil.whereAmI(this)).execute();
+        new GetActualPlace(MapsUtil.whereAmI(this)).execute();
+
+        map.setPadding(0, 700, 0, 0);
         map.setMyLocationEnabled(true);
-        getActualLocation();
+        // getActualLocation();
         setMarkersListeners();
 
         map.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
             @Override
             public boolean onMyLocationButtonClick() {
-                getActualLocation();
+                new GetActualPlace(MapsUtil.whereAmI(MapAct.this)).execute();
                 return true;
             }
         });
@@ -118,7 +133,7 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
             if (myMarker != null) {
                 myMarker.remove();
             }
-            myMarker = map.addMarker(MapsUtil.setMyLocation(this, map, place, getResources().getString(R.string.youAreHere)));
+            myMarker = map.addMarker(MapsUtil.setMyLocation(this, map, place.getLatLng(), getResources().getString(R.string.youAreHere)));
         }
     }
 
@@ -157,6 +172,7 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
             }
         } else if (v.equals(searchButton)) {
             new Service(this).putPath("/around").find(alugueis.alugueis.model.Place.class,
+                    new Pair<String, Object>("description", productText.getText().toString()),
                     new Pair<String, Object>("latitude", place.getLatLng().latitude),
                     new Pair<String, Object>("longitude", place.getLatLng().longitude),
                     new Pair<String, Object>("distance", 3))
@@ -174,7 +190,7 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
         }
     }
 
-    public void getActualLocation() {
+    /*public void getActualLocation() {
         checkPermission();
         PendingResult<PlaceLikelihoodBuffer> pendingResult = Places.PlaceDetectionApi.getCurrentPlace(mGoogleApiClient, null);
         pendingResult.setResultCallback(new ResultCallback<PlaceLikelihoodBuffer>() {
@@ -192,7 +208,7 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
                 putMyMarker();
             }
         });
-    }
+    }*/
 
     private void checkPermission() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -214,6 +230,65 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             }
         } else {
+
+        }
+    }
+
+    private class GetActualPlace extends AsyncTask<Void, Void, String> {
+        private LatLng latLng;
+
+        public GetActualPlace(LatLng latLng) {
+            this.latLng = latLng;
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            URLBuilder urlBuilder = new URLBuilder("https://maps.googleapis.com/maps/api/geocode/json");
+            urlBuilder.putParams(
+                    new Pair<String, Object>("latlng", latLng.latitude + "," + latLng.longitude),
+                    new Pair<String, Object>("key", getResources().getString(R.string.google_maps_key)),
+                    new Pair<String, Object>("result_type", "street_address"));
+
+            HttpURLConnection connection;
+            String response = "";
+            try {
+                connection = (HttpURLConnection) new URL(urlBuilder.build()).openConnection();
+                connection.setDoOutput(Boolean.TRUE);
+                connection.setRequestProperty(ConstantsService.CONTENT, ConstantsService.JSON);
+                connection.setRequestMethod("GET");
+                connection.connect();
+
+                InputStreamReader inputStream = new InputStreamReader(connection.getInputStream());
+                String line;
+                BufferedReader reader;
+                reader = new BufferedReader(inputStream);
+                StringBuilder sb = new StringBuilder();
+
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                }
+                response = sb.toString();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String json) {
+            try {
+                JSONObject jSonObject = new JSONObject(json);
+                JSONArray jsonArray = (JSONArray) jSonObject.get("results");
+                JSONObject place = (JSONObject) jsonArray.get(0);
+                placeText.setText((String) place.get("formatted_address"));
+                if (myMarker != null) {
+                    myMarker.remove();
+                }
+                myMarker = map.addMarker(MapsUtil.setMyLocation(MapAct.this, map, latLng, getResources().getString(R.string.youAreHere)));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
         }
     }
