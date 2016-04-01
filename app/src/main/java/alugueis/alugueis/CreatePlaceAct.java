@@ -2,6 +2,8 @@ package alugueis.alugueis;
 
 import alugueis.alugueis.classes.maps.GeocoderJSONParser;
 import alugueis.alugueis.model.*;
+import alugueis.alugueis.util.CompressionUtil;
+import alugueis.alugueis.util.ImageUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
@@ -28,6 +30,7 @@ import com.google.android.gms.maps.model.LatLng;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -210,6 +213,12 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             addressApp.setCountry(country);
             place.setUserApp(loggedUser);
             place.setAddressApp(addressApp);
+
+
+            pictureImageView.setDrawingCacheEnabled(true);
+            pictureImageView.buildDrawingCache();
+            Bitmap bm = pictureImageView.getDrawingCache();
+            place.setPicture(CompressionUtil.compress(ImageUtil.BitmapToByteArray(bm)));
 
             getCoordinatesFromAddress();
         } catch (IOException | ClassNotFoundException e) {

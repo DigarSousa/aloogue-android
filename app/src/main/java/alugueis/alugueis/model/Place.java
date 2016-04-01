@@ -19,4 +19,5 @@ public class Place implements Serializable {
     private Double longitude;
     private String businessInitialHour;
     private String businessFinalHour;
+    private byte[] picture;
 }

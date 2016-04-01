@@ -1,11 +1,16 @@
 package alugueis.alugueis;
 
 import alugueis.alugueis.adapter.ViewPageAdapter;
+import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.UserApp;
+import alugueis.alugueis.util.CompressionUtil;
+import alugueis.alugueis.util.ImageUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.view.RoundedImageView;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -13,6 +18,10 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.io.IOException;
+import java.util.zip.DataFormatException;
 
 public class PlaceProfileAct extends DashboardNavAct {
 
@@ -23,6 +32,10 @@ public class PlaceProfileAct extends DashboardNavAct {
     private TabLayout tabLayout;
     private Context context;
     private ViewPager viewPager;
+    private TextView placeNameText;
+    private TextView placeAddressText;
+    private TextView placePhoneText;
+    private TextView workText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +76,10 @@ public class PlaceProfileAct extends DashboardNavAct {
         bannerImage = (ImageView) findViewById(R.id.bannerImage);
         pictureImage = (RoundedImageView) findViewById(R.id.pictureImage);
         callButton = (Button) findViewById(R.id.callButton);
+        placeNameText = (TextView) findViewById(R.id.placeNameText);
+        placeAddressText = (TextView) findViewById(R.id.placeAddressText);
+        placePhoneText = (TextView) findViewById(R.id.placePhoneText);
+        workText = (TextView) findViewById(R.id.workText);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -70,26 +87,31 @@ public class PlaceProfileAct extends DashboardNavAct {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        //todo: Carregar as informaçoes da loja aqui
-        /*
-        if (loggedUserApp != null) {
-            if (loggedUserApp.getPicture() != null) {
-                byte[] userPic = loggedUserApp.getPicture();
 
-                //Bitmap userPicBitmap = BitmapFactory.decodeByteArray(userPic, 0, userPic.length);
-                //Bitmap bluredBackground = ImageUtil.fastblur(userPicBitmap, this, 25);
-                //bluredBackground = ImageUtil.adjustBrightness(bluredBackground, -50);
-                //bluredBackground = ImageUtil.adjustedContrast(bluredBackground, -10);
+        //Populando views
+        try {
+            Place place = (Place) StaticUtil.readObject(context, StaticUtil.PLACE);
 
-                pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
-                //bannerImage.setImageBitmap(bluredBackground);
-            }
+            //Imagem
+            byte[] userPic = place.getPicture();
+            userPic = CompressionUtil.decompress(userPic);
+            pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
+            //Nome
+            placeNameText.setText(place.getName());
+            //Address
+            placeAddressText.setText(place.getAddressApp().toString());
+            //Phone
+            placePhoneText.setText(place.getPhones().get(0).getNumber());
+            //Work
+            workText.setText(place.getBusinessInitialHour()+"h - "+ place.getBusinessFinalHour()+"h");
 
-            // if (loggedUserApp.getAddressApp() != null) {
-            //      placeAddressText.setText(loggedUserApp.getAddressApp().toString());
-            // }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (DataFormatException e) {
+            e.printStackTrace();
         }
-        */
+
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
