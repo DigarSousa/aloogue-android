@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Aloogue</string>
+    <string name="google_app_id">AIzaSyCDV7m403qPYc0Rups48lgs2sx-19JTa6Q</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

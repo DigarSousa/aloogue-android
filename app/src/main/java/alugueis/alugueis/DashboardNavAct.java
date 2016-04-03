@@ -2,8 +2,11 @@ package alugueis.alugueis;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import alugueis.alugueis.model.Place;
 import alugueis.alugueis.util.StaticUtil;
 
 public class DashboardNavAct extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -24,6 +28,10 @@ public class DashboardNavAct extends AppCompatActivity implements NavigationView
     protected Toolbar mainToolbar;
     protected FrameLayout frameLayout;
     private Context context;
+    private MenuItem manageProducts;
+    private MenuItem createPlace;
+    private MenuItem editPlace;
+    private Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +44,24 @@ public class DashboardNavAct extends AppCompatActivity implements NavigationView
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //todo: colocar regra de existencia de loja e edição, etc (se existir loja, sumir com criação dela, etcs)
+        hideItems();
 
         context = getApplicationContext();
         initializeToolbar();
+    }
+
+    protected void hideItems() {
+        Menu menu = this.navigationView.getMenu();
+        this.manageProducts = menu.findItem(R.id.nav_manage_products);
+        this.createPlace = menu.findItem(R.id.nav_add_shop);
+        this.editPlace = menu.findItem(R.id.nav_edit_shop);
+
+        Place place = StaticUtil.getPlace(this);
+
+        boolean placeExists = place == null || place.getId() == null;
+        createPlace.setVisible(placeExists);
+        manageProducts.setVisible(!placeExists);
+        editPlace.setVisible(!placeExists);
     }
 
     private void initializeToolbar() {

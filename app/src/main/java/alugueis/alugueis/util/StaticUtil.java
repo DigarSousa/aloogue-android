@@ -10,6 +10,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Arrays;
 
+import alugueis.alugueis.model.Place;
+
 public class StaticUtil {
     public static final String LOGGED_USER = "loggedUser";
     public static final String PRODUCT_LIST = "productList";
@@ -34,5 +36,14 @@ public class StaticUtil {
 
     public static void remove(Context context, String key) throws IOException {
         context.deleteFile(key);
+    }
+
+    public static Place getPlace(Context context) {
+        try {
+            return (Place) StaticUtil.readObject(context, StaticUtil.PLACE);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 }

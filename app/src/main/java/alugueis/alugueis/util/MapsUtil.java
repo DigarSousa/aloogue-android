@@ -3,9 +3,13 @@ package alugueis.alugueis.util;
 import alugueis.alugueis.R;
 import alugueis.alugueis.classes.maps.GPSTracker;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
 
 import com.google.android.gms.location.places.Place;
@@ -79,4 +83,18 @@ public class MapsUtil {
         }
         return new LatLng(lat, lon);
     }
+
+
+    public static boolean locationPermissionDialog(final Context context) {
+        return ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public static void requestLocationPermition(Activity activity){
+        ActivityCompat.requestPermissions(
+                activity,
+                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
+                0);
+    }
+
 }
