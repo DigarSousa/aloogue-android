@@ -418,7 +418,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
         String data = null;
 
         protected void onPreExecute() {
-            dialogCoord.setMessage("Criando loja");
+            dialogCoord.setMessage("Salvando loja");
             dialogCoord.show();
         }
 
@@ -477,16 +477,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             place.getAddressApp().setLatitude(lat);
             place.getAddressApp().setLongitute(lng);
 
-            //todo: fiz só pra teste, retirar o bloco try abaixo e descomentar  a chamada do serviço.
-            //new Service(CreatePlaceAct.this).save(place, Place.class).execute();
-            try {
-                place.setId(new Long("0"));
-                StaticUtil.setOject(context, StaticUtil.PLACE, place);
-                dialogCoord.dismiss();
-                hideItems(); //esconde items do menu de acordo com a necessidade
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            new Service(CreatePlaceAct.this).save(place, Place.class).execute();
         }
     }
 
@@ -496,12 +487,17 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
         try {
             StaticUtil.setOject(this, StaticUtil.PLACE, place);
             dialogCoord.dismiss();
-            Toast.makeText(getApplicationContext(), "Loja criada com sucesso", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Loja salva com sucesso", Toast.LENGTH_SHORT).show();
             super.invalidateOptionsMenu(); //recarrega os items do menu do drawer
             hideItems(); //esconde items do menu de acordo com a necessidade
+            Intent intent = new Intent(this, MapAct.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public ProgressDialog getDialogCoord() {
+        return dialogCoord;
     }
 }
 

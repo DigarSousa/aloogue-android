@@ -70,6 +70,9 @@ public class Service extends AsyncTask<Void, Void, String> {
 
         } catch (IOException e) {
             e.printStackTrace();
+            if (progressDialog != null) {
+                progressDialog.dismiss();
+            }
         }
         return response;
     }

@@ -17,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import java.io.IOException;
+
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.util.StaticUtil;
 
@@ -51,17 +53,22 @@ public class DashboardNavAct extends AppCompatActivity implements NavigationView
     }
 
     protected void hideItems() {
-        Menu menu = this.navigationView.getMenu();
-        this.manageProducts = menu.findItem(R.id.nav_manage_products);
-        this.createPlace = menu.findItem(R.id.nav_add_shop);
-        this.editPlace = menu.findItem(R.id.nav_edit_shop);
+        try {
+            Menu menu = this.navigationView.getMenu();
+            this.manageProducts = menu.findItem(R.id.nav_manage_products);
+            this.createPlace = menu.findItem(R.id.nav_add_shop);
+            this.editPlace = menu.findItem(R.id.nav_edit_shop);
 
-        Place place = StaticUtil.getPlace(this);
+            Place place = (Place) StaticUtil.readObject(this, StaticUtil.PLACE);
 
-        boolean placeExists = place == null || place.getId() == null;
-        createPlace.setVisible(placeExists);
-        manageProducts.setVisible(!placeExists);
-        editPlace.setVisible(!placeExists);
+            boolean placeExists = place == null || place.getId() == null;
+            createPlace.setVisible(placeExists);
+            manageProducts.setVisible(!placeExists);
+            editPlace.setVisible(!placeExists);
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void initializeToolbar() {

@@ -33,27 +33,24 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
     private ProductListManageAdapter productAdapter;
     private FloatingActionButton saveProductsButton;
     private ProgressDialog progressDialog;
-    private Boolean findProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Utilizado para levar o layout da activity para o pai (nav drawer)
         getLayoutInflater().inflate(R.layout.activity_manage_products, frameLayout);
 
         initializeToolbar();
-        initializeComponents();
         initializeAttributes();
+        initializeComponents();
 
     }
 
     private void loadProductList() {
-        if(products != null) {
+        if (products != null) {
             if (products.isEmpty()) {
                 productsArea.setVisibility(View.INVISIBLE);
             } else {
 
-                //lvProducts.setAdapter(null);
                 lvProducts.destroyDrawingCache();
                 lvProducts.refreshDrawableState();
                 productAdapter = new ProductListManageAdapter(context, android.R.layout.simple_list_item_1, products, this);
@@ -65,27 +62,18 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
 
 
     private void initializeAttributes() {
+        saveProductsButton = (FloatingActionButton) findViewById(R.id.saveProductsButton);
+        products = new ArrayList<>();
+
         progressDialog = new ProgressDialog(this);
         context = getApplicationContext();
 
-        try {
-            products = (List<Product>) StaticUtil.readObject(this, StaticUtil.PRODUCT_LIST);
-            if (products == null || products.isEmpty()) {
-                products = new ArrayList<>();
+        Place place = getPlace();
 
-                Place place = getPlace();
-
-                if (place != null) {
-                    progressDialog.setMessage("Carregando produtos...");
-                    new Service(this, progressDialog).find(Product.class, new Pair<String, Object>("id", place.getId())).execute();
-                }
-
-            }
-            loadProductList();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+        if (place != null) {
+            progressDialog.setMessage("Carregando produtos...");
+            new Service(this, progressDialog).find(Product.class, new Pair<String, Object>("id", place.getId())).execute();
         }
-
     }
 
     private Place getPlace() {
@@ -115,10 +103,11 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
 
                         if (validateEmptyProductName()) {
 
-                            Product productToAdd = new Product();
+                            Product product = new Product();
                             String productName = nameText.getText().toString().trim();
-                            productToAdd.setDescription(productName);
-                            products.add(productToAdd);
+                            product.setDescription(productName);
+                            product.setPlace(getPlace());
+                            products.add(product);
                             loadProductList();
                         }
 
@@ -131,7 +120,6 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
 
         });
 
-        saveProductsButton = (FloatingActionButton) findViewById(R.id.saveProductsButton);
         saveProductsButton.setOnClickListener(this);
     }
 
@@ -149,14 +137,9 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         if (view.equals(saveProductsButton)
                 && products != null
                 && !products.isEmpty()) {
-
+            progressDialog = new ProgressDialog(this);
             progressDialog.setMessage("Salvando produtos...");
 
-            Place place = getPlace();
-            for (Product produto : products) {
-                produto.setPlace(place);
-
-            }
             new Service(this, progressDialog).save(products, Product.class).execute();
         }
     }
@@ -181,4 +164,5 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         }
 
     }
+
 }

@@ -38,12 +38,4 @@ public class StaticUtil {
         context.deleteFile(key);
     }
 
-    public static Place getPlace(Context context) {
-        try {
-            return (Place) StaticUtil.readObject(context, StaticUtil.PLACE);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
 }

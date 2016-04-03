@@ -11,16 +11,9 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.EditText;
 
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.PlaceLikelihood;
-import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
-import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -47,7 +40,7 @@ import service.httputil.Service;
 import service.httputil.URLBuilder;
 
 public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
-        View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, OnFinishTask {
+        View.OnClickListener,OnFinishTask {
 
     private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
     public static final int PERMISSION_ACESS_FINE_LOCATION = 25;
@@ -58,7 +51,6 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
     private GoogleMap map;
     private Marker myMarker;
     private Place place;
-    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +60,6 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        createGoogleLocationAPI();
         initiateComponents();
         setListeners();
     }
@@ -77,23 +68,11 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
     @Override
     protected void onStart() {
         super.onStart();
-        mGoogleApiClient.connect();
     }
 
     @Override
     protected void onStop() {
-        mGoogleApiClient.disconnect();
         super.onStop();
-    }
-
-    private void createGoogleLocationAPI() {
-        mGoogleApiClient = new GoogleApiClient
-                .Builder(this)
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
     }
 
     private void initiateComponents() {
@@ -112,13 +91,8 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
         map = googleMap;
         checkPermission();
         new GetActualPlace(MapsUtil.whereAmI(this)).execute();
-        new GetActualPlace(MapsUtil.whereAmI(this)).execute();
 
-        map.setPadding(0, 700, 0, 0);
-        map.setMyLocationEnabled(true);
-        // getActualLocation();
         setMarkersListeners();
-
         map.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
             @Override
             public boolean onMyLocationButtonClick() {
@@ -189,26 +163,6 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
             MapsUtil.addPlace(this, map, latLng, "coco", "bosta");
         }
     }
-
-    /*public void getActualLocation() {
-        checkPermission();
-        PendingResult<PlaceLikelihoodBuffer> pendingResult = Places.PlaceDetectionApi.getCurrentPlace(mGoogleApiClient, null);
-        pendingResult.setResultCallback(new ResultCallback<PlaceLikelihoodBuffer>() {
-            @Override
-            public void onResult(PlaceLikelihoodBuffer placeLikelihoods) {
-                float bigger = 0f;
-                for (PlaceLikelihood placeLikelihood : placeLikelihoods) {
-                    if (placeLikelihood.getLikelihood() > bigger) {
-                        bigger = placeLikelihood.getLikelihood();
-                        place = placeLikelihood.getPlace();
-                    }
-                }
-
-                placeText.setText(place != null ? place.getAddress() : "");
-                putMyMarker();
-            }
-        });
-    }*/
 
     private void checkPermission() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -292,23 +246,6 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
 
         }
     }
-
-
-    @Override
-    public void onConnected(Bundle bundle) {
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-
-    }
-
 
 }
 

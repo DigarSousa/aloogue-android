@@ -11,9 +11,6 @@ import java.util.ArrayList;
 
 import alugueis.alugueis.model.Product;
 
-/**
- * Created by Pedreduardo on 01/02/2016.
- */
 public class EditProductAct extends DashboardNavAct implements View.OnTouchListener {
 
     private Context context;

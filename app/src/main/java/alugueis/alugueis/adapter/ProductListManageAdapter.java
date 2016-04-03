@@ -42,11 +42,9 @@ public class ProductListManageAdapter extends ArrayAdapter<Product> {
         View v = convertView;
         final int pos = position;
 
-        //if (v == null) {
         LayoutInflater vi = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         v = vi.inflate(R.layout.adapter_product_manage_list, null);
 
-        //holder = new ViewHolder();
 
         if (productList.size() > 0) {
             //Product name
