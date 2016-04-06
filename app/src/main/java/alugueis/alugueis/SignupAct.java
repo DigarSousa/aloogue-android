@@ -6,6 +6,7 @@ import alugueis.alugueis.util.Util;
 import service.httputil.OnFinishTask;
 import service.httputil.Service;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class SignupAct extends ActionBarActivity implements OnFinishTask {
     private EditText passwordConfirmEditText;
     private CheckBox acceptTermsCheckBox;
     private Button doneButton;
+    private ProgressDialog progressDialog;
     //For image upload
     private Context context;
 
@@ -80,7 +82,9 @@ public class SignupAct extends ActionBarActivity implements OnFinishTask {
         loggedUserApp.setName(nameEditText.getText().toString());
         loggedUserApp.setEmail(emailEditText.getText().toString());
         loggedUserApp.setPassword(passwordEditText.getText().toString());
-        new Service(this).save(loggedUserApp, UserApp.class).execute();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Criando nova conta...");
+        new Service(this, progressDialog).save(loggedUserApp, UserApp.class).execute();
     }
 
     private boolean validateComponents() {
@@ -197,12 +201,20 @@ public class SignupAct extends ActionBarActivity implements OnFinishTask {
     @Override
     public void onFinishTask(Object result) {
         try {
-            UserApp createdUser = (UserApp) result;
-            StaticUtil.setOject(context, StaticUtil.LOGGED_USER, createdUser);
-            Intent intent = new Intent(this, MapAct.class);
-            this.startActivity(intent);
-            this.finish();
+            if (result != null && ((UserApp) result).getId() != null) {
+                UserApp createdUser = (UserApp) result;
+                StaticUtil.setOject(context, StaticUtil.LOGGED_USER, createdUser);
+                progressDialog.dismiss();
+                Intent intent = new Intent(this, MapAct.class);
+                this.startActivity(intent);
+                this.finish();
+            } else {
+                progressDialog.dismiss();
+                Toast.makeText(context, "Houve uma falha ao realizar seu cadastro. :( ", Toast.LENGTH_SHORT).show();
+
+            }
         } catch (IOException e) {
+            progressDialog.dismiss();
             Toast.makeText(context, "Houve uma falha ao realizar seu cadastro. :( ", Toast.LENGTH_SHORT).show();
         }
     }

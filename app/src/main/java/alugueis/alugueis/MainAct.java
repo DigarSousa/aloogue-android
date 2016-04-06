@@ -12,6 +12,7 @@ import service.httputil.Service;
 import service.httputil.URLBuilder;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -49,7 +50,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
     private ImageButton twitterImageButton;
     private RoundedImageView pictureImageView;
     private TextView welcomeUser;
-    private LatLng whereAmI;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,9 +121,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
     @Override
     public void onClick(View v) {
         if (v.equals(enterButton)) {
-            //enterButtonAction();
-            Intent intent = new Intent(MainAct.this, MapAct.class);
-            MainAct.this.startActivity(intent);
+            enterButtonAction();
         } else if (v.equals(signinButton)) {
             Intent it = new Intent(getApplicationContext(), SignupAct.class);
             startActivity(it);
@@ -142,7 +141,9 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
         if (Util.isOnlineWithToast(getApplicationContext())) {
             String emailLogin = userEditText.getText().toString();
             String passwordLogin = passwordEditText.getText().toString();
-            new Service(this).find(UserApp.class,
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Entrando");
+            new Service(this, progressDialog).find(UserApp.class,
                     new Pair<String, Object>("email", emailLogin),
                     new Pair<String, Object>("password", passwordLogin)).execute();
         }
@@ -152,7 +153,8 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
     @Override
     public void onFinishTask(Object result) {
         final String USER_ID = "userId";
-        if (result != null) {
+
+        if (result != null && ((UserApp) result).getId() != null) {
             try {
                 UserApp loggedUser = (UserApp) result;
                 StaticUtil.setOject(this, StaticUtil.LOGGED_USER, loggedUser);
@@ -163,6 +165,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
                             Place place = (Place) result;
                             StaticUtil.setOject(MainAct.this, StaticUtil.PLACE, place);
                             Intent intent = new Intent(MainAct.this, MapAct.class);
+                            progressDialog.dismiss();
                             MainAct.this.startActivity(intent);
                             MainAct.this.finish();
                         } catch (IOException e) {
@@ -171,9 +174,12 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
                     }
                 }).find(Place.class, new Pair<>(USER_ID, loggedUser.getId())).execute();
             } catch (IOException e) {
+                progressDialog.dismiss();
+                Toast.makeText(this, "Erro ao realizar login!", Toast.LENGTH_LONG).show();
                 e.printStackTrace();
             }
         } else {
+            progressDialog.dismiss();
             Toast.makeText(this, "Email ou senha inválidos", Toast.LENGTH_LONG).show();
         }
     }
