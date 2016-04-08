@@ -9,16 +9,12 @@ import alugueis.alugueis.view.RoundedImageView;
 import service.ConstantsService;
 import service.httputil.OnFinishTask;
 import service.httputil.Service;
-import service.httputil.URLBuilder;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Pair;
@@ -29,14 +25,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.model.LatLng;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class MainAct extends ActionBarActivity implements View.OnClickListener, OnFinishTask {
 
@@ -74,7 +63,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
         try {
             return (UserApp) StaticUtil.readObject(getApplicationContext(), StaticUtil.LOGGED_USER);
         } catch (Exception ex) {
-            //todo:colocar log no arquivo de log =D
+            ex.printStackTrace();
         }
         return null;
     }
