@@ -3,6 +3,8 @@ package alugueis.alugueis;
 import alugueis.alugueis.model.*;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
+import service.httputil.OnFinishTask;
+import service.httputil.Service;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -92,8 +94,12 @@ public class EditProfileAct extends DashboardNavAct {
         loggedUserApp.setName(nameEditText.getText().toString());
         loggedUserApp.setEmail(emailEditText.getText().toString());
         loggedUserApp.setPassword(passwordEditText.getText().toString());
-        //todo: chamar serviço de atualizar o cadastro, ao invés de criar um novo usuário
-        //new ServiceSignup(loggedUserApp, getApplicationContext()).execute();
+        new Service(new OnFinishTask() {
+            @Override
+            public void onFinishTask(Object result) {
+                 //se result !=null e result.get id !=null todo: toast usuário salvo...
+            }
+        }).save(loggedUserApp,UserApp.class);
     }
 
     private boolean validateComponents() {
