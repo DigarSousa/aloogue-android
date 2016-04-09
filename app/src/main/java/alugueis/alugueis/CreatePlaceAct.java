@@ -488,14 +488,15 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             StaticUtil.setOject(this, StaticUtil.PLACE, place);
             dialogCoord.dismiss();
             Toast.makeText(getApplicationContext(), "Loja salva com sucesso", Toast.LENGTH_SHORT).show();
-            super.invalidateOptionsMenu(); //recarrega os items do menu do drawer
-            hideItems(); //esconde items do menu de acordo com a necessidade
-            Intent intent = new Intent(this, MapAct.class);
+
+            hideItems();
+            super.invalidateOptionsMenu();
+
+            CreatePlaceAct.this.finish();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
     public ProgressDialog getDialogCoord() {
         return dialogCoord;
     }
