@@ -6,11 +6,16 @@ import alugueis.alugueis.util.Util;
 import service.httputil.OnFinishTask;
 import service.httputil.Service;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.*;
+
+import com.google.android.gms.drive.events.TransferProgressEvent;
+
+import java.io.IOException;
 
 public class EditProfileAct extends DashboardNavAct {
 
@@ -52,8 +57,7 @@ public class EditProfileAct extends DashboardNavAct {
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         finish();
         super.onBackPressed();
     }
@@ -91,15 +95,29 @@ public class EditProfileAct extends DashboardNavAct {
     }
 
     private void saveUser() {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Atualizando perfil...");
         loggedUserApp.setName(nameEditText.getText().toString());
         loggedUserApp.setEmail(emailEditText.getText().toString());
         loggedUserApp.setPassword(passwordEditText.getText().toString());
+
         new Service(new OnFinishTask() {
             @Override
             public void onFinishTask(Object result) {
-                 //se result !=null e result.get id !=null todo: toast usuário salvo...
+                if (result == null || ((UserApp) result).getId() == null) {
+                    Toast.makeText(EditProfileAct.this, "Erro ao editar perfil!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(EditProfileAct.this, "Perfil atualizado!", Toast.LENGTH_SHORT).show();
+                }
+                try {
+                    StaticUtil.setOject(EditProfileAct.this, StaticUtil.LOGGED_USER, result);
+                } catch (IOException e) {
+                    Toast.makeText(EditProfileAct.this, "Erro ao editar perfil!", Toast.LENGTH_SHORT).show();
+                }
+                progressDialog.dismiss();
+
             }
-        }).save(loggedUserApp,UserApp.class);
+        }, progressDialog).save(loggedUserApp, UserApp.class).execute();
     }
 
     private boolean validateComponents() {
