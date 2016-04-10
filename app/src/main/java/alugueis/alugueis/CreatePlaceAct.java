@@ -63,10 +63,8 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
     //For image upload
 
     private static final Integer RESULT_LOAD_IMAGE = 1;
-    private Thread startLogin;
     private EditText zipCodeText;
     private ProgressDialog dialogCoord;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +130,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
     }
 
     private void initializeStartLoginThread() {
-        startLogin = new Thread() {
+       Thread startLogin = new Thread() {
             @Override
             public void run() {
                 try {
@@ -188,37 +186,23 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             place.setBusinessInitialHour(businessInitialHourSpinner.getSelectedItem().toString());
             place.setBusinessFinalHour(businessFinalHourSpinner.getSelectedItem().toString());
 
-            AddressApp addressApp = new AddressApp();
+            Address address = new Address();
+            address.setStreet(addressEditText.getText().toString());
+            address.setNumber(Long.valueOf(streetNumberEditText.getText().toString()));
+            address.setNeighbourhood(neighbourhoodEditText.getText().toString());
+            address.setCity(cityEditText.getText().toString());
+            address.setStateFU(stateSpinner.getSelectedItem().toString());
 
-            Street street = new Street();
-            street.setDescription(addressEditText.getText().toString());
-            addressApp.setStreet(street);
 
-            addressApp.setNumber(streetNumberEditText.getText().toString());
-
-            Neighbourhood neighbourhood = new Neighbourhood();
-            neighbourhood.setDescription(neighbourhoodEditText.getText().toString());
-            addressApp.setNeighbourhood(neighbourhood);
-
-            City city = new City();
-            city.setDescription(cityEditText.getText().toString());
-            addressApp.setCity(city);
-
-            StateFU stateFU = new StateFU();
-            stateFU.setDescription(stateSpinner.getSelectedItem().toString());
-            addressApp.setStateFU(stateFU);
-
-            Country country = new Country();
-            country.setDescription("Brasil");
-            addressApp.setCountry(country);
+            address.setCountry("Brasil");
             place.setUserApp(loggedUser);
-            place.setAddressApp(addressApp);
-
+            address.setPlace(place);
+            place.setAddress(address);
 
             pictureImageView.setDrawingCacheEnabled(true);
             pictureImageView.buildDrawingCache();
-            Bitmap bm = pictureImageView.getDrawingCache();
-            place.setPicture(CompressionUtil.compress(ImageUtil.BitmapToByteArray(bm)));
+            //Bitmap bm = pictureImageView.getDrawingCache();
+            //place.setPicture(CompressionUtil.compress(ImageUtil.BitmapToByteArray(bm)));
 
             getCoordinatesFromAddress();
 
@@ -232,7 +216,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
 
 
     private void getCoordinatesFromAddress() {
-        String location = place.getAddressApp().toString();
+        String location = place.getAddress().toString();
         String url = GOOGLE_MAPS_URL;
         try {
             location = URLEncoder.encode(location, "utf-8");
@@ -474,8 +458,8 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             double lng = Double.parseDouble(hmPlace.get("lng"));
 
             LatLng latLng = new LatLng(lat, lng);
-            place.getAddressApp().setLatitude(lat);
-            place.getAddressApp().setLongitute(lng);
+            place.getAddress().setLatitude(lat);
+            place.getAddress().setLongitude(lng);
 
             new Service(CreatePlaceAct.this).save(place, Place.class).execute();
         }
@@ -497,6 +481,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             e.printStackTrace();
         }
     }
+
     public ProgressDialog getDialogCoord() {
         return dialogCoord;
     }

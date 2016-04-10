@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Pair;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -47,7 +49,7 @@ public class Service extends AsyncTask<Void, Void, String> {
     @Override
     protected String doInBackground(Void... voids) {
         ConnectionManeger connection;
-        gson = new Gson();
+        ObjectWriter objectWriter = new ObjectMapper().writer();
         String response = "";
         try {
 
@@ -58,7 +60,7 @@ public class Service extends AsyncTask<Void, Void, String> {
                 connection = new ConnectionManeger(urlBuilder.build());
                 connection.connect();
             } else {
-                String json = gson.toJson(object);
+                String json = objectWriter.writeValueAsString(object);
                 connection = new ConnectionManeger(urlBuilder.build(), method);
                 OutputStreamWriter out = connection.getWriter();
                 out.write(json);

@@ -7,6 +7,7 @@ import alugueis.alugueis.util.CompressionUtil;
 import alugueis.alugueis.util.ImageUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.view.RoundedImageView;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -54,7 +55,8 @@ public class PlaceProfileAct extends DashboardNavAct {
     private void getLogged() {
         try {
             loggedUserApp = (UserApp) StaticUtil.readObject(context, StaticUtil.LOGGED_USER);
-        }catch(Exception ex){}
+        } catch (Exception ex) {
+        }
     }
 
     private void initializeListeners() {
@@ -99,11 +101,11 @@ public class PlaceProfileAct extends DashboardNavAct {
             //Nome
             placeNameText.setText(place.getName());
             //Address
-            placeAddressText.setText(place.getAddressApp().toString());
+            placeAddressText.setText(place.getAddress().toString());
             //Phone
             placePhoneText.setText(place.getPhones().get(0).getNumber());
             //Work
-            workText.setText(place.getBusinessInitialHour()+"h - "+ place.getBusinessFinalHour()+"h");
+            workText.setText(place.getBusinessInitialHour() + "h - " + place.getBusinessFinalHour() + "h");
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
