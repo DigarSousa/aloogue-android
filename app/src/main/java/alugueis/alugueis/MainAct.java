@@ -48,8 +48,9 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
             startActivity(intent);
             this.finish();
         }*/
-
-        MapsUtil.requestLocationPermition(this);
+        if(!MapsUtil.locationPermissionDialog(this)) {
+            MapsUtil.requestLocationPermition(this);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

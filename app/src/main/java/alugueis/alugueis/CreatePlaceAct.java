@@ -63,8 +63,10 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
     //For image upload
 
     private static final Integer RESULT_LOAD_IMAGE = 1;
+    private Thread startLogin;
     private EditText zipCodeText;
     private ProgressDialog dialogCoord;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,7 +132,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
     }
 
     private void initializeStartLoginThread() {
-       Thread startLogin = new Thread() {
+        startLogin = new Thread() {
             @Override
             public void run() {
                 try {
@@ -186,23 +188,37 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             place.setBusinessInitialHour(businessInitialHourSpinner.getSelectedItem().toString());
             place.setBusinessFinalHour(businessFinalHourSpinner.getSelectedItem().toString());
 
-            Address address = new Address();
-            address.setStreet(addressEditText.getText().toString());
-            address.setNumber(Long.valueOf(streetNumberEditText.getText().toString()));
-            address.setNeighbourhood(neighbourhoodEditText.getText().toString());
-            address.setCity(cityEditText.getText().toString());
-            address.setStateFU(stateSpinner.getSelectedItem().toString());
+            AddressApp addressApp = new AddressApp();
 
+            Street street = new Street();
+            street.setDescription(addressEditText.getText().toString());
+            addressApp.setStreet(street);
 
-            address.setCountry("Brasil");
+            addressApp.setNumber(streetNumberEditText.getText().toString());
+
+            Neighbourhood neighbourhood = new Neighbourhood();
+            neighbourhood.setDescription(neighbourhoodEditText.getText().toString());
+            addressApp.setNeighbourhood(neighbourhood);
+
+            City city = new City();
+            city.setDescription(cityEditText.getText().toString());
+            addressApp.setCity(city);
+
+            StateFU stateFU = new StateFU();
+            stateFU.setDescription(stateSpinner.getSelectedItem().toString());
+            addressApp.setStateFU(stateFU);
+
+            Country country = new Country();
+            country.setDescription("Brasil");
+            addressApp.setCountry(country);
             place.setUserApp(loggedUser);
-            address.setPlace(place);
-            place.setAddress(address);
+            place.setAddressApp(addressApp);
+
 
             pictureImageView.setDrawingCacheEnabled(true);
             pictureImageView.buildDrawingCache();
-            //Bitmap bm = pictureImageView.getDrawingCache();
-            //place.setPicture(CompressionUtil.compress(ImageUtil.BitmapToByteArray(bm)));
+            Bitmap bm = pictureImageView.getDrawingCache();
+            place.setPicture(CompressionUtil.compress(ImageUtil.BitmapToByteArray(bm)));
 
             getCoordinatesFromAddress();
 
@@ -216,7 +232,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
 
 
     private void getCoordinatesFromAddress() {
-        String location = place.getAddress().toString();
+        String location = place.getAddressApp().toString();
         String url = GOOGLE_MAPS_URL;
         try {
             location = URLEncoder.encode(location, "utf-8");
@@ -458,8 +474,8 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             double lng = Double.parseDouble(hmPlace.get("lng"));
 
             LatLng latLng = new LatLng(lat, lng);
-            place.getAddress().setLatitude(lat);
-            place.getAddress().setLongitude(lng);
+            place.getAddressApp().setLatitude(lat);
+            place.getAddressApp().setLongitute(lng);
 
             new Service(CreatePlaceAct.this).save(place, Place.class).execute();
         }
@@ -472,11 +488,9 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             StaticUtil.setOject(this, StaticUtil.PLACE, place);
             dialogCoord.dismiss();
             Toast.makeText(getApplicationContext(), "Loja salva com sucesso", Toast.LENGTH_SHORT).show();
-
-            hideItems();
-            super.invalidateOptionsMenu();
-
-            CreatePlaceAct.this.finish();
+            super.invalidateOptionsMenu(); //recarrega os items do menu do drawer
+            hideItems(); //esconde items do menu de acordo com a necessidade
+            Intent intent = new Intent(this, MapAct.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -16,6 +16,7 @@ public class AddressApp implements Serializable{
     private Country country;
     private double latitude;
     private double longitute;
+    private String zipCode;
 
     @Override
     public String toString() {
