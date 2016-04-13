@@ -1,7 +1,6 @@
 package alugueis.alugueis.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
 
