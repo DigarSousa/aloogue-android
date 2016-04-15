@@ -1,15 +1,76 @@
 package alugueis.alugueis;
 
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.zip.DataFormatException;
 
 import alugueis.alugueis.model.Place;
+import alugueis.alugueis.util.CompressionUtil;
 import alugueis.alugueis.util.StaticUtil;
 
 public class EditPlaceAct extends CreatePlaceAct {
+
+    private Place place;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        populateFields();
+
+    }
+
+    private void populateFields() {
+        try {
+            this.place = (Place) StaticUtil.readObject(getApplicationContext(), StaticUtil.PLACE);
+            if(place != null && place.getId() != null){
+
+                //General
+                cpfCnpjEditText.setText(place.getCpfCnpj());
+                nameEditText.setText(place.getName());
+                phoneEditText.setText(place.getPhones().get(0).getNumber());
+
+                //Address
+                if(place.getAddress().getZipCode() == null || place.getAddress().getZipCode().equals("")){
+                    place.getAddress().setZipCode("00000000");
+                }
+                else{
+                    zipCodeText.setText(place.getAddress().getZipCode());
+                }
+                addressEditText.setText(place.getAddress().getStreet());
+                streetNumberEditText.setText(place.getAddress().getNumber().toString());
+                neighbourhoodEditText.setText(place.getAddress().getNeighbourhood());
+                cityEditText.setText(place.getAddress().getCity());
+                StaticUtil.selectSpinnerValue(stateSpinner, place.getAddress().getStateFU());
+
+                //Profile
+                StaticUtil.selectSpinnerValue(businessInitialHourSpinner, place.getBusinessInitialHour());
+                StaticUtil.selectSpinnerValue(businessFinalHourSpinner, place.getBusinessFinalHour());
+
+                //Imagem
+                byte[] userPic = place.getPicture();
+                try {
+                    userPic = CompressionUtil.decompress(userPic);
+                    pictureImageView.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
+                } catch (DataFormatException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -18,6 +79,8 @@ public class EditPlaceAct extends CreatePlaceAct {
         //todo: colocar ação de delete no botão
         return true;
     }
+
+
 
     @Override
     public void onFinishTask(Object result) {

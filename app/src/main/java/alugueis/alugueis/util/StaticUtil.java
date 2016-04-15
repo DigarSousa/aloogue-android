@@ -1,6 +1,7 @@
 package alugueis.alugueis.util;
 
 import android.content.Context;
+import android.widget.Spinner;
 
 
 import java.io.FileInputStream;
@@ -36,6 +37,15 @@ public class StaticUtil {
 
     public static void remove(Context context, String key) throws IOException {
         context.deleteFile(key);
+    }
+
+    public static void selectSpinnerValue(Spinner spinner, Object value) {
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).equals(value)) {
+                spinner.setSelection(i);
+                break;
+            }
+        }
     }
 
 }

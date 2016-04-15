@@ -47,24 +47,24 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
     public static final String GOOGLE_MAPS_URL = "https://maps.googleapis.com/maps/api/geocode/json?";
     private Context context;
     private Place place;
-    private EditText cpfCnpjEditText;
-    private EditText nameEditText;
-    private EditText phoneEditText;
-    private EditText addressEditText;
-    private EditText streetNumberEditText;
-    private EditText neighbourhoodEditText;
-    private EditText cityEditText;
-    private Spinner stateSpinner;
-    private Spinner businessInitialHourSpinner;
-    private Spinner businessFinalHourSpinner;
-    private RoundedImageView pictureImageView;
+    protected EditText cpfCnpjEditText;
+    protected EditText nameEditText;
+    protected EditText phoneEditText;
+    protected EditText addressEditText;
+    protected EditText streetNumberEditText;
+    protected EditText neighbourhoodEditText;
+    protected EditText cityEditText;
+    protected Spinner stateSpinner;
+    protected Spinner businessInitialHourSpinner;
+    protected Spinner businessFinalHourSpinner;
+    protected RoundedImageView pictureImageView;
     private Button selectPictureButton;
     private Button doneButton;
     //For image upload
 
     private static final Integer RESULT_LOAD_IMAGE = 1;
     private Thread startLogin;
-    private EditText zipCodeText;
+    protected EditText zipCodeText;
     private ProgressDialog dialogCoord;
 
 
@@ -188,32 +188,16 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             place.setBusinessInitialHour(businessInitialHourSpinner.getSelectedItem().toString());
             place.setBusinessFinalHour(businessFinalHourSpinner.getSelectedItem().toString());
 
-            AddressApp addressApp = new AddressApp();
+            Address addressApp = new Address();
 
-            Street street = new Street();
-            street.setDescription(addressEditText.getText().toString());
-            addressApp.setStreet(street);
-
-            addressApp.setNumber(streetNumberEditText.getText().toString());
-
-            Neighbourhood neighbourhood = new Neighbourhood();
-            neighbourhood.setDescription(neighbourhoodEditText.getText().toString());
-            addressApp.setNeighbourhood(neighbourhood);
-
-            City city = new City();
-            city.setDescription(cityEditText.getText().toString());
-            addressApp.setCity(city);
-
-            StateFU stateFU = new StateFU();
-            stateFU.setDescription(stateSpinner.getSelectedItem().toString());
-            addressApp.setStateFU(stateFU);
-
-            Country country = new Country();
-            country.setDescription("Brasil");
-            addressApp.setCountry(country);
+            addressApp.setStreet(addressEditText.getText().toString());
+            addressApp.setNumber(Long.getLong(streetNumberEditText.getText().toString()));
+            addressApp.setNeighbourhood(neighbourhoodEditText.getText().toString());
+            addressApp.setCity(cityEditText.getText().toString());
+            addressApp.setStateFU(stateSpinner.getSelectedItem().toString());
+            addressApp.setCountry("Brasil");
             place.setUserApp(loggedUser);
-            place.setAddressApp(addressApp);
-
+            place.setAddress(addressApp);
 
             pictureImageView.setDrawingCacheEnabled(true);
             pictureImageView.buildDrawingCache();
@@ -232,7 +216,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
 
 
     private void getCoordinatesFromAddress() {
-        String location = place.getAddressApp().toString();
+        String location = place.getAddress().toString();
         String url = GOOGLE_MAPS_URL;
         try {
             location = URLEncoder.encode(location, "utf-8");
@@ -474,8 +458,8 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             double lng = Double.parseDouble(hmPlace.get("lng"));
 
             LatLng latLng = new LatLng(lat, lng);
-            place.getAddressApp().setLatitude(lat);
-            place.getAddressApp().setLongitute(lng);
+            place.getAddress().setLatitude(lat);
+            place.getAddress().setLongitude(lng);
 
             new Service(CreatePlaceAct.this).save(place, Place.class).execute();
         }
