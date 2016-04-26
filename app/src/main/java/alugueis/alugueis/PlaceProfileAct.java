@@ -103,7 +103,7 @@ public class PlaceProfileAct extends DashboardNavAct {
             //Address
             placeAddressText.setText(place.getAddress().toString());
             //Phone
-            placePhoneText.setText(place.getPhones().get(0).getNumber());
+            placePhoneText.setText(place.getPhone());
             //Work
             workText.setText(place.getBusinessInitialHour() + "h - " + place.getBusinessFinalHour() + "h");
 

@@ -17,7 +17,7 @@ public class Place implements Serializable {
 
     @JsonManagedReference
     private Address address;
-    private List<Phone> phones;
+    private String phone;
     private Double latitude;
     private Double longitude;
     private String businessInitialHour;

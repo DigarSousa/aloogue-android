@@ -31,6 +31,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -153,6 +154,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                i.setType("image/*");
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
             }
         });
@@ -179,11 +181,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             place.setCpfCnpj(cpfCnpjEditText.getText().toString());
             place.setName(nameEditText.getText().toString());
 
-            Phone phone = new Phone();
-            phone.setNumber(phoneEditText.getText().toString());
-            ArrayList<Phone> phones = new ArrayList<Phone>();
-            phones.add(phone);
-            place.setPhones(phones);
+            place.setPhone(phoneEditText.getText().toString());
 
             place.setBusinessInitialHour(businessInitialHourSpinner.getSelectedItem().toString());
             place.setBusinessFinalHour(businessFinalHourSpinner.getSelectedItem().toString());
@@ -336,19 +334,19 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                Bitmap resized = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * 0.4), (int) (bitmap.getHeight() * 0.4), true);
+                pictureImageView.setImageBitmap(resized);
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-
-            Bitmap imageFromGallery = BitmapFactory.decodeFile(picturePath);
-            Bitmap resized = Bitmap.createScaledBitmap(imageFromGallery, (int) (imageFromGallery.getWidth() * 0.4), (int) (imageFromGallery.getHeight() * 0.4), true);
-            pictureImageView.setImageBitmap(resized);
         }
 
 
@@ -397,7 +395,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
     /**
      * A class, to download Places from Geocoding webservice
      */
-    private class DownloadTask extends AsyncTask<String, Integer, String> {
+    public class DownloadTask extends AsyncTask<String, Integer, String> {
 
         String data = null;
 

@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.*;
-
 import com.google.android.gms.drive.events.TransferProgressEvent;
 
 import java.io.IOException;

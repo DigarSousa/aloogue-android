@@ -17,6 +17,7 @@ public class StaticUtil {
     public static final String LOGGED_USER = "loggedUser";
     public static final String PRODUCT_LIST = "productList";
     public static final String PLACE = "place";
+    public static final String PLACES_AROUND = "placesAround";
 
     public static Object readObject(Context context, String key) throws IOException, ClassNotFoundException {
         if (Arrays.asList(context.fileList()).contains(key)) {

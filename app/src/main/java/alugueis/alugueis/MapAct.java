@@ -1,12 +1,15 @@
 package alugueis.alugueis;
 
 import android.Manifest;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.EditText;
@@ -28,12 +31,19 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import alugueis.alugueis.classes.maps.GeocoderJSONParser;
 import alugueis.alugueis.util.MapsUtil;
+import alugueis.alugueis.util.StaticUtil;
 import service.ConstantsService;
 import service.httputil.OnFinishTask;
 import service.httputil.Service;
@@ -42,6 +52,7 @@ import service.httputil.URLBuilder;
 public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
         View.OnClickListener,OnFinishTask {
 
+    public static final String GOOGLE_MAPS_URL = "https://maps.googleapis.com/maps/api/geocode/json?";
     private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
     public static final int PERMISSION_ACESS_FINE_LOCATION = 25;
 
@@ -51,14 +62,23 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
     private GoogleMap map;
     private Marker myMarker;
     private Place place;
+    private Context context;
+    private alugueis.alugueis.model.Place here;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.fragment_map_rent, frameLayout);
-
+        context = getApplicationContext();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        try {
+            this.here = (alugueis.alugueis.model.Place) StaticUtil.readObject(getApplicationContext(), StaticUtil.PLACE);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         initiateComponents();
         setListeners();
@@ -145,23 +165,28 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
                 e.printStackTrace();
             }
         } else if (v.equals(searchButton)) {
-            new Service(this).putPath("/around").find(alugueis.alugueis.model.Place.class,
-                    new Pair<String, Object>("description", productText.getText().toString()),
-                    new Pair<String, Object>("latitude", place.getLatLng().latitude),
-                    new Pair<String, Object>("longitude", place.getLatLng().longitude),
-                    new Pair<String, Object>("distance", 3))
-                    .execute();
-
+            getCoordinatesFromAddress(placeText.getText().toString());
         }
     }
 
     @Override
     public void onFinishTask(Object result) {
-        List<alugueis.alugueis.model.Place> places = (List) result;
-        for (alugueis.alugueis.model.Place place : places) {
-            LatLng latLng = new LatLng(place.getLatitude(), place.getLongitude());
-            MapsUtil.addPlace(this, map, latLng, "coco", "bosta");
+
+        try {
+
+            List<alugueis.alugueis.model.Place> places = (List) result;
+            StaticUtil.setOject(context, StaticUtil.PLACES_AROUND, places);
+            if(places != null) {
+                for (alugueis.alugueis.model.Place place : places) {
+                    LatLng latLng = new LatLng(place.getLatitude(), place.getLongitude());
+                    MapsUtil.addPlace(this, map, latLng, "coco", "bosta");
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
 
     private void checkPermission() {
@@ -240,6 +265,13 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
                 }
                 myMarker = map.addMarker(MapsUtil.setMyLocation(MapAct.this, map, latLng, getResources().getString(R.string.youAreHere)));
 
+                new Service(MapAct.this).putPath("/around").find(alugueis.alugueis.model.Place.class,
+                        new Pair<String, Object>("description", productText.getText().toString()),
+                        new Pair<String, Object>("latitude", latLng.latitude),
+                        new Pair<String, Object>("longitude", latLng.longitude),
+                        new Pair<String, Object>("distance", 3))
+                        .execute();
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -247,5 +279,130 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
         }
     }
 
+
+
+    //--------------
+    private void getCoordinatesFromAddress(String addresss) {
+        String location = addresss;
+        String url = GOOGLE_MAPS_URL;
+        try {
+            location = URLEncoder.encode(location, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        String address = "address=" + location;
+        String sensor = "sensor=false";
+
+        url = url + address + "&" + sensor;
+
+        new DownloadTask().execute(url);
+    }
+
+
+    /**
+     * A class, to download Places from Geocoding webservice
+     */
+    public class DownloadTask extends AsyncTask<String, Integer, String> {
+
+        String data = null;
+
+        protected void onPreExecute() {}
+
+        @Override
+        protected String doInBackground(String... url) {
+            try {
+                data = downloadUrl(url[0]);
+            } catch (Exception e) {
+                Log.d("Background Task", e.toString());
+            }
+            return data;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            ParserTask parserTask = new ParserTask();
+            parserTask.execute(result);
+        }
+    }
+
+    private String downloadUrl(String strUrl) throws IOException {
+        String data = "";
+        InputStream iStream = null;
+        HttpURLConnection urlConnection = null;
+        try {
+            URL url = new URL(strUrl);
+            // Creating an http connection to communicate with url
+            urlConnection = (HttpURLConnection) url.openConnection();
+            // Connecting to url
+            urlConnection.connect();
+            // Reading data from url
+            iStream = urlConnection.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
+            StringBuffer sb = new StringBuffer();
+
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+
+            data = sb.toString();
+            br.close();
+
+        } catch (Exception e) {
+            Log.d("Error downloading url", e.toString());
+        } finally {
+            iStream.close();
+            urlConnection.disconnect();
+        }
+        return data;
+    }
+
+    /**
+     * A class to parse the Geocoding Places in non-ui thread
+     */
+    class ParserTask extends AsyncTask<String, Integer, List<HashMap<String, String>>> {
+
+        JSONObject jObject;
+
+        @Override
+        protected List<HashMap<String, String>> doInBackground(String... jsonData) {
+
+            List<HashMap<String, String>> places = null;
+            GeocoderJSONParser parser = new GeocoderJSONParser();
+
+            try {
+                jObject = new JSONObject(jsonData[0]);
+
+                /** Getting the parsed data as a an ArrayList */
+                places = parser.parse(jObject);
+
+            } catch (Exception e) {
+                Log.d("Exception", e.toString());
+            }
+            return places;
+        }
+
+        @Override
+        protected void onPostExecute(List<HashMap<String, String>> list) {
+
+            HashMap<String, String> hmPlace = list.get(0);
+
+            double lat = Double.parseDouble(hmPlace.get("lat"));
+            double lng = Double.parseDouble(hmPlace.get("lng"));
+
+            LatLng latLng = new LatLng(lat, lng);
+            here.getAddress().setLatitude(lat);
+            here.getAddress().setLongitude(lng);
+
+            new Service(MapAct.this).putPath("/around").find(alugueis.alugueis.model.Place.class,
+                    new Pair<String, Object>("description", productText.getText().toString()),
+                    new Pair<String, Object>("latitude", here.getAddress().getLatitude()),
+                    new Pair<String, Object>("longitude", here.getAddress().getLongitude()),
+                    new Pair<String, Object>("distance", 3))
+                    .execute();
+        }
+    }
 }
 

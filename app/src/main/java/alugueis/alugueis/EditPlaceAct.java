@@ -33,7 +33,8 @@ public class EditPlaceAct extends CreatePlaceAct {
                 //General
                 cpfCnpjEditText.setText(place.getCpfCnpj());
                 nameEditText.setText(place.getName());
-                phoneEditText.setText(place.getPhones().get(0).getNumber());
+
+                phoneEditText.setText(place.getPhone());
 
                 //Address
                 if(place.getAddress().getZipCode() == null || place.getAddress().getZipCode().equals("")){

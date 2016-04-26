@@ -85,17 +85,24 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
         pictureImageView = (RoundedImageView) findViewById(R.id.pictureImage);
         welcomeUser = (TextView) findViewById(R.id.welcomeUser);
 
-        /*if (loggedUserApp.getName() != null) {
-            String userNamer = loggedUserApp.getName();
-            String customWelcome = getResources().getString(R.string.welcomeCustomized) + " " + userNamer + "!";
-            welcomeUser.setText(customWelcome);
-        }*/
+        UserApp logged = new UserApp();
+        try {
+            logged = (UserApp) StaticUtil.readObject(MainAct.this, StaticUtil.LOGGED_USER);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         pictureImageView.setImageBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.emoticon_cool));
 
-        /*if (loggedUserApp.getEmail() != null) {
-            userEditText.setText(loggedUserApp.getEmail());
-        }*/
+        if (logged.getEmail() != null) {
+            userEditText.setText(logged.getEmail());
+        }
+
+        if (logged.getPassword() != null) {
+            passwordEditText.setText(logged.getPassword());
+        }
 
         facebookImageButton = (ImageButton) findViewById(R.id.facebookButton);
         twitterImageButton = (ImageButton) findViewById(R.id.twitterButton);
@@ -146,7 +153,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
 
         if (result != null && ((UserApp) result).getId() != null) {
             try {
-                UserApp loggedUser = (UserApp) result;
+                final UserApp loggedUser = (UserApp) result;
                 StaticUtil.setOject(this, StaticUtil.LOGGED_USER, loggedUser);
                 new Service(new OnFinishTask() {
                     @Override
@@ -154,6 +161,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
                         try {
                             Place place = (Place) result;
                             StaticUtil.setOject(MainAct.this, StaticUtil.PLACE, place);
+                            StaticUtil.setOject(MainAct.this, StaticUtil.LOGGED_USER, loggedUser);
                             Intent intent = new Intent(MainAct.this, MapAct.class);
                             progressDialog.dismiss();
                             MainAct.this.startActivity(intent);
