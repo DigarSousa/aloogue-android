@@ -3,15 +3,11 @@ package alugueis.alugueis;
 import alugueis.alugueis.adapter.ViewPageAdapter;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.UserApp;
-import alugueis.alugueis.util.CompressionUtil;
-import alugueis.alugueis.util.ImageUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.view.RoundedImageView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -21,8 +17,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.util.zip.DataFormatException;
 
 public class PlaceProfileAct extends DashboardNavAct {
 
@@ -91,28 +85,16 @@ public class PlaceProfileAct extends DashboardNavAct {
 
 
         //Populando views
-        try {
-            Place place = (Place) StaticUtil.readObject(context, StaticUtil.PLACE);
-
-            //Imagem
-            byte[] userPic = place.getPicture();
-            userPic = CompressionUtil.decompress(userPic);
-            pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
-            //Nome
+        Place place = (Place) getIntent().getExtras().get("place");
+        if (place != null) {
+            //  byte[] userPic = place.getPicture();
+            //  userPic = CompressionUtil.decompress(userPic);
+            //  pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
             placeNameText.setText(place.getName());
-            //Address
             placeAddressText.setText(place.getAddress().toString());
-            //Phone
-            placePhoneText.setText(place.getPhones().get(0).getNumber());
-            //Work
+            //placePhoneText.setText(place.getPhones().get(0).getNumber());
             workText.setText(place.getBusinessInitialHour() + "h - " + place.getBusinessFinalHour() + "h");
-
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (DataFormatException e) {
-            e.printStackTrace();
         }
-
 
     }
 

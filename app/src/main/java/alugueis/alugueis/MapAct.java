@@ -21,6 +21,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.MarkerManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,6 +33,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import alugueis.alugueis.util.MapsUtil;
@@ -40,7 +44,7 @@ import service.httputil.Service;
 import service.httputil.URLBuilder;
 
 public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
-        View.OnClickListener,OnFinishTask {
+        View.OnClickListener, OnFinishTask {
 
     private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
     public static final int PERMISSION_ACESS_FINE_LOCATION = 25;
@@ -51,6 +55,8 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
     private GoogleMap map;
     private Marker myMarker;
     private Place place;
+    private HashMap<Marker, alugueis.alugueis.model.Place> placeMap;
+    List<Marker> markers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +85,7 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
         searchButton = (FloatingActionButton) findViewById(R.id.searchButton);
         productText = (EditText) findViewById(R.id.productText);
         placeText = (EditText) findViewById(R.id.placeText);
+        markers = new ArrayList<>();
     }
 
     private void setListeners() {
@@ -89,6 +96,7 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
+        map.getUiSettings().setMyLocationButtonEnabled(true);
         checkPermission();
         new GetActualPlace(MapsUtil.whereAmI(this)).execute();
 
@@ -115,7 +123,14 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
         map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
+                if (marker.equals(myMarker)) {
+                    return;
+                }
+
                 Intent intent = new Intent(MapAct.this, PlaceProfileAct.class);
+                if (placeMap.get(marker) != null) {
+                    intent.putExtra("place", placeMap.get(marker));
+                }
                 startActivity(intent);
             }
         });
@@ -145,11 +160,12 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
                 e.printStackTrace();
             }
         } else if (v.equals(searchButton)) {
+            removeMakers();
             new Service(this).putPath("/around").find(alugueis.alugueis.model.Place.class,
                     new Pair<String, Object>("description", productText.getText().toString()),
-                    new Pair<String, Object>("latitude", place.getLatLng().latitude),
-                    new Pair<String, Object>("longitude", place.getLatLng().longitude),
-                    new Pair<String, Object>("distance", 3))
+                    new Pair<String, Object>("latitude", myMarker.getPosition().latitude),
+                    new Pair<String, Object>("longitude", myMarker.getPosition().longitude),
+                    new Pair<String, Object>("distance", 5))//todo:defina a distancia aqui porra
                     .execute();
 
         }
@@ -157,10 +173,15 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
 
     @Override
     public void onFinishTask(Object result) {
-        List<alugueis.alugueis.model.Place> places = (List) result;
+        List<alugueis.alugueis.model.Place> places = (List<alugueis.alugueis.model.Place>) result;
+        placeMap = new HashMap<>();
+        Marker marker;
+        LatLng latLng;
         for (alugueis.alugueis.model.Place place : places) {
-            LatLng latLng = new LatLng(place.getLatitude(), place.getLongitude());
-            MapsUtil.addPlace(this, map, latLng, "coco", "bosta");
+            latLng = new LatLng(place.getAddress().getLatitude(), place.getAddress().getLongitude());
+            marker = MapsUtil.addPlace(this, map, latLng, place.getName(), place.getCpfCnpj());
+            markers.add(marker);
+            placeMap.put(marker, place);
         }
     }
 
@@ -247,5 +268,11 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
         }
     }
 
+    private void removeMakers() {
+        for (Marker marker : markers) {
+            marker.remove();
+        }
+        markers.clear();
+    }
 }
 
