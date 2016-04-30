@@ -8,6 +8,7 @@ import service.httputil.Service;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -57,8 +58,8 @@ public class EditProfileAct extends DashboardNavAct {
 
     @Override
     public void onBackPressed() {
-        finish();
-        super.onBackPressed();
+        Intent intent = new Intent(EditProfileAct.this, MapAct.class);
+        startActivity(intent);
     }
 
     private void getLogged() {

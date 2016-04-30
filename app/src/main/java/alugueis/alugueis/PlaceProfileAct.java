@@ -95,9 +95,12 @@ public class PlaceProfileAct extends DashboardNavAct {
             Place place = (Place) StaticUtil.readObject(context, StaticUtil.PLACE);
 
             //Imagem
-            byte[] userPic = place.getPicture();
-            userPic = CompressionUtil.decompress(userPic);
-            pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
+            if(place.getPicture() != null) {
+                byte[] userPic = place.getPicture();
+                userPic = CompressionUtil.decompress(userPic);
+                pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
+            }
+
             //Nome
             placeNameText.setText(place.getName());
             //Address
@@ -106,6 +109,7 @@ public class PlaceProfileAct extends DashboardNavAct {
             placePhoneText.setText(place.getPhone());
             //Work
             workText.setText(place.getBusinessInitialHour() + "h - " + place.getBusinessFinalHour() + "h");
+
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

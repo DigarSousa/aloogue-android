@@ -20,6 +20,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -189,11 +191,14 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             Address addressApp = new Address();
 
             addressApp.setStreet(addressEditText.getText().toString());
-            addressApp.setNumber(Long.getLong(streetNumberEditText.getText().toString()));
+            String numberString = streetNumberEditText.getText().toString();
+            Long number = Long.parseLong(numberString);
+            addressApp.setNumber(number);
             addressApp.setNeighbourhood(neighbourhoodEditText.getText().toString());
             addressApp.setCity(cityEditText.getText().toString());
             addressApp.setStateFU(stateSpinner.getSelectedItem().toString());
             addressApp.setCountry("Brasil");
+            addressApp.setZipCode(zipCodeText.getText().toString());
             place.setUserApp(loggedUser);
             place.setAddress(addressApp);
 
@@ -204,7 +209,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
 
             getCoordinatesFromAddress();
 
-            StaticUtil.setOject(getApplicationContext(), StaticUtil.PLACE, place);
+            //StaticUtil.setOject(getApplicationContext(), StaticUtil.PLACE, place);
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -480,6 +485,13 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
 
     public ProgressDialog getDialogCoord() {
         return dialogCoord;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(CreatePlaceAct.this, MapAct.class);
+        startActivity(intent);
     }
 }
 

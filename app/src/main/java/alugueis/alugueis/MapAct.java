@@ -64,8 +64,7 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
     private Place place;
     private Context context;
     private alugueis.alugueis.model.Place here;
-
-
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +72,8 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
         context = getApplicationContext();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Buscando lojas...");
 
         try {
             this.here = (alugueis.alugueis.model.Place) StaticUtil.readObject(getApplicationContext(), StaticUtil.PLACE);
@@ -307,7 +308,9 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
 
         String data = null;
 
-        protected void onPreExecute() {}
+        protected void onPreExecute() {
+            progressDialog.show();
+        }
 
         @Override
         protected String doInBackground(String... url) {
@@ -387,21 +390,32 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
         @Override
         protected void onPostExecute(List<HashMap<String, String>> list) {
 
+            if (progressDialog != null) {
+                progressDialog.dismiss();
+            }
+
             HashMap<String, String> hmPlace = list.get(0);
 
             double lat = Double.parseDouble(hmPlace.get("lat"));
             double lng = Double.parseDouble(hmPlace.get("lng"));
+            try {
+                here = (alugueis.alugueis.model.Place) StaticUtil.readObject(getApplicationContext(), StaticUtil.PLACE);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            if(here != null) {
+                here.getAddress().setLatitude(lat);
+                here.getAddress().setLongitude(lng);
 
-            LatLng latLng = new LatLng(lat, lng);
-            here.getAddress().setLatitude(lat);
-            here.getAddress().setLongitude(lng);
-
-            new Service(MapAct.this).putPath("/around").find(alugueis.alugueis.model.Place.class,
-                    new Pair<String, Object>("description", productText.getText().toString()),
-                    new Pair<String, Object>("latitude", here.getAddress().getLatitude()),
-                    new Pair<String, Object>("longitude", here.getAddress().getLongitude()),
-                    new Pair<String, Object>("distance", 3))
-                    .execute();
+                new Service(MapAct.this).putPath("/around").find(alugueis.alugueis.model.Place.class,
+                        new Pair<String, Object>("description", productText.getText().toString()),
+                        new Pair<String, Object>("latitude", here.getAddress().getLatitude()),
+                        new Pair<String, Object>("longitude", here.getAddress().getLongitude()),
+                        new Pair<String, Object>("distance", 3))
+                        .execute();
+            }
         }
     }
 }

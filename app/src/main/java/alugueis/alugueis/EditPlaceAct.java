@@ -1,5 +1,6 @@
 package alugueis.alugueis;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
@@ -95,5 +96,11 @@ public class EditPlaceAct extends CreatePlaceAct {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(EditPlaceAct.this, MapAct.class);
+        startActivity(intent);
     }
 }
