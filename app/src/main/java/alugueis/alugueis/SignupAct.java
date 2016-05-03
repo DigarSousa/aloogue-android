@@ -204,6 +204,7 @@ public class SignupAct extends ActionBarActivity implements OnFinishTask {
             if (result != null && ((UserApp) result).getId() != null) {
                 UserApp createdUser = (UserApp) result;
                 StaticUtil.setOject(context, StaticUtil.LOGGED_USER, createdUser);
+                StaticUtil.setOject(context, StaticUtil.PLACE, null);
                 progressDialog.dismiss();
                 Intent intent = new Intent(this, MapAct.class);
                 this.startActivity(intent);

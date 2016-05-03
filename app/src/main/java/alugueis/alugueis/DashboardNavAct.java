@@ -134,7 +134,6 @@ public class DashboardNavAct extends AppCompatActivity implements NavigationView
             Intent intent = new Intent(DashboardNavAct.this, EditProfileAct.class);
             intent.putExtra("source", "changeData");
             startActivity(intent);
-            finish();
         } else if (id == R.id.logout) {
             try {
                 StaticUtil.remove(context, StaticUtil.LOGGED_USER);

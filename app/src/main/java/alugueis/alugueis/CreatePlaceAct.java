@@ -20,6 +20,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +33,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -47,24 +50,26 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
     public static final String GOOGLE_MAPS_URL = "https://maps.googleapis.com/maps/api/geocode/json?";
     private Context context;
     private Place place;
-    private EditText cpfCnpjEditText;
-    private EditText nameEditText;
-    private EditText phoneEditText;
-    private EditText addressEditText;
-    private EditText streetNumberEditText;
-    private EditText neighbourhoodEditText;
-    private EditText cityEditText;
-    private Spinner stateSpinner;
-    private Spinner businessInitialHourSpinner;
-    private Spinner businessFinalHourSpinner;
-    private RoundedImageView pictureImageView;
+    protected EditText cpfCnpjEditText;
+    protected EditText nameEditText;
+    protected EditText phoneEditText;
+    protected EditText addressEditText;
+    protected EditText streetNumberEditText;
+    protected EditText neighbourhoodEditText;
+    protected EditText cityEditText;
+    protected Spinner stateSpinner;
+    protected Spinner businessInitialHourSpinner;
+    protected Spinner businessFinalHourSpinner;
+    protected RoundedImageView pictureImageView;
     private Button selectPictureButton;
     private Button doneButton;
     //For image upload
 
     private static final Integer RESULT_LOAD_IMAGE = 1;
-    private EditText zipCodeText;
+    private Thread startLogin;
+    protected EditText zipCodeText;
     private ProgressDialog dialogCoord;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,7 +135,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
     }
 
     private void initializeStartLoginThread() {
-       Thread startLogin = new Thread() {
+        startLogin = new Thread() {
             @Override
             public void run() {
                 try {
@@ -151,6 +156,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                i.setType("image/*");
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
             }
         });
@@ -177,36 +183,33 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             place.setCpfCnpj(cpfCnpjEditText.getText().toString());
             place.setName(nameEditText.getText().toString());
 
-            Phone phone = new Phone();
-            phone.setNumber(phoneEditText.getText().toString());
-            ArrayList<Phone> phones = new ArrayList<Phone>();
-            phones.add(phone);
-            place.setPhones(phones);
+            place.setPhone(phoneEditText.getText().toString());
 
             place.setBusinessInitialHour(businessInitialHourSpinner.getSelectedItem().toString());
             place.setBusinessFinalHour(businessFinalHourSpinner.getSelectedItem().toString());
 
-            Address address = new Address();
-            address.setStreet(addressEditText.getText().toString());
-            address.setNumber(Long.valueOf(streetNumberEditText.getText().toString()));
-            address.setNeighbourhood(neighbourhoodEditText.getText().toString());
-            address.setCity(cityEditText.getText().toString());
-            address.setStateFU(stateSpinner.getSelectedItem().toString());
+            Address addressApp = new Address();
 
-
-            address.setCountry("Brasil");
+            addressApp.setStreet(addressEditText.getText().toString());
+            String numberString = streetNumberEditText.getText().toString();
+            Long number = Long.parseLong(numberString);
+            addressApp.setNumber(number);
+            addressApp.setNeighbourhood(neighbourhoodEditText.getText().toString());
+            addressApp.setCity(cityEditText.getText().toString());
+            addressApp.setStateFU(stateSpinner.getSelectedItem().toString());
+            addressApp.setCountry("Brasil");
+            addressApp.setZipCode(zipCodeText.getText().toString());
             place.setUserApp(loggedUser);
-            address.setPlace(place);
-            place.setAddress(address);
+            place.setAddress(addressApp);
 
             pictureImageView.setDrawingCacheEnabled(true);
             pictureImageView.buildDrawingCache();
-            //Bitmap bm = pictureImageView.getDrawingCache();
-            //place.setPicture(CompressionUtil.compress(ImageUtil.BitmapToByteArray(bm)));
+            Bitmap bm = pictureImageView.getDrawingCache();
+            place.setPicture(CompressionUtil.compress(ImageUtil.BitmapToByteArray(bm)));
 
             getCoordinatesFromAddress();
 
-            StaticUtil.setOject(getApplicationContext(), StaticUtil.PLACE, place);
+            //StaticUtil.setOject(getApplicationContext(), StaticUtil.PLACE, place);
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -336,19 +339,19 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                Bitmap resized = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * 0.4), (int) (bitmap.getHeight() * 0.4), true);
+                pictureImageView.setImageBitmap(resized);
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-
-            Bitmap imageFromGallery = BitmapFactory.decodeFile(picturePath);
-            Bitmap resized = Bitmap.createScaledBitmap(imageFromGallery, (int) (imageFromGallery.getWidth() * 0.4), (int) (imageFromGallery.getHeight() * 0.4), true);
-            pictureImageView.setImageBitmap(resized);
         }
 
 
@@ -397,7 +400,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
     /**
      * A class, to download Places from Geocoding webservice
      */
-    private class DownloadTask extends AsyncTask<String, Integer, String> {
+    public class DownloadTask extends AsyncTask<String, Integer, String> {
 
         String data = null;
 
@@ -472,11 +475,9 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             StaticUtil.setOject(this, StaticUtil.PLACE, place);
             dialogCoord.dismiss();
             Toast.makeText(getApplicationContext(), "Loja salva com sucesso", Toast.LENGTH_SHORT).show();
-
-            hideItems();
-            super.invalidateOptionsMenu();
-
-            CreatePlaceAct.this.finish();
+            super.invalidateOptionsMenu(); //recarrega os items do menu do drawer
+            hideItems(); //esconde items do menu de acordo com a necessidade
+            Intent intent = new Intent(this, MapAct.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -484,6 +485,13 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
 
     public ProgressDialog getDialogCoord() {
         return dialogCoord;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(CreatePlaceAct.this, MapAct.class);
+        startActivity(intent);
     }
 }
 

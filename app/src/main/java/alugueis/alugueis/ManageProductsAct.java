@@ -2,6 +2,7 @@ package alugueis.alugueis;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Pair;
@@ -33,6 +34,7 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
     private ProductListManageAdapter productAdapter;
     private FloatingActionButton saveProductsButton;
     private ProgressDialog progressDialog;
+    private FloatingActionButton addButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,30 +97,8 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         productsArea = (RelativeLayout) findViewById(R.id.productsArea);
 
         nameText = (EditText) findViewById(R.id.nameText);
-        nameText.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (event.getRawX() >= nameText.getRight() - nameText.getTotalPaddingRight()) {
-
-                        if (validateEmptyProductName()) {
-
-                            Product product = new Product();
-                            String productName = nameText.getText().toString().trim();
-                            product.setDescription(productName);
-                            product.setPlace(getPlace());
-                            products.add(product);
-                            loadProductList();
-                        }
-
-                        event.setAction(MotionEvent.ACTION_CANCEL);//use this to prevent the keyboard from coming up
-                        return false;
-                    }
-                }
-                return false;
-            }
-
-        });
+        addButton = (FloatingActionButton) findViewById(R.id.addButton);
+        addButton.setOnClickListener(this);
 
         saveProductsButton.setOnClickListener(this);
     }
@@ -142,6 +122,17 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
 
             new Service(this, progressDialog).save(products, Product.class).execute();
         }
+        else if(view.equals(addButton)){
+            if (validateEmptyProductName()) {
+
+                Product product = new Product();
+                String productName = nameText.getText().toString().trim();
+                product.setDescription(productName);
+                product.setPlace(getPlace());
+                products.add(product);
+                loadProductList();
+            }
+        }
     }
 
     @Override
@@ -163,6 +154,12 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(ManageProductsAct.this, MapAct.class);
+        startActivity(intent);
     }
 
 }

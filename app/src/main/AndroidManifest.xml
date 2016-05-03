@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -57,7 +58,8 @@
             android:name=".MapAct"
             android:label="@string/title_activity_search"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme">
+        </activity>
 
         <activity
             android:name=".PlaceProfileAct"

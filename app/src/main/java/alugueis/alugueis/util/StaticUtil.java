@@ -1,6 +1,7 @@
 package alugueis.alugueis.util;
 
 import android.content.Context;
+import android.widget.Spinner;
 
 
 import java.io.FileInputStream;
@@ -10,10 +11,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Arrays;
 
+import alugueis.alugueis.model.Place;
+
 public class StaticUtil {
     public static final String LOGGED_USER = "loggedUser";
     public static final String PRODUCT_LIST = "productList";
     public static final String PLACE = "place";
+    public static final String PLACES_AROUND = "placesAround";
 
     public static Object readObject(Context context, String key) throws IOException, ClassNotFoundException {
         if (Arrays.asList(context.fileList()).contains(key)) {
@@ -36,5 +40,13 @@ public class StaticUtil {
         context.deleteFile(key);
     }
 
+    public static void selectSpinnerValue(Spinner spinner, Object value) {
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).equals(value)) {
+                spinner.setSelection(i);
+                break;
+            }
+        }
+    }
 
 }

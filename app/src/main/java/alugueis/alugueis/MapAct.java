@@ -21,8 +21,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.maps.android.MarkerManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,8 +31,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import alugueis.alugueis.util.MapsUtil;
@@ -44,7 +40,7 @@ import service.httputil.Service;
 import service.httputil.URLBuilder;
 
 public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
-        View.OnClickListener, OnFinishTask {
+        View.OnClickListener,OnFinishTask {
 
     private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
     public static final int PERMISSION_ACESS_FINE_LOCATION = 25;
@@ -55,8 +51,6 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
     private GoogleMap map;
     private Marker myMarker;
     private Place place;
-    private HashMap<Marker, alugueis.alugueis.model.Place> placeMap;
-    List<Marker> markers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +90,6 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-        map.getUiSettings().setMyLocationButtonEnabled(true);
         checkPermission();
         new GetActualPlace(MapsUtil.whereAmI(this)).execute();
 
