@@ -31,6 +31,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import alugueis.alugueis.util.MapsUtil;
@@ -51,6 +53,8 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
     private GoogleMap map;
     private Marker myMarker;
     private Place place;
+    private List<Marker> markers;
+    private HashMap<Marker, alugueis.alugueis.model.Place> placeMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -4,13 +4,11 @@ import alugueis.alugueis.adapter.ViewPageAdapter;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.util.CompressionUtil;
-import alugueis.alugueis.util.ImageUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.view.RoundedImageView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -41,7 +39,6 @@ public class PlaceProfileAct extends DashboardNavAct {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Utilizado para levar o layout da activity para o pai (nav drawer)
         getLayoutInflater().inflate(R.layout.activity_place_profile, frameLayout);
 
         context = getApplicationContext();
@@ -90,30 +87,22 @@ public class PlaceProfileAct extends DashboardNavAct {
         tabLayout.setupWithViewPager(viewPager);
 
 
-        //Populando views
         try {
             Place place = (Place) StaticUtil.readObject(context, StaticUtil.PLACE);
 
-            //Imagem
-            if(place.getPicture() != null) {
+            if (place.getPicture() != null) {
                 byte[] userPic = place.getPicture();
                 userPic = CompressionUtil.decompress(userPic);
                 pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
             }
 
-            //Nome
             placeNameText.setText(place.getName());
-            //Address
             placeAddressText.setText(place.getAddress().toString());
-            //Phone
             placePhoneText.setText(place.getPhone());
-            //Work
             workText.setText(place.getBusinessInitialHour() + "h - " + place.getBusinessFinalHour() + "h");
 
 
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (DataFormatException e) {
+        } catch (IOException | ClassNotFoundException | DataFormatException e) {
             e.printStackTrace();
         }
 
