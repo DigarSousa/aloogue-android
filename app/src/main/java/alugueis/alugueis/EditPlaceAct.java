@@ -29,7 +29,7 @@ public class EditPlaceAct extends CreatePlaceAct {
     private void populateFields() {
         try {
             this.place = (Place) StaticUtil.readObject(getApplicationContext(), StaticUtil.PLACE);
-            if(place != null && place.getId() != null){
+            if (place != null && place.getId() != null) {
 
                 //General
                 cpfCnpjEditText.setText(place.getCpfCnpj());
@@ -38,10 +38,9 @@ public class EditPlaceAct extends CreatePlaceAct {
                 phoneEditText.setText(place.getPhone());
 
                 //Address
-                if(place.getAddress().getZipCode() == null || place.getAddress().getZipCode().equals("")){
+                if (place.getAddress().getZipCode() == null || place.getAddress().getZipCode().isEmpty()) {
                     place.getAddress().setZipCode("00000000");
-                }
-                else{
+                } else {
                     zipCodeText.setText(place.getAddress().getZipCode());
                 }
                 addressEditText.setText(place.getAddress().getStreet());
@@ -57,8 +56,10 @@ public class EditPlaceAct extends CreatePlaceAct {
                 //Imagem
                 byte[] userPic = place.getPicture();
                 try {
-                    userPic = CompressionUtil.decompress(userPic);
-                    pictureImageView.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
+                    if (userPic != null) {
+                        userPic = CompressionUtil.decompress(userPic);
+                        pictureImageView.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
+                    }
                 } catch (DataFormatException e) {
                     e.printStackTrace();
                 }
@@ -73,7 +74,6 @@ public class EditPlaceAct extends CreatePlaceAct {
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(0, 0, 0, "History").setIcon(R.drawable.ic_delete_white_24dp)
@@ -81,7 +81,6 @@ public class EditPlaceAct extends CreatePlaceAct {
         //todo: colocar ação de delete no botão
         return true;
     }
-
 
 
     @Override
