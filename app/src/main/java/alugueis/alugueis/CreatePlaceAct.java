@@ -209,7 +209,6 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
 
             getCoordinatesFromAddress();
 
-            //StaticUtil.setOject(getApplicationContext(), StaticUtil.PLACE, place);
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -344,11 +343,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
                 Bitmap resized = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * 0.4), (int) (bitmap.getHeight() * 0.4), true);
                 pictureImageView.setImageBitmap(resized);
-            } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
