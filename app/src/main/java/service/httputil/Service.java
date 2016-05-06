@@ -110,7 +110,7 @@ public class Service extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String json) {
         try {
             object = Util.fromJson(json, T);
-        } catch (JSONException e) {
+        } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
         onFinishTask.onFinishTask(object);
