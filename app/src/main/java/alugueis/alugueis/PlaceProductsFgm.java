@@ -45,9 +45,11 @@ public class PlaceProductsFgm extends Fragment {
     }
 
     private void initializeAttributes() {
-        //todo: Buscar produtos do cliente aqui
-        products = new ArrayList<Product>();
+        //todo: Buscar produtos da loja aqui
+        /*Bundle bundle = this.getArguments();
+        ArrayList<Product> products = (ArrayList<Product>) bundle.getString("products");
         productAdapter = new ProductListAdapter(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, products);
+        */
     }
 
     private void initializeComponents() {

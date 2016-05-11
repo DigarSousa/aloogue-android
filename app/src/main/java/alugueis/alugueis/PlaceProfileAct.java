@@ -86,32 +86,10 @@ public class PlaceProfileAct extends DashboardNavAct {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-
-        try {
-            Place place = (Place) StaticUtil.readObject(context, StaticUtil.PLACE);
-
-            if (place.getPicture() != null) {
-                byte[] userPic = place.getPicture();
-                userPic = CompressionUtil.decompress(userPic);
-                pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
-            }
-
-            placeNameText.setText(place.getName());
-            placeAddressText.setText(place.getAddress().toString());
-            placePhoneText.setText(place.getPhone());
-            workText.setText(place.getBusinessInitialHour() + "h - " + place.getBusinessFinalHour() + "h");
-
-
-        } catch (IOException | ClassNotFoundException | DataFormatException e) {
-            e.printStackTrace();
-        }
-
-
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPageAdapter adapter = new ViewPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new PlaceInfoFgm(), getResources().getString(R.string.infoTab));
 
         PlaceProductsFgm placeProductsFgm = new PlaceProductsFgm();
         adapter.addFragment(placeProductsFgm, getResources().getString(R.string.productsTab));
@@ -119,6 +97,14 @@ public class PlaceProfileAct extends DashboardNavAct {
         //Bundle args = new Bundle();
         //args.putSerializable("products", products);
         //placeProductsFgm.setArguments(args);
+
+        PlaceInfoFgm placeInfoFgm = new PlaceInfoFgm();
+        adapter.addFragment(placeInfoFgm, getResources().getString(R.string.infoTab));
+        //// TODO: descomente as linhas abaixo para levar os DADOS DA LOJA pro fragment.
+        //args = new Bundle();
+        //args.putSerializable("place", place);
+        //placeInfoFgm.setArguments(args);
+
 
         viewPager.setAdapter(adapter);
     }
