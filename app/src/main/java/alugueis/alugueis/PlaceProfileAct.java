@@ -1,12 +1,17 @@
 package alugueis.alugueis;
 
+import alugueis.alugueis.adapter.ProductListManageAdapter;
 import alugueis.alugueis.adapter.ViewPageAdapter;
 import alugueis.alugueis.model.Place;
+import alugueis.alugueis.model.Product;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.util.CompressionUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.view.RoundedImageView;
+import service.httputil.OnFinishTask;
+import service.httputil.Service;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -14,15 +19,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.DataFormatException;
 
-public class PlaceProfileAct extends DashboardNavAct {
+public class PlaceProfileAct extends DashboardNavAct implements OnFinishTask{
 
     private UserApp loggedUserApp;
     private ImageView bannerImage;
@@ -35,6 +44,10 @@ public class PlaceProfileAct extends DashboardNavAct {
     private TextView placeAddressText;
     private TextView placePhoneText;
     private TextView workText;
+    private Place place;
+    private List<Product> products;
+    private ProductListManageAdapter productAdapter;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +57,23 @@ public class PlaceProfileAct extends DashboardNavAct {
         context = getApplicationContext();
         getLogged();
 
+        getExtras();
+
         initializeToolbar();
         initializeComponents();
         initializeListeners();
+
+
+    }
+
+    private void getExtras() {
+        Intent in = getIntent();
+        Bundle b = in.getExtras();
+
+        if(b!=null)
+        {
+            this.place =(Place) b.get("place");
+        }
     }
 
     private void getLogged() {
@@ -61,8 +88,10 @@ public class PlaceProfileAct extends DashboardNavAct {
             @Override
             public void onClick(View view) {
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                callIntent.setData(Uri.parse("tel:33377373"));
-                startActivity(callIntent);
+                if(PlaceProfileAct.this.place != null) {
+                    callIntent.setData(Uri.parse("tel:"+place.getPhone()));
+                    startActivity(callIntent);
+                }
             }
         });
     }
@@ -80,32 +109,65 @@ public class PlaceProfileAct extends DashboardNavAct {
         placePhoneText = (TextView) findViewById(R.id.placePhoneText);
         workText = (TextView) findViewById(R.id.workText);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        if (this.place != null) {
+            this.progressDialog = new ProgressDialog(PlaceProfileAct.this);
+            this.progressDialog.setMessage("Carregando produtos...");
+            new Service(this, progressDialog).find(Product.class, new Pair<String, Object>("id", place.getId())).execute();
+        }
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+
+        if(this.place != null){
+            placeNameText.setText(place.getName());
+        }
 
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPageAdapter adapter = new ViewPageAdapter(getSupportFragmentManager());
 
-        PlaceProductsFgm placeProductsFgm = new PlaceProductsFgm();
-        adapter.addFragment(placeProductsFgm, getResources().getString(R.string.productsTab));
-        //// TODO: descomente as linhas abaixo para levar os produtos pro fragment (popule a lista antes).
-        //Bundle args = new Bundle();
-        //args.putSerializable("products", products);
-        //placeProductsFgm.setArguments(args);
-
         PlaceInfoFgm placeInfoFgm = new PlaceInfoFgm();
         adapter.addFragment(placeInfoFgm, getResources().getString(R.string.infoTab));
         //// TODO: descomente as linhas abaixo para levar os DADOS DA LOJA pro fragment.
-        //args = new Bundle();
-        //args.putSerializable("place", place);
-        //placeInfoFgm.setArguments(args);
+        Bundle args = new Bundle();
+        args.putSerializable("place", this.place);
+        placeInfoFgm.setArguments(args);
 
+
+
+        PlaceProductsFgm placeProductsFgm = new PlaceProductsFgm();
+        adapter.addFragment(placeProductsFgm, getResources().getString(R.string.productsTab));
+        //// TODO: descomente as linhas abaixo para levar os produtos pro fragment (popule a lista antes).
+
+        args = new Bundle();
+        args.putSerializable("products", (Serializable) products);
+        placeProductsFgm.setArguments(args);
 
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public void onFinishTask(Object result) {
+
+        this.products = (List<Product>) result;
+
+        try {
+            StaticUtil.setOject(this, StaticUtil.PRODUCT_LIST, products);
+            List removedProducts = productAdapter != null ? productAdapter.getRemovedProducts() : new ArrayList();
+            new Service(new OnFinishTask() {
+                @Override
+                public void onFinishTask(Object result) {
+                    progressDialog.dismiss();
+                }
+            }, progressDialog).delete(removedProducts, Product.class).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
     }
 }

@@ -3,6 +3,7 @@ package alugueis.alugueis;
 /**
  * Created by Pedreduardo on 05/02/2016.
  */
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,14 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.util.zip.DataFormatException;
+
 import alugueis.alugueis.model.Place;
+import alugueis.alugueis.util.CompressionUtil;
 
 public class PlaceInfoFgm extends Fragment{
 
     private View view;
     private TextView placeAddressText;
     private TextView workText;
-    private TextView phone;
+    private TextView placePhoneText;
 
     public PlaceInfoFgm() {
         // Required empty public constructor
@@ -43,27 +48,14 @@ public class PlaceInfoFgm extends Fragment{
 
     private void populatePlaceData(){
 
-        //todo: Popular dados da loja aqui (:
-        /*
         Bundle bundle = this.getArguments();
-        Place place = (Place) bundle.getString("place");
+        Place place = (Place) bundle.get("place");
 
-        try {
-            if (place.getPicture() != null) {
-                byte[] userPic = place.getPicture();
-                userPic = CompressionUtil.decompress(userPic);
-                pictureImage.setImageBitmap(BitmapFactory.decodeByteArray(userPic, 0, userPic.length));
-            }
-
-            placeNameText.setText(place.getName());
+        if(place != null) {
             placeAddressText.setText(place.getAddress().toString());
             placePhoneText.setText(place.getPhone());
             workText.setText(place.getBusinessInitialHour() + "h - " + place.getBusinessFinalHour() + "h");
-
-
-        } catch (IOException | ClassNotFoundException | DataFormatException e) {
-            e.printStackTrace();
-        }*/
+        }
 
     }
 
@@ -71,7 +63,7 @@ public class PlaceInfoFgm extends Fragment{
         placeAddressText = (TextView) view.findViewById(R.id.placeAddressText);
         workText = (TextView) view.findViewById(R.id.workText);
         workText.setText("De 08h às 15h"); // todo: tirar isso depois
-        phone = (TextView) view.findViewById(R.id.placePhoneText);
+        placePhoneText = (TextView) view.findViewById(R.id.placePhoneText);
     }
 
 
