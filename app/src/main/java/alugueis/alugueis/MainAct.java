@@ -48,7 +48,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
             startActivity(intent);
             this.finish();
         }*/
-        if(!MapsUtil.locationPermissionDialog(this)) {
+        if (!MapsUtil.locationPermissionDialog(this)) {
             MapsUtil.requestLocationPermition(this);
         }
         super.onCreate(savedInstanceState);
@@ -85,7 +85,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
         pictureImageView = (RoundedImageView) findViewById(R.id.pictureImage);
         welcomeUser = (TextView) findViewById(R.id.welcomeUser);
 
-        UserApp logged = new UserApp();
+        /*UserApp logged = new UserApp();
         try {
             logged = (UserApp) StaticUtil.readObject(MainAct.this, StaticUtil.LOGGED_USER);
         } catch (IOException e) {
@@ -103,7 +103,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
         if (logged.getPassword() != null) {
             passwordEditText.setText(logged.getPassword());
         }
-
+*/
         facebookImageButton = (ImageButton) findViewById(R.id.facebookButton);
         twitterImageButton = (ImageButton) findViewById(R.id.twitterButton);
     }

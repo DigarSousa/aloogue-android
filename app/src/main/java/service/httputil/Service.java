@@ -6,7 +6,6 @@ import android.util.Pair;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 
@@ -15,7 +14,6 @@ import java.io.OutputStreamWriter;
 
 public class Service extends AsyncTask<Void, Void, String> {
     private OnFinishTask onFinishTask;
-    private Gson gson;
     private Class T;
     private Object object;
     private String method;
