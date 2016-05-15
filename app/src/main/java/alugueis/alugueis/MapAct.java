@@ -162,7 +162,7 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
                     new Pair<String, Object>("description", productText.getText().toString()),
                     new Pair<String, Object>("latitude", myMarker.getPosition().latitude),
                     new Pair<String, Object>("longitude", myMarker.getPosition().longitude),
-                    new Pair<String, Object>("distance", 5))//todo:defina a distancia aqui porra
+                    new Pair<String, Object>("distance", 5)) //5km de raio de distância - para alterar o raio, altere esse valor.
                     .execute();
 
         }

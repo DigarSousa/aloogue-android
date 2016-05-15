@@ -53,11 +53,11 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
                 productsArea.setVisibility(View.INVISIBLE);
             } else {
 
-                lvProducts.destroyDrawingCache();
-                lvProducts.refreshDrawableState();
+                //lvProducts.destroyDrawingCache();
+                //lvProducts.refreshDrawableState();
                 productAdapter = new ProductListManageAdapter(context, android.R.layout.simple_list_item_1, products, this);
                 lvProducts.setAdapter(productAdapter);
-                productAdapter.notifyDataSetChanged();
+                //productAdapter.notifyDataSetChanged();
             }
         }
     }

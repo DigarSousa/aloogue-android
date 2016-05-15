@@ -2,6 +2,7 @@ package alugueis.alugueis.adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,7 +20,7 @@ import alugueis.alugueis.R;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.EditProductAct;
 
-public class ProductListManageAdapter extends ArrayAdapter<Product> {
+public class ProductListManageAdapter extends ArrayAdapter<Product>{
 
     private List<Product> productList;
     private List<Product> removedProducts;
@@ -43,14 +44,15 @@ public class ProductListManageAdapter extends ArrayAdapter<Product> {
         final int pos = position;
 
         LayoutInflater vi = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        v = vi.inflate(R.layout.adapter_product_manage_list, null);
-
+        if(convertView==null) {
+            v = vi.inflate(R.layout.adapter_product_manage_list, null);
+        }
 
         if (productList.size() > 0) {
             //Product name
             final Product product = productList.get(position);
             final EditText productName = (EditText) v.findViewById(R.id.productName);
-            productName.setEnabled(false);
+            //productName.setEnabled(false);
 
             //Edit Button
             ImageButton editButton = (ImageButton) v.findViewById(R.id.editButton);
@@ -99,8 +101,10 @@ public class ProductListManageAdapter extends ArrayAdapter<Product> {
                 }
             });
 
+
+
         }
-        //}
+        ProductListManageAdapter.this.notifyDataSetChanged();
         return v;
     }
 

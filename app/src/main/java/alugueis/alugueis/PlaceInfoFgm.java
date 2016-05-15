@@ -62,7 +62,6 @@ public class PlaceInfoFgm extends Fragment{
     private void initializeComponents() {
         placeAddressText = (TextView) view.findViewById(R.id.placeAddressText);
         workText = (TextView) view.findViewById(R.id.workText);
-        workText.setText("De 08h às 15h"); // todo: tirar isso depois
         placePhoneText = (TextView) view.findViewById(R.id.placePhoneText);
     }
 

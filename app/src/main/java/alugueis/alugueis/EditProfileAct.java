@@ -154,8 +154,8 @@ public class EditProfileAct extends DashboardNavAct {
 
 
     private boolean validateAcceptedTerms() {
-        //TODO: Validar accept changes apenas com toast
         if (!acceptTermsCheckBox.isChecked()) {
+            Toast.makeText(getApplicationContext(), "Para prosseguir, aceite os termos de uso.", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

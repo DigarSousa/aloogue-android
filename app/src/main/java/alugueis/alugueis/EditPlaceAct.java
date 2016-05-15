@@ -1,6 +1,9 @@
 package alugueis.alugueis;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -20,11 +23,13 @@ import service.httputil.Service;
 public class EditPlaceAct extends CreatePlaceAct {
 
     private Place place;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        this.context = getApplicationContext();
         populateFields();
 
     }
@@ -85,38 +90,58 @@ public class EditPlaceAct extends CreatePlaceAct {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 final ProgressDialog progressDialog = new ProgressDialog(EditPlaceAct.this);
-                progressDialog.setMessage("Apagando loja...");
-                //todo: abrir tela, perguntar o usuario se quer deletar e blablabla... ai chama o serviço e depois manda pra tela de mapas chavosinho...
-                try {
-                    new Service(new OnFinishTask() {
-                        @Override
-                        public void onFinishTask(Object result) {
-                            try {
-                                StaticUtil.remove(EditPlaceAct.this, StaticUtil.PLACE);
-                                progressDialog.dismiss();
-                                Toast.makeText(EditPlaceAct.this, "Loja excluída!", Toast.LENGTH_SHORT).show();
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                try {
+                                    progressDialog.setMessage("Apagando loja...");
+                                    new Service(new OnFinishTask() {
+                                        @Override
+                                        public void onFinishTask(Object result) {
+                                            try {
+                                                StaticUtil.remove(EditPlaceAct.this, StaticUtil.PLACE);
+                                                progressDialog.dismiss();
+                                                Toast.makeText(EditPlaceAct.this, "Loja excluída!", Toast.LENGTH_SHORT).show();
 
-                                hideItems();
-                                EditPlaceAct.super.invalidateOptionsMenu();
+                                                hideItems();
+                                                EditPlaceAct.super.invalidateOptionsMenu();
 
-                                EditPlaceAct.this.finish();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                                progressDialog.dismiss();
-                                Toast.makeText(EditPlaceAct.this, "Erro ao excluir loja!", Toast.LENGTH_SHORT).show();
-                            }
+                                                EditPlaceAct.this.finish();
+                                                Intent intent = new Intent(EditPlaceAct.this, MapAct.class);
+                                                startActivity(intent);
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                                progressDialog.dismiss();
+                                                Toast.makeText(EditPlaceAct.this, "Erro ao excluir loja!", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    }).delete(StaticUtil.readObject(EditPlaceAct.this, StaticUtil.PLACE), Place.class).execute();
+                                } catch (IOException | ClassNotFoundException e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(EditPlaceAct.this, "Erro ao excluir loja!", Toast.LENGTH_SHORT).show();
+                                    e.printStackTrace();
+                                }
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                break;
                         }
-                    }).delete(StaticUtil.readObject(EditPlaceAct.this, StaticUtil.PLACE), Place.class).execute();
-                } catch (IOException | ClassNotFoundException e) {
-                    progressDialog.dismiss();
-                    Toast.makeText(EditPlaceAct.this, "Erro ao excluir loja!", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditPlaceAct.this);
+                builder.setMessage("Tem certeza de que deseja apagar a loja?").setPositiveButton("Sim", dialogClickListener)
+                        .setNegativeButton("Cancelar", dialogClickListener).show();
+
                 return false;
             }
         });
         return true;
     }
+
+
 
 
     @Override

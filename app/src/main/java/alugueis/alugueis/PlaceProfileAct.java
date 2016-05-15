@@ -127,7 +127,6 @@ public class PlaceProfileAct extends DashboardNavAct implements OnFinishTask{
 
         PlaceInfoFgm placeInfoFgm = new PlaceInfoFgm();
         adapter.addFragment(placeInfoFgm, getResources().getString(R.string.infoTab));
-        //// TODO: descomente as linhas abaixo para levar os DADOS DA LOJA pro fragment.
         Bundle args = new Bundle();
         args.putSerializable("place", this.place);
         placeInfoFgm.setArguments(args);
@@ -136,8 +135,6 @@ public class PlaceProfileAct extends DashboardNavAct implements OnFinishTask{
 
         PlaceProductsFgm placeProductsFgm = new PlaceProductsFgm();
         adapter.addFragment(placeProductsFgm, getResources().getString(R.string.productsTab));
-        //// TODO: descomente as linhas abaixo para levar os produtos pro fragment (popule a lista antes).
-
         args = new Bundle();
         args.putSerializable("products", (Serializable) products);
         placeProductsFgm.setArguments(args);

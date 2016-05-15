@@ -485,6 +485,7 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
 
     @Override
     public void onBackPressed() {
+        finish();
         Intent intent = new Intent(CreatePlaceAct.this, MapAct.class);
         startActivity(intent);
     }
