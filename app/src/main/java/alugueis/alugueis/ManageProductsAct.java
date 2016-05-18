@@ -121,8 +121,7 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
             progressDialog.setMessage("Salvando produtos...");
 
             new Service(this, progressDialog).save(products, Product.class).execute();
-        }
-        else if(view.equals(addButton)){
+        } else if (view.equals(addButton)) {
             if (validateEmptyProductName()) {
 
                 Product product = new Product();
@@ -143,18 +142,22 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         try {
             StaticUtil.setOject(this, StaticUtil.PRODUCT_LIST, products);
             List removedProducts = productAdapter != null ? productAdapter.getRemovedProducts() : new ArrayList();
-            new Service(new OnFinishTask() {
-                @Override
-                public void onFinishTask(Object result) {
-                    progressDialog.dismiss();
-                }
-            }, progressDialog).delete(removedProducts, Product.class).execute();
+            if (!removedProducts.isEmpty()) {
+                new Service(new OnFinishTask() {
+                    @Override
+                    public void onFinishTask(Object result) {
+                        progressDialog.dismiss();
+                    }
+                }, progressDialog).delete(removedProducts, Product.class).execute();
+            }else{
+                progressDialog.dismiss();
+            }
             loadProductList();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+
 
     @Override
     public void onBackPressed() {
