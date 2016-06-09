@@ -107,7 +107,7 @@ public class Service extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String json) {
         try {
-            object = Util.fromJson(json, T);
+            object = Util.fromJson(json, T, T);
         } catch (JSONException | IOException e) {
             e.printStackTrace();
         }

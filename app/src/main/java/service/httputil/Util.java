@@ -14,14 +14,13 @@ import java.util.List;
 public class Util {
     private static ObjectMapper objectMapper = new ObjectMapper();
 
-    public static <T> Object fromJson(String json, Class<T> tClass) throws JSONException, IOException {
+    public static <T> Object fromJson(String json, Class<T> tClass, Class teh) throws JSONException, IOException {
         Object jsonToken = json.isEmpty() ? new JSONObject() : new JSONTokener(json).nextValue();
 
         if (jsonToken instanceof JSONObject) {
             return objectMapper.readValue(json, tClass);
         } else if (jsonToken instanceof JSONArray) {
-            return objectMapper.readValue(json, new TypeReference<List<T>>() {
-            });
+            return objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(List.class, teh));
         }
         return null;
     }

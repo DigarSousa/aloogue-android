@@ -3,7 +3,7 @@ package service;
 
 public class ConstantsService {
     //servico
-    public static final String URL="http://52.67.12.146:8080";
+    public static final String URL="http://52.67.60.229:8080";
     //public static final String URL = "http://192.168.0.32:8080";
 
     //configuracao conexao

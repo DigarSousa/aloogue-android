@@ -30,7 +30,6 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
     private EditText nameText;
     private ListView lvProducts;
     private List<Product> products;
-    private RelativeLayout productsArea;
     private ProductListManageAdapter productAdapter;
     private FloatingActionButton saveProductsButton;
     private ProgressDialog progressDialog;
@@ -41,40 +40,17 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_manage_products, frameLayout);
 
-        initializeToolbar();
-        initializeAttributes();
         initializeComponents();
-
+        initializeToolbar();
     }
 
     private void loadProductList() {
         if (products != null) {
-            if (products.isEmpty()) {
-                productsArea.setVisibility(View.INVISIBLE);
-            } else {
-
-                //lvProducts.destroyDrawingCache();
-                //lvProducts.refreshDrawableState();
-                productAdapter = new ProductListManageAdapter(context, android.R.layout.simple_list_item_1, products, this);
-                lvProducts.setAdapter(productAdapter);
-                //productAdapter.notifyDataSetChanged();
-            }
-        }
-    }
-
-
-    private void initializeAttributes() {
-        saveProductsButton = (FloatingActionButton) findViewById(R.id.saveProductsButton);
-        products = new ArrayList<>();
-
-        progressDialog = new ProgressDialog(this);
-        context = getApplicationContext();
-
-        Place place = getPlace();
-
-        if (place != null) {
-            progressDialog.setMessage("Carregando produtos...");
-            new Service(this, progressDialog).find(Product.class, new Pair<String, Object>("id", place.getId())).execute();
+            //lvProducts.destroyDrawingCache();
+            //lvProducts.refreshDrawableState();
+            productAdapter = new ProductListManageAdapter(context, products, this);
+            lvProducts.setAdapter(productAdapter);
+            //productAdapter.notifyDataSetChanged();
         }
     }
 
@@ -93,14 +69,26 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
 
     private void initializeComponents() {
 
+        progressDialog = new ProgressDialog(this);
+        context = getApplicationContext();
+        products = new ArrayList<Product>();
+
         lvProducts = (ListView) findViewById(android.R.id.list);
-        productsArea = (RelativeLayout) findViewById(R.id.productsArea);
 
         nameText = (EditText) findViewById(R.id.nameText);
         addButton = (FloatingActionButton) findViewById(R.id.addButton);
         addButton.setOnClickListener(this);
 
+        saveProductsButton = (FloatingActionButton) findViewById(R.id.saveProductsButton);
         saveProductsButton.setOnClickListener(this);
+
+        //loadProductList();
+
+        Place place = getPlace();
+        if (place != null) {
+            progressDialog.setMessage("Carregando produtos...");
+            new Service(this, progressDialog).find(Product.class, new Pair<String, Object>("id", place.getId())).execute();
+        }
     }
 
     private boolean validateEmptyProductName() {
@@ -120,7 +108,7 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
             progressDialog = new ProgressDialog(this);
             progressDialog.setMessage("Salvando produtos...");
 
-            new Service(this, progressDialog).save(products, Product.class).execute();
+            new Service(this, progressDialog).save(this.products, Product.class).execute();
         } else if (view.equals(addButton)) {
             if (validateEmptyProductName()) {
 
@@ -129,7 +117,7 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
                 product.setDescription(productName);
                 product.setPlace(getPlace());
                 products.add(product);
-                loadProductList();
+                productAdapter.notifyDataSetChanged();
             }
         }
     }
@@ -137,7 +125,7 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
     @Override
     public void onFinishTask(Object result) {
 
-        products = (List<Product>) result;
+        this.products = (List<Product>) result;
 
         try {
             StaticUtil.setOject(this, StaticUtil.PRODUCT_LIST, products);
@@ -152,7 +140,12 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
             }else{
                 progressDialog.dismiss();
             }
-            loadProductList();
+            if(this.lvProducts.getAdapter()== null){
+                loadProductList();
+            }
+            else{
+                productAdapter.notifyDataSetChanged();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -162,6 +155,7 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(ManageProductsAct.this, MapAct.class);
+        finish();
         startActivity(intent);
     }
 

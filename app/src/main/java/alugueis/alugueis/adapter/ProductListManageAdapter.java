@@ -10,8 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,16 +23,16 @@ import alugueis.alugueis.R;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.EditProductAct;
 
-public class ProductListManageAdapter extends ArrayAdapter<Product>{
+public class ProductListManageAdapter extends BaseAdapter {
 
     private List<Product> productList;
     private List<Product> removedProducts;
     private DialogInterface.OnClickListener dialogDelete;
     private Context context;
     private Activity fromActivity;
+    private LayoutInflater vi;
 
-    public ProductListManageAdapter(Context context, int textViewResourceId, List<Product> productList, Activity fromActivity) {
-        super(context, textViewResourceId, productList);
+    public ProductListManageAdapter(Context context, List<Product> productList, Activity fromActivity) {
         this.productList = productList;
         this.context = context;
         this.fromActivity = fromActivity;
@@ -37,40 +40,40 @@ public class ProductListManageAdapter extends ArrayAdapter<Product>{
         removedProducts = new ArrayList<>();
     }
 
+
+    public class Holder
+    {
+        EditText productName;    //Nome do filme
+        ImageButton editButton;     //Sinopse
+        ImageButton deleteButton;  //Imagem do filme
+    }
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        View v = convertView;
+        Holder holder = null;
         final int pos = position;
+        Product product = null;
 
-        LayoutInflater vi = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        if(convertView==null) {
-            v = vi.inflate(R.layout.adapter_product_manage_list, null);
-        }
+        if (convertView == null) {
 
-        if (productList.size() > 0) {
-            //Product name
-            final Product product = productList.get(position);
-            final EditText productName = (EditText) v.findViewById(R.id.productName);
-            //productName.setEnabled(false);
+            this.vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = vi.inflate(R.layout.adapter_product_manage_list, null);
+            holder = new Holder();
 
-            //Edit Button
-            ImageButton editButton = (ImageButton) v.findViewById(R.id.editButton);
+            product = new Product();
+            holder.productName = (EditText) convertView.findViewById(R.id.productName);
+            holder.editButton = (ImageButton) convertView.findViewById(R.id.editButton);
+            holder.deleteButton = (ImageButton) convertView.findViewById(R.id.deleteButton);
 
-            //Delete button
-            final ImageButton deleteButton = (ImageButton) v.findViewById(R.id.deleteButton);
-            deleteButton.setTag(position);
-            editButton.setTag(position);
-
-            try {
-                productName.setText(String.valueOf(product.getDescription()));
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            convertView.setTag(holder);
+            holder.deleteButton.setTag(position);
+            holder.editButton.setTag(position);
+            holder.productName.setTag(productList.get(position));
 
             //Listeners
-            editButton.setOnClickListener(new View.OnClickListener() {
+            holder.editButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
@@ -82,7 +85,7 @@ public class ProductListManageAdapter extends ArrayAdapter<Product>{
                 }
             });
 
-            deleteButton.setOnClickListener(new View.OnClickListener() {
+            holder.deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
@@ -100,17 +103,15 @@ public class ProductListManageAdapter extends ArrayAdapter<Product>{
 
                 }
             });
-
-
-
         }
-        ProductListManageAdapter.this.notifyDataSetChanged();
-        return v;
-    }
+        else {
+            holder = (Holder) convertView.getTag();
+        }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data, ArrayList<Product> products) {
-        productList = products;
-        ProductListManageAdapter.this.notifyDataSetChanged();
+        product = (Product) holder.productName.getTag();
+        holder.productName.setText(product.getDescription());
+
+        return convertView;
     }
 
     private void newDialogBuilder(final int position) {
@@ -132,8 +133,18 @@ public class ProductListManageAdapter extends ArrayAdapter<Product>{
     }
 
     @Override
+    public int getCount() {
+        return this.productList.size();
+    }
+
+    @Override
     public Product getItem(int position) {
         return productList.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
     }
 
     public List getRemovedProducts() {

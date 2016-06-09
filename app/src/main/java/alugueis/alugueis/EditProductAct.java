@@ -7,7 +7,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import alugueis.alugueis.model.Product;
 
@@ -15,7 +18,7 @@ public class EditProductAct extends DashboardNavAct implements View.OnTouchListe
 
     private Context context;
     private EditText productName;
-    private ArrayList<Product> products;
+    private List<Product> products;
     private Button finishEdit;
     private Button cancelEdit;
     private int position;
@@ -41,7 +44,7 @@ public class EditProductAct extends DashboardNavAct implements View.OnTouchListe
         Bundle extras = it.getExtras();
 
         if (extras != null) {
-            products = (ArrayList<Product>)extras.get("products");
+            products = (List<Product>)extras.get("products");
             position = extras.getInt("position");
         }
     }
@@ -60,7 +63,7 @@ public class EditProductAct extends DashboardNavAct implements View.OnTouchListe
             if(view.equals(finishEdit)){
                 Intent it = new Intent(EditProductAct.this, ManageProductsAct.class);
                 products.get(position).setDescription(productName.getText().toString());
-                it.putExtra("products", products);
+                it.putExtra("products", (Serializable) products);
                 setResult(1,it);
                 finish();
             }
