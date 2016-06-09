@@ -21,7 +21,6 @@ import service.httputil.OnFinishTask;
 import service.httputil.Service;
 
 public class EditPlaceAct extends CreatePlaceAct {
-
     private Place place;
     private Context context;
 
@@ -74,9 +73,7 @@ public class EditPlaceAct extends CreatePlaceAct {
 
 
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

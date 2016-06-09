@@ -82,8 +82,6 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
 
         getLogged();
 
-        this.place = new Place();
-
         initializeToolbar();
         initializeComponents();
         initializeListeners();
@@ -179,7 +177,16 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
 
     private void saveNewPlace() {
         try {
+            Address addressApp = new Address();
+
             UserApp loggedUser = (UserApp) StaticUtil.readObject(getApplicationContext(), StaticUtil.LOGGED_USER);
+            this.place = (Place) StaticUtil.readObject(getApplicationContext(), StaticUtil.PLACE);
+            if (place != null) {
+                addressApp = place.getAddress();
+            } else {
+                place = new Place();
+            }
+
             place.setCpfCnpj(cpfCnpjEditText.getText().toString());
             place.setName(nameEditText.getText().toString());
 
@@ -188,7 +195,6 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             place.setBusinessInitialHour(businessInitialHourSpinner.getSelectedItem().toString());
             place.setBusinessFinalHour(businessFinalHourSpinner.getSelectedItem().toString());
 
-            Address addressApp = new Address();
 
             addressApp.setStreet(addressEditText.getText().toString());
             String numberString = streetNumberEditText.getText().toString();
@@ -206,16 +212,13 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
             pictureImageView.buildDrawingCache();
             Bitmap bm = pictureImageView.getDrawingCache();
             place.setPicture(CompressionUtil.compress(ImageUtil.BitmapToByteArray(bm)));
-
             getCoordinatesFromAddress();
 
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
-
 
     private void getCoordinatesFromAddress() {
         String location = place.getAddress().toString();
