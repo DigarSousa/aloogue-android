@@ -64,6 +64,7 @@ public class ProductListManageAdapter extends BaseAdapter {
 
             product = new Product();
             holder.productName = (EditText) convertView.findViewById(R.id.productName);
+            holder.productName.setEnabled(false);
             holder.editButton = (ImageButton) convertView.findViewById(R.id.editButton);
             holder.deleteButton = (ImageButton) convertView.findViewById(R.id.deleteButton);
 
