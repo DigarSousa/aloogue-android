@@ -9,7 +9,7 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -136,13 +136,12 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
                         progressDialog.dismiss();
                     }
                 }, progressDialog).delete(removedProducts, Product.class).execute();
-            }else{
+            } else {
                 progressDialog.dismiss();
             }
-            if(this.lvProducts.getAdapter()== null){
+            if (this.lvProducts.getAdapter() == null) {
                 loadProductList();
-            }
-            else{
+            } else {
                 productAdapter.notifyDataSetChanged();
             }
         } catch (IOException e) {
@@ -158,4 +157,11 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         startActivity(intent);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            products = (List<Product>) data.getExtras().get("products");
+            loadProductList();
+        }
+    }
 }
