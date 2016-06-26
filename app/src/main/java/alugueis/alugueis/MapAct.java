@@ -1,6 +1,7 @@
 package alugueis.alugueis;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Pair;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -42,7 +44,7 @@ import service.httputil.Service;
 import service.httputil.URLBuilder;
 
 public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
-        View.OnClickListener,OnFinishTask {
+        View.OnClickListener, OnFinishTask {
 
     private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
     public static final int PERMISSION_ACESS_FINE_LOCATION = 25;
@@ -158,13 +160,16 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
             }
         } else if (v.equals(searchButton)) {
             removeMakers();
-            new Service(this).putPath("/around").find(alugueis.alugueis.model.Place.class,
-                    new Pair<String, Object>("description", productText.getText().toString()),
-                    new Pair<String, Object>("latitude", myMarker.getPosition().latitude),
-                    new Pair<String, Object>("longitude", myMarker.getPosition().longitude),
-                    new Pair<String, Object>("distance", 5)) //5km de raio de distância - para alterar o raio, altere esse valor.
-                    .execute();
-
+            if (myMarker == null) {
+                Toast.makeText(this, "Não foi possível definir a localização atual", Toast.LENGTH_LONG).show();
+            } else {
+                new Service(this).putPath("/around").find(alugueis.alugueis.model.Place.class,
+                        new Pair<String, Object>("description", productText.getText().toString()),
+                        new Pair<String, Object>("latitude", myMarker.getPosition().latitude),
+                        new Pair<String, Object>("longitude", myMarker.getPosition().longitude),
+                        new Pair<String, Object>("distance", 5)) //5km de raio de distância - para alterar o raio, altere esse valor.
+                        .execute();
+            }
         }
     }
 

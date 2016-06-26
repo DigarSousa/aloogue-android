@@ -82,7 +82,6 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
         signinButton = (Button) findViewById(R.id.signinButton);
         bottomToolbar = (Toolbar) findViewById(R.id.tb_bottom);
         pictureImageView = (RoundedImageView) findViewById(R.id.pictureImage);
-        welcomeUser = (TextView) findViewById(R.id.welcomeUser);
 
         /*UserApp logged = new UserApp();
         try {
@@ -165,6 +164,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
                             progressDialog.dismiss();
                             MainAct.this.startActivity(intent);
                             MainAct.this.finish();
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
