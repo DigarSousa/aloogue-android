@@ -6,6 +6,7 @@ import alugueis.alugueis.util.MapsUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
+import android.support.v7.app.AppCompatActivity;
 import service.ConstantsService;
 import service.httputil.OnFinishTask;
 import service.httputil.Service;
@@ -26,7 +27,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-public class MainAct extends ActionBarActivity implements View.OnClickListener, OnFinishTask {
+public class MainAct extends AppCompatActivity implements View.OnClickListener, OnFinishTask {
 
     private Toolbar mainToolbar;
     private Toolbar bottomToolbar;

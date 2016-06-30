@@ -9,6 +9,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/reduced_action_bar"
             android:minHeight="@dimen/reduced_action_bar"
+
             android:background="@color/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
