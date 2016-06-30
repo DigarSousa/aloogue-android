@@ -15,7 +15,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Pair;
 import android.view.View;
@@ -119,7 +118,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
         if (v.equals(enterButton)) {
             enterButtonAction();
         } else if (v.equals(signinButton)) {
-            Intent it = new Intent(getApplicationContext(), SignupAct.class);
+            Intent it = new Intent(getApplicationContext(), SignUpActivity.class);
             startActivity(it);
 
         } else if (v.equals(facebookImageButton)) {

@@ -2,13 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:icon="@drawable/ic_edit_pencil"
-        android:showAsAction="always"
-        android:visible="true"
-        android:title="@string/editar" />
+            android:id="@+id/edit_action"
+            android:icon="@drawable/ic_edit_pencil"
+            android:showAsAction="always"
+            android:visible="true"
+            android:title="@string/editar"/>
     <item
-        android:icon="@drawable/ic_done_mark"
-        android:showAsAction="always"
-        android:visible="true"
-        android:title="@string/salvar" />
+            android:id="@+id/done_action"
+            android:icon="@drawable/ic_done_mark"
+            android:showAsAction="always"
+            android:visible="true"
+            android:title="@string/salvar"/>
 </menu>
