@@ -125,4 +125,7 @@
     <string name="savePlace">SALVAR LOJA</string>
     <string name="editShop">Editar Loja</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_product_form">ProductFormActivity</string>
+    <string name="editar">Editar</string>
+    <string name="salvar">Salvar</string>
 </resources>

@@ -10,12 +10,11 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
-    ;
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_icon_app_orange"
@@ -45,7 +44,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -53,14 +52,11 @@
             android:label="@string/title_activity_signup"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".MapAct"
             android:label="@string/title_activity_search"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
-        </activity>
-
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".PlaceProfileAct"
             android:label="@string/title_activity_place_profile"
@@ -96,6 +92,10 @@
             android:label="@string/editShop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ProductFormActivity"
+            android:label="@string/title_activity_product_form"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
