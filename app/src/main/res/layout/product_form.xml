@@ -14,13 +14,15 @@
                 android:id="@+id/code_name_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp">
 
             <android.support.design.widget.TextInputLayout
                     android:id="@+id/code_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:hint="Código">
 
                 <EditText
@@ -28,10 +30,9 @@
                         android:id="@+id/code_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginStart="10dp"
-                        android:imeOptions="actionNext|flagNoEnterAction"/>
+                        android:singleLine="true"
+              android:layout_marginEnd="10dp"
+                        android:imeOptions="actionNext"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -39,56 +40,75 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+
                     android:hint="Nome">
 
                 <EditText
-
+                        android:singleLine="true"
                         android:id="@+id/name_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_toEndOf="@+id/name"
-                        android:imeOptions="actionNext|flagNoEnterAction"/>
+                        android:imeOptions="actionNext"/>
 
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
         <android.support.design.widget.TextInputLayout
+                android:id="@+id/description_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
                 android:hint="Descrição">
 
             <EditText
-                    android:id="@+id/email_text_field"
+                    android:id="@+id/description_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lblMail"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginStart="10dp"
-                    android:imeOptions="actionDone"
-                    android:inputType="textEmailAddress"/>
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"/>
+
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:hint="Preço">
+                android:orientation="horizontal">
 
-            <alugueis.alugueis.pattern.PatternEditText
-                    xmlns:pattern-text="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/value_text"
+            <android.support.design.widget.TextInputLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/lblMail"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginStart="10dp"
-                    android:imeOptions="actionDone"
-                    android:inputType="number"
-                    android:digits="123456789."
-                    pattern-text:pattern="#.##0"/>
-        </android.support.design.widget.TextInputLayout>
+                    android:layout_weight="2"
+                    android:hint="Preço">
+                <alugueis.alugueis.pattern.PatternEditText
+                        xmlns:pattern-text="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/value_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:digits="123456789."
+                        pattern-text:pattern="#.##0"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/time_type_spinner"
+                    android:layout_weight="1"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+            </android.support.v7.widget.AppCompatSpinner>
+        </LinearLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
