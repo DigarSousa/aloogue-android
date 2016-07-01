@@ -126,7 +126,7 @@
     <string name="editShop">Editar Loja</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_product_form">ProductFormActivity</string>
-    <string name="editar">Editar</string>
-    <string name="salvar">Salvar</string>
+    <string name="edit">Editar</string>
+    <string name="save">Salvar</string>
     <string name="productFormTitle">Produto</string>
 </resources>
