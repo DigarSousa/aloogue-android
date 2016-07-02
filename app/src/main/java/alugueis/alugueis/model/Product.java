@@ -1,8 +1,8 @@
 package alugueis.alugueis.model;
 
-import java.io.Serializable;
-
 import lombok.Data;
+
+import java.io.Serializable;
 
 @Data
 public class Product implements Serializable {
@@ -11,4 +11,6 @@ public class Product implements Serializable {
     private String code;
     private String description;
     private Place place;
+    private Double value;
+    private String rentType;
 }

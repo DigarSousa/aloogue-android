@@ -14,15 +14,17 @@ android {
         //Render for blur imajages
         renderscriptTargetApi 18
         renderscriptSupportModeEnabled true
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
+
 
 repositories {
     mavenCentral()
@@ -44,7 +46,14 @@ dependencies {
     compile 'com.google.android.gms:play-services-identity:8.4.0'
     compile 'com.google.android.gms:play-services-gcm:8.4.0'
     compile 'com.fasterxml.jackson.core:jackson-core:2.4.1'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1.1'
+
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.3'
+    compile 'com.squareup.retrofit2:converter-jackson:2.0.0'
+
+
+
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.okhttp:okhttp:2.7.2'
 
     compile 'com.jakewharton:butterknife:8.0.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'

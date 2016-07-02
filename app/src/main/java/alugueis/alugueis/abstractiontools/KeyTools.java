@@ -27,4 +27,20 @@ public class KeyTools {
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+    /**
+     * Controls the visibility of input  method, if visible is true, then the input method is showed, else,
+     * then input method is hidden
+     *
+     * @param context
+     * @param view
+     * @param visible
+     */
+    public static void visibleInputMethod(Context context, View view, Boolean visible) {
+        if (visible) {
+            showInputMethod(context, view);
+        } else {
+            hideInputMethod(context, view);
+        }
+    }
+
 }
