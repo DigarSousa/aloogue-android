@@ -149,13 +149,6 @@ public class PlaceProfileAct extends DashboardNavAct implements OnFinishTask{
 
         try {
             StaticUtil.setOject(this, StaticUtil.PRODUCT_LIST, products);
-            List removedProducts = productAdapter != null ? productAdapter.getRemovedProducts() : new ArrayList();
-            new Service(new OnFinishTask() {
-                @Override
-                public void onFinishTask(Object result) {
-                    progressDialog.dismiss();
-                }
-            }, progressDialog).delete(removedProducts, Product.class).execute();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -165,6 +158,5 @@ public class PlaceProfileAct extends DashboardNavAct implements OnFinishTask{
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
     }
 }

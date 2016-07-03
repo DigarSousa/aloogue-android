@@ -13,4 +13,5 @@
     <color name="colorPrimaryText">#212121</color>
     <color name="white">#FFFFFF</color>
     <color name="background">#f7f7f7</color>
+    <color name="backgroundSecondary">#d1d1d1</color>
 </resources>
