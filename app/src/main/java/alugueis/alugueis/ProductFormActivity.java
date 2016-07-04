@@ -2,7 +2,7 @@ package alugueis.alugueis;
 
 import alugueis.alugueis.abstractiontools.KeyTools;
 import alugueis.alugueis.model.Product;
-import alugueis.alugueis.services.ProductService;
+import alugueis.alugueis.services.product.ProductRest;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import butterknife.BindView;
 import butterknife.BindViews;
@@ -24,8 +25,23 @@ import java.util.List;
 import static alugueis.alugueis.abstractiontools.ButterKnifeViewControls.ENABLED;
 
 public class ProductFormActivity extends AppCompatActivity {
+    private ProductRest productRest;
+    private Product product;
+
     @BindView(R.id.edit_toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.code_text)
+    EditText code;
+    @BindView(R.id.name_text)
+    EditText name;
+    @BindView(R.id.description_text)
+    EditText description;
+    @BindView(R.id.value_text)
+    EditText value;
+    @BindView(R.id.time_type_spinner)
+    Spinner timeType;
+
 
     @BindViews({R.id.code_text, R.id.name_text, R.id.description_text, R.id.value_text, R.id.time_type_spinner})
     List<View> views;
@@ -53,6 +69,8 @@ public class ProductFormActivity extends AppCompatActivity {
                 KeyTools.hideInputMethod(ProductFormActivity.this, v);
             }
         });
+
+        product = getIntent().getExtras().getParcelable("product");
     }
 
 
@@ -105,16 +123,14 @@ public class ProductFormActivity extends AppCompatActivity {
     }
 
     private void saveProduct() {
-        ProductService productService = StdService.createService(ProductService.class);
+        viewToObjcet();
 
-        Call<Product> call = productService.getProduct();
+        productRest = StdService.createService(ProductRest.class);
+        Call<Product> call = productRest.save(product);
         call.enqueue(new Callback<Product>() {
-
             @Override
             public void onResponse(Call<Product> call, Response<Product> response) {
-                Product p = response.body();
-                p.getCode();
-                response.message();
+                product = response.body();
             }
 
             @Override
@@ -122,5 +138,16 @@ public class ProductFormActivity extends AppCompatActivity {
                 t.printStackTrace();
             }
         });
+    }
+
+    private void viewToObjcet() {
+        if (product == null) {
+            product = new Product();
+        }
+        product.setCode(code.getText().toString());
+        product.setName(name.getText().toString());
+        product.setDescription(description.getText().toString());
+        product.setValue(Double.valueOf(value.getText().toString()));
+        product.setRentType((String) timeType.getSelectedItem());
     }
 }
