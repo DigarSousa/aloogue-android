@@ -18,24 +18,27 @@ import alugueis.alugueis.listener.OnItemProductClickListener;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.util.StaticUtil;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import service.httputil.OnFinishTask;
 import service.httputil.Service;
 
 public class ManageProductsAct extends DashboardNavAct implements View.OnClickListener {
 
-    private ListView lvProducts;
+    @BindView(android.R.id.list)
+    ListView lvProducts;
     private List<Product> products;
-    private List<Product> deleted;
     private ProductListManageAdapter productAdapter;
-    private FloatingActionButton addProductButton;
+    @BindView(R.id.addProductsButton)
+    FloatingActionButton addProductButton;
     private ProgressDialog progressDialog;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_manage_products, frameLayout);
+        ButterKnife.bind(this);
 
         mainToolbar.setTitle(getString(R.string.productsTitle));
         progressDialog = new ProgressDialog(this);
@@ -50,7 +53,6 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
             lvProducts.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                    deleted.add(products.get(position));
                     view.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                     addProductButton.setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
                     return true;
@@ -60,20 +62,7 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         }
     }
 
-    private Place getPlace() {
-
-        try {
-            return (Place) StaticUtil.readObject(this, StaticUtil.PLACE);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
-
     private void initializeComponents() {
-
-        lvProducts = (ListView) findViewById(android.R.id.list);
-        addProductButton = (FloatingActionButton) findViewById(R.id.addProductsButton);
         addProductButton.setOnClickListener(this);
     }
 
@@ -89,7 +78,6 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
                 this.products.add(p);
                 loadProductList();
             }
-
         }
     }
 
