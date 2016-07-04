@@ -8,9 +8,11 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import alugueis.alugueis.adapter.ProductListManageAdapter;
 import alugueis.alugueis.listener.OnItemProductClickListener;
 import alugueis.alugueis.model.Place;
@@ -19,7 +21,7 @@ import alugueis.alugueis.util.StaticUtil;
 import service.httputil.OnFinishTask;
 import service.httputil.Service;
 
-public class ManageProductsAct extends DashboardNavAct implements View.OnClickListener, OnFinishTask {
+public class ManageProductsAct extends DashboardNavAct implements View.OnClickListener {
 
     private ListView lvProducts;
     private List<Product> products;
@@ -29,14 +31,13 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
     private ProgressDialog progressDialog;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_manage_products, frameLayout);
 
-        mainToolbar.setTitle("Seus produtos");
+        mainToolbar.setTitle(getString(R.string.productsTitle));
         progressDialog = new ProgressDialog(this);
         products = new ArrayList<>();
         initializeComponents();
@@ -74,49 +75,21 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
         lvProducts = (ListView) findViewById(android.R.id.list);
         addProductButton = (FloatingActionButton) findViewById(R.id.addProductsButton);
         addProductButton.setOnClickListener(this);
-
-        try {
-            Place place = (Place) StaticUtil.readObject(this, StaticUtil.PLACE);
-            if (place != null) {
-                progressDialog.setMessage("Carregando produtos...");
-                new Service(this, progressDialog).find(Product.class, new Pair<String, Object>("id", place.getId())).execute();
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 
     @Override
     public void onClick(View view) {
 
         if (view.equals(addProductButton)) {
-            //chamar a sua activity aqui
-        }
-    }
-
-    @Override
-    public void onFinishTask (Object result) {
-
-        this.products = (List<Product>) result;
-
-        this.products = new ArrayList<>();
-        //MOCK
-        for(int i = 0; i < 20; i++){
-            Product p = new Product();
-            p.setDescription("Nome do Produto");
-            this.products.add(p);
-        }
-
-        try {
-            StaticUtil.setOject(this, StaticUtil.PRODUCT_LIST, products);
-            progressDialog.dismiss();
-            if (this.lvProducts.getAdapter() == null) {
+            this.products = new ArrayList<>();
+            //MOCK
+            for (int i = 0; i < 20; i++) {
+                Product p = new Product();
+                p.setDescription("Nome do Produto");
+                this.products.add(p);
                 loadProductList();
-            } else {
-                productAdapter.notifyDataSetChanged();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+
         }
     }
 
