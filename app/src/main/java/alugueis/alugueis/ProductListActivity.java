@@ -19,6 +19,9 @@ import java.util.List;
 
 public class ProductListActivity extends DashboardNavAct {
 
+    private static final Integer NEW_ITEM = 1;
+    private static final Integer UPDATE_ITEM = 2;
+
     @BindView(android.R.id.list)
     ListView listView;
 
@@ -50,6 +53,16 @@ public class ProductListActivity extends DashboardNavAct {
         listView.setEmptyView(progressBar);
         viewGroup.addView(progressBar);
 */
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("position", i);
+                bundle.putSerializable("product", productAdapter.getItem(i));
+                Intent intent = new Intent(ProductListActivity.this, ProductFormActivity.class);
+                startActivityForResult(intent, UPDATE_ITEM, bundle);
+            }
+        });
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -64,7 +77,7 @@ public class ProductListActivity extends DashboardNavAct {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProductListActivity.this, ProductFormActivity.class);
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, NEW_ITEM);
             }
         });
     }
@@ -78,8 +91,13 @@ public class ProductListActivity extends DashboardNavAct {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
+        if (requestCode == NEW_ITEM) {
             products.add((Product) data.getExtras().getSerializable("product"));
+            productAdapter.notifyDataSetChanged();
+        }
+
+        if (requestCode == UPDATE_ITEM) {
+            products.add(requestCode, (Product) data.getExtras().getSerializable("product"));
             productAdapter.notifyDataSetChanged();
         }
     }

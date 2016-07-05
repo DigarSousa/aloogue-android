@@ -30,6 +30,7 @@ import static alugueis.alugueis.abstractiontools.ButterKnifeViewControls.ENABLED
 public class ProductFormActivity extends AppCompatActivity {
     private ProductRest productRest;
     private Product product;
+    private Integer position;
 
     @BindView(R.id.edit_toolbar)
     Toolbar toolbar;
@@ -77,9 +78,11 @@ public class ProductFormActivity extends AppCompatActivity {
 
         if (getIntent().getExtras() != null) {
             product = getIntent().getExtras().getParcelable("product");
+            position = getIntent().getExtras().getInt("position");
             productToView();
             isEditMode = Boolean.FALSE;
         } else {
+            position = 0;
             isEditMode = Boolean.TRUE;
         }
     }
@@ -175,7 +178,7 @@ public class ProductFormActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putSerializable("product", product);
         result.putExtras(bundle);
-        setResult(1, result);
+        setResult(position, result);
         finish();
     }
 }
