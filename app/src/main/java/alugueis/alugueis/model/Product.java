@@ -1,13 +1,12 @@
 package alugueis.alugueis.model;
 
-import android.os.Parcelable;
-import android.support.design.internal.ParcelableSparseArray;
-
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
-@Data
+@Getter
+@Setter
 public class Product implements Serializable {
 
     private Long id;

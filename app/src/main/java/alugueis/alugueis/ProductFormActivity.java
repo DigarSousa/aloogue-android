@@ -172,7 +172,10 @@ public class ProductFormActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent result = new Intent();
-        result.getExtras().putSerializable("product",product);
-        setResult(1,result);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("product", product);
+        result.putExtras(bundle);
+        setResult(1, result);
+        finish();
     }
 }
