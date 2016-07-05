@@ -17,11 +17,8 @@ import java.util.List;
 
 public class ProductAdapter extends ArrayAdapter<Product> {
 
-    private List<Product> productList;
-
     public ProductAdapter(Context context, List<Product> objects) {
         super(context, R.layout.product_list_adapter, objects);
-        this.productList = objects;
     }
 
 
@@ -47,21 +44,6 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         holder.productPeriod.setText("SEMANA");
 
         return convertView;
-    }
-
-    @Override
-    public int getCount() {
-        return this.productList.size();
-    }
-
-    @Override
-    public Product getItem(int position) {
-        return productList.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
     }
 
     static class Holder {

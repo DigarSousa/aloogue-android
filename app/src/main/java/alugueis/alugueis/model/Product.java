@@ -1,5 +1,8 @@
 package alugueis.alugueis.model;
 
+import android.os.Parcelable;
+import android.support.design.internal.ParcelableSparseArray;
+
 import lombok.Data;
 
 import java.io.Serializable;

@@ -26,7 +26,7 @@ public class ProductListActivity extends DashboardNavAct {
     FloatingActionButton addProductButton;
 
     private List<Product> products;
-    private ArrayAdapter<Product> arrayAdapter;
+    private ArrayAdapter<Product> productAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,22 +37,9 @@ public class ProductListActivity extends DashboardNavAct {
         mainToolbar.setTitle(getString(R.string.productsTitle));
 
         products = new ArrayList<>();
-        arrayAdapter = new ProductAdapter(this, products);
-        listView.setAdapter(arrayAdapter);
+        productAdapter = new ProductAdapter(this, products);
+        listView.setAdapter(productAdapter);
         initComponents();
-    }
-
-    private void loadProductList() {
-        if (products != null) {
-            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                @Override
-                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                    view.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                    addProductButton.setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
-                    return true;
-                }
-            });
-        }
     }
 
     private void initComponents() {
@@ -63,6 +50,15 @@ public class ProductListActivity extends DashboardNavAct {
         listView.setEmptyView(progressBar);
         viewGroup.addView(progressBar);
 */
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                view.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                addProductButton.setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
+                return true;
+            }
+        });
 
         addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,8 +79,8 @@ public class ProductListActivity extends DashboardNavAct {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
-            products.add((Product) data.getExtras().getParcelable("product"));
-            arrayAdapter.notifyDataSetChanged();
+            products.add((Product) data.getExtras().getSerializable("product"));
+            productAdapter.notifyDataSetChanged();
         }
     }
 }

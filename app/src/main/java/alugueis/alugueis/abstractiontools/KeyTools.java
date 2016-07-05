@@ -19,6 +19,12 @@ public class KeyTools {
         inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
     }
 
+    public static void showInputMethodForced(Context context, View view) {
+        view.requestFocus();
+        inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_FORCED);
+    }
+
     /**
      * Are you reading this? Really? ¬¬
      */

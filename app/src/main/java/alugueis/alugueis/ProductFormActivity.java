@@ -4,6 +4,7 @@ import alugueis.alugueis.abstractiontools.KeyTools;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.services.product.ProductRest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -32,7 +33,6 @@ public class ProductFormActivity extends AppCompatActivity {
 
     @BindView(R.id.edit_toolbar)
     Toolbar toolbar;
-
     @BindView(R.id.code_text)
     EditText code;
     @BindView(R.id.name_text)
@@ -69,7 +69,9 @@ public class ProductFormActivity extends AppCompatActivity {
         timeType.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                KeyTools.hideInputMethod(ProductFormActivity.this, v);
+                if (hasFocus) {
+                    KeyTools.hideInputMethod(ProductFormActivity.this, v);
+                }
             }
         });
 
@@ -101,11 +103,10 @@ public class ProductFormActivity extends AppCompatActivity {
     private void setEditMode(Boolean isInEditMode) {
         ButterKnife.apply(views, ENABLED, isInEditMode);
         if (isInEditMode) {
-            KeyTools.visibleInputMethod(this, views.get(0), true);
+            KeyTools.showInputMethod(this, views.get(0));
         }
         menu.findItem(R.id.edit_action).setVisible(!isInEditMode);
         menu.findItem(R.id.done_action).setVisible(isInEditMode);
-
     }
 
     @Override
@@ -122,7 +123,8 @@ public class ProductFormActivity extends AppCompatActivity {
                 break;
             case R.id.done_action:
                 KeyTools.visibleInputMethod(this, getCurrentFocus(), false);
-                saveProduct();
+                //   saveProduct();
+                viewToObjcet();
                 setEditMode(false);
                 break;
             default:
@@ -132,7 +134,7 @@ public class ProductFormActivity extends AppCompatActivity {
     }
 
     private void saveProduct() {
-        viewToObjcet();
+
 
         productRest = StdService.createService(ProductRest.class);
         Call<Product> call = productRest.save(product);
@@ -165,5 +167,12 @@ public class ProductFormActivity extends AppCompatActivity {
         name.setText(product.getName());
         description.setText(product.getDescription());
         value.setText(product.getValue().toString());
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent result = new Intent();
+        result.getExtras().putSerializable("product",product);
+        setResult(1,result);
     }
 }
