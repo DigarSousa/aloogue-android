@@ -3,7 +3,6 @@ package alugueis.alugueis;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import alugueis.alugueis.adapter.ProductListAdapter;
-import alugueis.alugueis.adapter.ProductListManageAdapter;
 import alugueis.alugueis.model.Product;
-import service.httputil.Service;
 
 
 public class PlaceProductsFgm extends Fragment {

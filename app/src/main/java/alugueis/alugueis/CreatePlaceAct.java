@@ -74,7 +74,6 @@ public class CreatePlaceAct extends DashboardNavAct implements OnFinishTask {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Utilizado para levar o layout da activity para o pai (nav drawer)
         getLayoutInflater().inflate(R.layout.activity_create_place, frameLayout);
 
         dialogCoord = new ProgressDialog(CreatePlaceAct.this);

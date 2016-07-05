@@ -32,7 +32,7 @@ public class ProductListAdapter extends ArrayAdapter<Product>{
         final int pos = position;
 
         LayoutInflater vi = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        v = vi.inflate(R.layout.adapter_product_list, null);
+        v = vi.inflate(R.layout.product_list_adapter, null);
 
 
         if (productList.size() > 0) {

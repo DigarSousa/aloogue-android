@@ -1,56 +1,52 @@
 package alugueis.alugueis;
 
-import android.app.ProgressDialog;
+import alugueis.alugueis.adapter.ProductAdapter;
+import alugueis.alugueis.model.Product;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.util.Pair;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import alugueis.alugueis.adapter.ProductListManageAdapter;
-import alugueis.alugueis.listener.OnItemProductClickListener;
-import alugueis.alugueis.model.Place;
-import alugueis.alugueis.model.Product;
-import alugueis.alugueis.util.StaticUtil;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import service.httputil.OnFinishTask;
-import service.httputil.Service;
+public class ManageProductsAct extends DashboardNavAct {
 
-public class ManageProductsAct extends DashboardNavAct implements View.OnClickListener {
+    @BindView(R.id.product_list_root_layout)
+    ViewGroup viewGroup;
 
     @BindView(android.R.id.list)
-    ListView lvProducts;
-    private List<Product> products;
-    private ProductListManageAdapter productAdapter;
+    ListView listView;
+
     @BindView(R.id.addProductsButton)
     FloatingActionButton addProductButton;
-    private ProgressDialog progressDialog;
 
+    private List<Product> products;
+    private ProductAdapter productAdapter;
+    private ArrayAdapter<Product> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_manage_products, frameLayout);
+        getLayoutInflater().inflate(R.layout.product_list_activity, frameLayout);
         ButterKnife.bind(this);
 
         mainToolbar.setTitle(getString(R.string.productsTitle));
-        progressDialog = new ProgressDialog(this);
+
         products = new ArrayList<>();
-        initializeComponents();
+        productAdapter = new ProductAdapter(this, R.layout.product_list_adapter, products);
+        initComponents();
     }
 
     private void loadProductList() {
-
         if (products != null) {
-            productAdapter = new ProductListManageAdapter(this, products, this);
-            lvProducts.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                     view.setBackgroundColor(getResources().getColor(R.color.colorAccent));
@@ -58,27 +54,31 @@ public class ManageProductsAct extends DashboardNavAct implements View.OnClickLi
                     return true;
                 }
             });
-            lvProducts.setAdapter(productAdapter);
+            listView.setAdapter(productAdapter);
         }
     }
 
-    private void initializeComponents() {
-        addProductButton.setOnClickListener(this);
-    }
+    private void initComponents() {
+     /*   ProgressBar progressBar = new ProgressBar(this);
+        progressBar.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
+                LayoutParams.WRAP_CONTENT, Gravity.CENTER));
+        progressBar.setIndeterminate(true);
+        listView.setEmptyView(progressBar);
+        viewGroup.addView(progressBar);
+*/
 
-    @Override
-    public void onClick(View view) {
-
-        if (view.equals(addProductButton)) {
-            this.products = new ArrayList<>();
-            //MOCK
-            for (int i = 0; i < 20; i++) {
-                Product p = new Product();
-                p.setDescription("Nome do Produto");
-                this.products.add(p);
-                loadProductList();
+        addProductButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < 20; i++) {
+                    Product p = new Product();
+                    p.setDescription("Nome do Produto");
+                    ManageProductsAct.this.products.add(p);
+                    productAdapter.notifyDataSetChanged();
+                }
             }
-        }
+        });
+
     }
 
     @Override
