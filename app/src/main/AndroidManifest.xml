@@ -68,7 +68,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"/>
         <activity
-            android:name=".ManageProductsAct"
+            android:name=".ProductListActivity"
             android:label="@string/products"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait"

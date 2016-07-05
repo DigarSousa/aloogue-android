@@ -2,24 +2,22 @@ package alugueis.alugueis;
 
 import alugueis.alugueis.adapter.ProductAdapter;
 import alugueis.alugueis.model.Product;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManageProductsAct extends DashboardNavAct {
-
-    @BindView(R.id.product_list_root_layout)
-    ViewGroup viewGroup;
+public class ProductListActivity extends DashboardNavAct {
 
     @BindView(android.R.id.list)
     ListView listView;
@@ -28,7 +26,6 @@ public class ManageProductsAct extends DashboardNavAct {
     FloatingActionButton addProductButton;
 
     private List<Product> products;
-    private ProductAdapter productAdapter;
     private ArrayAdapter<Product> arrayAdapter;
 
     @Override
@@ -40,7 +37,8 @@ public class ManageProductsAct extends DashboardNavAct {
         mainToolbar.setTitle(getString(R.string.productsTitle));
 
         products = new ArrayList<>();
-        productAdapter = new ProductAdapter(this, R.layout.product_list_adapter, products);
+        arrayAdapter = new ProductAdapter(this, products);
+        listView.setAdapter(arrayAdapter);
         initComponents();
     }
 
@@ -54,7 +52,6 @@ public class ManageProductsAct extends DashboardNavAct {
                     return true;
                 }
             });
-            listView.setAdapter(productAdapter);
         }
     }
 
@@ -70,20 +67,15 @@ public class ManageProductsAct extends DashboardNavAct {
         addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int i = 0; i < 20; i++) {
-                    Product p = new Product();
-                    p.setDescription("Nome do Produto");
-                    ManageProductsAct.this.products.add(p);
-                    productAdapter.notifyDataSetChanged();
-                }
+                Intent intent = new Intent(ProductListActivity.this, ProductFormActivity.class);
+                startActivityForResult(intent, 1);
             }
         });
-
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(ManageProductsAct.this, MapAct.class);
+        Intent intent = new Intent(ProductListActivity.this, MapAct.class);
         finish();
         startActivity(intent);
     }
@@ -91,8 +83,8 @@ public class ManageProductsAct extends DashboardNavAct {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
-            products = (List<Product>) data.getExtras().get("products");
-            loadProductList();
+            products.add((Product) data.getExtras().getParcelable("product"));
+            arrayAdapter.notifyDataSetChanged();
         }
     }
 }

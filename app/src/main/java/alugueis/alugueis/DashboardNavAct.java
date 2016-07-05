@@ -2,11 +2,8 @@ package alugueis.alugueis;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -125,7 +122,7 @@ public class DashboardNavAct extends AppCompatActivity implements NavigationView
             Intent intent = new Intent(DashboardNavAct.this, CreatePlaceAct.class);
             startActivity(intent);
         } else if (id == R.id.nav_manage_products) {
-            Intent intent = new Intent(DashboardNavAct.this, ManageProductsAct.class);
+            Intent intent = new Intent(DashboardNavAct.this, ProductListActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_edit_shop) {
             Intent intent = new Intent(DashboardNavAct.this, EditPlaceAct.class);

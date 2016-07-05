@@ -67,13 +67,13 @@ public class EditProductAct extends DashboardNavAct implements View.OnTouchListe
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         if (view.equals(finishEdit)) {
-            Intent it = new Intent(EditProductAct.this, ManageProductsAct.class);
+            Intent it = new Intent(EditProductAct.this, ProductListActivity.class);
             products.get(position).setDescription(productName.getText().toString());
             it.putExtra("products", (Serializable) products);
             setResult(1, it);
             finish();
         } else if (view.equals(finishEdit)) {
-            Intent it = new Intent(EditProductAct.this, ManageProductsAct.class);
+            Intent it = new Intent(EditProductAct.this, ProductListActivity.class);
             startActivity(it);
             finish();
         }

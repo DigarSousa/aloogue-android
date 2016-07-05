@@ -2,13 +2,14 @@ package alugueis.alugueis.adapter;
 
 import alugueis.alugueis.R;
 import alugueis.alugueis.model.Product;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -16,25 +17,22 @@ import java.util.List;
 
 public class ProductAdapter extends ArrayAdapter<Product> {
 
-    private final Integer resource;
     private List<Product> productList;
-    private Context context;
 
-    public ProductAdapter(Context context, int resource, List<Product> objects) {
-        super(context, resource, objects);
-        this.productList=objects;
-        this.context=context;
-        this.resource=resource;
+    public ProductAdapter(Context context, List<Product> objects) {
+        super(context, R.layout.product_list_adapter, objects);
+        this.productList = objects;
     }
 
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        Product product = getItem(position);
         Holder holder;
         if (convertView == null) {
-            LayoutInflater layoutInflater = LayoutInflater.from(context);
-                convertView = layoutInflater.inflate(resource, parent);
+            LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+            convertView = layoutInflater.inflate(R.layout.product_list_adapter, parent, false);
 
             holder = new Holder(convertView);
             convertView.setTag(holder);
@@ -43,7 +41,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         }
 
         //MOCK
-        holder.productName.setText(productList.get(position).getDescription());
+        holder.productName.setText(product.getName());
         holder.productDescription.setText("Lorem Ipsum a vida toda asiuhaas");
         holder.productPrice.setText("R$10");
         holder.productPeriod.setText("SEMANA");

@@ -3,6 +3,7 @@ package alugueis.alugueis;
 import alugueis.alugueis.abstractiontools.KeyTools;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.services.product.ProductRest;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
@@ -47,6 +49,7 @@ public class ProductFormActivity extends AppCompatActivity {
     List<View> views;
 
     private Menu menu;
+    private Boolean isEditMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +73,13 @@ public class ProductFormActivity extends AppCompatActivity {
             }
         });
 
-        product = getIntent().getExtras().getParcelable("product");
+        if (getIntent().getExtras() != null) {
+            product = getIntent().getExtras().getParcelable("product");
+            productToView();
+            isEditMode = Boolean.FALSE;
+        } else {
+            isEditMode = Boolean.TRUE;
+        }
     }
 
 
@@ -85,7 +94,7 @@ public class ProductFormActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         this.menu = menu;
-        setEditMode(false);
+        setEditMode(isEditMode);
         return true;
     }
 
@@ -149,5 +158,12 @@ public class ProductFormActivity extends AppCompatActivity {
         product.setDescription(description.getText().toString());
         product.setValue(Double.valueOf(value.getText().toString()));
         product.setRentType((String) timeType.getSelectedItem());
+    }
+
+    private void productToView() {
+        code.setText(product.getCode());
+        name.setText(product.getName());
+        description.setText(product.getDescription());
+        value.setText(product.getValue().toString());
     }
 }
