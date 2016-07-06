@@ -2,14 +2,12 @@ package alugueis.alugueis.adapter;
 
 import alugueis.alugueis.R;
 import alugueis.alugueis.model.Product;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -37,11 +35,10 @@ public class ProductAdapter extends ArrayAdapter<Product> {
             holder = (Holder) convertView.getTag();
         }
 
-        //MOCK
         holder.productName.setText(product.getName());
-        holder.productDescription.setText("Lorem Ipsum a vida toda asiuhaas");
-        holder.productPrice.setText("R$10");
-        holder.productPeriod.setText("SEMANA");
+        holder.productDescription.setText(product.getDescription());
+        holder.productPrice.setText(product.getPrice().toString());
+        holder.productPeriod.setText(product.getRentType());
 
         return convertView;
     }

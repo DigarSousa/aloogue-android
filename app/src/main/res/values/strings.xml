@@ -130,4 +130,6 @@
     <string name="save">Salvar</string>
     <string name="productFormTitle">Produto</string>
     <string name="productsTitle">Produtos</string>
+    <string name="saveProduct">Salvando produto</string>
+    <string name="saveProductError">Erro ao salvar produto</string>
 </resources>

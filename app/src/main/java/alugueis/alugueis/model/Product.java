@@ -14,6 +14,6 @@ public class Product implements Serializable {
     private String name;
     private String description;
     private Place place;
-    private Double value;
+    private Double price;
     private String rentType;
 }

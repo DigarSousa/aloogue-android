@@ -298,7 +298,7 @@ public class ImageUtil {
         // color information
         int A, R, G, B;
         int pixel;
-        // get contrast value
+        // get contrast price
         double contrast = Math.pow((100 + value) / 100, 2);
 
         // scan through all pixels

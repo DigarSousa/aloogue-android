@@ -2,7 +2,6 @@ package alugueis.alugueis;
 
 import alugueis.alugueis.adapter.ProductAdapter;
 import alugueis.alugueis.model.Product;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -60,7 +58,8 @@ public class ProductListActivity extends DashboardNavAct {
                 bundle.putInt("position", i);
                 bundle.putSerializable("product", productAdapter.getItem(i));
                 Intent intent = new Intent(ProductListActivity.this, ProductFormActivity.class);
-                startActivityForResult(intent, UPDATE_ITEM, bundle);
+                intent.putExtras(bundle);
+                startActivityForResult(intent, UPDATE_ITEM);
             }
         });
 
@@ -97,7 +96,8 @@ public class ProductListActivity extends DashboardNavAct {
         }
 
         if (requestCode == UPDATE_ITEM) {
-            products.add(requestCode, (Product) data.getExtras().getSerializable("product"));
+            products.remove(resultCode);
+            products.add(resultCode, (Product) data.getExtras().getSerializable("product"));
             productAdapter.notifyDataSetChanged();
         }
     }

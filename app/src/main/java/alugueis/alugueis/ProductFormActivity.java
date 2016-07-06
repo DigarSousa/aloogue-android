@@ -3,7 +3,7 @@ package alugueis.alugueis;
 import alugueis.alugueis.abstractiontools.KeyTools;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.services.product.ProductRest;
-
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-
+import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
@@ -43,7 +43,7 @@ public class ProductFormActivity extends AppCompatActivity {
     @BindView(R.id.value_text)
     EditText value;
     @BindView(R.id.time_type_spinner)
-    Spinner timeType;
+    Spinner rentType;
 
 
     @BindViews({R.id.code_text, R.id.name_text, R.id.description_text, R.id.value_text, R.id.time_type_spinner})
@@ -57,12 +57,19 @@ public class ProductFormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_content);
         ButterKnife.bind(this);
+
         setSupportActionBar(toolbar);
-        intComponents();
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+        startSpinner();
+        startActivityState();
     }
 
-    private void intComponents() {
-        Spinner timeType = (Spinner) views.get(views.size() - 1);
+    private void startSpinner() {
+        final Spinner timeType = (Spinner) views.get(views.size() - 1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.time_type, android.R.layout.simple_spinner_dropdown_item);
         timeType.setAdapter(adapter);
@@ -72,12 +79,15 @@ public class ProductFormActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
                     KeyTools.hideInputMethod(ProductFormActivity.this, v);
+                    timeType.performClick();
                 }
             }
         });
+    }
 
+    private void startActivityState() {
         if (getIntent().getExtras() != null) {
-            product = getIntent().getExtras().getParcelable("product");
+            product = (Product) getIntent().getExtras().getSerializable("product");
             position = getIntent().getExtras().getInt("position");
             productToView();
             isEditMode = Boolean.FALSE;
@@ -126,10 +136,12 @@ public class ProductFormActivity extends AppCompatActivity {
                 break;
             case R.id.done_action:
                 KeyTools.visibleInputMethod(this, getCurrentFocus(), false);
-                //   saveProduct();
+                saveProduct();
                 viewToObjcet();
                 setEditMode(false);
                 break;
+            case android.R.id.home:
+                onBackPressed();
             default:
                 return true;
         }
@@ -137,7 +149,9 @@ public class ProductFormActivity extends AppCompatActivity {
     }
 
     private void saveProduct() {
-
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage(getString(R.string.saveProduct));
+        progressDialog.show();
 
         productRest = StdService.createService(ProductRest.class);
         Call<Product> call = productRest.save(product);
@@ -145,10 +159,13 @@ public class ProductFormActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Product> call, Response<Product> response) {
                 product = response.body();
+                progressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<Product> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(ProductFormActivity.this, getString(R.string.saveProductError), Toast.LENGTH_LONG).show();
                 t.printStackTrace();
             }
         });
@@ -161,15 +178,25 @@ public class ProductFormActivity extends AppCompatActivity {
         product.setCode(code.getText().toString());
         product.setName(name.getText().toString());
         product.setDescription(description.getText().toString());
-        product.setValue(Double.valueOf(value.getText().toString()));
-        product.setRentType((String) timeType.getSelectedItem());
+        product.setPrice(Double.valueOf(value.getText().toString()));
+        product.setRentType((String) rentType.getSelectedItem());
     }
 
     private void productToView() {
         code.setText(product.getCode());
         name.setText(product.getName());
         description.setText(product.getDescription());
-        value.setText(product.getValue().toString());
+        value.setText(product.getPrice().toString());
+        setSpinnerSelectedItem();
+    }
+
+    private void setSpinnerSelectedItem() {
+        for (int i = 0; i < rentType.getCount(); i++) {
+            if (product.getRentType().equals(rentType.getItemAtPosition(i))) {
+                rentType.setSelection(i);
+                return;
+            }
+        }
     }
 
     @Override

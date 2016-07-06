@@ -3,11 +3,9 @@
                 android:id="@+id/product_list_root_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/background"
-                android:clickable="true">
+                android:background="@color/background">
 
     <ListView
-        android:clickable="true"
         android:id="@android:id/list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
