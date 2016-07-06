@@ -3,6 +3,7 @@ package alugueis.alugueis;
 import alugueis.alugueis.abstractiontools.KeyTools;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.services.product.ProductRest;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
@@ -41,10 +43,9 @@ public class ProductFormActivity extends AppCompatActivity {
     @BindView(R.id.description_text)
     EditText description;
     @BindView(R.id.value_text)
-    EditText value;
+    EditText price;
     @BindView(R.id.time_type_spinner)
     Spinner rentType;
-
 
     @BindViews({R.id.code_text, R.id.name_text, R.id.description_text, R.id.value_text, R.id.time_type_spinner})
     List<View> views;
@@ -136,7 +137,7 @@ public class ProductFormActivity extends AppCompatActivity {
                 break;
             case R.id.done_action:
                 KeyTools.visibleInputMethod(this, getCurrentFocus(), false);
-                saveProduct();
+                //  saveProduct();
                 viewToObjcet();
                 setEditMode(false);
                 break;
@@ -164,6 +165,8 @@ public class ProductFormActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Product> call, Throwable t) {
+                product = null; //dont put the object on list view
+
                 progressDialog.dismiss();
                 Toast.makeText(ProductFormActivity.this, getString(R.string.saveProductError), Toast.LENGTH_LONG).show();
                 t.printStackTrace();
@@ -178,15 +181,16 @@ public class ProductFormActivity extends AppCompatActivity {
         product.setCode(code.getText().toString());
         product.setName(name.getText().toString());
         product.setDescription(description.getText().toString());
-        product.setPrice(Double.valueOf(value.getText().toString()));
-        product.setRentType((String) rentType.getSelectedItem());
+        product.setRentType(rentType.getSelectedItem() != null ? rentType.getSelectedItem().toString() : "");
+        Double price = Double.valueOf(this.price.getText().toString().isEmpty() ? "0" : this.price.getText().toString());
+        product.setPrice(price);
     }
 
     private void productToView() {
         code.setText(product.getCode());
         name.setText(product.getName());
         description.setText(product.getDescription());
-        value.setText(product.getPrice().toString());
+        price.setText(product.getPrice().toString());
         setSpinnerSelectedItem();
     }
 

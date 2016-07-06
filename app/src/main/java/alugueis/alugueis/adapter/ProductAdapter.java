@@ -2,12 +2,14 @@ package alugueis.alugueis.adapter;
 
 import alugueis.alugueis.R;
 import alugueis.alugueis.model.Product;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -18,7 +20,6 @@ public class ProductAdapter extends ArrayAdapter<Product> {
     public ProductAdapter(Context context, List<Product> objects) {
         super(context, R.layout.product_list_adapter, objects);
     }
-
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

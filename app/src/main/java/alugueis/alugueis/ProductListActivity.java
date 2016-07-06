@@ -2,6 +2,7 @@ package alugueis.alugueis;
 
 import alugueis.alugueis.adapter.ProductAdapter;
 import alugueis.alugueis.model.Product;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -66,6 +68,7 @@ public class ProductListActivity extends DashboardNavAct {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                view.setSelected(true);
                 view.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 addProductButton.setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
                 return true;
@@ -91,14 +94,20 @@ public class ProductListActivity extends DashboardNavAct {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == NEW_ITEM) {
-            products.add((Product) data.getExtras().getSerializable("product"));
-            productAdapter.notifyDataSetChanged();
+            Product product = (Product) data.getExtras().getSerializable("product");
+            if (product != null) {
+                products.add(product);
+                productAdapter.notifyDataSetChanged();
+            }
         }
 
         if (requestCode == UPDATE_ITEM) {
-            products.remove(resultCode);
-            products.add(resultCode, (Product) data.getExtras().getSerializable("product"));
-            productAdapter.notifyDataSetChanged();
+            Product product = (Product) data.getExtras().getSerializable("product");
+            if (product != null) {
+                products.remove(resultCode);
+                products.add(resultCode, product);
+                productAdapter.notifyDataSetChanged();
+            }
         }
     }
 }
