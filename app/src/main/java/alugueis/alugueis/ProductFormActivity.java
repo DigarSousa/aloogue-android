@@ -30,7 +30,6 @@ import java.util.List;
 import static alugueis.alugueis.abstractiontools.ButterKnifeViewControls.ENABLED;
 
 public class ProductFormActivity extends AppCompatActivity {
-    private ProductRest productRest;
     private Product product;
     private Integer position;
 
@@ -154,7 +153,7 @@ public class ProductFormActivity extends AppCompatActivity {
         progressDialog.setMessage(getString(R.string.saveProduct));
         progressDialog.show();
 
-        productRest = StdService.createService(ProductRest.class);
+        ProductRest productRest = StdService.createService(ProductRest.class);
         Call<Product> call = productRest.save(product);
         call.enqueue(new Callback<Product>() {
             @Override
