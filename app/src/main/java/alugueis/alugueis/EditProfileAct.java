@@ -177,7 +177,7 @@ public class EditProfileAct extends DashboardNavAct {
         if (passwordEditText.getText().toString().equals("")) {
             passwordEditText.setError(getResources().getString(R.string.emptyPassword));
             return false;
-        } else if (passwordEditText.getText().toString().length() < 4 || passwordEditText.getText().toString().length() > 10) {
+        } else if (passwordEditText.getText().toString().length() < 4 || passwordEditText.getText().toString().length() > 32) {
             passwordEditText.setError(getResources().getString(R.string.minMaxPasswordTextError));
             return false;
         }

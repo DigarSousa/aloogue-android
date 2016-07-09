@@ -1,8 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".MapAct">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MapAct">
 
     <!-- TOOLBAR -->
     <android.support.v7.widget.Toolbar
@@ -61,5 +62,35 @@
             android:id="@+id/map"
             tools:context=".MapAct"
             android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/raioBusca"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/raio"
+        android:textColor="@color/colorAccentSecondary"
+        />
+
+    <LinearLayout
+        android:id="@id/raio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="16dp"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:id="@+id/rangeBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dsb_min="10"
+            app:dsb_max="5000"
+            app:dsb_indicatorTextAppearance="@style/TextWhite"
+            />
+
+    </LinearLayout>
 
 </RelativeLayout>

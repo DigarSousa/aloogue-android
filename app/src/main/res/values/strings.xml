@@ -67,8 +67,8 @@
     <string name="emptyStreet">Por favor, insira uma rua válida.</string>
     <string name="emptyStreetNumber">Por favor, insira um número de rua válido.</string>
     <string name="emptyStreetNeighbourhood">Por favor, insira um bairro válido.</string>
-    <string name="minMaxPasswordText">No mínimo 4 e máximo 10 caracteres</string>
-    <string name="minMaxPasswordTextError">Por favor, insira uma senha com tamanho de 4 a 10 caracteres.</string>
+    <string name="minMaxPasswordText">No mínimo 4 e máximo 32 caracteres</string>
+    <string name="minMaxPasswordTextError">Por favor, insira uma senha com tamanho de 4 a 32 caracteres.</string>
     <string name="emptyPassword">Por favor, insira uma senha.</string>
     <string name="wrongPasswordConfirm">Por favor, verifique se as senhas são idênticas.</string>
     <string name="emptyPasswordConfirm">Por favor, insira a senha novamente.</string>
@@ -125,4 +125,5 @@
     <string name="savePlace">SALVAR LOJA</string>
     <string name="editShop">Editar Loja</string>
     <string name="title_activity_maps">Map</string>
+    <string name="raioBusca">RAIO DE BUSCA (m)</string>
 </resources>

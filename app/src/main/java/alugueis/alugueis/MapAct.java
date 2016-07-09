@@ -24,6 +24,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,6 +58,8 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
     private Place place;
     private List<Marker> markers;
     private HashMap<Marker, alugueis.alugueis.model.Place> placeMap;
+    private DiscreteSeekBar rangeBar;
+    int searchRange = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +89,15 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
         productText = (EditText) findViewById(R.id.productText);
         placeText = (EditText) findViewById(R.id.placeText);
         markers = new ArrayList<>();
+
+        rangeBar = (DiscreteSeekBar) findViewById(R.id.rangeBar);
+        rangeBar.setNumericTransformer(new DiscreteSeekBar.NumericTransformer() {
+            @Override
+            public int transform(int value) {
+                searchRange = value;
+                return value;
+            }
+        });
     }
 
     private void setListeners() {
@@ -167,7 +179,7 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
                         new Pair<String, Object>("description", productText.getText().toString()),
                         new Pair<String, Object>("latitude", myMarker.getPosition().latitude),
                         new Pair<String, Object>("longitude", myMarker.getPosition().longitude),
-                        new Pair<String, Object>("distance", 5)) //5km de raio de distância - para alterar o raio, altere esse valor.
+                        new Pair<String, Object>("distance", searchRange/1000))
                         .execute();
             }
         }
@@ -179,11 +191,13 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
         placeMap = new HashMap<>();
         Marker marker;
         LatLng latLng;
-        for (alugueis.alugueis.model.Place place : places) {
-            latLng = new LatLng(place.getAddress().getLatitude(), place.getAddress().getLongitude());
-            marker = MapsUtil.addPlace(this, map, latLng, place.getName(), place.getCpfCnpj());
-            markers.add(marker);
-            placeMap.put(marker, place);
+        if(places != null) {
+            for (alugueis.alugueis.model.Place place : places) {
+                latLng = new LatLng(place.getAddress().getLatitude(), place.getAddress().getLongitude());
+                marker = MapsUtil.addPlace(this, map, latLng, place.getName(), place.getCpfCnpj());
+                markers.add(marker);
+                placeMap.put(marker, place);
+            }
         }
     }
 
