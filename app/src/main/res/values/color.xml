@@ -13,6 +13,9 @@
     <color name="colorPrimaryText">#212121</color>
     <color name="white">#FFFFFF</color>
     <color name="background">#f7f7f7</color>
-    <color name="under_white">#fafafa</color>
+    <color name="under_white">#dfdfdf</color>
     <color name="backgroundSecondary">#d1d1d1</color>
+    <color name="transparent">#00d1d1d1</color>
+    <color name="default_color">#ffffff</color>
+    <color name="pressed_color">#dedede</color>
 </resources>

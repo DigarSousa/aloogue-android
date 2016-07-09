@@ -11,9 +11,9 @@ public interface ProductRest {
     @POST("product")
     Call<Product> save(@Body Product product);
 
-    @GET("product")
-    Call<List<Product>> get();
+    @GET("product/place/{placeId}")
+    Call<List<Product>> get(@Path("placeId") Long placeId);
 
     @DELETE("product/{id}")
-    Call<ResponseBody> delete(@Path("id") Integer productId);
+    Call<ResponseBody> delete(@Path("id") Long productId);
 }

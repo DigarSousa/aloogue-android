@@ -1,9 +1,9 @@
 package alugueis.alugueis;
 
 import alugueis.alugueis.abstractiontools.KeyTools;
+import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.services.product.ProductRest;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
@@ -32,6 +31,7 @@ import static alugueis.alugueis.abstractiontools.ButterKnifeViewControls.ENABLED
 public class ProductFormActivity extends AppCompatActivity {
     private Product product;
     private Integer position;
+    private Place place;
 
     @BindView(R.id.edit_toolbar)
     Toolbar toolbar;
@@ -86,13 +86,14 @@ public class ProductFormActivity extends AppCompatActivity {
     }
 
     private void startActivityState() {
-        if (getIntent().getExtras() != null) {
-            product = (Product) getIntent().getExtras().getSerializable("product");
+        if (getIntent().getExtras() != null && getIntent().getSerializableExtra("product") != null) {
+            product = (Product) getIntent().getSerializableExtra("product");
             position = getIntent().getExtras().getInt("position");
             productToView();
             isEditMode = Boolean.FALSE;
         } else {
             position = 0;
+            place = (Place) getIntent().getSerializableExtra("place");
             isEditMode = Boolean.TRUE;
         }
     }
@@ -136,8 +137,8 @@ public class ProductFormActivity extends AppCompatActivity {
                 break;
             case R.id.done_action:
                 KeyTools.visibleInputMethod(this, getCurrentFocus(), false);
-                //  saveProduct();
                 viewToObjcet();
+                saveProduct();
                 setEditMode(false);
                 break;
             case android.R.id.home:
@@ -176,6 +177,7 @@ public class ProductFormActivity extends AppCompatActivity {
     private void viewToObjcet() {
         if (product == null) {
             product = new Product();
+            product.setPlace(place);
         }
         product.setCode(code.getText().toString());
         product.setName(name.getText().toString());

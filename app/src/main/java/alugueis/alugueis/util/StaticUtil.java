@@ -1,6 +1,7 @@
 package alugueis.alugueis.util;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.widget.Spinner;
 
 

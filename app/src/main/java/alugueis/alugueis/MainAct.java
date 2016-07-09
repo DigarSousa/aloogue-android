@@ -6,7 +6,11 @@ import alugueis.alugueis.util.MapsUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
+
 import service.ConstantsService;
 import service.httputil.OnFinishTask;
 import service.httputil.Service;
@@ -158,6 +162,13 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
                     public void onFinishTask(Object result) {
                         try {
                             Place place = (Place) result;
+
+                            //todo:trocar pra retrofit
+                            SharedPreferences sharedPref = MainAct.this.getPreferences(Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putLong(getString(R.string.placeId), place.getId());
+                            editor.apply();
+
                             StaticUtil.setOject(MainAct.this, StaticUtil.PLACE, place);
                             StaticUtil.setOject(MainAct.this, StaticUtil.LOGGED_USER, loggedUser);
                             Intent intent = new Intent(MainAct.this, MapAct.class);

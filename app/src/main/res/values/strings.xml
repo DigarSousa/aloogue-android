@@ -132,4 +132,6 @@
     <string name="productsTitle">Produtos</string>
     <string name="saveProduct">Salvando produto</string>
     <string name="saveProductError">Erro ao salvar produto</string>
+    <string name="loadProductError">Erro ao carregar produtos,..</string>
+    <string name="placeId">placeId</string>
 </resources>
