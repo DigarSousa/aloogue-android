@@ -2,14 +2,12 @@ package alugueis.alugueis.adapter;
 
 import alugueis.alugueis.R;
 import alugueis.alugueis.model.Product;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -25,6 +23,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         Product product = getItem(position);
+
         Holder holder;
         if (convertView == null) {
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
@@ -40,6 +39,10 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         holder.productDescription.setText(product.getDescription());
         holder.productPrice.setText(product.getPrice().toString());
         holder.productPeriod.setText(product.getRentType());
+
+        if (!parent.isSelected()) {
+            convertView.setBackground(null);
+        }
 
         return convertView;
     }

@@ -33,7 +33,7 @@ public class ProductFormActivity extends AppCompatActivity {
     private Integer position;
     private Place place;
 
-    @BindView(R.id.edit_toolbar)
+    @BindView(R.id.reduced_toolbar)
     Toolbar toolbar;
     @BindView(R.id.code_text)
     EditText code;

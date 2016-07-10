@@ -5,17 +5,18 @@ import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.services.product.ProductRest;
 import alugueis.alugueis.util.StaticUtil;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -36,6 +37,9 @@ public class ProductListActivity extends AppCompatActivity {
     private ArrayAdapter<Product> productAdapter;
     private Place place;
 
+    @BindView(R.id.reduced_toolbar)
+    Toolbar toolbar;
+
     @BindView(android.R.id.list)
     ListView listView;
 
@@ -47,13 +51,21 @@ public class ProductListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_list_activity);
         ButterKnife.bind(this);
-        products = new ArrayList<>();
-        productAdapter = new ProductAdapter(this, products);
-        listView.setAdapter(productAdapter);
+
+        setSupportActionBar(toolbar);
+
+        initListView();
         initComponents();
         initPlaceTest();
         initPlace();
         loadProducts();
+    }
+
+    private void initListView() {
+        products = new ArrayList<>();
+        productAdapter = new ProductAdapter(this, products);
+        listView.setAdapter(productAdapter);
+
     }
 
     private void initPlace() {
@@ -97,20 +109,26 @@ public class ProductListActivity extends AppCompatActivity {
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("position", i);
-                bundle.putSerializable("product", productAdapter.getItem(i));
-                Intent intent = new Intent(ProductListActivity.this, ProductFormActivity.class);
-                intent.putExtras(bundle);
-                startActivityForResult(intent, UPDATE_ITEM);
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                if (listView.isSelected()) {
+                    setRowSelected(view, position);
+                } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("position", position);
+                    bundle.putSerializable("product", productAdapter.getItem(position));
+                    Intent intent = new Intent(ProductListActivity.this, ProductFormActivity.class);
+                    intent.putExtras(bundle);
+                    startActivityForResult(intent, UPDATE_ITEM);
+                }
             }
         });
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                view.setSelected(true);
+                parent.setSelected(true);
+                setRowSelected(view, position);
+                addProductButton.setVisibility(View.INVISIBLE);
                 return true;
             }
         });
@@ -125,6 +143,11 @@ public class ProductListActivity extends AppCompatActivity {
                 startActivityForResult(intent, NEW_ITEM);
             }
         });
+    }
+
+    private void setRowSelected(View view, Integer position) {
+        listView.setItemChecked(position, true);
+        view.setBackgroundColor(getResources().getColor(R.color.pressed_color));
     }
 
     @Override
@@ -152,5 +175,30 @@ public class ProductListActivity extends AppCompatActivity {
                 productAdapter.notifyDataSetChanged();
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.produtct_toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delete_action:
+                deleteSelections();
+                break;
+            default:
+                return true;
+        }
+        return true;
+    }
+
+    private void deleteSelections() {
+        listView.setSelected(false);
+        listView.getCheckedItemPositions().clear();
+        productAdapter.notifyDataSetChanged();
+        addProductButton.setVisibility(View.VISIBLE);
     }
 }

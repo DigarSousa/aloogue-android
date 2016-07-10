@@ -5,7 +5,7 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
-    <include layout="@layout/edit_toolbar" />
+    <include layout="@layout/reduced_toolbar" />
 
     <include layout="@layout/product_form" />
 </LinearLayout>

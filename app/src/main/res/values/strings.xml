@@ -134,4 +134,6 @@
     <string name="saveProductError">Erro ao salvar produto</string>
     <string name="loadProductError">Erro ao carregar produtos,..</string>
     <string name="placeId">placeId</string>
+    <string name="delete_action">Excluir</string>
+    <string name="cancel_action">Cancelar</string>
 </resources>
