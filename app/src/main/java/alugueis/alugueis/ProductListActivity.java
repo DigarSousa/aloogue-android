@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +35,7 @@ public class ProductListActivity extends AppCompatActivity {
     private static final Integer UPDATE_ITEM = 2;
 
     private List<Product> products;
+    private SparseBooleanArray selectedItemPositions;
     private ArrayAdapter<Product> productAdapter;
     private Place place;
 
@@ -111,7 +113,11 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 if (listView.isSelected()) {
-                    setRowSelected(view, position);
+                    if (selectedItemPositions.get(position)) { //if position is selected
+                        cancelRowSelection(view, position);
+                    } else {
+                        setRowSelected(view, position);
+                    }
                 } else {
                     Bundle bundle = new Bundle();
                     bundle.putInt("position", position);
@@ -128,7 +134,6 @@ public class ProductListActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 parent.setSelected(true);
                 setRowSelected(view, position);
-                addProductButton.setVisibility(View.INVISIBLE);
                 return true;
             }
         });
@@ -145,10 +150,6 @@ public class ProductListActivity extends AppCompatActivity {
         });
     }
 
-    private void setRowSelected(View view, Integer position) {
-        listView.setItemChecked(position, true);
-        view.setBackgroundColor(getResources().getColor(R.color.pressed_color));
-    }
 
     @Override
     public void onBackPressed() {
@@ -195,10 +196,32 @@ public class ProductListActivity extends AppCompatActivity {
         return true;
     }
 
+    private void setRowSelected(View view, Integer position) {
+        view.setBackgroundColor(getResources().getColor(R.color.pressed_color));
+        addProductButton.setVisibility(View.INVISIBLE);
+        listView.setItemChecked(position, true);
+        selectedItemPositions = listView.getCheckedItemPositions().clone();
+    }
+
+
+    private void cancelRowSelection(View view, Integer position) {
+        listView.getCheckedItemPositions().delete(position);
+
+        if (listView.getCheckedItemPositions().size() == 0) {
+            listView.setSelected(false);
+            addProductButton.setVisibility(View.VISIBLE);
+        }
+        view.setBackground(null);
+        selectedItemPositions = listView.getCheckedItemPositions().clone();
+    }
+
     private void deleteSelections() {
         listView.setSelected(false);
         listView.getCheckedItemPositions().clear();
+        selectedItemPositions.clear();
+
         productAdapter.notifyDataSetChanged();
         addProductButton.setVisibility(View.VISIBLE);
     }
+
 }
