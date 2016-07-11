@@ -5,6 +5,7 @@ import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.services.product.ProductRest;
 import alugueis.alugueis.util.StaticUtil;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -35,7 +37,7 @@ public class ProductListActivity extends AppCompatActivity {
     private static final Integer UPDATE_ITEM = 2;
 
     private List<Product> products;
-    private SparseBooleanArray selectedItemPositions;
+    private SparseBooleanArray checkedItemPositions;
     private ArrayAdapter<Product> productAdapter;
     private Place place;
 
@@ -67,6 +69,7 @@ public class ProductListActivity extends AppCompatActivity {
         products = new ArrayList<>();
         productAdapter = new ProductAdapter(this, products);
         listView.setAdapter(productAdapter);
+        checkedItemPositions = listView.getCheckedItemPositions();
 
     }
 
@@ -104,7 +107,6 @@ public class ProductListActivity extends AppCompatActivity {
                 t.printStackTrace();
             }
         });
-
     }
 
     private void initComponents() {
@@ -113,7 +115,7 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 if (listView.isSelected()) {
-                    if (selectedItemPositions.get(position)) { //if position is selected
+                    if (checkedItemPositions.get(position)) { //if position is selected
                         cancelRowSelection(view, position);
                     } else {
                         setRowSelected(view, position);
@@ -199,27 +201,23 @@ public class ProductListActivity extends AppCompatActivity {
     private void setRowSelected(View view, Integer position) {
         view.setBackgroundColor(getResources().getColor(R.color.pressed_color));
         addProductButton.setVisibility(View.INVISIBLE);
-        listView.setItemChecked(position, true);
-        selectedItemPositions = listView.getCheckedItemPositions().clone();
+        checkedItemPositions.put(position, true);
     }
 
 
     private void cancelRowSelection(View view, Integer position) {
-        listView.getCheckedItemPositions().delete(position);
+        checkedItemPositions.delete(position);
+        view.setBackground(null);
 
-        if (listView.getCheckedItemPositions().size() == 0) {
+        if (checkedItemPositions.size() == 0) {
             listView.setSelected(false);
             addProductButton.setVisibility(View.VISIBLE);
         }
-        view.setBackground(null);
-        selectedItemPositions = listView.getCheckedItemPositions().clone();
     }
 
     private void deleteSelections() {
         listView.setSelected(false);
-        listView.getCheckedItemPositions().clear();
-        selectedItemPositions.clear();
-
+        checkedItemPositions.clear();
         productAdapter.notifyDataSetChanged();
         addProductButton.setVisibility(View.VISIBLE);
     }
