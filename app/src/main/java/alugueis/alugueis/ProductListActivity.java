@@ -38,6 +38,7 @@ public class ProductListActivity extends AppCompatActivity {
     private List<Integer> checkedPositions;
     private ArrayAdapter<Product> productAdapter;
     private Place place;
+    private Bundle params;
 
     @BindView(R.id.reduced_toolbar)
     Toolbar toolbar;
@@ -48,7 +49,6 @@ public class ProductListActivity extends AppCompatActivity {
     @BindView(R.id.addProductsButton)
     FloatingActionButton addProductButton;
     private Menu menu;
-    private boolean isSelectionMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,22 +58,18 @@ public class ProductListActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        initListView();
+        initValues();
         initComponents();
-        initPlaceTest();
-        initPlace();
         loadProducts();
     }
 
-    private void initListView() {
+    private void initValues() {
+        params = new Bundle();
         products = new ArrayList<>();
         checkedPositions = new ArrayList<>();
         productAdapter = new ProductAdapter(this, products);
         listView.setAdapter(productAdapter);
 
-    }
-
-    private void initPlace() {
         try {
             place = (Place) StaticUtil.readObject(ProductListActivity.this, StaticUtil.PLACE);
         } catch (IOException | ClassNotFoundException e) {
@@ -81,15 +77,6 @@ public class ProductListActivity extends AppCompatActivity {
         }
     }
 
-    private void initPlaceTest() {
-        Place place = new Place();
-        place.setId(20l);
-        try {
-            StaticUtil.setOject(this, StaticUtil.PLACE, place);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     private void initComponents() {
 
@@ -103,11 +90,10 @@ public class ProductListActivity extends AppCompatActivity {
                         setRowSelected(view, position);
                     }
                 } else {
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("position", position);
-                    bundle.putSerializable("product", productAdapter.getItem(position));
+                    params.putInt("position", position);
+                    params.putSerializable("product", productAdapter.getItem(position));
                     Intent intent = new Intent(ProductListActivity.this, ProductFormActivity.class);
-                    intent.putExtras(bundle);
+                    intent.putExtras(params);
                     startActivityForResult(intent, UPDATE_ITEM);
                 }
             }
@@ -126,9 +112,8 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProductListActivity.this, ProductFormActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("place", place);
-                intent.putExtras(bundle);
+                params.putSerializable("place", place);
+                intent.putExtras(params);
                 startActivityForResult(intent, NEW_ITEM);
             }
         });
@@ -278,7 +263,7 @@ public class ProductListActivity extends AppCompatActivity {
     private void removeDeletedProducts(List<Product> deletedProducts) {
         for (Product product : deletedProducts) {
             products.remove(product);
-            productAdapter.notifyDataSetChanged();
         }
+        productAdapter.notifyDataSetChanged();
     }
 }
