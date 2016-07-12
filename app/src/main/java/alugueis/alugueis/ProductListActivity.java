@@ -171,7 +171,7 @@ public class ProductListActivity extends AppCompatActivity {
 
     private void cancelRowSelection(View view, Integer position) {
         checkedPositions.remove(position);
-        if (listView.getCheckedItemPositions().size() == 0) {
+        if (checkedPositions.size() == 0) {
             listView.setSelected(false);
             setSelectionMode(false);
         }

@@ -6,7 +6,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class StdService {
 
-    public static final String API_BASE_URL = "http://192.168.1.106:8080/";
+    public static final String API_BASE_URL = "http://192.168.57.1:8080/";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
