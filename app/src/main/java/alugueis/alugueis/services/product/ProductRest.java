@@ -14,6 +14,6 @@ public interface ProductRest {
     @GET("product/place/{placeId}")
     Call<List<Product>> get(@Path("placeId") Long placeId);
 
-    @DELETE("product/{id}")
-    Call<ResponseBody> delete(@Path("id") Long productId);
+    @HTTP(method = "DELETE", path = "product", hasBody = true)
+    Call<ResponseBody> delete(@Body List<Product> products);
 }

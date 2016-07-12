@@ -5,13 +5,11 @@ import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.services.product.ProductRest;
 import alugueis.alugueis.util.StaticUtil;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,9 +17,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,7 +35,7 @@ public class ProductListActivity extends AppCompatActivity {
     private static final Integer UPDATE_ITEM = 2;
 
     private List<Product> products;
-    private SparseBooleanArray checkedItemPositions;
+    private List<Integer> checkedPositions;
     private ArrayAdapter<Product> productAdapter;
     private Place place;
 
@@ -49,6 +47,8 @@ public class ProductListActivity extends AppCompatActivity {
 
     @BindView(R.id.addProductsButton)
     FloatingActionButton addProductButton;
+    private Menu menu;
+    private boolean isSelectionMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +67,9 @@ public class ProductListActivity extends AppCompatActivity {
 
     private void initListView() {
         products = new ArrayList<>();
+        checkedPositions = new ArrayList<>();
         productAdapter = new ProductAdapter(this, products);
         listView.setAdapter(productAdapter);
-        checkedItemPositions = listView.getCheckedItemPositions();
 
     }
 
@@ -91,31 +91,13 @@ public class ProductListActivity extends AppCompatActivity {
         }
     }
 
-    private void loadProducts() {
-        ProductRest productRest = StdService.createService(ProductRest.class);
-        Call<List<Product>> call = productRest.get(place.getId());
-        call.enqueue(new Callback<List<Product>>() {
-            @Override
-            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-                products.addAll(response.body());
-                productAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(Call<List<Product>> call, Throwable t) {
-                Toast.makeText(ProductListActivity.this, getString(R.string.loadProductError), Toast.LENGTH_LONG).show();
-                t.printStackTrace();
-            }
-        });
-    }
-
     private void initComponents() {
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 if (listView.isSelected()) {
-                    if (checkedItemPositions.get(position)) { //if position is selected
+                    if (checkedPositions.contains(position)) { //if position is selected
                         cancelRowSelection(view, position);
                     } else {
                         setRowSelected(view, position);
@@ -152,12 +134,68 @@ public class ProductListActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        this.menu = menu;
+        setSelectionMode(false);
+        return true;
+    }
 
     @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(ProductListActivity.this, MapAct.class);
-        finish();
-        startActivity(intent);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.produtct_toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delete_action:
+                deleteProducts();
+                break;
+            case R.id.cancel_option:
+                onBackPressed();
+                break;
+            default:
+                return true;
+        }
+        return true;
+    }
+
+    private void setRowSelected(View view, Integer position) {
+        view.setBackgroundColor(getResources().getColor(R.color.pressed_color));
+        setSelectionMode(true);
+        checkedPositions.add(position);
+    }
+
+
+    private void cancelRowSelection(View view, Integer position) {
+        checkedPositions.remove(position);
+        if (listView.getCheckedItemPositions().size() == 0) {
+            listView.setSelected(false);
+            setSelectionMode(false);
+        }
+        view.setBackground(null);
+
+    }
+
+    private void deleteSelections() {
+        listView.setSelected(false);
+        listView.getCheckedItemPositions().clear();
+        checkedPositions.clear();
+
+        productAdapter.notifyDataSetChanged();
+        setSelectionMode(false);
+    }
+
+    private void setSelectionMode(Boolean isInSelectionMode) {
+        if (isInSelectionMode) {
+            addProductButton.setVisibility(View.INVISIBLE);
+        } else {
+            addProductButton.setVisibility(View.VISIBLE);
+        }
+        menu.findItem(R.id.delete_action).setVisible(isInSelectionMode);
+        menu.findItem(R.id.cancel_option).setVisible(isInSelectionMode);
     }
 
     @Override
@@ -181,45 +219,66 @@ public class ProductListActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.produtct_toolbar_menu, menu);
-        return true;
+    public void onBackPressed() {
+        if (checkedPositions.size() > -1) {
+            deleteSelections();
+            return;
+        }
+
+        Intent intent = new Intent(ProductListActivity.this, MapAct.class);
+        finish();
+        startActivity(intent);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.delete_action:
+    private void loadProducts() {
+        ProductRest productRest = StdService.createService(ProductRest.class);
+        Call<List<Product>> call = productRest.get(place.getId());
+        call.enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                products.addAll(response.body());
+                productAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                Toast.makeText(ProductListActivity.this, getString(R.string.loadProductError), Toast.LENGTH_LONG).show();
+                t.printStackTrace();
+            }
+        });
+    }
+
+    private void deleteProducts() {
+        ProductRest productRest = StdService.createService(ProductRest.class);
+        final List<Product> productsToDelete = new ArrayList<>();
+        getProductsToDelete(productsToDelete);
+
+        Call<ResponseBody> call = productRest.delete(productsToDelete);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                removeDeletedProducts(productsToDelete);
                 deleteSelections();
-                break;
-            default:
-                return true;
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
+    private List<Product> getProductsToDelete(List<Product> productsToDelete) {
+        for (Integer i : checkedPositions) {
+            productsToDelete.add(products.get(i));
         }
-        return true;
+        return productsToDelete;
     }
 
-    private void setRowSelected(View view, Integer position) {
-        view.setBackgroundColor(getResources().getColor(R.color.pressed_color));
-        addProductButton.setVisibility(View.INVISIBLE);
-        checkedItemPositions.put(position, true);
-    }
-
-
-    private void cancelRowSelection(View view, Integer position) {
-        checkedItemPositions.delete(position);
-        view.setBackground(null);
-
-        if (checkedItemPositions.size() == 0) {
-            listView.setSelected(false);
-            addProductButton.setVisibility(View.VISIBLE);
+    private void removeDeletedProducts(List<Product> deletedProducts) {
+        for (Product product : deletedProducts) {
+            products.remove(product);
+            productAdapter.notifyDataSetChanged();
         }
     }
-
-    private void deleteSelections() {
-        listView.setSelected(false);
-        checkedItemPositions.clear();
-        productAdapter.notifyDataSetChanged();
-        addProductButton.setVisibility(View.VISIBLE);
-    }
-
 }
