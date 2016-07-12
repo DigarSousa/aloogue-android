@@ -57,10 +57,21 @@ public class ProductListActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-
+        initplacetest();
         initValues();
         initComponents();
         loadProducts();
+    }
+
+    private void initplacetest() {
+        Place place = new Place();
+        place.setId(20l);
+        place.setName("l");
+        try {
+            StaticUtil.setOject(this, StaticUtil.PLACE, place);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void initValues() {
@@ -205,7 +216,7 @@ public class ProductListActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (checkedPositions.size() > -1) {
+        if (checkedPositions.size() > 0) {
             deleteSelections();
             return;
         }
