@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <declare-styleable name="PatternEditText">
+            <attr name="pattern" format="string" />
+            <attr name="specialChar" format="integer"/>
+            <attr name="showHint" format="boolean"/>
+        </declare-styleable>
+</resources>

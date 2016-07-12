@@ -1,11 +1,10 @@
 package alugueis.alugueis;
 
-import alugueis.alugueis.adapter.ProductListManageAdapter;
+import alugueis.alugueis.adapter.ProductAdapter;
 import alugueis.alugueis.adapter.ViewPageAdapter;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.model.UserApp;
-import alugueis.alugueis.util.CompressionUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.view.RoundedImageView;
 import service.httputil.OnFinishTask;
@@ -14,7 +13,6 @@ import service.httputil.Service;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -27,9 +25,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.DataFormatException;
 
 public class PlaceProfileAct extends DashboardNavAct implements OnFinishTask{
 
@@ -46,7 +42,7 @@ public class PlaceProfileAct extends DashboardNavAct implements OnFinishTask{
     private TextView workText;
     private Place place;
     private List<Product> products;
-    private ProductListManageAdapter productAdapter;
+    private ProductAdapter productAdapter;
     private ProgressDialog progressDialog;
 
     @Override
@@ -149,13 +145,6 @@ public class PlaceProfileAct extends DashboardNavAct implements OnFinishTask{
 
         try {
             StaticUtil.setOject(this, StaticUtil.PRODUCT_LIST, products);
-            List removedProducts = productAdapter != null ? productAdapter.getRemovedProducts() : new ArrayList();
-            new Service(new OnFinishTask() {
-                @Override
-                public void onFinishTask(Object result) {
-                    progressDialog.dismiss();
-                }
-            }, progressDialog).delete(removedProducts, Product.class).execute();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -165,6 +154,5 @@ public class PlaceProfileAct extends DashboardNavAct implements OnFinishTask{
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
     }
 }

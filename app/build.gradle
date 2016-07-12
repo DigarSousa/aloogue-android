@@ -1,34 +1,39 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 23
     buildToolsVersion '23.0.3'
     defaultConfig {
         applicationId "alugueis.alugueis"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
         versionName "0.9"
 
-        //Render for blur images
+        //Render for blur imajages
         renderscriptTargetApi 18
         renderscriptSupportModeEnabled true
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 
+repositories {
+    mavenCentral()
+}
 
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
     compile 'com.android.support:support-v4:23.2.1'
@@ -36,12 +41,24 @@ dependencies {
     compile 'com.google.android.gms:play-services-base:8.4.0'
     compile 'com.google.android.gms:play-services-location:8.4.0'
     compile 'com.google.maps.android:android-maps-utils:0.3.+'
-    compile 'org.projectlombok:lombok:1.16.6'
-    compile 'javax.annotation:javax.annotation-api:1.2-b01'
     compile 'com.google.android.gms:play-services-drive:8.4.0'
     compile 'com.google.android.gms:play-services-identity:8.4.0'
     compile 'com.google.android.gms:play-services-gcm:8.4.0'
-    compile("com.fasterxml.jackson.core:jackson-core:2.4.1")
-    compile("com.fasterxml.jackson.core:jackson-databind:2.4.1.1")
-    compile 'com.google.code.gson:gson:2.5'
+    compile 'javax.annotation:javax.annotation-api:1.2-b01'
+
+    compile 'org.projectlombok:lombok:1.16.6'
+
+    //JACKSON JSON
+    compile 'com.fasterxml.jackson.core:jackson-core:2.4.1'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.3'
+    compile 'com.squareup.retrofit2:converter-jackson:2.0.0'
+
+    //RETROFIT
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.okhttp:okhttp:2.7.2'
+
+    //BUTTER KNIFE
+    compile 'com.jakewharton:butterknife:8.0.1'
+    apt 'com.jakewharton:butterknife-compiler:8.0.1'
+
 }

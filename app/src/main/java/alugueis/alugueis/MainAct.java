@@ -6,6 +6,11 @@ import alugueis.alugueis.util.MapsUtil;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import alugueis.alugueis.view.RoundedImageView;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
+
 import service.ConstantsService;
 import service.httputil.OnFinishTask;
 import service.httputil.Service;
@@ -14,7 +19,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Pair;
 import android.view.View;
@@ -26,7 +30,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-public class MainAct extends ActionBarActivity implements View.OnClickListener, OnFinishTask {
+public class MainAct extends AppCompatActivity implements View.OnClickListener, OnFinishTask {
 
     private Toolbar mainToolbar;
     private Toolbar bottomToolbar;
@@ -118,7 +122,7 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
         if (v.equals(enterButton)) {
             enterButtonAction();
         } else if (v.equals(signinButton)) {
-            Intent it = new Intent(getApplicationContext(), SignupAct.class);
+            Intent it = new Intent(getApplicationContext(), SignUpActivity.class);
             startActivity(it);
 
         } else if (v.equals(facebookImageButton)) {
@@ -158,6 +162,13 @@ public class MainAct extends ActionBarActivity implements View.OnClickListener, 
                     public void onFinishTask(Object result) {
                         try {
                             Place place = (Place) result;
+
+                            //todo:trocar pra retrofit
+                            SharedPreferences sharedPref = MainAct.this.getPreferences(Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putLong(getString(R.string.placeId), place.getId());
+                            editor.apply();
+
                             StaticUtil.setOject(MainAct.this, StaticUtil.PLACE, place);
                             StaticUtil.setOject(MainAct.this, StaticUtil.LOGGED_USER, loggedUser);
                             Intent intent = new Intent(MainAct.this, MapAct.class);

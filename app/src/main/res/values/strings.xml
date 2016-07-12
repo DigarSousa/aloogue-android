@@ -125,4 +125,15 @@
     <string name="savePlace">SALVAR LOJA</string>
     <string name="editShop">Editar Loja</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_product_form">ProductFormActivity</string>
+    <string name="edit">Editar</string>
+    <string name="save">Salvar</string>
+    <string name="productFormTitle">Produto</string>
+    <string name="productsTitle">Produtos</string>
+    <string name="saveProduct">Salvando produto</string>
+    <string name="saveProductError">Erro ao salvar produto</string>
+    <string name="loadProductError">Erro ao carregar produtos,..</string>
+    <string name="placeId">placeId</string>
+    <string name="delete_action">Excluir</string>
+    <string name="cancel_action">Cancelar</string>
 </resources>

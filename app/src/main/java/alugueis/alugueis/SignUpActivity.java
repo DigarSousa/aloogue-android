@@ -17,7 +17,7 @@ import android.widget.*;
 
 import java.io.IOException;
 
-public class SignupAct extends ActionBarActivity implements OnFinishTask {
+public class SignUpActivity extends ActionBarActivity implements OnFinishTask {
 
     private Toolbar mainToolbar;
     private UserApp loggedUserApp;
