@@ -57,22 +57,11 @@ public class ProductListActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        initplacetest();
         initValues();
         initComponents();
         loadProducts();
     }
 
-    private void initplacetest() {
-        Place place = new Place();
-        place.setId(20l);
-        place.setName("l");
-        try {
-            StaticUtil.setOject(this, StaticUtil.PLACE, place);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     private void initValues() {
         params = new Bundle();
@@ -123,6 +112,7 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProductListActivity.this, ProductFormActivity.class);
+                params.remove("product");
                 params.putSerializable("place", place);
                 intent.putExtras(params);
                 startActivityForResult(intent, NEW_ITEM);

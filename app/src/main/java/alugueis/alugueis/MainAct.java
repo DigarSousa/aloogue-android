@@ -162,13 +162,6 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
                     public void onFinishTask(Object result) {
                         try {
                             Place place = (Place) result;
-
-                            //todo:trocar pra retrofit
-                            SharedPreferences sharedPref = MainAct.this.getPreferences(Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPref.edit();
-                            editor.putLong(getString(R.string.placeId), place.getId());
-                            editor.apply();
-
                             StaticUtil.setOject(MainAct.this, StaticUtil.PLACE, place);
                             StaticUtil.setOject(MainAct.this, StaticUtil.LOGGED_USER, loggedUser);
                             Intent intent = new Intent(MainAct.this, MapAct.class);
