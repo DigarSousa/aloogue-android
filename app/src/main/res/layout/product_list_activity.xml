@@ -5,24 +5,22 @@
                 android:layout_height="match_parent">
 
     <include
-            android:id="@+id/reduced_appbar"
-            layout="@layout/reduced_toolbar"/>
+        android:id="@+id/reduced_appbar"
+        layout="@layout/reduced_toolbar"/>
 
-    <ListView
-            android:layout_below="@+id/reduced_appbar"
-            android:id="@android:id/list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:choiceMode="multipleChoice"
-            android:dividerHeight="2dp"/>
+    <include
+        layout="@layout/product_list_view_content"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/reduced_appbar"/>
 
     <android.support.design.widget.FloatingActionButton
-            android:id="@+id/addProductsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_add_round"
-            android:tint="@color/under_white"/>
+        android:id="@+id/addProductsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add_round"
+        android:tint="@color/under_white"/>
 </RelativeLayout>

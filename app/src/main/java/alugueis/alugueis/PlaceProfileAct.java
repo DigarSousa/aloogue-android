@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
-public class PlaceProfileAct extends DashboardNavAct implements OnFinishTask{
+public class PlaceProfileAct extends DashboardNavAct {
 
     private UserApp loggedUserApp;
     private ImageView bannerImage;
@@ -66,9 +66,8 @@ public class PlaceProfileAct extends DashboardNavAct implements OnFinishTask{
         Intent in = getIntent();
         Bundle b = in.getExtras();
 
-        if(b!=null)
-        {
-            this.place =(Place) b.get("place");
+        if (b != null) {
+            this.place = (Place) b.get("place");
         }
     }
 
@@ -84,8 +83,8 @@ public class PlaceProfileAct extends DashboardNavAct implements OnFinishTask{
             @Override
             public void onClick(View view) {
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                if(PlaceProfileAct.this.place != null) {
-                    callIntent.setData(Uri.parse("tel:"+place.getPhone()));
+                if (PlaceProfileAct.this.place != null) {
+                    callIntent.setData(Uri.parse("tel:" + place.getPhone()));
                     startActivity(callIntent);
                 }
             }
@@ -105,20 +104,14 @@ public class PlaceProfileAct extends DashboardNavAct implements OnFinishTask{
         placePhoneText = (TextView) findViewById(R.id.placePhoneText);
         workText = (TextView) findViewById(R.id.workText);
 
+
         if (this.place != null) {
-            this.progressDialog = new ProgressDialog(PlaceProfileAct.this);
-            this.progressDialog.setMessage("Carregando produtos...");
-            new Service(this, progressDialog).find(Product.class, new Pair<String, Object>("id", place.getId())).execute();
-        }
-
-
-        if(this.place != null){
             placeNameText.setText(place.getName());
         }
-
+        setupViewPager();
     }
 
-    private void setupViewPager(ViewPager viewPager) {
+    private void setupViewPager() {
         ViewPageAdapter adapter = new ViewPageAdapter(getSupportFragmentManager());
 
         PlaceInfoFgm placeInfoFgm = new PlaceInfoFgm();
@@ -128,31 +121,13 @@ public class PlaceProfileAct extends DashboardNavAct implements OnFinishTask{
         placeInfoFgm.setArguments(args);
 
 
-
-        PlaceProductsFgm placeProductsFgm = new PlaceProductsFgm();
-        adapter.addFragment(placeProductsFgm, getResources().getString(R.string.productsTab));
+        ProductListFragment productListFragment = new ProductListFragment();
+        adapter.addFragment(productListFragment, getResources().getString(R.string.productsTab));
         args = new Bundle();
-        args.putSerializable("products", (Serializable) products);
-        placeProductsFgm.setArguments(args);
+        args.putSerializable("place", place);
+        productListFragment.setArguments(args);
 
         viewPager.setAdapter(adapter);
-    }
 
-    @Override
-    public void onFinishTask(Object result) {
-
-        this.products = (List<Product>) result;
-
-        try {
-            StaticUtil.setOject(this, StaticUtil.PRODUCT_LIST, products);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
     }
 }

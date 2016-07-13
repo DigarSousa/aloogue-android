@@ -3,7 +3,6 @@ package alugueis.alugueis;
 /**
  * Created by Pedreduardo on 05/02/2016.
  */
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,11 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.util.zip.DataFormatException;
-
 import alugueis.alugueis.model.Place;
-import alugueis.alugueis.util.CompressionUtil;
 
 public class PlaceInfoFgm extends Fragment{
 
@@ -37,7 +32,7 @@ public class PlaceInfoFgm extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.fragment_place_info, container, false);
+        view =  inflater.inflate(R.layout.place_info_framgment, container, false);
         initializeComponents();
 
         populatePlaceData();

@@ -55,7 +55,7 @@ public class ProductFormActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.product_content);
+        setContentView(R.layout.product_activity);
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
