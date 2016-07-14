@@ -55,7 +55,6 @@ public class ProductListFragment extends Fragment {
         Bundle bundle = this.getArguments();
         Place place = (Place) bundle.getSerializable("place");
         loadProducts(place);
-
     }
 
 

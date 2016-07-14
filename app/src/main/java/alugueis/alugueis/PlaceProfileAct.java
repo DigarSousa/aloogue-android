@@ -1,31 +1,19 @@
 package alugueis.alugueis;
 
-import alugueis.alugueis.adapter.ProductAdapter;
 import alugueis.alugueis.adapter.ViewPageAdapter;
 import alugueis.alugueis.model.Place;
-import alugueis.alugueis.model.Product;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.view.RoundedImageView;
-import service.httputil.OnFinishTask;
-import service.httputil.Service;
-
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.List;
 
 public class PlaceProfileAct extends DashboardNavAct {
 
@@ -33,7 +21,6 @@ public class PlaceProfileAct extends DashboardNavAct {
     private ImageView bannerImage;
     private RoundedImageView pictureImage;
     private Button callButton;
-    private TabLayout tabLayout;
     private Context context;
     private ViewPager viewPager;
     private TextView placeNameText;
@@ -41,9 +28,7 @@ public class PlaceProfileAct extends DashboardNavAct {
     private TextView placePhoneText;
     private TextView workText;
     private Place place;
-    private List<Product> products;
-    private ProductAdapter productAdapter;
-    private ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
