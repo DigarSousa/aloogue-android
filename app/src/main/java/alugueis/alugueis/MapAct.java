@@ -1,7 +1,6 @@
 package alugueis.alugueis;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
@@ -138,7 +137,7 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
                     return;
                 }
 
-                Intent intent = new Intent(MapAct.this, PlaceProfileAct.class);
+                Intent intent = new Intent(MapAct.this, PlaceDashboardActivity.class);
                 if (placeMap.get(marker) != null) {
                     intent.putExtra("place", placeMap.get(marker));
                 }
