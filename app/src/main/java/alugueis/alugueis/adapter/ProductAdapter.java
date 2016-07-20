@@ -15,31 +15,25 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
     private List<Product> productList;
     private List<Integer> selectedPositions;
+    Boolean selectable;
 
     public ProductAdapter(List<Product> productList) {
+        this(productList, false);
+    }
+
+    public ProductAdapter(List<Product> productList, Boolean selectable) {
         this.productList = productList;
+        this.selectable = selectable;
         selectedPositions = new ArrayList<>();
     }
 
     @Override
     public ProductHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.product_list_adapter, parent, false);
+        View view = layoutInflater.inflate(R.layout.product_list_item, parent, false);
 
-        ProductClickListener productClickListener = new ProductClickListener() {
-            @Override
-            public void onProductClick(View v, Integer position) {
-                productClickTrigger(v, position);
-            }
-
-            @Override
-            public void onProductSelect(View v, Integer position) {
-                productLongClickTrigger(v, position);
-            }
-        };
-        return new ProductHolder(view, productClickListener);
+        return getHolder(view);
     }
-
 
     @Override
     public void onBindViewHolder(ProductHolder holder, int position) {
@@ -54,6 +48,24 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
     @Override
     public int getItemCount() {
         return productList.size();
+    }
+
+    private ProductHolder getHolder(View view) {
+        if (selectable) {
+            ProductClickListener productClickListener = new ProductClickListener() {
+                @Override
+                public void onProductClick(View v, Integer position) {
+                    productClickTrigger(v, position);
+                }
+
+                @Override
+                public void onProductSelect(View v, Integer position) {
+                    productLongClickTrigger(v, position);
+                }
+            };
+            return new ProductHolder(view, productClickListener);
+        }
+        return new ProductHolder(view);
     }
 
 
@@ -76,5 +88,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
             selectedPositions.add(position);
         }
         view.setBackgroundColor(view.getResources().getColor(R.color.under_white));
+    }
+
+    List<Product> getSelectedItens() {
+        List<Product> selectedItens = new ArrayList<>();
+        for (Integer position : selectedPositions) {
+            selectedItens.add(productList.get(position));
+        }
+        return selectedItens;
+    }
+
+    void removeSelectedItens() {
+        for (Integer position : selectedPositions) {
+            productList.remove(position);
+        }
     }
 }

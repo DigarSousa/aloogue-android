@@ -11,13 +11,19 @@ import butterknife.ButterKnife;
 class ProductHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
     private ProductClickListener productClickListener;
 
+    ProductHolder(View view) {
+        this(view, null);
+    }
+
     ProductHolder(View itemView, ProductClickListener productClickListener) {
         super(itemView);
         ButterKnife.bind(this, itemView);
 
-        this.productClickListener = productClickListener;
-        itemView.setOnClickListener(this);
-        itemView.setOnLongClickListener(this);
+        if (productClickListener != null) {
+            this.productClickListener = productClickListener;
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+        }
     }
 
     @BindView(R.id.productName)
