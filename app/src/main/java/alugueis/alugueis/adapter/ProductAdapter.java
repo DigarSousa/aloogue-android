@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,6 +18,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
 
     public ProductAdapter(List<Product> productList) {
         this.productList = productList;
+        selectedPositions = new ArrayList<>();
     }
 
     @Override
@@ -56,10 +58,23 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
 
 
     private void productClickTrigger(View view, Integer position) {
-
+        if (!selectedPositions.isEmpty()) {
+            if (selectedPositions.contains(position)) {
+                selectedPositions.remove(position);
+                view.setBackgroundColor(view.getResources().getColor(R.color.white));
+            } else {
+                productLongClickTrigger(view, position);
+            }
+        } else {
+            //todo: open show product
+        }
     }
 
 
     private void productLongClickTrigger(View view, Integer position) {
+        if (!selectedPositions.contains(position)) {
+            selectedPositions.add(position);
+        }
+        view.setBackgroundColor(view.getResources().getColor(R.color.under_white));
     }
 }
