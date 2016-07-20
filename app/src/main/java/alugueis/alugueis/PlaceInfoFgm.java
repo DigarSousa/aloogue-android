@@ -1,8 +1,5 @@
 package alugueis.alugueis;
 
-/**
- * Created by Pedreduardo on 05/02/2016.
- */
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,54 +8,40 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import alugueis.alugueis.model.Place;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
-public class PlaceInfoFgm extends Fragment{
-
+public class PlaceInfoFgm extends Fragment {
     private View view;
-    private TextView placeAddressText;
-    private TextView workText;
-    private TextView placePhoneText;
+    private Unbinder unbinder;
 
-    public PlaceInfoFgm() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    @BindView(R.id.placeAddressText)
+    TextView placeAddressText;
+    @BindView(R.id.workText)
+    TextView workText;
+    @BindView(R.id.placePhoneText)
+    TextView placePhoneText;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.place_info_framgment, container, false);
-        initializeComponents();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        view = inflater.inflate(R.layout.place_info_framgment, container, false);
+        unbinder = ButterKnife.bind(this, container);
         populatePlaceData();
 
         return view;
     }
 
 
-    private void populatePlaceData(){
-
-        Bundle bundle = this.getArguments();
-        Place place = (Place) bundle.get("place");
-
-        if(place != null) {
-            placeAddressText.setText(place.getAddress().toString());
-            placePhoneText.setText(place.getPhone());
-            workText.setText(place.getBusinessInitialHour() + "h - " + place.getBusinessFinalHour() + "h");
-        }
+    private void populatePlaceData() {
+        Place place = (Place) getArguments().getSerializable("place");
 
     }
 
-    private void initializeComponents() {
-        placeAddressText = (TextView) view.findViewById(R.id.placeAddressText);
-        workText = (TextView) view.findViewById(R.id.workText);
-        placePhoneText = (TextView) view.findViewById(R.id.placePhoneText);
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
-
-
 }

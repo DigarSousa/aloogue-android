@@ -137,4 +137,6 @@
     <string name="placeId">placeId</string>
     <string name="delete_action">Excluir</string>
     <string name="cancel_action">Cancelar</string>
+    <string name="placeViewerFormTitle">Informações</string>
+    <string name="placeViewerProductsTitle">Produtos</string>
 </resources>

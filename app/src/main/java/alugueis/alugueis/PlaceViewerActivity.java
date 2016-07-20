@@ -1,11 +1,13 @@
 package alugueis.alugueis;
 
 import alugueis.alugueis.adapter.ViewPageAdapter;
+
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -39,8 +41,8 @@ public class PlaceViewerActivity extends AppCompatActivity {
     }
 
     private void initViewPagerFragments() {
-        viewPageAdapter.addFragment(new ProductListFragment(),"Products");
-        viewPageAdapter.addFragment(new ProductListFragment(),"Outros");
+        viewPageAdapter.addFragment(new PlaceInfoFgm(), getString(R.string.placeViewerFormTitle));
+        viewPageAdapter.addFragment(new ProductListFragment(), getString(R.string.placeViewerProductsTitle));
         viewPageAdapter.notifyDataSetChanged();
     }
 }
