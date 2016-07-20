@@ -137,7 +137,7 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
                     return;
                 }
 
-                Intent intent = new Intent(MapAct.this, PlaceProfileAct.class);
+                Intent intent = new Intent(MapAct.this, PlaceViewerActivity.class);
                 if (placeMap.get(marker) != null) {
                     intent.putExtra("place", placeMap.get(marker));
                 }

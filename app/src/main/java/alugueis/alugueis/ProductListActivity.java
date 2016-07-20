@@ -1,6 +1,5 @@
 package alugueis.alugueis;
 
-import alugueis.alugueis.adapter.ProductAdapter;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.services.product.ProductRest;
@@ -67,7 +66,7 @@ public class ProductListActivity extends AppCompatActivity {
         params = new Bundle();
         products = new ArrayList<>();
         checkedPositions = new ArrayList<>();
-        productAdapter = new ProductAdapter(this, products);
+        //productAdapter = new ProductAdapter(this, products);
         listView.setAdapter(productAdapter);
 
         try {
