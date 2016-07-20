@@ -7,10 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import java.util.List;
 
@@ -31,17 +27,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
         ProductClickListener productClickListener = new ProductClickListener() {
             @Override
             public void onProductClick(View v, Integer position) {
-                v.setBackgroundColor(v.getResources().getColor(R.color.colorPrimaryDark));
+                productClickTrigger(v, position);
             }
 
             @Override
             public void onProductSelect(View v, Integer position) {
-                v.setBackgroundColor(v.getResources().getColor(R.color.colorPrimaryDark));
+                productLongClickTrigger(v, position);
             }
         };
-
         return new ProductHolder(view, productClickListener);
     }
+
 
     @Override
     public void onBindViewHolder(ProductHolder holder, int position) {
@@ -59,4 +55,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
     }
 
 
+    private void productClickTrigger(View view, Integer position) {
+
+    }
+
+
+    private void productLongClickTrigger(View view, Integer position) {
+    }
 }
