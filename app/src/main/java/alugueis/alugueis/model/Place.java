@@ -1,12 +1,13 @@
 package alugueis.alugueis.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
-@Data
+@Getter
+@Setter
 public class Place implements Serializable {
 
     private Long id;

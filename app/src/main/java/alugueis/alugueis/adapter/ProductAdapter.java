@@ -2,7 +2,7 @@ package alugueis.alugueis.adapter;
 
 import alugueis.alugueis.R;
 import alugueis.alugueis.model.Product;
-
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,16 +15,18 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
     private List<Product> productList;
     private List<Integer> selectedPositions;
-    Boolean selectable;
+    private AdapterCallback adapterCallback;
+    private Bundle args;
 
     public ProductAdapter(List<Product> productList) {
-        this(productList, false);
+        this(productList, null);
     }
 
-    public ProductAdapter(List<Product> productList, Boolean selectable) {
+    public ProductAdapter(List<Product> productList, AdapterCallback adapterClickCallback) {
         this.productList = productList;
-        this.selectable = selectable;
+        this.adapterCallback = adapterClickCallback;
         selectedPositions = new ArrayList<>();
+        args = new Bundle();
     }
 
     @Override
@@ -51,7 +53,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
     }
 
     private ProductHolder getHolder(View view) {
-        if (selectable) {
+        if (adapterCallback != null) {
             ProductClickListener productClickListener = new ProductClickListener() {
                 @Override
                 public void onProductClick(View v, Integer position) {
@@ -71,26 +73,31 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
 
     private void productClickTrigger(View view, Integer position) {
         if (!selectedPositions.isEmpty()) {
-            if (selectedPositions.contains(position)) {
-                selectedPositions.remove(position);
-                view.setBackgroundColor(view.getResources().getColor(R.color.white));
-            } else {
-                productLongClickTrigger(view, position);
-            }
+            productLongClickTrigger(view, position);
         } else {
-            //todo: open show product
+            args.putInt("position", position);
+            args.putSerializable("product", productList.get(position));
+            adapterCallback.onAdapterClick(args);
         }
     }
 
 
     private void productLongClickTrigger(View view, Integer position) {
-        if (!selectedPositions.contains(position)) {
-            selectedPositions.add(position);
+        if (selectedPositions.contains(position)) {
+            selectedPositions.remove(position);
+            view.setBackgroundColor(view.getResources().getColor(R.color.white));
+        } else {
+            if (!selectedPositions.contains(position)) {
+                selectedPositions.add(position);
+            }
+            view.setBackgroundColor(view.getResources().getColor(R.color.under_white));
         }
-        view.setBackgroundColor(view.getResources().getColor(R.color.under_white));
+        args.clear();
+        args.putInt("selectionsSize", selectedPositions.size());
+        adapterCallback.onAdapterSelectChange(args);
     }
 
-    List<Product> getSelectedItens() {
+    public List<Product> getSelectedItens() {
         List<Product> selectedItens = new ArrayList<>();
         for (Integer position : selectedPositions) {
             selectedItens.add(productList.get(position));
@@ -98,9 +105,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
         return selectedItens;
     }
 
-    void removeSelectedItens() {
+    public void removeSelectedItens() {
         for (Integer position : selectedPositions) {
             productList.remove(position);
         }
+    }
+
+    public void cleanSelections() {
+
     }
 }

@@ -19,7 +19,6 @@ import retrofit2.Response;
 import service.StdService;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -50,38 +49,12 @@ public class ProductListFragment extends Fragment {
         recyclerView.setAdapter(productAdapter);
 
 
-        Product product1 = new Product();
-        product1.setName("produto1");
-        product1.setDescription("adfsafsafasfsfsfsfss");
-        Product product2 = new Product();
-        product2.setName("produto2");
-        product2.setDescription("adfsafsafasfsfsfsfss");
-        Product product3 = new Product();
-        product3.setName("produto3");
-        product3.setDescription("adfsafsafasfsfsfsfss");
-        Product product4 = new Product();
-        product4.setName("produto4");
-        product4.setDescription("adfsafsafasfsfsfsfss");
-        Product product5 = new Product();
-        product5.setName("produto4");
-        product5.setDescription("adfsafsafasfsfsfsfss");
-        Product product6 = new Product();
-        product6.setName("produto4");
-        product6.setDescription("adfsafsafasfsfsfsfss");
-        Product product7 = new Product();
-        product7.setName("produto4");
-        product7.setDescription("adfsafsafasfsfsfsfss");
-        products.addAll(Arrays.asList(product1, product2, product3, product4, product5, product6, product7));
-
-        productAdapter.notifyDataSetChanged();
-
-        //initializeAttributes();
+        initializeAttributes();
         return view;
     }
 
     private void initializeAttributes() {
-        Bundle bundle = this.getArguments();
-        Place place = (Place) bundle.getSerializable("place");
+        Place place = (Place) getArguments().getSerializable("place");
         loadProducts(place);
     }
 

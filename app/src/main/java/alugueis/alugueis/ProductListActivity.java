@@ -1,5 +1,7 @@
 package alugueis.alugueis;
 
+import alugueis.alugueis.adapter.AdapterCallback;
+import alugueis.alugueis.adapter.ProductAdapter;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.services.product.ProductRest;
@@ -8,13 +10,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,16 +35,15 @@ public class ProductListActivity extends AppCompatActivity {
     private static final Integer UPDATE_ITEM = 2;
 
     private List<Product> products;
-    private List<Integer> checkedPositions;
-    private ArrayAdapter<Product> productAdapter;
+    private ProductAdapter productAdapter;
     private Place place;
     private Bundle params;
 
     @BindView(R.id.reduced_toolbar)
     Toolbar toolbar;
 
-    @BindView(android.R.id.list)
-    ListView listView;
+    @BindView(R.id.list)
+    RecyclerView recyclerView;
 
     @BindView(R.id.addProductsButton)
     FloatingActionButton addProductButton;
@@ -65,9 +65,32 @@ public class ProductListActivity extends AppCompatActivity {
     private void initValues() {
         params = new Bundle();
         products = new ArrayList<>();
-        checkedPositions = new ArrayList<>();
-        //productAdapter = new ProductAdapter(this, products);
-        listView.setAdapter(productAdapter);
+
+        AdapterCallback adapterCallback = new AdapterCallback() {
+            @Override
+            public void onAdapterClick(Bundle bundle) {
+                Intent intent = new Intent(ProductListActivity.this, ProductFormActivity.class);
+                intent.putExtras(bundle);
+                startActivityForResult(intent, UPDATE_ITEM);
+            }
+
+            @Override
+            public void onAdapterSelectChange(Bundle bundle) {
+                Integer selectionsSize = bundle.getInt("selectionsSize");
+                if (selectionsSize > 0) {
+                    setSelectionMode(true);
+
+                } else {
+                    setSelectionMode(false);
+                }
+            }
+
+        };
+
+        productAdapter = new ProductAdapter(products, adapterCallback);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(productAdapter);
 
         try {
             place = (Place) StaticUtil.readObject(ProductListActivity.this, StaticUtil.PLACE);
@@ -76,37 +99,7 @@ public class ProductListActivity extends AppCompatActivity {
         }
     }
 
-
     private void initComponents() {
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                if (listView.isSelected()) {
-                    if (checkedPositions.contains(position)) { //if position is selected
-                        cancelRowSelection(view, position);
-                    } else {
-                        setRowSelected(view, position);
-                    }
-                } else {
-                    params.putInt("position", position);
-                    params.putSerializable("product", productAdapter.getItem(position));
-                    Intent intent = new Intent(ProductListActivity.this, ProductFormActivity.class);
-                    intent.putExtras(params);
-                    startActivityForResult(intent, UPDATE_ITEM);
-                }
-            }
-        });
-
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                parent.setSelected(true);
-                setRowSelected(view, position);
-                return true;
-            }
-        });
-
         addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,32 +140,6 @@ public class ProductListActivity extends AppCompatActivity {
         return true;
     }
 
-    private void setRowSelected(View view, Integer position) {
-        view.setBackgroundColor(getResources().getColor(R.color.pressed_color));
-        setSelectionMode(true);
-        checkedPositions.add(position);
-    }
-
-
-    private void cancelRowSelection(View view, Integer position) {
-        checkedPositions.remove(position);
-        if (checkedPositions.size() == 0) {
-            listView.setSelected(false);
-            setSelectionMode(false);
-        }
-        view.setBackground(null);
-
-    }
-
-    private void deleteSelections() {
-        listView.setSelected(false);
-        listView.getCheckedItemPositions().clear();
-        checkedPositions.clear();
-
-        productAdapter.notifyDataSetChanged();
-        setSelectionMode(false);
-    }
-
     private void setSelectionMode(Boolean isInSelectionMode) {
         if (isInSelectionMode) {
             addProductButton.setVisibility(View.INVISIBLE);
@@ -182,6 +149,7 @@ public class ProductListActivity extends AppCompatActivity {
         menu.findItem(R.id.delete_action).setVisible(isInSelectionMode);
         menu.findItem(R.id.cancel_option).setVisible(isInSelectionMode);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -198,21 +166,20 @@ public class ProductListActivity extends AppCompatActivity {
             if (product != null) {
                 products.remove(resultCode);
                 products.add(resultCode, product);
-                productAdapter.notifyDataSetChanged();
+                productAdapter.notifyItemChanged(resultCode);
             }
         }
     }
 
+
     @Override
     public void onBackPressed() {
-        if (checkedPositions.size() > 0) {
-            deleteSelections();
+        if (productAdapter.getItemCount() > 0) {
+            productAdapter.cleanSelections();
             return;
         }
 
-        Intent intent = new Intent(ProductListActivity.this, MapAct.class);
-        finish();
-        startActivity(intent);
+        super.onBackPressed();
     }
 
     private void loadProducts() {
@@ -235,15 +202,12 @@ public class ProductListActivity extends AppCompatActivity {
 
     private void deleteProducts() {
         ProductRest productRest = StdService.createService(ProductRest.class);
-        final List<Product> productsToDelete = new ArrayList<>();
-        getProductsToDelete(productsToDelete);
 
-        Call<ResponseBody> call = productRest.delete(productsToDelete);
+        Call<ResponseBody> call = productRest.delete(productAdapter.getSelectedItens());
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                removeDeletedProducts(productsToDelete);
-                deleteSelections();
+                productAdapter.removeSelectedItens();
             }
 
             @Override
@@ -253,17 +217,4 @@ public class ProductListActivity extends AppCompatActivity {
         });
     }
 
-    private List<Product> getProductsToDelete(List<Product> productsToDelete) {
-        for (Integer i : checkedPositions) {
-            productsToDelete.add(products.get(i));
-        }
-        return productsToDelete;
-    }
-
-    private void removeDeletedProducts(List<Product> deletedProducts) {
-        for (Product product : deletedProducts) {
-            products.remove(product);
-        }
-        productAdapter.notifyDataSetChanged();
-    }
 }
