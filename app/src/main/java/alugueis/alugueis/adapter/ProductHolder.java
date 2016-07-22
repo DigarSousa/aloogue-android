@@ -1,10 +1,9 @@
 package alugueis.alugueis.adapter;
 
+import alugueis.alugueis.R;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-
-import alugueis.alugueis.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -44,5 +43,9 @@ class ProductHolder extends RecyclerView.ViewHolder implements View.OnClickListe
     public boolean onLongClick(View v) {
         productClickListener.onProductSelect(v, getAdapterPosition());
         return true;
+    }
+
+    public void clearViewSelection() {
+        itemView.setBackground(null);
     }
 }

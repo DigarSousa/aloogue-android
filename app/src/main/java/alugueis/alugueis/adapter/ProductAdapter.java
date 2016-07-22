@@ -17,6 +17,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
     private List<Integer> selectedPositions;
     private AdapterCallback adapterCallback;
     private Bundle args;
+    private Boolean isClearSelectionMode;
 
     public ProductAdapter(List<Product> productList) {
         this(productList, null);
@@ -27,6 +28,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
         this.adapterCallback = adapterClickCallback;
         selectedPositions = new ArrayList<>();
         args = new Bundle();
+        isClearSelectionMode = false;
     }
 
     @Override
@@ -40,7 +42,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
     @Override
     public void onBindViewHolder(ProductHolder holder, int position) {
         Product product = productList.get(position);
-
+        if (isClearSelectionMode) {
+            holder.clearViewSelection();
+        }
         holder.productName.setText(product.getName());
         holder.productDescription.setText(product.getDescription());
         holder.productPrice.setText(product.getPrice() != null ? product.getPrice().toString() : "0.00");
@@ -92,9 +96,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
             }
             view.setBackgroundColor(view.getResources().getColor(R.color.under_white));
         }
-        args.clear();
-        args.putInt("selectionsSize", selectedPositions.size());
-        adapterCallback.onAdapterSelectChange(args);
+        doAdapterCallBack();
     }
 
     public List<Product> getSelectedItens() {
@@ -106,12 +108,24 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
     }
 
     public void removeSelectedItens() {
-        for (Integer position : selectedPositions) {
+        for (int position : selectedPositions) {
             productList.remove(position);
+            notifyItemRemoved(position);
         }
     }
 
     public void cleanSelections() {
+        isClearSelectionMode = true;
+        for (int position : selectedPositions) {
+            notifyItemChanged(position);
+        }
+        selectedPositions.clear();
+        doAdapterCallBack();
+    }
 
+    private void doAdapterCallBack() {
+        args.clear();
+        args.putInt("selectionsSize", selectedPositions.size());
+        adapterCallback.onAdapterSelectChange(args);
     }
 }

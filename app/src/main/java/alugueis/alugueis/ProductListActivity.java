@@ -157,7 +157,7 @@ public class ProductListActivity extends AppCompatActivity {
             Product product = (Product) data.getExtras().getSerializable("product");
             if (product != null) {
                 products.add(product);
-                productAdapter.notifyDataSetChanged();
+                productAdapter.notifyItemInserted(products.size() - 1);
             }
         }
 
