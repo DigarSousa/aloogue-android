@@ -40,7 +40,6 @@ public class ProductListActivity extends AppCompatActivity {
     private ProductAdapter productAdapter;
     private Place place;
     private Bundle params;
-    private LinearLayoutManager linearLayoutManager;
 
     @BindView(R.id.reduced_toolbar)
     Toolbar toolbar;
@@ -89,7 +88,7 @@ public class ProductListActivity extends AppCompatActivity {
             }
         };
 
-        linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         productAdapter = new ProductAdapter(products, adapterCallback, linearLayoutManager);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(productAdapter);

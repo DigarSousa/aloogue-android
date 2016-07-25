@@ -49,7 +49,7 @@ class ProductHolder extends RecyclerView.ViewHolder implements View.OnClickListe
         return true;
     }
 
-    public void clearViewSelection() {
+    void clearViewSelection() {
         itemView.setBackgroundColor(itemView.getResources().getColor(R.color.white));
     }
 }
