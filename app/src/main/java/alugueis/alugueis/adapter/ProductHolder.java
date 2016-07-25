@@ -1,9 +1,11 @@
 package alugueis.alugueis.adapter;
 
 import alugueis.alugueis.R;
+
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -23,6 +25,8 @@ class ProductHolder extends RecyclerView.ViewHolder implements View.OnClickListe
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }
+
+        itemView.setTag(this);
     }
 
     @BindView(R.id.productName)
@@ -46,6 +50,6 @@ class ProductHolder extends RecyclerView.ViewHolder implements View.OnClickListe
     }
 
     public void clearViewSelection() {
-        itemView.setBackground(null);
+        itemView.setBackgroundColor(itemView.getResources().getColor(R.color.white));
     }
 }

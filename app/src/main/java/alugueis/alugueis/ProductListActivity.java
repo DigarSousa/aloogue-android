@@ -6,6 +6,7 @@ import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.services.product.ProductRest;
 import alugueis.alugueis.util.StaticUtil;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.ResponseBody;
@@ -38,6 +40,7 @@ public class ProductListActivity extends AppCompatActivity {
     private ProductAdapter productAdapter;
     private Place place;
     private Bundle params;
+    private LinearLayoutManager linearLayoutManager;
 
     @BindView(R.id.reduced_toolbar)
     Toolbar toolbar;
@@ -84,12 +87,11 @@ public class ProductListActivity extends AppCompatActivity {
                     setSelectionMode(false);
                 }
             }
-
         };
 
-        productAdapter = new ProductAdapter(products, adapterCallback);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        linearLayoutManager = new LinearLayoutManager(this);
+        productAdapter = new ProductAdapter(products, adapterCallback, linearLayoutManager);
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(productAdapter);
 
         try {

@@ -2,7 +2,9 @@ package alugueis.alugueis.adapter;
 
 import alugueis.alugueis.R;
 import alugueis.alugueis.model.Product;
+
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,18 +19,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
     private List<Integer> selectedPositions;
     private AdapterCallback adapterCallback;
     private Bundle args;
-    private Boolean isClearSelectionMode;
+    private LinearLayoutManager linearLayoutManager;
 
     public ProductAdapter(List<Product> productList) {
-        this(productList, null);
+        this(productList, null, null);
     }
 
-    public ProductAdapter(List<Product> productList, AdapterCallback adapterClickCallback) {
+    public ProductAdapter(List<Product> productList, AdapterCallback adapterClickCallback, LinearLayoutManager linearLayoutManager) {
         this.productList = productList;
         this.adapterCallback = adapterClickCallback;
+        this.linearLayoutManager = linearLayoutManager;
         selectedPositions = new ArrayList<>();
         args = new Bundle();
-        isClearSelectionMode = false;
     }
 
     @Override
@@ -42,9 +44,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
     @Override
     public void onBindViewHolder(ProductHolder holder, int position) {
         Product product = productList.get(position);
-        if (isClearSelectionMode) {
-            holder.clearViewSelection();
-        }
+
         holder.productName.setText(product.getName());
         holder.productDescription.setText(product.getDescription());
         holder.productPrice.setText(product.getPrice() != null ? product.getPrice().toString() : "0.00");
@@ -112,12 +112,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
             productList.remove(position);
             notifyItemRemoved(position);
         }
+        selectedPositions.clear();
+        doAdapterCallBack();
     }
 
     public void cleanSelections() {
-        isClearSelectionMode = true;
         for (int position : selectedPositions) {
-            notifyItemChanged(position);
+            ProductHolder productHolder = (ProductHolder) linearLayoutManager.findViewByPosition(position).getTag();
+            productHolder.clearViewSelection();
         }
         selectedPositions.clear();
         doAdapterCallBack();

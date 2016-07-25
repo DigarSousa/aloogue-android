@@ -27,7 +27,7 @@ public class PlaceInfoFgm extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.place_info_framgment, container, false);
-        unbinder = ButterKnife.bind(this, container);
+        unbinder = ButterKnife.bind(this,container);
         populatePlaceData();
 
         return view;
