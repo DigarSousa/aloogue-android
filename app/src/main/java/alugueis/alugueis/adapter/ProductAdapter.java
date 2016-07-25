@@ -118,8 +118,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
 
     public void cleanSelections() {
         for (int position : selectedPositions) {
-            ProductHolder productHolder = (ProductHolder) linearLayoutManager.findViewByPosition(position).getTag();
-            productHolder.clearViewSelection();
+            View itemView = linearLayoutManager.findViewByPosition(position);
+            if (itemView != null) {
+                itemView.setBackgroundColor(itemView.getResources().getColor(R.color.white));
+            }
         }
         selectedPositions.clear();
         doAdapterCallBack();
