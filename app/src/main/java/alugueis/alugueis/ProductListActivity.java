@@ -89,7 +89,7 @@ public class ProductListActivity extends AppCompatActivity {
         };
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        productAdapter = new ProductAdapter(products, adapterCallback, linearLayoutManager);
+        productAdapter = new ProductAdapter(products, adapterCallback);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(productAdapter);
 
@@ -175,11 +175,10 @@ public class ProductListActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (productAdapter.getItemCount() > 0) {
-            productAdapter.cleanSelections();
+        if (productAdapter.getSelectedItems().size() > 0) {
+            productAdapter.clearSelections();
             return;
         }
-
         super.onBackPressed();
     }
 
@@ -204,7 +203,7 @@ public class ProductListActivity extends AppCompatActivity {
     private void deleteProducts() {
         ProductRest productRest = StdService.createService(ProductRest.class);
 
-        Call<ResponseBody> call = productRest.delete(productAdapter.getSelectedItens());
+        Call<ResponseBody> call = productRest.delete(productAdapter.getSelectedItems());
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

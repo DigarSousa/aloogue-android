@@ -1,13 +1,11 @@
 <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/list_view_root_layout"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_view_root_layout"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
     <android.support.v7.widget.RecyclerView
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            android:dividerHeight="2dp"/>
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>
