@@ -10,7 +10,6 @@ import butterknife.ButterKnife;
 
 class ProductHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
     private ProductClickListener productClickListener;
-    private Product product;
 
     ProductHolder(View view) {
         this(view, null);
@@ -48,7 +47,6 @@ class ProductHolder extends RecyclerView.ViewHolder implements View.OnClickListe
     }
 
     void bindProduct(Product product) {
-        this.product = product;
         productName.setText(product.getName());
         productDescription.setText(product.getDescription());
         productPrice.setText(product.getPrice() != null ? product.getPrice().toString() : "0.00");
@@ -60,9 +58,4 @@ class ProductHolder extends RecyclerView.ViewHolder implements View.OnClickListe
             itemView.setBackground(null);
         }
     }
-
-    Product getProduct() {
-        return product;
-    }
-
 }

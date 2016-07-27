@@ -2,6 +2,7 @@ package alugueis.alugueis.adapter;
 
 import alugueis.alugueis.R;
 import alugueis.alugueis.model.Product;
+
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -82,7 +83,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
             productList.get(position).setSelected(false);
             selectedPositions.remove(position);
         } else {
-            holder.getProduct().setSelected(true);
+            productList.get(position).setSelected(true);
             selectedPositions.add(position);
         }
 
