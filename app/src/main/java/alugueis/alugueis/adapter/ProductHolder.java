@@ -1,12 +1,10 @@
 package alugueis.alugueis.adapter;
 
 import alugueis.alugueis.R;
-
+import alugueis.alugueis.model.Product;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-
-import alugueis.alugueis.model.Product;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -27,7 +25,6 @@ class ProductHolder extends RecyclerView.ViewHolder implements View.OnClickListe
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }
-        itemView.setTag(this);
     }
 
     @BindView(R.id.productName)
@@ -46,7 +43,7 @@ class ProductHolder extends RecyclerView.ViewHolder implements View.OnClickListe
 
     @Override
     public boolean onLongClick(View v) {
-        productClickListener.onProductSelect(this);
+        productClickListener.onProductSelect(this, getAdapterPosition());
         return true;
     }
 
@@ -56,6 +53,12 @@ class ProductHolder extends RecyclerView.ViewHolder implements View.OnClickListe
         productDescription.setText(product.getDescription());
         productPrice.setText(product.getPrice() != null ? product.getPrice().toString() : "0.00");
         productPeriod.setText(product.getRentType());
+
+        if (product.getSelected()) {
+            itemView.setBackgroundColor(itemView.getResources().getColor(R.color.under_white));
+        } else {
+            itemView.setBackground(null);
+        }
     }
 
     Product getProduct() {

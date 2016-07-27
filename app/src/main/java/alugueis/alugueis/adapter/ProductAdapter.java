@@ -2,7 +2,6 @@ package alugueis.alugueis.adapter;
 
 import alugueis.alugueis.R;
 import alugueis.alugueis.model.Product;
-
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,7 +16,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
     private List<Product> productList;
     private AdapterCallback adapterCallback;
     private Bundle args;
-    private List<ProductHolder> selectedItems;
+    private List<Integer> selectedPositions;
 
     public ProductAdapter(List<Product> productList) {
         this(productList, null);
@@ -26,7 +25,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
     public ProductAdapter(List<Product> productList, AdapterCallback adapterClickCallback) {
         this.productList = productList;
         this.adapterCallback = adapterClickCallback;
-        selectedItems = new ArrayList<>();
+        selectedPositions = new ArrayList<>();
         args = new Bundle();
     }
 
@@ -40,8 +39,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
 
     @Override
     public void onBindViewHolder(ProductHolder holder, int position) {
-        Product product = productList.get(position);
-        holder.bindProduct(product);
+        holder.bindProduct(productList.get(position));
     }
 
     @Override
@@ -58,8 +56,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
                 }
 
                 @Override
-                public void onProductSelect(ProductHolder productHolder) {
-                    productLongClickTrigger(productHolder);
+                public void onProductSelect(ProductHolder productHolder, Integer position) {
+                    productLongClickTrigger(productHolder, position);
                 }
             };
             return new ProductHolder(view, productClickListener);
@@ -69,8 +67,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
 
 
     private void productClickTrigger(ProductHolder holder, Integer position) {
-        if (!selectedItems.isEmpty()) {
-            productLongClickTrigger(holder);
+        if (!selectedPositions.isEmpty()) {
+            productLongClickTrigger(holder, position);
         } else {
             args.putInt("position", position);
             args.putSerializable("product", productList.get(position));
@@ -79,45 +77,50 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
     }
 
 
-    private void productLongClickTrigger(ProductHolder holder) {
-        if (selectedItems.contains(holder)) {
-            selectedItems.remove(holder);
-            holder.itemView.setBackground(null);
+    private void productLongClickTrigger(ProductHolder holder, Integer position) {
+        if (productList.get(position).getSelected()) {
+            productList.get(position).setSelected(false);
+            selectedPositions.remove(position);
         } else {
-            selectedItems.add(holder);
-            holder.itemView.setBackgroundColor(holder.itemView.getResources().getColor(R.color.under_white));
+            holder.getProduct().setSelected(true);
+            selectedPositions.add(position);
         }
+
+        notifyItemChanged(position);
         doAdapterCallBack();
     }
 
     public List<Product> getSelectedItems() {
         List<Product> selectedProducts = new ArrayList<>();
-        for (ProductHolder holder : selectedItems) {
-            selectedProducts.add(holder.getProduct());
+        for (int position : selectedPositions) {
+            selectedProducts.add(productList.get(position));
         }
         return selectedProducts;
     }
 
-    public void removeSelectedItens() {
-        for (ProductHolder holder : selectedItems) {
-            productList.remove(holder.getProduct());
+    public void removeSelectedItems() {
+        for (Product product : getSelectedItems()) {
+            productList.remove(product);
         }
+        selectedPositions.clear();
+
         notifyDataSetChanged();
-        selectedItems.clear();
         doAdapterCallBack();
     }
 
     public void clearSelections() {
-        for (ProductHolder holder : selectedItems) {
-            holder.itemView.setBackground(null);
+        for (int position : selectedPositions) {
+            productList.get(position).setSelected(false);
         }
-        selectedItems.clear();
+        notifyDataSetChanged();
+        selectedPositions.clear();
         doAdapterCallBack();
     }
 
     private void doAdapterCallBack() {
         args.clear();
-        args.putInt("selectionsSize", selectedItems.size());
+        args.putInt("selectionsSize", selectedPositions.size());
         adapterCallback.onAdapterSelectChange(args);
     }
+
 }

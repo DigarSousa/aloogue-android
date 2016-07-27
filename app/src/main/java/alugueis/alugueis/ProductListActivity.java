@@ -6,7 +6,6 @@ import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.services.product.ProductRest;
 import alugueis.alugueis.util.StaticUtil;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,7 +17,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.ResponseBody;
@@ -207,7 +205,7 @@ public class ProductListActivity extends AppCompatActivity {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                productAdapter.removeSelectedItens();
+                productAdapter.removeSelectedItems();
             }
 
             @Override
