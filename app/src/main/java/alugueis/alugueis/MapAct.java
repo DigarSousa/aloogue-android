@@ -1,52 +1,16 @@
 package alugueis.alugueis;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.util.Pair;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.os.PersistableBundle;
+import android.support.v7.app.AppCompatActivity;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocomplete;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-
-import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import alugueis.alugueis.util.MapsUtil;
-import service.ConstantsService;
-import service.httputil.OnFinishTask;
-import service.httputil.Service;
-import service.httputil.URLBuilder;
-
-public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
-        View.OnClickListener, OnFinishTask {
-
-    private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
+public class MapAct extends AppCompatActivity {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_map_rent);
+    }
+/*private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
     public static final int PERMISSION_ACESS_FINE_LOCATION = 25;
 
     private FloatingActionButton searchButton;
@@ -288,6 +252,6 @@ public class MapAct extends DashboardNavAct implements OnMapReadyCallback,
             marker.remove();
         }
         markers.clear();
-    }
+    }*/
 }
 

@@ -1,90 +1,14 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MapAct">
+    android:layout_height="match_parent">
 
-    <!-- TOOLBAR -->
-    <android.support.v7.widget.Toolbar
-            android:id="@+id/mainToolbar"
-            android:elevation="1dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize"
-            android:background="#00000000"
-            android:padding="10dp">
-
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-            <EditText
-                    android:id="@+id/productText"
-                    style="@style/editTextLight"
-                    android:layout_width="250dp"
-                    android:layout_height="40dp"
-                    android:hint="@string/findAProduct"
-                    android:inputType="text"/>
-
-            <EditText
-                    android:id="@+id/placeText"
-                    style="@style/editTextLight"
-                    android:layout_width="250dp"
-                    android:layout_height="40dp"
-                    android:hint="@string/insertAPlace"
-                    android:inputType="text"
-                    android:layout_marginTop="10dp" />
-
-        </LinearLayout>
-
-
-        <android.support.design.widget.FloatingActionButton
-                android:id="@+id/searchButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:src="@drawable/ic_search_white_24dp"
-                android:layout_gravity="right"/>
-
-
-    </android.support.v7.widget.Toolbar>
+    <include layout="@layout/map_toolbar"/>
 
     <fragment
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/map"
-            tools:context=".MapAct"
-            android:name="com.google.android.gms.maps.SupportMapFragment"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/raioBusca"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/raio"
-        android:textColor="@color/colorAccentSecondary"
-        />
-
-    <LinearLayout
-        android:id="@id/raio"
+        android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="16dp"
-        android:background="#FFFFFF"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
 
-        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
-            android:id="@+id/rangeBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:dsb_min="10"
-            app:dsb_max="5000"
-            app:dsb_indicatorTextAppearance="@style/TextWhite"/>
-
-    </LinearLayout>
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
