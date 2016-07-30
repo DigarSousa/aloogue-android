@@ -1,19 +1,27 @@
 <android.support.design.widget.AppBarLayout
-    android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:rsv="http://schemas.android.com/apk/res-auto">
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.Toolbar
-        android:layout_height="45dp"
-        android:layout_width="match_parent"
-        android:layout_gravity="bottom"/>
+            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:layout_gravity="bottom"/>
+    <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dsb_min="1"
+            app:dsb_max="15"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:dsb_indicatorElevation="2dp"
+            app:dsb_trackHeight="2dp"
+            app:dsb_progressColor="@color/colorAccent"
+            app:dsb_trackColor="@color/colorAccentSecondary"
+            app:dsb_indicatorSeparation="-10dp"
 
-    <com.github.channguyen.rsv.RangeSliderView
-        android:id="@+id/range_slider"
-        rsv:filledColor="@color/colorAccent"
-        android:layout_height="25dp"
-        android:layout_width="match_parent"/>
+    />
 
 </android.support.design.widget.AppBarLayout>
     
