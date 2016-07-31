@@ -1,14 +1,44 @@
 package alugueis.alugueis;
 
+import alugueis.alugueis.util.LocalLocationListener;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 
-public class MapAct extends AppCompatActivity {
+public class MapAct extends AppCompatActivity implements OnMapReadyCallback {
+    private LocationManager locationManager;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_map_rent);
+        setContentView(R.layout.map_toolbar);
+
+        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.maps);
+        mapFragment.getMapAsync(this);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if (!locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) && !locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+
+        }
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000L, 1.5f, new LocalLocationListener());
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
     }
 /*private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
     public static final int PERMISSION_ACESS_FINE_LOCATION = 25;
@@ -19,7 +49,6 @@ public class MapAct extends AppCompatActivity {
     private GoogleMap map;
     private Marker myMarker;
     private Place place;
-    private List<Marker> markers;
     private HashMap<Marker, alugueis.alugueis.model.Place> placeMap;
     private DiscreteSeekBar rangeBar;
     int searchRange = 10;
@@ -27,7 +56,7 @@ public class MapAct extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.fragment_map_rent, frameLayout);
+        getLayoutInflater().inflate(R.layout.map_toolbar.xmlframeLayout);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);

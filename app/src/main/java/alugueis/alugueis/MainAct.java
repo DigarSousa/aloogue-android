@@ -46,11 +46,11 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-       /* if (getLogged() != null) {
+        if(true) {
             Intent intent = new Intent(this, MapAct.class);
             startActivity(intent);
             this.finish();
-        }*/
+        }
         if (!MapsUtil.locationPermissionDialog(this)) {
             MapsUtil.requestLocationPermition(this);
         }
