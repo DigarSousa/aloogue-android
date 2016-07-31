@@ -1,45 +1,106 @@
 package alugueis.alugueis;
 
-import alugueis.alugueis.util.LocalLocationListener;
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.OnMapReadyCallback;
+import android.view.View;
 
-public class MapAct extends AppCompatActivity implements OnMapReadyCallback {
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class MapAct extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
     private LocationManager locationManager;
+    private Marker myMarker;
+    private GoogleMap googleMap;
+
+    @BindView(R.id.location_button)
+    FloatingActionButton locationButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.map_toolbar);
+        setContentView(R.layout.map_activity);
+        ButterKnife.bind(this);
 
-        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.maps);
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        this.googleMap = googleMap;
+
+        googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+        googleMap.getUiSettings().setMapToolbarEnabled(false);
+        getLocation();
+
+        initFields();
+    }
+
+    private void initFields() {
+        locationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getLocation();
+            }
+        });
+    }
+
+
+    @Override
+    public void onLocationChanged(Location location) {
+        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        if (myMarker == null) {
+            myMarker = googleMap.addMarker(new MarkerOptions().position(latLng));
+        } else {
+            myMarker.setPosition(latLng);
+        }
+
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+
+    }
+
+    public void getLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        if (!locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) && !locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-
-        }
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000L, 1.5f, new LocalLocationListener());
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 500L, 1f, this);
 
     }
+
 /*private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
     public static final int PERMISSION_ACESS_FINE_LOCATION = 25;
 
