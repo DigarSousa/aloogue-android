@@ -30,6 +30,10 @@ android {
 repositories {
     mavenCentral()
     jcenter()
+    maven {
+        url "https://jitpack.io"
+    }
+
 }
 
 
@@ -57,4 +61,5 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.7.2'
     compile 'com.jakewharton:butterknife:8.0.1'
     compile 'org.adw.library:discrete-seekbar:1.0.1'
+    compile 'com.github.BlacKCaT27:CurrencyEditText:v1.4.4'
 }

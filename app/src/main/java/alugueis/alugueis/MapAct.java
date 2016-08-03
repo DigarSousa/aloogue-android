@@ -24,6 +24,7 @@ import butterknife.ButterKnife;
 
 public class MapAct extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
     private LocationManager locationManager;
+    private Marker currentLocation;
     private Marker myMarker;
     private GoogleMap googleMap;
 
@@ -57,21 +58,42 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
         locationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getLocation();
+                moveToCurrentLocation();
             }
         });
+    }
+
+    private void moveToCurrentLocation() {
+
+    }
+
+
+    public void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 500L, 1f, this);
+
     }
 
 
     @Override
     public void onLocationChanged(Location location) {
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        if (myMarker == null) {
+        if (currentLocation == null) {
+            currentLocation = googleMap.addMarker(new MarkerOptions().position(latLng));
             myMarker = googleMap.addMarker(new MarkerOptions().position(latLng));
+            moveCamera(currentLocation.getPosition());
         } else {
-            myMarker.setPosition(latLng);
+            currentLocation.setPosition(latLng);
         }
 
+    }
+
+    private void moveCamera(LatLng latLng) {
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
     }
 
@@ -90,16 +112,6 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
 
     }
 
-    public void getLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 500L, 1f, this);
-
-    }
 
 /*private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
     public static final int PERMISSION_ACESS_FINE_LOCATION = 25;

@@ -275,6 +275,13 @@
         <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-maps-9.2.1_c73965b35970e7ada608ad565e4bbca400a35c1f.jar" />
     </item>
     <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.github.BlacKCaT27/CurrencyEditText/v1.4.4/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="10f60d01504abc7cb028d0c0ed4fbb77a47ca206">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.github.BlacKCaT27-CurrencyEditText-v1.4.4_4e555aad73a04a980c1f0d7ff62d13db5783a9bf.jar" />
+    </item>
+    <item
         jar="/home/edgar/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2-b01/268c3b9fa56499a664ceded289dfca835a7a7db6/javax.annotation-api-1.2-b01.jar"
         jumboMode="false"
         revision="23.0.3"
