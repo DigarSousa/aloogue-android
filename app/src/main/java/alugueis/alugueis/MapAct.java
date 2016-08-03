@@ -15,10 +15,13 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import alugueis.alugueis.classes.maps.GPSTracker;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -43,14 +46,25 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
         mapFragment.getMapAsync(this);
     }
 
+    public LatLng getSingleLocation() {
+        GPSTracker gps = new GPSTracker(this);
+        if (gps.canGetLocation()) {
+            return new LatLng(gps.getLatitude(), gps.getLongitude());
+        } else {
+            gps.showSettingsAlert();
+        }
+        return null;
+    }
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
-
         googleMap.getUiSettings().setMyLocationButtonEnabled(false);
         googleMap.getUiSettings().setMapToolbarEnabled(false);
-        getLocation();
 
+        setMapsMarkers(getSingleLocation());
+        starChangeLocationListener();
         initFields();
     }
 
@@ -58,24 +72,20 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
         locationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                moveToCurrentLocation();
+                moveCamera();
             }
         });
     }
 
-    private void moveToCurrentLocation() {
-
-    }
-
-
-    public void getLocation() {
+    public void starChangeLocationListener() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 500L, 1f, this);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 500L, 0.5f, this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500L, 0.5f, this);
 
     }
 
@@ -84,17 +94,30 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
     public void onLocationChanged(Location location) {
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         if (currentLocation == null) {
-            currentLocation = googleMap.addMarker(new MarkerOptions().position(latLng));
-            myMarker = googleMap.addMarker(new MarkerOptions().position(latLng));
-            moveCamera(currentLocation.getPosition());
+            setMapsMarkers(latLng);
+            location.get
         } else {
             currentLocation.setPosition(latLng);
         }
 
     }
 
-    private void moveCamera(LatLng latLng) {
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
+    private void setMapsMarkers(LatLng latLng) {
+        currentLocation = googleMap.addMarker(new MarkerOptions()
+                .position(latLng)
+                .icon(getIcon(R.drawable.ic_current_location_circle_blue)));
+
+        myMarker = googleMap.addMarker(new MarkerOptions().position(latLng));
+        moveCamera();
+    }
+
+    private BitmapDescriptor getIcon(int resource) {
+        return BitmapDescriptorFactory.fromResource(resource);
+    }
+
+    private void moveCamera() {
+        myMarker.setPosition(currentLocation.getPosition());
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation.getPosition(), 19));
     }
 
     @Override
@@ -111,6 +134,7 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
     public void onProviderDisabled(String s) {
 
     }
+
 
 
 /*private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
