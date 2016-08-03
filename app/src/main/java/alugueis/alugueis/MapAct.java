@@ -2,6 +2,8 @@ package alugueis.alugueis;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -15,6 +17,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -24,8 +28,8 @@ import butterknife.ButterKnife;
 
 public class MapAct extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
     private LocationManager locationManager;
-    private Marker currentLocation;
     private Marker myMarker;
+    private Marker currentLocation;
     private GoogleMap googleMap;
 
     @BindView(R.id.location_button)
@@ -64,19 +68,8 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
     }
 
     private void moveToCurrentLocation() {
-
-    }
-
-
-    public void getLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 500L, 1f, this);
-
+        myMarker.setPosition(currentLocation.getPosition());
+        moveCamera(myMarker.getPosition());
     }
 
 
@@ -84,9 +77,10 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
     public void onLocationChanged(Location location) {
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         if (currentLocation == null) {
-            currentLocation = googleMap.addMarker(new MarkerOptions().position(latLng));
-            myMarker = googleMap.addMarker(new MarkerOptions().position(latLng));
-            moveCamera(currentLocation.getPosition());
+            moveCamera(latLng);
+            currentLocation = googleMap.addMarker(new MarkerOptions().position(latLng).icon(getIcon(R.drawable.ic_blue_circle_current_location)));
+
+            myMarker = googleMap.addMarker(new MarkerOptions().position(latLng).icon(getIcon(R.drawable.ic_pin_my_location)));
         } else {
             currentLocation.setPosition(latLng);
         }
@@ -94,7 +88,7 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
     }
 
     private void moveCamera(LatLng latLng) {
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 19));
     }
 
     @Override
@@ -112,6 +106,21 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
 
     }
 
+    public void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 500L, 1f, this);
+
+    }
+
+    public BitmapDescriptor getIcon(int drawable) {
+        return BitmapDescriptorFactory.fromResource(
+                drawable);
+    }
 
 /*private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
     public static final int PERMISSION_ACESS_FINE_LOCATION = 25;
