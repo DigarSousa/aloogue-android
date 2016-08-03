@@ -64,7 +64,7 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
         googleMap.getUiSettings().setMapToolbarEnabled(false);
 
         setMapsMarkers(getSingleLocation());
-        starChangeLocationListener();
+        startLocationSettings();
         initFields();
     }
 
@@ -77,29 +77,25 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
         });
     }
 
-    public void starChangeLocationListener() {
+    public void startLocationSettings() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 500L, 0.5f, this);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500L, 0.5f, this);
 
-    }
+        Boolean isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        Boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
 
-    @Override
-    public void onLocationChanged(Location location) {
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        if (currentLocation == null) {
-            setMapsMarkers(latLng);
-            location.get
+        if (isGpsEnabled) {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0.5f, this);
+        } else if (isNetworkEnabled) {
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0.5f, this);
         } else {
-            currentLocation.setPosition(latLng);
+            //todo: mensagem de aborto;
         }
-
     }
 
     private void setMapsMarkers(LatLng latLng) {
@@ -121,18 +117,23 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
     }
 
     @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
     public void onStatusChanged(String s, int i, Bundle bundle) {
 
     }
 
     @Override
     public void onProviderEnabled(String s) {
-
+        startLocationSettings();
     }
 
     @Override
     public void onProviderDisabled(String s) {
-
+        startLocationSettings();
     }
 
 
