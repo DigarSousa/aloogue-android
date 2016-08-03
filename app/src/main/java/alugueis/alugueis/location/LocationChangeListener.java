@@ -15,26 +15,26 @@ public class LocationChangeListener {
     private Context context;
     private LocationManager locationManager;
     private LocationListener gpsListener;
-    private LocationListener netWorkListener;
+    private LocationListener networkListener;
     private LocationSimpleListener locationSimpleLisener;
 
     public LocationChangeListener(Context context, LocationSimpleListener locationSimpleLisener) {
         this.context = context;
         this.locationSimpleLisener = locationSimpleLisener;
         locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
-        isAnyProviderEnabled();
     }
 
     public void startGpsListener() {
         startLocationListener(LocationManager.GPS_PROVIDER, 0L, 0f);
     }
 
-    public void startNetWorkListener() {
+    public void startNetworkListener() {
         startLocationListener(LocationManager.NETWORK_PROVIDER, 0L, 0f);
 
     }
 
     private void startLocationListener(String provider, Long minTime, Float minChangeDistance) {
+        isAnyProviderEnabled();
 
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
@@ -77,7 +77,7 @@ public class LocationChangeListener {
     }
 
     private LocationListener getNetWorkLocationListener() {
-        netWorkListener = new LocationListener() {
+        networkListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 locationSimpleLisener.onLocationChange(location);
@@ -98,7 +98,7 @@ public class LocationChangeListener {
                 isAnyProviderEnabled();
             }
         };
-        return netWorkListener;
+        return networkListener;
     }
 
     private void removeGpsListener() {
@@ -113,15 +113,15 @@ public class LocationChangeListener {
         }
     }
 
-    private void removeNetWorkListener() {
-        if (netWorkListener != null) {
+    private void removeNetworkListener() {
+        if (networkListener != null) {
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED) {
                 return;
             }
-            locationManager.removeUpdates(netWorkListener);
+            locationManager.removeUpdates(networkListener);
         }
 
     }
@@ -133,7 +133,7 @@ public class LocationChangeListener {
             startGpsListener();
         }
         if (isNetworkEnabled) {
-            startNetWorkListener();
+            startNetworkListener();
         }
     }
 
@@ -144,7 +144,7 @@ public class LocationChangeListener {
             removeGpsListener();
         }
         if (!isNetworkEnabled) {
-            removeNetWorkListener();
+            removeNetworkListener();
         }
 
         if (!isGpsEnabled && !isNetworkEnabled) {

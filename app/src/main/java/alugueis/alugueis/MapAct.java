@@ -1,13 +1,8 @@
 package alugueis.alugueis;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -27,8 +22,7 @@ import alugueis.alugueis.location.LocationSimpleListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MapAct extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
-    private LocationManager locationManager;
+public class MapAct extends AppCompatActivity implements OnMapReadyCallback{
     private Marker currentLocation;
     private Marker myMarker;
     private GoogleMap googleMap;
@@ -41,8 +35,6 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_activity);
         ButterKnife.bind(this);
-
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -79,7 +71,7 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
         });
     }
 
-    public void startLocationSettings() {
+    private void startLocationSettings() {
         LocationChangeListener locationChangeListener = new LocationChangeListener(this, new LocationSimpleListener() {
             @Override
             public void onLocationChange(Location location) {
@@ -93,7 +85,7 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
         });
 
         locationChangeListener.startGpsListener();
-        locationChangeListener.startNetWorkListener();
+        locationChangeListener.startNetworkListener();
     }
 
     private void setMapsMarkers(LatLng latLng) {
@@ -113,28 +105,6 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
         myMarker.setPosition(currentLocation.getPosition());
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation.getPosition(), 19));
     }
-
-    @Override
-    public void onLocationChanged(Location location) {
-
-    }
-
-    @Override
-    public void onStatusChanged(String s, int i, Bundle bundle) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String s) {
-        startLocationSettings();
-    }
-
-    @Override
-    public void onProviderDisabled(String s) {
-        startLocationSettings();
-    }
-
-
 
 /*private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
     public static final int PERMISSION_ACESS_FINE_LOCATION = 25;
