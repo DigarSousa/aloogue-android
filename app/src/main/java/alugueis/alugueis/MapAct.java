@@ -22,6 +22,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import alugueis.alugueis.classes.maps.GPSTracker;
+import alugueis.alugueis.location.LocationChangeListener;
+import alugueis.alugueis.location.LocationSimpleListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -78,24 +80,20 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
     }
 
     public void startLocationSettings() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
+        LocationChangeListener locationChangeListener = new LocationChangeListener(this, new LocationSimpleListener() {
+            @Override
+            public void onLocationChange(Location location) {
 
-        Boolean isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        Boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+            }
 
+            @Override
+            public void onProviderChange(String provider) {
 
-        if (isGpsEnabled) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0.5f, this);
-        } else if (isNetworkEnabled) {
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0.5f, this);
-        } else {
-            //todo: mensagem de aborto;
-        }
+            }
+        });
+
+        locationChangeListener.startGpsListener();
+        locationChangeListener.startNetWorkListener();
     }
 
     private void setMapsMarkers(LatLng latLng) {
