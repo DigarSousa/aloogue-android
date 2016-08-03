@@ -2,6 +2,7 @@ package alugueis.alugueis.util;
 
 import alugueis.alugueis.R;
 import alugueis.alugueis.classes.maps.GPSTracker;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -64,21 +66,6 @@ public class MapsUtil {
         } else {
             Toast.makeText(c, "Inside", Toast.LENGTH_LONG).show();
         }
-    }
-
-    public static LatLng whereAmI(Context context) {
-        GPSTracker gps = new GPSTracker(context);
-        Double lat = 0.0;
-        Double lon = 0.0;
-
-        // check if GPS enabled
-        if (gps.canGetLocation()) {
-            lat = gps.getLatitude();
-            lon = gps.getLongitude();
-        } else {
-            gps.showSettingsAlert();
-        }
-        return new LatLng(lat, lon);
     }
 
 

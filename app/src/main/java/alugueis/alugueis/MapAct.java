@@ -2,8 +2,6 @@ package alugueis.alugueis;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -23,13 +21,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import alugueis.alugueis.classes.maps.GPSTracker;
+import alugueis.alugueis.location.LocationChangeListener;
+import alugueis.alugueis.location.LocationSimpleListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MapAct extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
     private LocationManager locationManager;
-    private Marker myMarker;
     private Marker currentLocation;
+    private Marker myMarker;
     private GoogleMap googleMap;
 
     @BindView(R.id.location_button)
@@ -47,14 +48,25 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
         mapFragment.getMapAsync(this);
     }
 
+    public LatLng getSingleLocation() {
+        GPSTracker gps = new GPSTracker(this);
+        if (gps.canGetLocation()) {
+            return new LatLng(gps.getLatitude(), gps.getLongitude());
+        } else {
+            gps.showSettingsAlert();
+        }
+        return null;
+    }
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
-
         googleMap.getUiSettings().setMyLocationButtonEnabled(false);
         googleMap.getUiSettings().setMapToolbarEnabled(false);
-        getLocation();
 
+        setMapsMarkers(getSingleLocation());
+        startLocationSettings();
         initFields();
     }
 
@@ -62,33 +74,49 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
         locationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                moveToCurrentLocation();
+                moveCamera();
             }
         });
     }
 
-    private void moveToCurrentLocation() {
-        myMarker.setPosition(currentLocation.getPosition());
-        moveCamera(myMarker.getPosition());
+    public void startLocationSettings() {
+        LocationChangeListener locationChangeListener = new LocationChangeListener(this, new LocationSimpleListener() {
+            @Override
+            public void onLocationChange(Location location) {
+
+            }
+
+            @Override
+            public void onProviderChange(String provider) {
+
+            }
+        });
+
+        locationChangeListener.startGpsListener();
+        locationChangeListener.startNetWorkListener();
     }
 
+    private void setMapsMarkers(LatLng latLng) {
+        currentLocation = googleMap.addMarker(new MarkerOptions()
+                .position(latLng)
+                .icon(getIcon(R.drawable.ic_current_location_circle_blue)));
+
+        myMarker = googleMap.addMarker(new MarkerOptions().position(latLng));
+        moveCamera();
+    }
+
+    private BitmapDescriptor getIcon(int resource) {
+        return BitmapDescriptorFactory.fromResource(resource);
+    }
+
+    private void moveCamera() {
+        myMarker.setPosition(currentLocation.getPosition());
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation.getPosition(), 19));
+    }
 
     @Override
     public void onLocationChanged(Location location) {
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        if (currentLocation == null) {
-            moveCamera(latLng);
-            currentLocation = googleMap.addMarker(new MarkerOptions().position(latLng).icon(getIcon(R.drawable.ic_blue_circle_current_location)));
 
-            myMarker = googleMap.addMarker(new MarkerOptions().position(latLng).icon(getIcon(R.drawable.ic_pin_my_location)));
-        } else {
-            currentLocation.setPosition(latLng);
-        }
-
-    }
-
-    private void moveCamera(LatLng latLng) {
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 19));
     }
 
     @Override
@@ -98,29 +126,15 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback, Loc
 
     @Override
     public void onProviderEnabled(String s) {
-
+        startLocationSettings();
     }
 
     @Override
     public void onProviderDisabled(String s) {
-
+        startLocationSettings();
     }
 
-    public void getLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 500L, 1f, this);
 
-    }
-
-    public BitmapDescriptor getIcon(int drawable) {
-        return BitmapDescriptorFactory.fromResource(
-                drawable);
-    }
 
 /*private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
     public static final int PERMISSION_ACESS_FINE_LOCATION = 25;
