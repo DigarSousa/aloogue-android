@@ -81,7 +81,7 @@ public class EditPlaceAct extends CreatePlaceAct {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, 0, 0, "History").setIcon(R.drawable.ic_delete_white_24dp)
+       /* menu.add(0, 0, 0, "History").setIcon(R.drawable.ic_delete_white_24dp)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         menu.getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
@@ -158,5 +158,8 @@ public class EditPlaceAct extends CreatePlaceAct {
     @Override
     public void onBackPressed() {
        super.onBackPressed();
+    }
+    */
+        return true;
     }
 }

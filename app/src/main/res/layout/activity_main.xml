@@ -6,25 +6,13 @@
         android:background="@color/background"
         tools:context=".MainAct">
 
-    <!-- TOOLBAR -->
-    <android.support.v7.widget.Toolbar
-            android:id="@+id/mainToolbar"
-            android:layout_width="match_parent"
+    <ImageView
+            android:layout_width="140dp"
             android:layout_height="70dp"
-            android:minHeight="?attr/actionBarSize"
-            android:background="@android:color/transparent">
-        <!--android:background="?attr/colorPrimary"-->
-        <!--android:elevation="4dp"-->
-
-        <!--LOGO-->
-        <ImageView
-                android:layout_width="140dp"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"
-                android:src="@drawable/logo_normal"/>
-
-    </android.support.v7.widget.Toolbar>
+            android:layout_gravity="top"
+            android:src="@drawable/logo_normal"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
 
     <RelativeLayout
             android:id="@+id/loginArea"
@@ -62,12 +50,12 @@
                 android:text="@string/enter"
                 android:background="@drawable/raised_button"
                 android:layout_below="@+id/passwordLogin"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="28dp"/>
 
         <Button
-                android:id="@+id/signinButton"
+                android:id="@+id/signUpButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/createaccount"
@@ -75,48 +63,9 @@
                 android:textColor="@color/colorPrimary"
                 android:background="@android:color/transparent"
                 android:layout_below="@+id/enterButton"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"/>
-
-
     </RelativeLayout>
-
-    <android.support.v7.widget.Toolbar
-            android:id="@+id/tb_bottom"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="56dp"
-            android:background="@android:color/transparent">
-
-        <LinearLayout
-                android:id="@+id/iconsArea"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
-
-            <ImageButton
-                    android:id="@+id/facebookButton"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_facebook"
-                    android:background="#00000000"/>
-
-            <ImageButton
-                    android:id="@+id/twitterButton"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_twitter"
-                    android:background="#00000000"/>
-
-        </LinearLayout>
-
-    </android.support.v7.widget.Toolbar>
-
 
 </RelativeLayout>

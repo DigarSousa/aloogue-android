@@ -15,12 +15,12 @@ public class LocationChangeListener {
     private Context context;
     private LocationManager locationManager;
     private LocationListener gpsListener;
-    private LocationListener networkListener;
-    private LocationSimpleListener locationSimpleLisener;
+    private LocationListener netWorkListener;
+    private LocationSimpleListener locationSimpleListener;
 
-    public LocationChangeListener(Context context, LocationSimpleListener locationSimpleLisener) {
+    public LocationChangeListener(Context context, LocationSimpleListener locationSimpleListener) {
         this.context = context;
-        this.locationSimpleLisener = locationSimpleLisener;
+        this.locationSimpleListener = locationSimpleListener;
         locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
     }
 
@@ -28,13 +28,12 @@ public class LocationChangeListener {
         startLocationListener(LocationManager.GPS_PROVIDER, 0L, 0f);
     }
 
-    public void startNetworkListener() {
+    public void startNetWorkListener() {
         startLocationListener(LocationManager.NETWORK_PROVIDER, 0L, 0f);
 
     }
 
-    private void startLocationListener(String provider, Long minTime, Float minChangeDistance) {
-        isAnyProviderEnabled();
+    private void startLocationListener(String provider, long minTime, float minChangeDistance) {
 
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
@@ -43,19 +42,17 @@ public class LocationChangeListener {
             return;
         }
 
-        if (provider.equals(LocationManager.GPS_PROVIDER))
+        if (provider.equals(LocationManager.GPS_PROVIDER)) {
             locationManager.requestLocationUpdates(provider, minTime, minChangeDistance, getGpsLocationListener());
-        else {
-
-            locationManager.requestLocationUpdates(provider, minTime, minChangeDistance, getNetWorkLocationListener());
         }
+        locationManager.requestLocationUpdates(provider, minTime, minChangeDistance, getNetWorkLocationListener());
     }
 
     private LocationListener getGpsLocationListener() {
-        gpsListener = new LocationListener() {
+        return gpsListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                locationSimpleLisener.onLocationChange(location);
+                locationSimpleListener.onLocationChange(location);
             }
 
             @Override
@@ -73,19 +70,18 @@ public class LocationChangeListener {
                 isAnyProviderEnabled();
             }
         };
-        return gpsListener;
     }
 
     private LocationListener getNetWorkLocationListener() {
-        networkListener = new LocationListener() {
+        return netWorkListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                locationSimpleLisener.onLocationChange(location);
+                locationSimpleListener.onLocationChange(location);
             }
 
             @Override
             public void onStatusChanged(String s, int i, Bundle bundle) {
-
+                s.toCharArray();
             }
 
             @Override
@@ -98,7 +94,6 @@ public class LocationChangeListener {
                 isAnyProviderEnabled();
             }
         };
-        return networkListener;
     }
 
     private void removeGpsListener() {
@@ -113,15 +108,15 @@ public class LocationChangeListener {
         }
     }
 
-    private void removeNetworkListener() {
-        if (networkListener != null) {
+    private void removeNetWorkListener() {
+        if (netWorkListener != null) {
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED) {
                 return;
             }
-            locationManager.removeUpdates(networkListener);
+            locationManager.removeUpdates(netWorkListener);
         }
 
     }
@@ -133,7 +128,7 @@ public class LocationChangeListener {
             startGpsListener();
         }
         if (isNetworkEnabled) {
-            startNetworkListener();
+            startNetWorkListener();
         }
     }
 
@@ -144,7 +139,7 @@ public class LocationChangeListener {
             removeGpsListener();
         }
         if (!isNetworkEnabled) {
-            removeNetworkListener();
+            removeNetWorkListener();
         }
 
         if (!isGpsEnabled && !isNetworkEnabled) {

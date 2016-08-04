@@ -1,8 +1,10 @@
-package alugueis.alugueis;
+
+/*package alugueis.alugueis;
 
 import alugueis.alugueis.model.*;
 import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
+import android.support.v7.app.AppCompatActivity;
 import service.httputil.OnFinishTask;
 import service.httputil.Service;
 
@@ -16,8 +18,7 @@ import android.widget.*;
 import com.google.android.gms.drive.events.TransferProgressEvent;
 
 import java.io.IOException;
-
-public class EditProfileAct extends DashboardNavAct {
+public class EditProfileAct extends AppCompatActivity {
 
     private Toolbar mainToolbar;
     private UserApp loggedUserApp;
@@ -35,8 +36,7 @@ public class EditProfileAct extends DashboardNavAct {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Utilizado para levar o layout da activity para o pai (nav drawer)
-        getLayoutInflater().inflate(R.layout.activity_edit_profile, frameLayout);
+        addContentView(this, R.layout.activity_edit_profile);
 
         this.context = getApplicationContext();
         Bundle extras = getIntent().getExtras();

@@ -1,28 +1,24 @@
 package alugueis.alugueis;
 
+import alugueis.alugueis.location.LocationChangeListener;
+import alugueis.alugueis.location.LocationSimpleListener;
+
 import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.*;
 
-import alugueis.alugueis.classes.maps.GPSTracker;
-import alugueis.alugueis.location.LocationChangeListener;
-import alugueis.alugueis.location.LocationSimpleListener;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-public class MapAct extends AppCompatActivity implements OnMapReadyCallback{
+public class MapAct extends AppCompatActivity implements OnMapReadyCallback {
     private Marker currentLocation;
     private Marker myMarker;
     private GoogleMap googleMap;
@@ -40,24 +36,12 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback{
         mapFragment.getMapAsync(this);
     }
 
-    public LatLng getSingleLocation() {
-        GPSTracker gps = new GPSTracker(this);
-        if (gps.canGetLocation()) {
-            return new LatLng(gps.getLatitude(), gps.getLongitude());
-        } else {
-            gps.showSettingsAlert();
-        }
-        return null;
-    }
-
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
         googleMap.getUiSettings().setMyLocationButtonEnabled(false);
         googleMap.getUiSettings().setMapToolbarEnabled(false);
 
-        setMapsMarkers(getSingleLocation());
         startLocationSettings();
         initFields();
     }
@@ -75,26 +59,24 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback{
         LocationChangeListener locationChangeListener = new LocationChangeListener(this, new LocationSimpleListener() {
             @Override
             public void onLocationChange(Location location) {
-
-            }
-
-            @Override
-            public void onProviderChange(String provider) {
-
+                setMapsMarkers(new LatLng(location.getLatitude(), location.getLongitude()));
             }
         });
 
         locationChangeListener.startGpsListener();
-        locationChangeListener.startNetworkListener();
+        locationChangeListener.startNetWorkListener();
     }
 
     private void setMapsMarkers(LatLng latLng) {
-        currentLocation = googleMap.addMarker(new MarkerOptions()
-                .position(latLng)
-                .icon(getIcon(R.drawable.ic_current_location_circle_blue)));
 
-        myMarker = googleMap.addMarker(new MarkerOptions().position(latLng));
-        moveCamera();
+        if (currentLocation == null) {
+            currentLocation = googleMap.addMarker(new MarkerOptions()
+                    .position(latLng)
+                    .icon(getIcon(R.drawable.ic_current_location_circle_blue)));
+            myMarker = googleMap.addMarker(new MarkerOptions().position(latLng).icon(getIcon(R.drawable.ic_my_pin_location)));
+            moveCamera();
+        }
+        currentLocation.setPosition(latLng);
     }
 
     private BitmapDescriptor getIcon(int resource) {
@@ -103,8 +85,11 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback{
 
     private void moveCamera() {
         myMarker.setPosition(currentLocation.getPosition());
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation.getPosition(), 19));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation.getPosition(), 20));
     }
+
+
+
 
 /*private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 2424;
     public static final int PERMISSION_ACESS_FINE_LOCATION = 25;
