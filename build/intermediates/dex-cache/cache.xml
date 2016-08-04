@@ -2,522 +2,522 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\9.2.1\jars\classes.jar"
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/9.2.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.3"
         sha1="4c2b01baa64ba25f8dbdf7f7f828bc5664dab55e">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-games-9.2.1_672c1eeb35e75694e8434e8b40862769861c7209.jar" />
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-games-9.2.1_8a4a5af7beee0748396fcfd912312dc6ce760b8a.jar" />
     </item>
     <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="1141496362c8876f0da4b645fbaf22c0a3618372">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-analytics-impl-9.2.1_9a37e123af398c8592c8e7a049ba021c0aa52ce8.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\jars\libs\internal_impl-24.0.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\internal_impl-24.0.0_8d76ef4b2910974f1dd7b6881f88866e52be2e94.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="07c569a77f437c5c71eac8b1b636a50bebb69a93">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-location-9.2.1_69bb590229031fa80b1c1a2531762f1f85b64164.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="f3b0ff905873c91ab64addba30cc1e77bed34c4d">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appinvite-9.2.1_42123c4b1a87b49f94aa35615b6a67f0b346724f.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="dd1907a2e855eeb2be8aa3486f3d4d4f1c8b22af">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-wearable-9.2.1_9406136aa1171abb993d29e60f8e9e718c5abe10.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\org.projectlombok\lombok\1.16.6\9d3a47307466b28632bf35f8972ae9d703879416\lombok-1.16.6.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="9d3a47307466b28632bf35f8972ae9d703879416">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\lombok-1.16.6_9ba735dd952501ff1e0a9138141a1e524f44388f.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="152cba5ca28fd4a5191a8577a0fa96d61122041e">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-identity-9.2.1_060cc449d9d41c5f4925063a6acfa6e70e8a86b1.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="8aada8a0e9e9b3ecdda5e80f17c6a51a468e302a">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-wallet-9.2.1_bf163c507f40145a67b25590b6abff544f3c9317.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gass\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="081ced8ab77e606b6743c27cfe93dc450447b046">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-gass-9.2.1_85529b523b7e04b0d1c4967400d589aad4f88f8e.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\org.adw.library\discrete-seekbar\1.0.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="7be042dd2aa8157a2b63934902f472952d2ea1fe">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\org.adw.library-discrete-seekbar-1.0.1_38efa15f144041743deb124826cb221a5c6b54da.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth-base\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="48917c60ea81213ea39cbd7123996a5401106dc3">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-auth-base-9.2.1_77864a77db5dce4a9a806a852e24e0528330a7fe.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.7.2\84ffa765dd258dbab8695963c41308b054f3a1cb\jackson-databind-2.7.2.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="84ffa765dd258dbab8695963c41308b054f3a1cb">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\jackson-databind-2.7.2_0f6f314c387fbe0a1eed6dde4ef1c79e44fded07.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.0.0_63e4c24d9ada9057743527a4283fe8dcec47d089.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife-annotations\8.0.1\345b89f45d02d8b09400b472fab7b7e38f4ede1f\butterknife-annotations-8.0.1.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="345b89f45d02d8b09400b472fab7b7e38f4ede1f">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\butterknife-annotations-8.0.1_ad0270f0c6d6f8f9dad0698e48dba8fa845e58ed.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.7.2\20f6463eb19ac61960c5d91a094c2f4f0727dc2e\okhttp-2.7.2.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="20f6463eb19ac61960c5d91a094c2f4f0727dc2e">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\okhttp-2.7.2_6681398439dd6b168225da757dfab0436edacaba.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="894922f67adeaaef51f077a29e315da21a3382d3">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-24.0.0_8761310a8d0d1700aa3233a6aba3ab1e72fac3d3.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="a65d98c9409f271d3209f4cc1f7d8e0391665fa5">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-iid-9.2.1_517419a9b3389d352f585ce27c118e32df47273e.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="357a8702c49044417d4856861c8f435e7c74ef09">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-analytics-9.2.1_f8caed38daca84775ca000f8144270bd186f3c9b.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database-connection\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="05d2e01f33fb2097b51fce3f938dc37a75fe2d6b">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-database-connection-9.2.1_ee3e3e0624c67e654e66c8bfb30b59fb36cf88ab.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="edf9a22ebf25281619265079aec8f5d433da1a5c">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-gcm-9.2.1_1aa892fc2ac08c244da8ca9e14044b246f76f432.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="05a2710d284c03087013a667a324c9e2aba5bc91">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-panorama-9.2.1_0fd1a8540f2c5bb3dac71dbf9f257f7baef0b1a2.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="3bd97cfefd783e9de1dd1c30574a6adb44b4409b">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-24.0.0_8b8a9aa3c56eda68462ce6e776351711a8033ac7.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.github.BlacKCaT27\CurrencyEditText\v1.4.4\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="10f60d01504abc7cb028d0c0ed4fbb77a47ca206">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.github.BlacKCaT27-CurrencyEditText-v1.4.4_e551e48abc224c8239d7d0c20a7bbeea19bb72f7.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\23.0.0\jars\libs\internal_impl-23.0.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="03d38bb042efe3e5ce27ba66b729a9523c36d8fe">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.0_25482c39b60b5a74ade391e203cce9c33e546df7.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="819c2c3a4fb135e085445d11131d069cf9c32b2a">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tasks-9.2.1_7892775baa04aa3a2f99baffbc851f7a779459c7.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-clearcut\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="90eeba67a669f8fb24db0f821ef81703fe7a02bc">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-clearcut-9.2.1_86bef0a6bd503d83a8a33576a6dc0b11b992e79d.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage-common\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="36e2b438f9b0d68fb2482c8f389e249e32840cff">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-storage-common-9.2.1_735d01facfd827834059686edde833b37dcc42b0.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\23.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.android.support-mediarouter-v7-23.0.0_ffded2bc281ec52fb660bc1ff82fd55054173f8c.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\design\24.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="fc29308a7a8f6d4407b34634eb48fb8b817f9b23">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.android.support-design-24.0.0_214b18acf299389de6c6d998fae9f2e23e6bfc89.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="d064f813cd835f17853e39221b247cf6a997a2db">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-fitness-9.2.1_2ac2b8002ba02536eee745d9a806346347b5207c.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-auth-common\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="ee409046028e5657a2a69edaa2eba00d6511a74c">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-auth-common-9.2.1_302a2426cf27317233ae1c905d0e85b5730a21c9.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast-framework\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="9f2282b9fc24f24c69665032dede1bc7201cf006">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-cast-framework-9.2.1_36135068e804a51a0ccf0810cd74b79e588bf994.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.maps.android\android-maps-utils\0.3.4\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="cf251baf39f5c5138224b67b4106eb6331abbd13">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.maps.android-android-maps-utils-0.3.4_9e6748c0871213b8a17e7d1c899dded49226b863.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="421b36cf4f0d3bbd75e8f28647fccf36674ef049">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-9.2.1_69f03eba5484d9f8937bc3b6a384355ffeb86f14.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="89ab748a6c0ab6ac1d3671f2356d6181e8108bc5">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-drive-9.2.1_175763a5e523a1fe25e37c079fac859d681e70ab.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.8.0\5ea7af56cc7c567ed9856d99efb30740e9b17ff\okio-1.8.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\okio-1.8.0_de10487b9619892929608cc5f57677cf1cf6aa70.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="d41b5d21cc9dd7d210f0ae82ac509ba7f091d611">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-iid-9.2.1_29a84f3a95fbfc0620ed4b549c70f3c73a4cbb8c.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\AndroidSdk\android-sdk_r24.4.1-windows\build-tools\23.0.3\renderscript\lib\renderscript-v8.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="5b79706a834fa62fc97734d9e799e98b63536ff8">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\renderscript-v8_0d86cc41e31ab1358b8dbd81210663e648de80b1.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-contextmanager\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="ccc963cafe59ce185c49f47baff7eedcb8589bdf">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-contextmanager-9.2.1_576418c0cdc2aee86176635d096c1b299ba7f4ea.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="e719de687ac45141de3dd613907860a495580af0">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-storage-9.2.1_7b28565e5f7e519e1622c98405243b68c155435f.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="0874286cc2fd88d54fdf130e9d5372730da6de97">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-24.0.0_d4a1d9fdaad2e9adfa3825bcaaba7d74f6ca5199.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-places\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="0979debb5b4d955ddc0e80bb192f4f00c2f91750">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-places-9.2.1_ecf708b3f1bfbed70593f6cc92e722e579154283.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\javax.annotation\javax.annotation-api\1.2-b01\268c3b9fa56499a664ceded289dfca835a7a7db6\javax.annotation-api-1.2-b01.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="268c3b9fa56499a664ceded289dfca835a7a7db6">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\javax.annotation-api-1.2-b01_151902c6dcea952ef8aedcd2931bd3a027c01b3c.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-config\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="7bb417e9ac8645285342935679e75d371b58b62b">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-config-9.2.1_3c342112f60c32e30ffb2a43bbaf842a91321b33.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.jakewharton\butterknife\8.0.1\jars\classes.jar"
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.0.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.3"
         sha1="74ca46e7da11e3d065eb64cdbe6568a7ed74c211">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.jakewharton-butterknife-8.0.1_1360860ddd290dfda120a67480937185e1f79b44.jar" />
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.jakewharton-butterknife-8.0.1_803ff419ca82d93ab124bfdec70a6682aab0105d.jar" />
     </item>
     <item
-        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-jackson\2.0.0\9506825ddc5a43b38a3d104db913ff0f4cb2e323\converter-jackson-2.0.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="9506825ddc5a43b38a3d104db913ff0f4cb2e323">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\converter-jackson-2.0.0_4ca7dc0427d58462b144e66cf987de49d71d4d08.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager-api\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="77e2e4803396fa79009ace04d9be84184aafcc31">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tagmanager-api-9.2.1_4120607ef9b53c46d59d9da7600918273292257b.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="3a42c5696fa39930d39770f7e5552a9c965fbe09">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-vision-9.2.1_4b8b33e0cc280eeac6bfe8a29975aeac98d174aa.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="6b896c1067633db41e9c10a3a5d0919c5c4cfc8c">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-9.2.1_459fa504919d7085249ab0fe891a8ac2ad61ceaf.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.7.0\19f42c154ffc689f40a77613bc32caeb17d744e3\jackson-annotations-2.7.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="19f42c154ffc689f40a77613bc32caeb17d744e3">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\jackson-annotations-2.7.0_3967de0cb58249cdd2f312e0a945dd4e3fdde19e.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="0765979e802b1669c90dc36076559461d5eb6ad1">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-nearby-9.2.1_6e56a49ec71313d9499e426a51abfec05d866f76.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="5337354083e89ed67151859ab0b6b80935c60eaf">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-analytics-impl-9.2.1_632cbeaccffafddf31958948efe065ae1ecb6619.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="b24c1a80d8ccaecee7b8b80209b4e273dc22b14d">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tagmanager-9.2.1_21c35d1c3237dee8b3832ffbb4e097207423e4ae.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="e1bec33f1ec5367e25676638b430b9d585f3dbec">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-auth-9.2.1_4e7b8c63bd1ae5711b34249671f17ee6a22acdd2.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.3.0\2b802460eea20f8f2ad9c08c74e0f14718e88aa9\okhttp-3.3.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\okhttp-3.3.0_743456b2f914720a4bb54adced34db496a8de255.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.7.2\8b8310381b690e317f5f0574e9b2dd7034778b4c\jackson-core-2.7.2.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="8b8310381b690e317f5f0574e9b2dd7034778b4c">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\jackson-core-2.7.2_2dca38e09b96a14feec2a6a578d0705487c744fc.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="ee19e33a798d11a5cf309a40155b8223fadcdeea">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appindexing-9.2.1_6a4e0ce7ba1d0e69aff49a081224127ef4e7dcdf.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="6d2f508d1a9fa0fbe1653595e484800c08afb42c">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-ads-9.2.1_3956473ef1d9661a22fed86176c9f8b869b4431f.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-auth-module\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="35a01d7cb4ff6b5976777bf5827fd8f206fb8757">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-auth-module-9.2.1_f25eb9c888868f344dd6810751eb1687bd16a4f5.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-crash\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="6c09228ff931eb30b68dd27fe34ed90d978b6892">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-crash-9.2.1_14dde137e4436262595a44f256a54752215ce6f8.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-messaging\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="ac78f93fc89c497a65f9d9a352cd405996d2f65a">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-messaging-9.2.1_b91cff7e98c344caeb78682b8c2dc9f363fbe09b.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database\9.2.1\jars\classes.jar"
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database/9.2.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.3"
         sha1="f06a0705d7b8b9d18b00d056fe0e07bec75514e6">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-database-9.2.1_951d6c6d94e432a3e447076995b3d797c660f2a7.jar" />
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-database-9.2.1_c56a3717929d066dc3fb24cafbacc11c1d10f6cc.jar" />
     </item>
     <item
-        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.android.support\support-annotations\24.0.0\2943c74db6d4346ab8c6531adac91fa05c137c40\support-annotations-24.0.0.jar"
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast-framework/9.2.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.3"
-        sha1="2943c74db6d4346ab8c6531adac91fa05c137c40">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\support-annotations-24.0.0_728430f71d20e6b143aefe100f2975d9dad8f61c.jar" />
+        sha1="9f2282b9fc24f24c69665032dede1bc7201cf006">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-cast-framework-9.2.1_174534f11eda070b7f35fac1ea138e66cd6baa47.jar" />
     </item>
     <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\9.2.1\jars\classes.jar"
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/9.2.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.3"
-        sha1="bbd51be332bace144b3d16501ec0af379c3c8750">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-maps-9.2.1_8a40aca52369bfd2b29bdebb9ccf7b72d31ff249.jar" />
+        sha1="edf9a22ebf25281619265079aec8f5d433da1a5c">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-gcm-9.2.1_afed19db0237c85f73c6160ef2531cf8080c4d1f.jar" />
     </item>
     <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="4b515e6e269bfe848f5b43ac09bce54d6617d4fd">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-safetynet-9.2.1_8757d3b666821dd413573becc761feb50e1857cb.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-auth\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="2506c5893e125e2f9cfc522378e893620c21b109">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-auth-9.2.1_539ac912b9db5fa331a2216d1635a972b1903b16.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="def5530cb13311617fc8f962e2a90225bb6904e2">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-plus-9.2.1_cc882eed8b8a33b4a51d2c58b9fa7b937c20b3d1.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="6a0f2d219f82db499ac03d5a985c4eb3e83fc422">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-analytics-9.2.1_8ab6d1df28ba950927d51e62651d83efbbc10097.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\9.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="428c9bac95b2f72921224e289553a04bea61cda5">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-cast-9.2.1_340f6b376ff7e7304627574dcddf82eb45cd729a.jar" />
-    </item>
-    <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads-lite\9.2.1\jars\classes.jar"
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/9.2.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.3"
         sha1="310ef01419435979cc82847cf085799a8d00e7e9">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-ads-lite-9.2.1_5f44cb1c9f06b9b41901e85f10fc3781f935955f.jar" />
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-ads-lite-9.2.1_356faab8260617eec65bf22571f30454e3e19608.jar" />
     </item>
     <item
-        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.1.0\2de7cd8b95b7021b1d597f049bcb422055119f2c\retrofit-2.1.0.jar"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/24.0.0/2943c74db6d4346ab8c6531adac91fa05c137c40/support-annotations-24.0.0.jar"
         jumboMode="false"
         revision="23.0.3"
-        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\retrofit-2.1.0_71b5b4c66c1a2289af463ca00faadfbe8b00cac0.jar" />
+        sha1="2943c74db6d4346ab8c6531adac91fa05c137c40">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/support-annotations-24.0.0_0bad1aa5a4c086a48f9b4c0f1ad37e9f761304f1.jar" />
     </item>
     <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.0.0\jars\classes.jar"
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/9.2.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.3"
-        sha1="e70f608219ed6b974644c333249ab2bb7b71de98">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-24.0.0_2f29da94cefcae429b7f873081be3d9a6198bc5e.jar" />
+        sha1="6d2f508d1a9fa0fbe1653595e484800c08afb42c">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-ads-9.2.1_f7bba4ede385c8c393a7cc0233853b1413de04ba.jar" />
     </item>
     <item
-        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\9.2.1\jars\classes.jar"
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="152cba5ca28fd4a5191a8577a0fa96d61122041e">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-identity-9.2.1_82451d48cf223e0752c8f96eac152159a461f793.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="6b896c1067633db41e9c10a3a5d0919c5c4cfc8c">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-9.2.1_c504c7084affe7a4a55c4a509963df719734e5ce.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="e719de687ac45141de3dd613907860a495580af0">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-storage-9.2.1_bae9fa1852c35dbf2aab2d4fb42c9d99453cda6f.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="f3b0ff905873c91ab64addba30cc1e77bed34c4d">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-appinvite-9.2.1_3bccd84b720c1b0bfc02006c8a7460f1985c2224.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="b24c1a80d8ccaecee7b8b80209b4e273dc22b14d">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tagmanager-9.2.1_dcb7b21af945e8486cd25a283263c1fc8dafd9fa.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="dd1907a2e855eeb2be8aa3486f3d4d4f1c8b22af">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-wearable-9.2.1_d86e749d1e94348d8c197486133fe9bb7658b50d.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics-impl/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="1141496362c8876f0da4b645fbaf22c0a3618372">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-analytics-impl-9.2.1_ee0ba37e827f25e9466c96f1567f6b1cb8f41504.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager-api/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="77e2e4803396fa79009ace04d9be84184aafcc31">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tagmanager-api-9.2.1_11eaee86cb8bb2e09abd421093cd33ea73f655c9.jar" />
+    </item>
+    <item
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.0.1/345b89f45d02d8b09400b472fab7b7e38f4ede1f/butterknife-annotations-8.0.1.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="345b89f45d02d8b09400b472fab7b7e38f4ede1f">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/butterknife-annotations-8.0.1_723fe0eae5410e7349f7f158384a277ed7a4145a.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.0.0_4ab68f8d8c34c8493e930b7dfb3e63fff899673d.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="894922f67adeaaef51f077a29e315da21a3382d3">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-24.0.0_7ee8fb387b2c5a6178e0629bb53a635b91cec3c1.jar" />
+    </item>
+    <item
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.7.2/20f6463eb19ac61960c5d91a094c2f4f0727dc2e/okhttp-2.7.2.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="20f6463eb19ac61960c5d91a094c2f4f0727dc2e">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/okhttp-2.7.2_4aec8aecad486b153099e8d6b7f791d11aa01c5f.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="819c2c3a4fb135e085445d11131d069cf9c32b2a">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-9.2.1_32d680a7b7343b04156180ccf3ef36f977cd7641.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.2.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.3"
         sha1="3627eacd7f7cafb5e8ae683992e7b2f9b7dcab1a">
-        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-common-9.2.1_31beba591c366752ea3ff40d15c92b8def252e25.jar" />
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-9.2.1_7eb1d4b67c21d17296784c108d297210e28a4593.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-contextmanager/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="ccc963cafe59ce185c49f47baff7eedcb8589bdf">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-contextmanager-9.2.1_dafa751f06e6e50c4def180d90167e473b583a59.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="89ab748a6c0ab6ac1d3671f2356d6181e8108bc5">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-drive-9.2.1_5a6ce6774320c3e1b1277fa03b46e15667d69fc7.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.android.support-mediarouter-v7-23.0.0_16be1962f0d0d3e63d2b3e7313432d1fcd60d866.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="0874286cc2fd88d54fdf130e9d5372730da6de97">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.0.0_05f5cd2cddc06be1b22486e5100515a68a31bc56.jar" />
+    </item>
+    <item
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.16.6/9d3a47307466b28632bf35f8972ae9d703879416/lombok-1.16.6.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="9d3a47307466b28632bf35f8972ae9d703879416">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/lombok-1.16.6_b83d90ee8d73acf4f2d39a6229cd4029464840c8.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="4b515e6e269bfe848f5b43ac09bce54d6617d4fd">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-safetynet-9.2.1_851169d1407df662598eaac4e4a4038fc6ee942f.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/org.adw.library/discrete-seekbar/1.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="7be042dd2aa8157a2b63934902f472952d2ea1fe">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/org.adw.library-discrete-seekbar-1.0.1_232a24d5915e23ab99899ebaf3721766d11c3a88.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="8aada8a0e9e9b3ecdda5e80f17c6a51a468e302a">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-wallet-9.2.1_5c091ab1d4047253de7ecaf322ddd4d2efbf8002.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-iid/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="a65d98c9409f271d3209f4cc1f7d8e0391665fa5">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-iid-9.2.1_464b640b6706bf20412fae8cc7fbd2ae6a45bca9.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/libs/internal_impl-24.0.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/internal_impl-24.0.0_b00b17cf90be33f00328e4c225af2dbe706ba4d5.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Programas/sdk/build-tools/23.0.3/renderscript/lib/renderscript-v8.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="5b79706a834fa62fc97734d9e799e98b63536ff8">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/renderscript-v8_da342114db7d166556adda2ce99d09b060be91af.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="3a42c5696fa39930d39770f7e5552a9c965fbe09">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-vision-9.2.1_bde77e25c950c99ab656dfdce4837d3b408f5810.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.firebase/firebase-crash/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="6c09228ff931eb30b68dd27fe34ed90d978b6892">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-crash-9.2.1_ea4d6f8ce81d8134d518d45b416c9720d71f9a89.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="ee19e33a798d11a5cf309a40155b8223fadcdeea">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-appindexing-9.2.1_1fd558c6d62cdfd0148a2d84e92a64d9fd6b9434.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-places/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="0979debb5b4d955ddc0e80bb192f4f00c2f91750">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-places-9.2.1_eea94d1e10dbe5aa90ba0bd210397aad60196d1e.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="07c569a77f437c5c71eac8b1b636a50bebb69a93">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-location-9.2.1_497840af8aebf9d652553c9dfe3a23cdb3213390.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="bbd51be332bace144b3d16501ec0af379c3c8750">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-maps-9.2.1_c73965b35970e7ada608ad565e4bbca400a35c1f.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.github.BlacKCaT27/CurrencyEditText/v1.4.4/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="10f60d01504abc7cb028d0c0ed4fbb77a47ca206">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.github.BlacKCaT27-CurrencyEditText-v1.4.4_4e555aad73a04a980c1f0d7ff62d13db5783a9bf.jar" />
+    </item>
+    <item
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2-b01/268c3b9fa56499a664ceded289dfca835a7a7db6/javax.annotation-api-1.2-b01.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="268c3b9fa56499a664ceded289dfca835a7a7db6">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/javax.annotation-api-1.2-b01_771530043af00811d4543a0816a69399852bd3cd.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="48917c60ea81213ea39cbd7123996a5401106dc3">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-auth-base-9.2.1_d4d5ec2674c81f034c16cd502033ab7cce13ff44.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="d41b5d21cc9dd7d210f0ae82ac509ba7f091d611">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-iid-9.2.1_ac15d74098318313b1cf68cdde3e1240313127ee.jar" />
+    </item>
+    <item
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.3.0/2b802460eea20f8f2ad9c08c74e0f14718e88aa9/okhttp-3.3.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/okhttp-3.3.0_a4472dac6945072ad8e22618b4313bbf0b0eb473.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="3bd97cfefd783e9de1dd1c30574a6adb44b4409b">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.0.0_1a890529296ebf9240bd7b8286d8a810b35f6051.jar" />
+    </item>
+    <item
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/retrofit-2.1.0_1b3cf73816b29ca69751f2a83fb164861de661f5.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="0765979e802b1669c90dc36076559461d5eb6ad1">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-nearby-9.2.1_33e103ec79007a2afc5369e4c4696c08828ef66a.jar" />
+    </item>
+    <item
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.7.2/8b8310381b690e317f5f0574e9b2dd7034778b4c/jackson-core-2.7.2.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="8b8310381b690e317f5f0574e9b2dd7034778b4c">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/jackson-core-2.7.2_564dc455fa2c1a2bca64831e8a495699e7b8118a.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="2506c5893e125e2f9cfc522378e893620c21b109">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-auth-9.2.1_638b6277ac9965b03d118857b68466dec18ef307.jar" />
+    </item>
+    <item
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.7.2/84ffa765dd258dbab8695963c41308b054f3a1cb/jackson-databind-2.7.2.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="84ffa765dd258dbab8695963c41308b054f3a1cb">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/jackson-databind-2.7.2_4fbcf8785106c14310bba4b387006aeec7bcfe95.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="428c9bac95b2f72921224e289553a04bea61cda5">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-cast-9.2.1_d9f3476a96baff189665c421cdf5a46d3053798d.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage-common/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="36e2b438f9b0d68fb2482c8f389e249e32840cff">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-storage-common-9.2.1_eb4dbb405bfe954e8f88665458f03cea9dfbe37d.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gass/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="081ced8ab77e606b6743c27cfe93dc450447b046">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-gass-9.2.1_78a01d4bf1a5b737cfacc4d8868b7f673cde0f11.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/design/24.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="fc29308a7a8f6d4407b34634eb48fb8b817f9b23">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.android.support-design-24.0.0_8002a9f3a24841c3b6608741d0f9c793d76661af.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="e1bec33f1ec5367e25676638b430b9d585f3dbec">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-auth-9.2.1_d03df0726778cddbc70d5539c3796182e8b31ae9.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.firebase/firebase-config/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="7bb417e9ac8645285342935679e75d371b58b62b">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-config-9.2.1_949c0fa945d97c953550df4ac2ea8e31712b0d8c.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="def5530cb13311617fc8f962e2a90225bb6904e2">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-plus-9.2.1_5626be386fe708357bbea0b4c1b5591c0a9ffc7f.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-module/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="35a01d7cb4ff6b5976777bf5827fd8f206fb8757">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-auth-module-9.2.1_a89f8c681286ca73b2262b6fa4d1807c80a4ed51.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="03d38bb042efe3e5ce27ba66b729a9523c36d8fe">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.0_1aaa69b5688c462482712e4d64d836e42ad0387e.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="05a2710d284c03087013a667a324c9e2aba5bc91">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-panorama-9.2.1_fcf38f091eb94aa8425ec5fa86b686838f17b7fd.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="5337354083e89ed67151859ab0b6b80935c60eaf">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-impl-9.2.1_016e3d87db94d03f8294822eb4ce01842ca317af.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.maps.android/android-maps-utils/0.3.4/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="cf251baf39f5c5138224b67b4106eb6331abbd13">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.maps.android-android-maps-utils-0.3.4_40847a387d6455d6ec799e30ffa2102d1376d0ac.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="d064f813cd835f17853e39221b247cf6a997a2db">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-fitness-9.2.1_8c4060eab79eeb7fd1b3eab83e27bca4c920ed84.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="e70f608219ed6b974644c333249ab2bb7b71de98">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.0.0_d3cd44280ca73d1e49583a02d0952d9850fd6985.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="6a0f2d219f82db499ac03d5a985c4eb3e83fc422">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-9.2.1_0c222466d065afc32700090a36234a5e1d8233b4.jar" />
+    </item>
+    <item
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.8.0/5ea7af56cc7c567ed9856d99efb30740e9b17ff/okio-1.8.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/okio-1.8.0_b08e73f713578be5fcc276f86851735f0ccaa846.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-common/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="ee409046028e5657a2a69edaa2eba00d6511a74c">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-auth-common-9.2.1_c20b1619c098ae421f9a71a5643f45d7c64f19db.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="421b36cf4f0d3bbd75e8f28647fccf36674ef049">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-9.2.1_51ab0a6eb5c86c07700dc313285250c91d8a4845.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database-connection/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="05d2e01f33fb2097b51fce3f938dc37a75fe2d6b">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-database-connection-9.2.1_128eb9800190ca756ca5bde2aab6a0c6f6f9d23d.jar" />
+    </item>
+    <item
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-jackson/2.0.0/9506825ddc5a43b38a3d104db913ff0f4cb2e323/converter-jackson-2.0.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="9506825ddc5a43b38a3d104db913ff0f4cb2e323">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/converter-jackson-2.0.0_5523886491119b5f833f79d7316b84253baa3a30.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-clearcut/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="90eeba67a669f8fb24db0f821ef81703fe7a02bc">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-clearcut-9.2.1_f83cc57f6e51aa91f28ce51960966a925c5335d3.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.firebase/firebase-messaging/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="ac78f93fc89c497a65f9d9a352cd405996d2f65a">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-messaging-9.2.1_4dc9ee85ca84657e6a2f438059133fbad3faf99f.jar" />
+    </item>
+    <item
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="357a8702c49044417d4856861c8f435e7c74ef09">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-analytics-9.2.1_dc743619df48d8e5e0e0c1cb0402b3133090555e.jar" />
+    </item>
+    <item
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.7.0/19f42c154ffc689f40a77613bc32caeb17d744e3/jackson-annotations-2.7.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="19f42c154ffc689f40a77613bc32caeb17d744e3">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/pre-dexed/debug/jackson-annotations-2.7.0_a297f320aa317e0ed1559e10124a0d7272c6146b.jar" />
     </item>
 
 </items>
