@@ -74,7 +74,7 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback {
                     .position(latLng)
                     .icon(getIcon(R.drawable.ic_current_location_circle_blue)));
             myMarker = googleMap.addMarker(new MarkerOptions().position(latLng));
-        moveCamera();
+            moveCamera();
         }
         currentLocation.setPosition(latLng);
     }

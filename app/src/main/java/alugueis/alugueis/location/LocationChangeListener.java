@@ -49,7 +49,7 @@ public class LocationChangeListener {
     }
 
     private LocationListener getGpsLocationListener() {
-        return new LocationListener() {
+        return gpsListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 locationSimpleListener.onLocationChange(location);
@@ -73,7 +73,7 @@ public class LocationChangeListener {
     }
 
     private LocationListener getNetWorkLocationListener() {
-        return new LocationListener() {
+        return netWorkListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 locationSimpleListener.onLocationChange(location);
@@ -81,7 +81,7 @@ public class LocationChangeListener {
 
             @Override
             public void onStatusChanged(String s, int i, Bundle bundle) {
-
+                s.toCharArray();
             }
 
             @Override
