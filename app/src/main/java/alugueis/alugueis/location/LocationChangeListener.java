@@ -25,11 +25,11 @@ public class LocationChangeListener {
     }
 
     public void startGpsListener() {
-        startLocationListener(LocationManager.GPS_PROVIDER, 200L, 0.5f);
+        startLocationListener(LocationManager.GPS_PROVIDER, 0L, 0f);
     }
 
     public void startNetWorkListener() {
-        startLocationListener(LocationManager.NETWORK_PROVIDER, 200L, 0.5f);
+        startLocationListener(LocationManager.NETWORK_PROVIDER, 0L, 0f);
 
     }
 
@@ -41,9 +41,10 @@ public class LocationChangeListener {
                 != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-      /*  if (provider.equals(LocationManager.GPS_PROVIDER)) {
+
+        if (provider.equals(LocationManager.GPS_PROVIDER)) {
             locationManager.requestLocationUpdates(provider, minTime, minChangeDistance, getGpsLocationListener());
-        }*/
+        }
         locationManager.requestLocationUpdates(provider, minTime, minChangeDistance, getNetWorkLocationListener());
     }
 

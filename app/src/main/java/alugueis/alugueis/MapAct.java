@@ -2,13 +2,16 @@ package alugueis.alugueis;
 
 import alugueis.alugueis.location.LocationChangeListener;
 import alugueis.alugueis.location.LocationSimpleListener;
+
 import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -65,12 +68,15 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback {
     }
 
     private void setMapsMarkers(LatLng latLng) {
-        currentLocation = googleMap.addMarker(new MarkerOptions()
-                .position(latLng)
-                .icon(getIcon(R.drawable.ic_current_location_circle_blue)));
 
-        myMarker = googleMap.addMarker(new MarkerOptions().position(latLng));
+        if (currentLocation == null) {
+            currentLocation = googleMap.addMarker(new MarkerOptions()
+                    .position(latLng)
+                    .icon(getIcon(R.drawable.ic_current_location_circle_blue)));
+            myMarker = googleMap.addMarker(new MarkerOptions().position(latLng));
         moveCamera();
+        }
+        currentLocation.setPosition(latLng);
     }
 
     private BitmapDescriptor getIcon(int resource) {
@@ -79,7 +85,7 @@ public class MapAct extends AppCompatActivity implements OnMapReadyCallback {
 
     private void moveCamera() {
         myMarker.setPosition(currentLocation.getPosition());
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation.getPosition(), 19));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation.getPosition(), 20));
     }
 
 
