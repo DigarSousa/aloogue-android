@@ -50,7 +50,7 @@ public class PlaceViewerActivity extends AppCompatActivity {
             Place place = (Place) StaticUtil.readObject(this, StaticUtil.PLACE);
             args.putSerializable("place", place);
 
-            PlaceInfoFgm placeInfoFgm = new PlaceInfoFgm();
+            PlaceInfoViewerFragment placeInfoFgm = new PlaceInfoViewerFragment();
             placeInfoFgm.setArguments(args);
             ProductListFragment productListFragment = new ProductListFragment();
             productListFragment.setArguments(args);

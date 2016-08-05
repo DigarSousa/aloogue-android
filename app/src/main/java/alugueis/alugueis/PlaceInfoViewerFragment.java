@@ -12,7 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class PlaceInfoFgm extends Fragment {
+public class PlaceInfoViewerFragment extends Fragment {
     private View view;
     private Unbinder unbinder;
 
@@ -26,7 +26,7 @@ public class PlaceInfoFgm extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.place_info_framgment, container, false);
+        view = inflater.inflate(R.layout.place_info_viewer_fragment, container, false);
         unbinder = ButterKnife.bind(this,container);
         populatePlaceData();
 
