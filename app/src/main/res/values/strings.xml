@@ -11,7 +11,7 @@
     <string name="username">Usuário</string>
     <string name="enter">Entrar</string>
     <string name="help">Ajuda</string>
-    <string name="createaccount">Criar uma conta</string>
+    <string name="notAccounted">Não é cadastrado?</string>
     <string name="password">Senha</string>
     <string name="title_activity_signup">SignupAct</string>
     <string name="iAmAn">EU SOU UM(A)</string>
@@ -139,4 +139,5 @@
     <string name="cancel_action">Cancelar</string>
     <string name="placeViewerFormTitle">Informações</string>
     <string name="placeViewerProductsTitle">Produtos</string>
+    <string name="createAccount">Crie uma conta</string>
 </resources>
