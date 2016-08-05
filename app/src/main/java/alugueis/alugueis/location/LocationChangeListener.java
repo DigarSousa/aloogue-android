@@ -1,7 +1,7 @@
 package alugueis.alugueis.location;
 
 import android.Manifest;
-import android.content.Context;
+import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -12,16 +12,16 @@ import android.support.v4.app.ActivityCompat;
 import static android.content.Context.LOCATION_SERVICE;
 
 public class LocationChangeListener {
-    private Context context;
+    private Activity activity;
     private LocationManager locationManager;
     private LocationListener gpsListener;
     private LocationListener netWorkListener;
     private LocationSimpleListener locationSimpleListener;
 
-    public LocationChangeListener(Context context, LocationSimpleListener locationSimpleListener) {
-        this.context = context;
+    public LocationChangeListener(Activity activity, LocationSimpleListener locationSimpleListener) {
+        this.activity=activity;
         this.locationSimpleListener = locationSimpleListener;
-        locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
+        locationManager = (LocationManager) activity.getSystemService(LOCATION_SERVICE);
     }
 
     public void startGpsListener() {
@@ -35,9 +35,9 @@ public class LocationChangeListener {
 
     private void startLocationListener(String provider, long minTime, float minChangeDistance) {
 
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
+                && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             return;
         }
@@ -98,9 +98,9 @@ public class LocationChangeListener {
 
     private void removeGpsListener() {
         if (gpsListener != null) {
-            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+            if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
+                    && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED) {
                 return;
             }
@@ -110,9 +110,9 @@ public class LocationChangeListener {
 
     private void removeNetWorkListener() {
         if (netWorkListener != null) {
-            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+            if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
+                    && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED) {
                 return;
             }

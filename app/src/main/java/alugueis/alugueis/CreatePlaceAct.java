@@ -17,7 +17,7 @@ public class CreatePlaceAct extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.activity_create_place, container, false);
+        view = inflater.inflate(R.layout.place_content, container, false);
         unbinder = ButterKnife.bind(this, container);
         return view;
     }

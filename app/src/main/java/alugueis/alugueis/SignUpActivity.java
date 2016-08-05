@@ -34,7 +34,7 @@ public class SignUpActivity extends ActionBarActivity implements OnFinishTask {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.signup_activity);
 
         this.context = getApplicationContext();
         Bundle extras = getIntent().getExtras();
@@ -206,7 +206,7 @@ public class SignUpActivity extends ActionBarActivity implements OnFinishTask {
                 StaticUtil.setOject(context, StaticUtil.LOGGED_USER, createdUser);
                 StaticUtil.setOject(context, StaticUtil.PLACE, null);
                 progressDialog.dismiss();
-                Intent intent = new Intent(this, MapAct.class);
+                Intent intent = new Intent(this, MapFragmentView.class);
                 this.startActivity(intent);
                 this.finish();
             } else {
