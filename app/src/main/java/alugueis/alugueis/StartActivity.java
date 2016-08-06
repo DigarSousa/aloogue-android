@@ -1,6 +1,7 @@
 package alugueis.alugueis;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -34,7 +35,7 @@ public class StartActivity extends AppCompatActivity {
 
     @OnClick(R.id.enterButton)
     public void enter(View view) {
-
+        startActivity(new Intent(this,MainActivity.class));
     }
 
     @OnClick(R.id.signUp)

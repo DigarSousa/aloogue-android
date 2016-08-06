@@ -1,25 +1,25 @@
 package alugueis.alugueis.location;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 
 import static android.content.Context.LOCATION_SERVICE;
 
 public class LocationChangeListener {
-    private Activity activity;
+    private AppCompatActivity activity;
     private LocationManager locationManager;
     private LocationListener gpsListener;
     private LocationListener netWorkListener;
     private LocationSimpleListener locationSimpleListener;
 
-    public LocationChangeListener(Activity activity, LocationSimpleListener locationSimpleListener) {
-        this.activity=activity;
+    public LocationChangeListener(AppCompatActivity activity, LocationSimpleListener locationSimpleListener) {
+        this.activity = activity;
         this.locationSimpleListener = locationSimpleListener;
         locationManager = (LocationManager) activity.getSystemService(LOCATION_SERVICE);
     }
@@ -30,7 +30,6 @@ public class LocationChangeListener {
 
     public void startNetWorkListener() {
         startLocationListener(LocationManager.NETWORK_PROVIDER, 0L, 0f);
-
     }
 
     private void startLocationListener(String provider, long minTime, float minChangeDistance) {

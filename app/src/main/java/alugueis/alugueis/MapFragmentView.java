@@ -49,7 +49,6 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
-        googleMap.getUiSettings().setMyLocationButtonEnabled(false);
         googleMap.getUiSettings().setMapToolbarEnabled(false);
 
         startLocationSettings();
@@ -65,7 +64,7 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
         });
     }
 
-    private void startLocationSettings() {
+    public void startLocationSettings() {
         LocationChangeListener locationChangeListener = new LocationChangeListener(getAppCompatActivity(), new LocationSimpleListener() {
             @Override
             public void onLocationChange(Location location) {

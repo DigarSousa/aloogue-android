@@ -41,11 +41,6 @@
 
         <activity android:name=".MainActivity"
                   android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
 
         </activity>
 
@@ -54,17 +49,20 @@
                 android:label="@string/title_activity_signup"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme"/>
-        <activity
-                android:name=".PlaceViewerActivity"
-                android:label="@string/title_activity_place_profile"
-                android:screenOrientation="portrait"
-                android:theme="@style/AppTheme">
-        </activity>
 
         <activity
                 android:name=".ProductFormActivity"
                 android:label="@string/title_activity_product_form"
                 android:theme="@style/AppTheme">
+        </activity>
+
+        <activity android:name=".StartActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
     </application>
