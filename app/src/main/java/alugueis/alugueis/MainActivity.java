@@ -10,13 +10,17 @@ import android.support.annotation.NonNull;
 import android.view.MenuItem;
 
 public class MainActivity extends DrawerActivity implements PermissionsDialog.PermissionDialogListener {
-
     private MapFragmentView mapFragmentView;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        MapsUtil.requestLocationPermition(this);
+    }
 
     @Override
     public StandardFragment startFragment() {
         mapFragmentView = new MapFragmentView();
-        MapsUtil.requestLocationPermition(this);
         return mapFragmentView;
     }
 
@@ -27,17 +31,21 @@ public class MainActivity extends DrawerActivity implements PermissionsDialog.Pe
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        for (int result : grantResults) {
-            if (result != PackageManager.PERMISSION_GRANTED) {
-                if (!MapsUtil.souldShowRequest(this)) {
-                    new PermissionsDenied().show(getFragmentManager(), "PermissionsDenied");
-                    return;
-                }
-                new PermissionsDialog().show(getFragmentManager(), "PermissionsFragment");
-                return;
-            }
+
+        if (grantResults[0] != PackageManager.PERMISSION_GRANTED && shouldRequestAgain()) {
+            new PermissionsDialog().show(getFragmentManager(), "PermissionsFragment");
+            return;
         }
+
         mapFragmentView.startLocationSettings();
+    }
+
+    private Boolean shouldRequestAgain() {
+        if (!MapsUtil.souldShowRequest(this)) {
+            new PermissionsDenied().show(getFragmentManager(), "PermissionsDenied");
+            return false;
+        }
+        return true;
     }
 
     @Override
