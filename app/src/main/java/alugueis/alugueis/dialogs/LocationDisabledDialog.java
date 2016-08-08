@@ -14,15 +14,15 @@ public class LocationDisabledDialog extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder alerBuilder = new AlertDialog.Builder(getActivity());
-        alerBuilder.setMessage(getString(R.string.enableLocationProviders))
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
+        alertBuilder.setMessage(getString(R.string.enableLocationProviders))
                 .setPositiveButton(getString(R.string.locationSettings), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         MapsUtil.callLocationSettings(getActivity());
                     }
                 });
-        return alerBuilder.create();
+        return alertBuilder.create();
     }
 
     @Override
