@@ -29,7 +29,6 @@ public class MainActivity extends DrawerActivity implements PermissionsDialog.Pe
         super.onStart();
         if (!MapsUtil.isPermissionGranted(this)) {
             MapsUtil.requestLocationPermition(this);
-            Log.i(TAG, "ON_START");
         } else {
             mapFragmentView.startLocationSettings();
         }

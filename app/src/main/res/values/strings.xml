@@ -143,8 +143,7 @@
     <string name="closeApplicationMessenge">Precisamos da sua localização :)</string>
     <string name="negative_msg">Sair da Aplicação</string>
     <string name="positive_msg">Permitir</string>
-    <string name="location_settings">Permita o acesso a sua localização para que possamos procurar as lojas próximas a
-        você =D
-    </string>
     <string name="ok">ok</string>
+    <string name="enableLocationProviders">Ative os serviços de localização :(</string>
+    <string name="locationSettings">Ativar</string>
 </resources>

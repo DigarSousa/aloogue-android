@@ -1,5 +1,6 @@
 package alugueis.alugueis.location;
 
+import alugueis.alugueis.dialogs.LocationDisabledDialog;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -17,6 +18,7 @@ public class LocationChangeListener {
     private LocationListener gpsListener;
     private LocationListener netWorkListener;
     private LocationSimpleListener locationSimpleListener;
+    private LocationDisabledDialog locationDisabledDialog;
 
     public LocationChangeListener(AppCompatActivity activity, LocationSimpleListener locationSimpleListener) {
         this.activity = activity;
@@ -80,7 +82,7 @@ public class LocationChangeListener {
 
             @Override
             public void onStatusChanged(String s, int i, Bundle bundle) {
-                s.toCharArray();
+
             }
 
             @Override
@@ -141,8 +143,9 @@ public class LocationChangeListener {
             removeNetWorkListener();
         }
 
-        if (!isGpsEnabled && !isNetworkEnabled) {
-            //todo: mostrar mensagem...
+        if (!isGpsEnabled && !isNetworkEnabled && (locationDisabledDialog == null || !locationDisabledDialog.isVisible())) {
+            locationDisabledDialog = new LocationDisabledDialog();
+            locationDisabledDialog.show(activity.getFragmentManager(), "LocationDisabledDialog");
         }
     }
 }
