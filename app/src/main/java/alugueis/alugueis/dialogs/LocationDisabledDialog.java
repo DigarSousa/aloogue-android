@@ -1,6 +1,7 @@
 package alugueis.alugueis.dialogs;
 
 import alugueis.alugueis.R;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -8,6 +9,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 public class LocationDisabledDialog extends DialogFragment {
+    private Dialog dialog;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -19,6 +21,13 @@ public class LocationDisabledDialog extends DialogFragment {
 
                     }
                 });
-        return alerBuilder.create();
+        this.dialog = alerBuilder.create();
+        this.show(getActivity().getFragmentManager(), "LocationDisabledDialog");
+        return dialog;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
     }
 }

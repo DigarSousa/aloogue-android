@@ -14,10 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import android.view.ViewGroup;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import butterknife.Unbinder;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -76,8 +78,7 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
             }
         });
 
-        locationChangeListener.startGpsListener();
-        locationChangeListener.startNetWorkListener();
+        locationChangeListener.startLocationListener();
     }
 
     private void setMapsMarkers(LatLng latLng) {
@@ -110,10 +111,6 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
 
     @Override
     public void onDestroy() {
-        if (locationChangeListener != null) {
-            locationChangeListener.removeGpsListener();
-            locationChangeListener.removeNetWorkListener();
-        }
         super.onDestroy();
         unbinder.unbind();
     }
