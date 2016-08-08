@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -17,22 +18,27 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import butterknife.Unbinder;
-import com.google.android.gms.maps.*;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.*;
 
 public class MapFragmentView extends StandardFragment implements OnMapReadyCallback {
+    private static String TAG = "MapFragmentView";
     private Unbinder unbinder;
-    private View view;
     private Marker currentLocation;
     private Marker myMarker;
     private GoogleMap googleMap;
+    private LocationChangeListener locationChangeListener;
+
     @BindView(R.id.location_button)
     FloatingActionButton locationButton;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.map_activity, container, false);
+        View view = inflater.inflate(R.layout.map_activity, container, false);
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
@@ -50,8 +56,6 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
         googleMap.getUiSettings().setMapToolbarEnabled(false);
-
-        startLocationSettings();
         initFields();
     }
 
@@ -64,8 +68,8 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
         });
     }
 
-    public void startLocationSettings() {
-        LocationChangeListener locationChangeListener = new LocationChangeListener(getAppCompatActivity(), new LocationSimpleListener() {
+    void startLocationSettings() {
+        locationChangeListener = new LocationChangeListener(getAppCompatActivity(), new LocationSimpleListener() {
             @Override
             public void onLocationChange(Location location) {
                 setMapsMarkers(new LatLng(location.getLatitude(), location.getLongitude()));
@@ -95,12 +99,24 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
 
     private void moveCamera() {
         myMarker.setPosition(currentLocation.getPosition());
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation.getPosition(), 20));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation.getPosition()));
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(19f));
     }
 
     @Override
     public Toolbar getToolBar() {
         return null;
     }
+
+    @Override
+    public void onDestroy() {
+        if (locationChangeListener != null) {
+            locationChangeListener.removeGpsListener();
+            locationChangeListener.removeNetWorkListener();
+        }
+        super.onDestroy();
+        unbinder.unbind();
+    }
 }
+
 

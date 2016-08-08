@@ -95,7 +95,7 @@ public class LocationChangeListener {
         };
     }
 
-    private void removeGpsListener() {
+    public void removeGpsListener() {
         if (gpsListener != null) {
             if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED
@@ -107,7 +107,7 @@ public class LocationChangeListener {
         }
     }
 
-    private void removeNetWorkListener() {
+    public void removeNetWorkListener() {
         if (netWorkListener != null) {
             if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED

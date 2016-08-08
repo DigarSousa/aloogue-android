@@ -10,7 +10,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lombok.Getter;
