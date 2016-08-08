@@ -59,6 +59,7 @@ public class LocationChangeListener {
         if (!isGpsEnabled && !isNetworkEnabled) {
             locationDisabledDialog = new LocationDisabledDialog();
             locationDisabledDialog.setCancelable(false);
+            locationDisabledDialog.show(activity.getFragmentManager(), "LocationDisabledDialog");
             return false;
         }
         return true;

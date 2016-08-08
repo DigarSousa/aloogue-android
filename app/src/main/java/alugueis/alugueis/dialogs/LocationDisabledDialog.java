@@ -1,6 +1,7 @@
 package alugueis.alugueis.dialogs;
 
 import alugueis.alugueis.R;
+import alugueis.alugueis.util.MapsUtil;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -18,12 +19,10 @@ public class LocationDisabledDialog extends DialogFragment {
                 .setPositiveButton(getString(R.string.locationSettings), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                        MapsUtil.callLocationSettings(getActivity());
                     }
                 });
-        this.dialog = alerBuilder.create();
-        this.show(getActivity().getFragmentManager(), "LocationDisabledDialog");
-        return dialog;
+        return alerBuilder.create();
     }
 
     @Override
