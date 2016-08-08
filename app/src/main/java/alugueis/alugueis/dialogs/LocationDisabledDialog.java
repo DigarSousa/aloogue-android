@@ -10,7 +10,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 public class LocationDisabledDialog extends DialogFragment {
-    private Dialog dialog;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
