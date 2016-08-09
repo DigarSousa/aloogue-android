@@ -25,7 +25,6 @@ public class LocationChangeListener {
         this.activity = activity;
         this.locationSimpleListener = locationSimpleListener;
         locationManager = (LocationManager) activity.getSystemService(LOCATION_SERVICE);
-
     }
 
     public void startLocationListener() {
@@ -49,14 +48,13 @@ public class LocationChangeListener {
             locationDisabledDialog = new LocationDisabledDialog();
             locationDisabledDialog.setCancelable(false);
             locationDisabledDialog.show(activity.getFragmentManager(), "LocationDisabledDialog");
-            removeListeners();
 
             return false;
         }
         return true;
     }
 
-    private void removeListeners() {
+    public void removeListeners() {
 
         if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -84,6 +82,7 @@ public class LocationChangeListener {
 
             @Override
             public void onProviderEnabled(String s) {
+                locationDisabledDialog.dismiss();
             }
 
             @Override

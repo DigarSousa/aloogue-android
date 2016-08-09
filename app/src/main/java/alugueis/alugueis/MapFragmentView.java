@@ -114,6 +114,10 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
         super.onDestroy();
         unbinder.unbind();
     }
+
+    public LocationChangeListener getLocationChangeListener() {
+        return locationChangeListener;
+    }
 }
 
 
