@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -115,7 +114,7 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
         unbinder.unbind();
     }
 
-    public LocationChangeListener getLocationChangeListener() {
+    LocationChangeListener getLocationChangeListener() {
         return locationChangeListener;
     }
 }
