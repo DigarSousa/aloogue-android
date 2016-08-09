@@ -20,11 +20,12 @@ public class LocationChangeListener {
     private LocationDisabledDialog locationDisabledDialog;
     private LocationListener gpsListener;
     private LocationListener netWorkListener;
+    private Boolean isListing;
 
     public LocationChangeListener(AppCompatActivity activity, LocationSimpleListener locationSimpleListener) {
         this.activity = activity;
         this.locationSimpleListener = locationSimpleListener;
-        locationManager = (LocationManager) activity.getSystemService(LOCATION_SERVICE);
+        this.locationManager = (LocationManager) activity.getSystemService(LOCATION_SERVICE);
     }
 
     public void startLocationListener() {
@@ -36,26 +37,27 @@ public class LocationChangeListener {
         }
 
         isAnyProviderEnabled();
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 0f, getGpsListener());
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, getNetWorkListener());
+        if (isListing == null || !isListing) {
+            isListing = true;
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 0f, getGpsListener());
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, getNetWorkListener());
+        }
     }
 
     private boolean isAnyProviderEnabled() {
         Boolean isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         Boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-        if (!isGpsEnabled && !isNetworkEnabled) {
+        if (!isGpsEnabled && !isNetworkEnabled && activity.getFragmentManager().findFragmentByTag("LocationDisabledDialog") == null) {
             locationDisabledDialog = new LocationDisabledDialog();
             locationDisabledDialog.setCancelable(false);
             locationDisabledDialog.show(activity.getFragmentManager(), "LocationDisabledDialog");
-
             return false;
         }
         return true;
     }
 
     public void removeListeners() {
-
         if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
@@ -66,6 +68,8 @@ public class LocationChangeListener {
         if (netWorkListener != null) {
             locationManager.removeUpdates(netWorkListener);
         }
+
+        isListing = false;
     }
 
     private LocationListener getNetWorkListener() {
@@ -115,5 +119,9 @@ public class LocationChangeListener {
 
             }
         };
+    }
+
+    public Boolean isListing() {
+        return isListing;
     }
 }

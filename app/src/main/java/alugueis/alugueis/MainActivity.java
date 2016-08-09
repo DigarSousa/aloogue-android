@@ -2,17 +2,18 @@ package alugueis.alugueis;
 
 import alugueis.alugueis.abstractiontools.DrawerActivity;
 import alugueis.alugueis.abstractiontools.StandardFragment;
-import alugueis.alugueis.dialogs.LocationDisabledDialog;
 import alugueis.alugueis.dialogs.PermissionsDialog;
 import alugueis.alugueis.util.MapsUtil;
+
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.MenuItem;
 
-public class MainActivity extends DrawerActivity implements PermissionsDialog.PermissionDialogListener, LocationDisabledDialog.LocationProvidersResult {
+public class MainActivity extends DrawerActivity implements PermissionsDialog.PermissionDialogListener {
     private static final String TAG = "MainActivity";
     private MapFragmentView mapFragmentView;
 
@@ -74,11 +75,5 @@ public class MainActivity extends DrawerActivity implements PermissionsDialog.Pe
     @Override
     public void onNegativeClick(PermissionsDialog dialog) {
         this.finish();
-    }
-
-    @Override
-    public void onPositiveAction() {
-        mapFragmentView.getLocationChangeListener().removeListeners();
-        MapsUtil.callLocationSettings(this);
     }
 }

@@ -6,12 +6,10 @@ import alugueis.alugueis.util.MapsUtil;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
 public class LocationDisabledDialog extends DialogFragment {
-    private LocationProvidersResult locationProvidersResult;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -21,20 +19,10 @@ public class LocationDisabledDialog extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         LocationDisabledDialog.this.dismiss();
-                        locationProvidersResult.onPositiveAction();
+                        MapsUtil.callLocationSettings(getActivity());
                     }
                 });
         return alertBuilder.create();
-    }
-
-    public interface LocationProvidersResult {
-        void onPositiveAction();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        locationProvidersResult = (LocationProvidersResult) getActivity();
     }
 }
 

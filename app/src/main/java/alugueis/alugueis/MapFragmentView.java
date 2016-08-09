@@ -114,8 +114,10 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
         unbinder.unbind();
     }
 
-    LocationChangeListener getLocationChangeListener() {
-        return locationChangeListener;
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean("isListing", locationChangeListener.isListing());
+        super.onSaveInstanceState(outState);
     }
 }
 
