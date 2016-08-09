@@ -146,4 +146,6 @@
     <string name="ok">ok</string>
     <string name="enableLocationProviders">Ative os serviços de localização :(</string>
     <string name="locationSettings">Ativar</string>
+    <string name="place_name_hint">Nome</string>
+    <string name="place_register_code">Código</string>
 </resources>
