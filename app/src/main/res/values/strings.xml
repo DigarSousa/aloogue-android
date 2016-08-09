@@ -21,10 +21,10 @@
     <string name="generalData">DADOS GERAIS</string>
     <string name="cpf">CPF</string>
     <string name="nameLabel">NOME</string>
-    <string name="emailLabel">EMAIL</string>
+    <string name="emailLabel">Email</string>
     <string name="regionLabel">REGIÃO</string>
     <string name="accountData">DADOS DA CONTA</string>
-    <string name="passwordLabel">SENHA</string>
+    <string name="passwordLabel">Senha</string>
     <string name="passwordConfirmLabel">CONFIRME A SENHA</string>
     <string name="professionLabel">PROFISSÃO</string>
     <string name="professionalLabel">DADOS PROFISSIONAIS</string>
