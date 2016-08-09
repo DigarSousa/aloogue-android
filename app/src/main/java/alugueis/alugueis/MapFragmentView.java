@@ -57,6 +57,8 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
         googleMap.getUiSettings().setMapToolbarEnabled(false);
+
+        startLocationSettings();
         initFields();
     }
 
