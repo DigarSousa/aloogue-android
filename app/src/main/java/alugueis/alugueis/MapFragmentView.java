@@ -57,6 +57,8 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
         googleMap.getUiSettings().setMapToolbarEnabled(false);
+
+        startLocationSettings();
         initFields();
     }
 
@@ -114,8 +116,10 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
         unbinder.unbind();
     }
 
-    LocationChangeListener getLocationChangeListener() {
-        return locationChangeListener;
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean("isListing", locationChangeListener.isListing());
+        super.onSaveInstanceState(outState);
     }
 }
 

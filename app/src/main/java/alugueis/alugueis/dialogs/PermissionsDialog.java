@@ -1,6 +1,7 @@
 package alugueis.alugueis.dialogs;
 
 import alugueis.alugueis.R;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -28,7 +29,7 @@ public class PermissionsDialog extends DialogFragment {
                 .setPositiveButton(R.string.negative_msg, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        permissionDialogListener.onNegativeClick(PermissionsDialog.this);
+                        getActivity().finish();
                     }
                 });
 
@@ -47,7 +48,5 @@ public class PermissionsDialog extends DialogFragment {
 
     public interface PermissionDialogListener {
         void onPositiveClick(PermissionsDialog dialogFragment);
-
-        void onNegativeClick(PermissionsDialog dialogFragment);
     }
 }
