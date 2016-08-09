@@ -16,9 +16,10 @@ import static android.content.Context.LOCATION_SERVICE;
 public class LocationChangeListener {
     private AppCompatActivity activity;
     private LocationManager locationManager;
-    private LocationListener locationListener;
     private LocationSimpleListener locationSimpleListener;
     private LocationDisabledDialog locationDisabledDialog;
+    private LocationListener gpsListener;
+    private LocationListener netWorkListener;
 
     public LocationChangeListener(AppCompatActivity activity, LocationSimpleListener locationSimpleListener) {
         this.activity = activity;
@@ -34,22 +35,10 @@ public class LocationChangeListener {
                 != PackageManager.PERMISSION_GRANTED) {
             return;
         }
+
         isAnyProviderEnabled();
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 0f, getLocationListener());
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, getLocationListener());
-
-    }
-
-    private void removeListeners() {
-        if (locationListener == null || ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-
-        locationManager.removeUpdates(locationListener);
-        locationListener = null;
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 0f, getGpsListener());
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, getNetWorkListener());
     }
 
     private boolean isAnyProviderEnabled() {
@@ -60,17 +49,29 @@ public class LocationChangeListener {
             locationDisabledDialog = new LocationDisabledDialog();
             locationDisabledDialog.setCancelable(false);
             locationDisabledDialog.show(activity.getFragmentManager(), "LocationDisabledDialog");
+            removeListeners();
+
             return false;
         }
         return true;
     }
 
-    private LocationListener getLocationListener() {
-        if (locationListener != null) {
-            return locationListener;
-        }
+    private void removeListeners() {
 
-        return locationListener = new LocationListener() {
+        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        if (gpsListener != null) {
+            locationManager.removeUpdates(gpsListener);
+        }
+        if (netWorkListener != null) {
+            locationManager.removeUpdates(netWorkListener);
+        }
+    }
+
+    private LocationListener getNetWorkListener() {
+        return netWorkListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 locationSimpleListener.onLocationChange(location);
@@ -88,6 +89,31 @@ public class LocationChangeListener {
             @Override
             public void onProviderDisabled(String s) {
                 isAnyProviderEnabled();
+            }
+        };
+    }
+
+    private LocationListener getGpsListener() {
+        return gpsListener = new LocationListener() {
+
+            @Override
+            public void onLocationChanged(Location location) {
+                locationSimpleListener.onLocationChange(location);
+            }
+
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String s) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+
             }
         };
     }

@@ -18,6 +18,7 @@ public class LocationDisabledDialog extends DialogFragment {
                 .setPositiveButton(getString(R.string.locationSettings), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        LocationDisabledDialog.this.dismiss();
                         MapsUtil.callLocationSettings(getActivity());
                     }
                 });
