@@ -104,8 +104,7 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
     }
 
     private void setMapsMarkers(LatLng latLng) {
-
-        if (currentLocation == null) {
+        if (currentLocation == null && googleMap != null) {
             currentLocation = googleMap.addMarker(new MarkerOptions()
                     .position(latLng)
                     .icon(getIcon(R.drawable.ic_current_location_circle_blue)));
@@ -113,7 +112,9 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
             myMarker = googleMap.addMarker(new MarkerOptions().position(latLng).icon(getIcon(R.drawable.ic_my_pin_location)));
             moveCamera();
         }
-        currentLocation.setPosition(latLng);
+        if (currentLocation != null) {
+            currentLocation.setPosition(latLng);
+        }
     }
 
     private BitmapDescriptor getIcon(int resource) {
