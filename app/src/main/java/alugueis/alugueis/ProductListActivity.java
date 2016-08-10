@@ -4,7 +4,7 @@ import alugueis.alugueis.adapter.AdapterCallback;
 import alugueis.alugueis.adapter.ProductAdapter;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
-import alugueis.alugueis.services.product.ProductRest;
+import alugueis.alugueis.services.product.ProductService;
 import alugueis.alugueis.util.StaticUtil;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import service.StdService;
+import alugueis.alugueis.services.StdService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -181,8 +181,8 @@ public class ProductListActivity extends AppCompatActivity {
     }
 
     private void loadProducts() {
-        ProductRest productRest = StdService.createService(ProductRest.class);
-        Call<List<Product>> call = productRest.get(place.getId());
+        ProductService productService = StdService.createService(ProductService.class);
+        Call<List<Product>> call = productService.get(place.getId());
         call.enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
@@ -199,9 +199,9 @@ public class ProductListActivity extends AppCompatActivity {
     }
 
     private void deleteProducts() {
-        ProductRest productRest = StdService.createService(ProductRest.class);
+        ProductService productService = StdService.createService(ProductService.class);
 
-        Call<ResponseBody> call = productRest.delete(productAdapter.getSelectedItems());
+        Call<ResponseBody> call = productService.delete(productAdapter.getSelectedItems());
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

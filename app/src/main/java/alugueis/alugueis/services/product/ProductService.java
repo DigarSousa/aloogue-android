@@ -7,7 +7,7 @@ import retrofit2.http.*;
 
 import java.util.List;
 
-public interface ProductRest {
+public interface ProductService {
     @POST("product")
     Call<Product> save(@Body Product product);
 

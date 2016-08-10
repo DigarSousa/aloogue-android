@@ -1,4 +1,4 @@
-package service;
+package alugueis.alugueis.services;
 
 public class ConstantsService {
     //servico

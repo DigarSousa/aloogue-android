@@ -3,7 +3,7 @@ package alugueis.alugueis;
 import alugueis.alugueis.abstractiontools.KeyTools;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
-import alugueis.alugueis.services.product.ProductRest;
+import alugueis.alugueis.services.product.ProductService;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import service.StdService;
+import alugueis.alugueis.services.StdService;
 
 import java.util.List;
 
@@ -154,8 +154,8 @@ public class ProductFormActivity extends AppCompatActivity {
         progressDialog.setMessage(getString(R.string.saveProduct));
         progressDialog.show();
 
-        ProductRest productRest = StdService.createService(ProductRest.class);
-        Call<Product> call = productRest.save(product);
+        ProductService productService = StdService.createService(ProductService.class);
+        Call<Product> call = productService.save(product);
         call.enqueue(new Callback<Product>() {
             @Override
             public void onResponse(Call<Product> call, Response<Product> response) {

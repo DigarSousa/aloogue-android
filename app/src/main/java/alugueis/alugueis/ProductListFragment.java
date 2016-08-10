@@ -4,7 +4,7 @@ package alugueis.alugueis;
 import alugueis.alugueis.adapter.ProductAdapter;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
-import alugueis.alugueis.services.product.ProductRest;
+import alugueis.alugueis.services.product.ProductService;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,7 +16,7 @@ import android.widget.Toast;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import service.StdService;
+import alugueis.alugueis.services.StdService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,8 +60,8 @@ public class ProductListFragment extends Fragment {
 
 
     private void loadProducts(final Place place) {
-        ProductRest productRest = StdService.createService(ProductRest.class);
-        Call<List<Product>> call = productRest.get(place.getId());
+        ProductService productService = StdService.createService(ProductService.class);
+        Call<List<Product>> call = productService.get(place.getId());
         call.enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {

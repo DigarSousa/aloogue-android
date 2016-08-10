@@ -1,23 +1,14 @@
 package alugueis.alugueis;
 
 import alugueis.alugueis.model.*;
-import alugueis.alugueis.util.StaticUtil;
-import alugueis.alugueis.util.Util;
-import service.httputil.OnFinishTask;
-import service.httputil.Service;
 
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.*;
 
-import java.io.IOException;
-
-public class SignUpActivity extends ActionBarActivity implements OnFinishTask {
+public class SignUpActivity extends Fragment {
 
     private Toolbar mainToolbar;
     private UserApp loggedUserApp;
@@ -31,7 +22,7 @@ public class SignUpActivity extends ActionBarActivity implements OnFinishTask {
     //For image upload
     private Context context;
 
-    @Override
+ /*   @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_activity);
@@ -84,7 +75,6 @@ public class SignUpActivity extends ActionBarActivity implements OnFinishTask {
         loggedUserApp.setPassword(passwordEditText.getText().toString());
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Criando nova conta...");
-        new Service(this, progressDialog).save(loggedUserApp, UserApp.class).execute();
     }
 
     private boolean validateComponents() {
@@ -196,27 +186,7 @@ public class SignUpActivity extends ActionBarActivity implements OnFinishTask {
     public void onBackPressed() {
         finish();
         super.onBackPressed();
-    }
+    }*/
 
-    @Override
-    public void onFinishTask(Object result) {
-        try {
-            if (result != null && ((UserApp) result).getId() != null) {
-                UserApp createdUser = (UserApp) result;
-                StaticUtil.setOject(context, StaticUtil.LOGGED_USER, createdUser);
-                StaticUtil.setOject(context, StaticUtil.PLACE, null);
-                progressDialog.dismiss();
-                Intent intent = new Intent(this, MapFragmentView.class);
-                this.startActivity(intent);
-                this.finish();
-            } else {
-                progressDialog.dismiss();
-                Toast.makeText(context, "Houve uma falha ao realizar seu cadastro. :( ", Toast.LENGTH_SHORT).show();
 
-            }
-        } catch (IOException e) {
-            progressDialog.dismiss();
-            Toast.makeText(context, "Houve uma falha ao realizar seu cadastro. :( ", Toast.LENGTH_SHORT).show();
-        }
-    }
 }

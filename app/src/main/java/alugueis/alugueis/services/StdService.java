@@ -1,4 +1,4 @@
-package service;
+package alugueis.alugueis.services;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -6,7 +6,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class StdService {
 
-    public static final String API_BASE_URL = "http://52.67.29.228:8080/";
+    private static final String API_BASE_URL = "http://52.67.29.228:8080/";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
