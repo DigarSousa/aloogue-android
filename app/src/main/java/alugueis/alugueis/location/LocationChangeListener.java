@@ -20,7 +20,6 @@ public class LocationChangeListener {
     private LocationDisabledDialog locationDisabledDialog;
     private LocationListener gpsListener;
     private LocationListener netWorkListener;
-    private Boolean isListing;
 
     public LocationChangeListener(AppCompatActivity activity, LocationSimpleListener locationSimpleListener) {
         this.activity = activity;
@@ -37,12 +36,10 @@ public class LocationChangeListener {
         }
 
         isAnyProviderEnabled();
-        if (isListing == null || !isListing) {
-            isListing = true;
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 0f, getGpsListener());
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, getNetWorkListener());
-        }
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100L, 0f, getGpsListener());
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 100L, 0f, getNetWorkListener());
     }
+
 
     private boolean isAnyProviderEnabled() {
         Boolean isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -68,8 +65,6 @@ public class LocationChangeListener {
         if (netWorkListener != null) {
             locationManager.removeUpdates(netWorkListener);
         }
-
-        isListing = false;
     }
 
     private LocationListener getNetWorkListener() {
@@ -121,7 +116,4 @@ public class LocationChangeListener {
         };
     }
 
-    public Boolean isListing() {
-        return isListing;
-    }
 }

@@ -7,7 +7,6 @@ import alugueis.alugueis.location.LocationSimpleListener;
 
 import alugueis.alugueis.util.MapsUtil;
 import android.Manifest;
-import android.app.Fragment;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -43,6 +42,14 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
 
     @BindView(R.id.location_button)
     FloatingActionButton locationButton;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getFragmentManager().findFragmentByTag("PermissionsFragment") == null && locationChangeListener == null) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+        }
+    }
 
     @Nullable
     @Override
@@ -84,7 +91,6 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
                 != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(getAppCompatActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 0);
             return;
         }
 
@@ -142,15 +148,10 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (!MapsUtil.souldShowRequest(getActivity())) {
-            MapsUtil.callApplicationPermissionsSettings(getActivity());
+            MapsUtil.callApplicationPermissionsSettings(this);
         } else {
-            MapsUtil.requestLocationPermition(getActivity());
+            startLocationSettings();
         }
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
     }
 
     @Override
