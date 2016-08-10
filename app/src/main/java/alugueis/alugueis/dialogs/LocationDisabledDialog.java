@@ -2,6 +2,7 @@ package alugueis.alugueis.dialogs;
 
 import alugueis.alugueis.R;
 
+import alugueis.alugueis.util.MapsUtil;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;

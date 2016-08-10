@@ -1,7 +1,6 @@
 package alugueis.alugueis.location;
 
 import alugueis.alugueis.dialogs.LocationDisabledDialog;
-import alugueis.alugueis.util.MapsUtil;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -34,7 +33,6 @@ public class LocationChangeListener {
                 != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-            MapsUtil.requestLocationPermition(activity);
             return;
         }
 

@@ -1,13 +1,21 @@
 package alugueis.alugueis;
 
 import alugueis.alugueis.abstractiontools.StandardFragment;
+import alugueis.alugueis.dialogs.PermissionsDialog;
 import alugueis.alugueis.location.LocationChangeListener;
 import alugueis.alugueis.location.LocationSimpleListener;
 
+import alugueis.alugueis.util.MapsUtil;
+import android.Manifest;
+import android.app.Fragment;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,7 +79,15 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
         });
     }
 
-    void startLocationSettings() {
+    private void startLocationSettings() {
+        if (ActivityCompat.checkSelfPermission(getAppCompatActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(getAppCompatActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+            return;
+        }
+
         locationChangeListener = new LocationChangeListener(getAppCompatActivity(), new LocationSimpleListener() {
             @Override
             public void onLocationChange(Location location) {
@@ -110,17 +126,39 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
         return null;
     }
 
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+            PermissionsDialog permissionsDialog = new PermissionsDialog();
+            permissionsDialog.setCancelable(false);
+            permissionsDialog.setTargetFragment(this, 0);
+            permissionsDialog.show(getFragmentManager(), "PermissionsFragment");
+            return;
+        }
+        startLocationSettings();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (!MapsUtil.souldShowRequest(getActivity())) {
+            MapsUtil.callApplicationPermissionsSettings(getActivity());
+        } else {
+            MapsUtil.requestLocationPermition(getActivity());
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putBoolean("isListing", locationChangeListener.isListing());
-        super.onSaveInstanceState(outState);
-    }
 }
 
 
