@@ -6,6 +6,7 @@ import alugueis.alugueis.location.LocationChangeListener;
 import alugueis.alugueis.location.LocationSimpleListener;
 
 import alugueis.alugueis.util.MapsUtil;
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -47,7 +48,7 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
     public void onResume() {
         super.onResume();
         if (getFragmentManager().findFragmentByTag("PermissionsFragment") == null && locationChangeListener == null) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+            startLocationSettings();
         }
     }
 
@@ -72,8 +73,6 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
         googleMap.getUiSettings().setMapToolbarEnabled(false);
-
-        startLocationSettings();
         initFields();
     }
 
@@ -91,9 +90,9 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
                 != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(getAppCompatActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 0);
             return;
         }
-
         locationChangeListener = new LocationChangeListener(getAppCompatActivity(), new LocationSimpleListener() {
             @Override
             public void onLocationChange(Location location) {

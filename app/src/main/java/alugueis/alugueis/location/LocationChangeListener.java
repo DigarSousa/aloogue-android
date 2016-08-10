@@ -81,7 +81,10 @@ public class LocationChangeListener {
 
             @Override
             public void onProviderEnabled(String s) {
-                locationDisabledDialog.dismiss();
+                if (locationDisabledDialog != null
+                        && activity.getFragmentManager().findFragmentByTag("LocationDisabledDialog") != null) {
+                    locationDisabledDialog.dismiss();
+                }
             }
 
             @Override
