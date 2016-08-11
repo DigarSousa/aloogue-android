@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+<android.support.design.widget.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_gravity="bottom" />
+        android:layout_gravity="bottom"/>
 
-    <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingEnd="10dp"
-        android:paddingStart="10dp"
-        app:dsb_indicatorElevation="2dp"
-        app:dsb_indicatorSeparation="-10dp"
-        app:dsb_max="15"
-        app:dsb_min="1"
-        app:dsb_progressColor="@color/colorAccent"
-        app:dsb_trackColor="@color/colorAccentSecondary"
-        app:dsb_trackHeight="2dp" />
+        android:layout_height="wrap_content">
+
+        <SeekBar
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:textColor="@color/white"
+            android:layout_weight="5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="100"/>
+    </LinearLayout>
+
 </android.support.design.widget.AppBarLayout>

@@ -1,3 +1,383 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.jakewharton\butterknife\8.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="74ca46e7da11e3d065eb64cdbe6568a7ed74c211">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.jakewharton-butterknife-8.0.1_1360860ddd290dfda120a67480937185e1f79b44\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.jakewharton\butterknife\8.0.1\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="74ca46e7da11e3d065eb64cdbe6568a7ed74c211">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.jakewharton-butterknife-8.0.1_1360860ddd290dfda120a67480937185e1f79b44\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="c936c1bd42f0c018c18920c7bec619ef056b24f8">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.1.1_e81ee556ee28b1c480a9190f236ac39b23dd7bf0\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="c936c1bd42f0c018c18920c7bec619ef056b24f8">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.1.1_e81ee556ee28b1c480a9190f236ac39b23dd7bf0\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.7.2\8b8310381b690e317f5f0574e9b2dd7034778b4c\jackson-core-2.7.2.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="8b8310381b690e317f5f0574e9b2dd7034778b4c">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-core-2.7.2_2dca38e09b96a14feec2a6a578d0705487c744fc\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.7.2\8b8310381b690e317f5f0574e9b2dd7034778b4c\jackson-core-2.7.2.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="8b8310381b690e317f5f0574e9b2dd7034778b4c">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-core-2.7.2_2dca38e09b96a14feec2a6a578d0705487c744fc\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.7.2\20f6463eb19ac61960c5d91a094c2f4f0727dc2e\okhttp-2.7.2.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="20f6463eb19ac61960c5d91a094c2f4f0727dc2e">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-2.7.2_6681398439dd6b168225da757dfab0436edacaba\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.7.2\20f6463eb19ac61960c5d91a094c2f4f0727dc2e\okhttp-2.7.2.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="20f6463eb19ac61960c5d91a094c2f4f0727dc2e">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-2.7.2_6681398439dd6b168225da757dfab0436edacaba\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\9.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="e454c414a069241ee08444d187f2dd3a702596b5">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-9.4.0_79eb0cdb1f8a8c5c497bcc2dd60ce210baf0785f\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\9.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="e454c414a069241ee08444d187f2dd3a702596b5">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-9.4.0_79eb0cdb1f8a8c5c497bcc2dd60ce210baf0785f\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.maps.android\android-maps-utils\0.3.4\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="cf251baf39f5c5138224b67b4106eb6331abbd13">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.maps.android-android-maps-utils-0.3.4_9e6748c0871213b8a17e7d1c899dded49226b863\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.7.0\19f42c154ffc689f40a77613bc32caeb17d744e3\jackson-annotations-2.7.0.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="19f42c154ffc689f40a77613bc32caeb17d744e3">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-annotations-2.7.0_3967de0cb58249cdd2f312e0a945dd4e3fdde19e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.maps.android\android-maps-utils\0.3.4\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="cf251baf39f5c5138224b67b4106eb6331abbd13">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.maps.android-android-maps-utils-0.3.4_9e6748c0871213b8a17e7d1c899dded49226b863\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.7.0\19f42c154ffc689f40a77613bc32caeb17d744e3\jackson-annotations-2.7.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="19f42c154ffc689f40a77613bc32caeb17d744e3">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-annotations-2.7.0_3967de0cb58249cdd2f312e0a945dd4e3fdde19e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\libs\internal_impl-24.1.1.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.1.1_cdcd386cdfd18492ed26004efb312506b5a09cd2\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\libs\internal_impl-24.1.1.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.1.1_cdcd386cdfd18492ed26004efb312506b5a09cd2\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\javax.annotation\javax.annotation-api\1.2-b01\268c3b9fa56499a664ceded289dfca835a7a7db6\javax.annotation-api-1.2-b01.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="268c3b9fa56499a664ceded289dfca835a7a7db6">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\javax.annotation-api-1.2-b01_151902c6dcea952ef8aedcd2931bd3a027c01b3c\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\javax.annotation\javax.annotation-api\1.2-b01\268c3b9fa56499a664ceded289dfca835a7a7db6\javax.annotation-api-1.2-b01.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="268c3b9fa56499a664ceded289dfca835a7a7db6">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\javax.annotation-api-1.2-b01_151902c6dcea952ef8aedcd2931bd3a027c01b3c\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="8a36d229011e75f0caef408e1adf0d3fd4d94e02">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-9.4.0_89f7e74b043ce2bb6381a8ef2e648f3ee4fa9cea\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="8a36d229011e75f0caef408e1adf0d3fd4d94e02">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-9.4.0_89f7e74b043ce2bb6381a8ef2e648f3ee4fa9cea\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="6d7d803871e3203465f71a163e7af104f807b446">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.1.1_e114542577d5aa65758e2b1963433e3ed1711a87\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="6d7d803871e3203465f71a163e7af104f807b446">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.1.1_e114542577d5aa65758e2b1963433e3ed1711a87\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.7.2\84ffa765dd258dbab8695963c41308b054f3a1cb\jackson-databind-2.7.2.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="84ffa765dd258dbab8695963c41308b054f3a1cb">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-databind-2.7.2_0f6f314c387fbe0a1eed6dde4ef1c79e44fded07\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife-annotations\8.0.1\345b89f45d02d8b09400b472fab7b7e38f4ede1f\butterknife-annotations-8.0.1.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="345b89f45d02d8b09400b472fab7b7e38f4ede1f">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\butterknife-annotations-8.0.1_ad0270f0c6d6f8f9dad0698e48dba8fa845e58ed\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.7.2\84ffa765dd258dbab8695963c41308b054f3a1cb\jackson-databind-2.7.2.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="84ffa765dd258dbab8695963c41308b054f3a1cb">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-databind-2.7.2_0f6f314c387fbe0a1eed6dde4ef1c79e44fded07\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife-annotations\8.0.1\345b89f45d02d8b09400b472fab7b7e38f4ede1f\butterknife-annotations-8.0.1.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="345b89f45d02d8b09400b472fab7b7e38f4ede1f">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\butterknife-annotations-8.0.1_ad0270f0c6d6f8f9dad0698e48dba8fa845e58ed\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.8.0\5ea7af56cc7c567ed9856d99efb30740e9b17ff\okio-1.8.0.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.8.0_de10487b9619892929608cc5f57677cf1cf6aa70\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.8.0\5ea7af56cc7c567ed9856d99efb30740e9b17ff\okio-1.8.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.8.0_de10487b9619892929608cc5f57677cf1cf6aa70\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.android.support\support-annotations\24.1.1\3af19f153122737b372622fa6c81dd11a1c6b999\support-annotations-24.1.1.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.1.1_f4f2e12bec2831e1d71eedf3b82cd4e53bd009a1\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="787871951412550519b0222aba3c9df4cea49875">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.1.1_759d505025e768b5affdc22878f24c444f5c5413\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.android.support\support-annotations\24.1.1\3af19f153122737b372622fa6c81dd11a1c6b999\support-annotations-24.1.1.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.1.1_f4f2e12bec2831e1d71eedf3b82cd4e53bd009a1\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="787871951412550519b0222aba3c9df4cea49875">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.1.1_759d505025e768b5affdc22878f24c444f5c5413\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="1256c10604bb098490eab070d76754ac5ceab35c">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.1.1_cff8ea29032d660dd03fdf8a5ae4b66163a1a3aa\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="1256c10604bb098490eab070d76754ac5ceab35c">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.1.1_cff8ea29032d660dd03fdf8a5ae4b66163a1a3aa\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\org.adw.library\discrete-seekbar\1.0.1\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="7be042dd2aa8157a2b63934902f472952d2ea1fe">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\org.adw.library-discrete-seekbar-1.0.1_38efa15f144041743deb124826cb221a5c6b54da\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\org.adw.library\discrete-seekbar\1.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="7be042dd2aa8157a2b63934902f472952d2ea1fe">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\org.adw.library-discrete-seekbar-1.0.1_38efa15f144041743deb124826cb221a5c6b54da\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="618485fef3ebe12127f7622abbc9b5b39057b5c2">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-9.4.0_8adc92ebe6f45c493dbb7f5b8c6c53418b979fc8\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="618485fef3ebe12127f7622abbc9b5b39057b5c2">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-9.4.0_8adc92ebe6f45c493dbb7f5b8c6c53418b979fc8\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\design\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="e195bd694d5389acfba27ff4fdfa64c4c65b2c05">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.1.1_b2824a3272a9a19500fc254f808bf42315bc8d6e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\design\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="e195bd694d5389acfba27ff4fdfa64c4c65b2c05">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.1.1_b2824a3272a9a19500fc254f808bf42315bc8d6e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-jackson\2.0.0\9506825ddc5a43b38a3d104db913ff0f4cb2e323\converter-jackson-2.0.0.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="9506825ddc5a43b38a3d104db913ff0f4cb2e323">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\converter-jackson-2.0.0_4ca7dc0427d58462b144e66cf987de49d71d4d08\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="3dee4ce5844d39d843d503fb8fe04e51e5bfffac">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-9.4.0_ca3d962e8da2c63693193604ee5be48884b8abe5\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.1.0\2de7cd8b95b7021b1d597f049bcb422055119f2c\retrofit-2.1.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\retrofit-2.1.0_71b5b4c66c1a2289af463ca00faadfbe8b00cac0\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-jackson\2.0.0\9506825ddc5a43b38a3d104db913ff0f4cb2e323\converter-jackson-2.0.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="9506825ddc5a43b38a3d104db913ff0f4cb2e323">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\converter-jackson-2.0.0_4ca7dc0427d58462b144e66cf987de49d71d4d08\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="f62e763609f65e47dc6c498760a4accf02776788">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.1.1_472c09d0db5097ced0e3dfc205c3943742595d2c\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="f62e763609f65e47dc6c498760a4accf02776788">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.1.1_472c09d0db5097ced0e3dfc205c3943742595d2c\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.1.0\2de7cd8b95b7021b1d597f049bcb422055119f2c\retrofit-2.1.0.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\retrofit-2.1.0_71b5b4c66c1a2289af463ca00faadfbe8b00cac0\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\org.projectlombok\lombok\1.16.6\9d3a47307466b28632bf35f8972ae9d703879416\lombok-1.16.6.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="9d3a47307466b28632bf35f8972ae9d703879416">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\lombok-1.16.6_9ba735dd952501ff1e0a9138141a1e524f44388f\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\AndroidSdk\android-sdk_r24.4.1-windows\build-tools\24.0.1\renderscript\lib\renderscript-v8.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="05668b8cd6c7b07f152b6a5b4c6cff620817ba0f">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\renderscript-v8_5ab613f5129e494ccd64df71b5724ef6b5b278c6\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\org.projectlombok\lombok\1.16.6\9d3a47307466b28632bf35f8972ae9d703879416\lombok-1.16.6.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="9d3a47307466b28632bf35f8972ae9d703879416">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\lombok-1.16.6_9ba735dd952501ff1e0a9138141a1e524f44388f\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\AndroidSdk\android-sdk_r24.4.1-windows\build-tools\24.0.1\renderscript\lib\renderscript-v8.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="05668b8cd6c7b07f152b6a5b4c6cff620817ba0f">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\renderscript-v8_5ab613f5129e494ccd64df71b5724ef6b5b278c6\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="3dee4ce5844d39d843d503fb8fe04e51e5bfffac">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-9.4.0_ca3d962e8da2c63693193604ee5be48884b8abe5\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.3.0\2b802460eea20f8f2ad9c08c74e0f14718e88aa9\okhttp-3.3.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.3.0_743456b2f914720a4bb54adced34db496a8de255\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\vpaiva\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.3.0\2b802460eea20f8f2ad9c08c74e0f14718e88aa9\okhttp-3.3.0.jar"
+        jumboMode="false"
+        revision="24.0.1"
+        sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
+        <dex dex="C:\Users\vpaiva\Sources\aloogueandroidapp\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.3.0_743456b2f914720a4bb54adced34db496a8de255\classes.dex" />
+    </item>
+
+</items>

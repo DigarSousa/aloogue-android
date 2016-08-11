@@ -1,7 +1,6 @@
 package alugueis.alugueis.util;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.widget.Spinner;
 
 
@@ -11,8 +10,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Arrays;
-
-import alugueis.alugueis.model.Place;
 
 public class StaticUtil {
     public static final String LOGGED_USER = "loggedUser";
