@@ -24,7 +24,9 @@ public class MainActivity extends DrawerActivity {
 
     @Override
     public StandardFragment startFragment() {
-        return new MapFragmentView();
+        MapFragmentView mapFragmentView = new MapFragmentView();
+        mapFragmentView.setDrawerLayout(drawerLayout);
+        return mapFragmentView;
     }
 
     @Override

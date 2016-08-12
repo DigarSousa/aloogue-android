@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/action_aloogue"
+            android:icon="@drawable/ic_serach_marker"
+            android:title="@string/aloogue"
+            app:showAsAction="always"/>
+
+        <item
+            android:id="@+id/action_place"
+            android:icon="@drawable/ic_store"
+            android:title="@string/place_menu"
+            app:showAsAction="always"/>
+
+        <item
+            android:id="@+id/action_product_list"
+            android:icon="@drawable/ic_product_list"
+            android:title="@string/product_list"
+            app:showAsAction="always"/>
+    </group>
+</menu>

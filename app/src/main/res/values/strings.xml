@@ -148,4 +148,8 @@
     <string name="locationSettings">Ativar</string>
     <string name="place_name_hint">Nome</string>
     <string name="place_register_code">Código</string>
+    <string name="aloogue">Alugar</string>
+    <string name="place_menu">Loja</string>
+    <string name="profile_menu">Perfil</string>
+    <string name="product_list">Produtos</string>
 </resources>
