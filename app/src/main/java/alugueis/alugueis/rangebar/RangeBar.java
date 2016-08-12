@@ -7,9 +7,6 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
-import alugueis.alugueis.R;
-
-
 public class RangeBar extends View {
     private Paint barPaint;
 
@@ -31,10 +28,12 @@ public class RangeBar extends View {
     private void init() {
         barPaint = new Paint();
         barPaint.setColor(Color.BLACK);
+        barPaint.setStyle(Paint.Style.FILL);
+        barPaint.setAntiAlias(true);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawRect(getPaddingLeft() + getLeft(), 10, getPaddingRight() - getRight(),10, barPaint);
+        canvas.drawRect(0, 0, getWidth(), getHeight(), barPaint);
     }
 }
