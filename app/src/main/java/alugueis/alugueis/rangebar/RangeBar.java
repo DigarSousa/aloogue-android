@@ -34,6 +34,6 @@ public class RangeBar extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawRect(0, 0, getWidth(), getHeight(), barPaint);
+        canvas.drawRect(0, 0, getWidth(),100, barPaint);
     }
 }
