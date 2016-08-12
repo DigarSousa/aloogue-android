@@ -5,7 +5,6 @@ import alugueis.alugueis.abstractiontools.StandardFragment;
 import alugueis.alugueis.util.MapsUtil;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.MenuItem;
@@ -31,6 +30,13 @@ public class MainActivity extends DrawerActivity {
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        return false;
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_aloogue:
+                if (!isOpen(MapFragmentView.class)) {
+                    setFragment(startFragment());
+                }
+        }
+        return true;
     }
 }
