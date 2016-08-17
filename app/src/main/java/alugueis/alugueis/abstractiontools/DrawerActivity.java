@@ -25,7 +25,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
 
     @Getter
     @Setter
-    private Integer backStackIndex;
+    private String backStackFragmentClassName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,10 +70,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
      */
     protected Boolean isOpen(Class fragmentClass) {
         Fragment currentFragment = getFragmentManager().findFragmentById(R.id.main_fragment);
-        if (currentFragment.getClass().getName().equals(fragmentClass.getName())) {
-            return true;
-        }
-        return false;
+        return currentFragment.getClass().getName().equals(fragmentClass.getName());
     }
 
     @Override
@@ -82,8 +79,8 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
             drawerLayout.closeDrawer(GravityCompat.START);
         } else if (getFragmentManager().getBackStackEntryCount() == 1) {
             finish();
-        } else if (backStackIndex != null) {
-            getFragmentManager().popBackStack(getFragmentManager().getBackStackEntryAt(backStackIndex).getId(), 0);
+        } else if (backStackFragmentClassName != null) {
+            getFragmentManager().popBackStack(backStackFragmentClassName, 0);
             KeyTools.hideInputMethod(this, getCurrentFocus());
         } else {
             super.onBackPressed();

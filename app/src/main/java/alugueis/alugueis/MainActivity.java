@@ -6,11 +6,13 @@ import alugueis.alugueis.util.MapsUtil;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.GravityCompat;
 import android.util.Log;
 import android.view.MenuItem;
 
 public class MainActivity extends DrawerActivity {
     private static final String TAG = "MainActivity";
+    private ProductListFragment productListFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -19,6 +21,8 @@ public class MainActivity extends DrawerActivity {
             savedInstanceState.clear();
         }
         super.onCreate(savedInstanceState);
+        hoverHomeItem();
+        setBackStackFragmentClassName(MapFragmentView.class.getName());
     }
 
     @Override
@@ -36,7 +40,36 @@ public class MainActivity extends DrawerActivity {
                 if (!isOpen(MapFragmentView.class)) {
                     setFragment(startFragment());
                 }
+                break;
+
+            case (R.id.action_product_list):
+                if (!isOpen(ProductListFragment.class)) {
+                    productListFragment = new ProductListFragment();
+                    productListFragment.setHomeAsUpEnabled(true).hasOptionMenu(true);
+                    productListFragment.setDrawerLayout(drawerLayout);
+                    setFragment(productListFragment);
+                }
+                break;
         }
+        drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    private void hoverHomeItem() {
+        navigationView.getMenu().getItem(0).setChecked(true);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isOpen(ProductListFragment.class) && productListFragment.getProductAdapter().getSelectedItems().size() > 0) {
+            productListFragment.getProductAdapter().clearSelections();
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    private void drawerLockMode(Integer lockMode) {
+        drawerLayout.setDrawerLockMode(lockMode);
     }
 }

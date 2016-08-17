@@ -11,12 +11,7 @@ import android.support.v4.app.ActivityCompat;
 
 public class MapsUtil {
 
-    public static void requestLocationPermition(Activity activity) {
-        ActivityCompat.requestPermissions(activity,
-                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 0);
-    }
-
-    public static boolean souldShowRequest(Activity activity) {
+    public static boolean shouldShowRequest(Activity activity) {
         return ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_COARSE_LOCATION);
     }
 

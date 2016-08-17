@@ -83,6 +83,8 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
                 moveCamera();
             }
         });
+
+        moveCamera();
     }
 
     private void startLocationSettings() {
@@ -106,10 +108,8 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
     private void setMapsMarkers(LatLng latLng) {
         if (currentLocation == null && googleMap != null) {
             currentLocation = googleMap.addMarker(new MarkerOptions()
-                    .position(latLng)
-                    .icon(getIcon(R.drawable.ic_current_location_circle_blue)));
-
-            myMarker = googleMap.addMarker(new MarkerOptions().position(latLng).icon(getIcon(R.drawable.ic_my_pin_location)));
+                    .position(latLng));
+            myMarker = googleMap.addMarker(new MarkerOptions().position(latLng));
             moveCamera();
         }
         if (currentLocation != null) {
@@ -122,9 +122,15 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
     }
 
     private void moveCamera() {
-        myMarker.setPosition(currentLocation.getPosition());
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation.getPosition()));
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(19f));
+        if (currentLocation != null) {
+            currentLocation.setIcon(getIcon(R.drawable.ic_current_location_circle_blue));
+
+            myMarker.setIcon(getIcon(R.drawable.ic_my_pin_location));
+            myMarker.setPosition(currentLocation.getPosition());
+
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation.getPosition()));
+            googleMap.animateCamera(CameraUpdateFactory.zoomTo(17f));
+        }
     }
 
     @Override
@@ -147,17 +153,18 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (!MapsUtil.souldShowRequest(getActivity())) {
+        if (!MapsUtil.shouldShowRequest(getActivity())) {
             MapsUtil.callApplicationPermissionsSettings(this);
         } else {
             startLocationSettings();
         }
     }
 
+
     @Override
     public void onDestroy() {
-        super.onDestroy();
         unbinder.unbind();
+        super.onDestroy();
     }
 
 }

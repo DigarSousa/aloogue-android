@@ -52,11 +52,11 @@ public class PlaceViewerActivity extends AppCompatActivity {
 
             PlaceInfoViewerFragment placeInfoFgm = new PlaceInfoViewerFragment();
             placeInfoFgm.setArguments(args);
-            ProductListFragment productListFragment = new ProductListFragment();
-            productListFragment.setArguments(args);
+            ProductViewerListFragment productViewerListFragment = new ProductViewerListFragment();
+            productViewerListFragment.setArguments(args);
 
             viewPageAdapter.addFragment(placeInfoFgm, getString(R.string.placeViewerFormTitle));
-            viewPageAdapter.addFragment(productListFragment, getString(R.string.placeViewerProductsTitle));
+            viewPageAdapter.addFragment(productViewerListFragment, getString(R.string.placeViewerProductsTitle));
             viewPageAdapter.notifyDataSetChanged();
 
         } catch (IOException | ClassNotFoundException e) {
