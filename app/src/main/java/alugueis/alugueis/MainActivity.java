@@ -37,18 +37,14 @@ public class MainActivity extends DrawerActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.action_aloogue:
-                if (!isOpen(MapFragmentView.class)) {
-                    setFragment(startFragment());
-                }
+                setFragment(startFragment());
                 break;
 
             case (R.id.action_product_list):
-                if (!isOpen(ProductListFragment.class)) {
-                    productListFragment = new ProductListFragment();
-                    productListFragment.setHomeAsUpEnabled(true).hasOptionMenu(true);
-                    productListFragment.setDrawerLayout(drawerLayout);
-                    setFragment(productListFragment);
-                }
+                productListFragment = new ProductListFragment();
+                productListFragment.setHomeAsUpEnabled(true).hasOptionMenu(true);
+                productListFragment.setDrawerLayout(drawerLayout);
+                setFragment(productListFragment);
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);

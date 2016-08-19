@@ -160,7 +160,6 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
         }
     }
 
-
     @Override
     public void onDestroy() {
         unbinder.unbind();

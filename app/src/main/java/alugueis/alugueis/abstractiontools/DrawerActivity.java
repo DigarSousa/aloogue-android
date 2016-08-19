@@ -27,13 +27,15 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
     @Setter
     private String backStackFragmentClassName;
 
+    private StandardFragment startFragment;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.template_activity);
         ButterKnife.bind(this);
         initComponents();
-        setFragment(startFragment());
+        setStartFragment(startFragment());
     }
 
     private void initComponents() {
@@ -54,12 +56,38 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
      * @param fragment
      */
 
-    protected void setFragment(StandardFragment fragment) {
+    private void setStartFragment(StandardFragment fragment) {
+        startFragment = fragment;
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_fragment, fragment)
-                .addToBackStack(fragment.getClass().getName())
+                .add(R.id.main_fragment, fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+    }
+
+
+    public void setFragment(StandardFragment fragment) {
+        if (fragment.getClass().getName().equals(startFragment.getClass().getName())) {
+            detachCurrentFragment();
+            return;
+        }
+
+        if (!isOpen(fragment.getClass())) {
+            getFragmentManager()
+                    .beginTransaction()
+                    .hide(startFragment)
+                    .add(R.id.main_fragment, fragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+        }
+    }
+
+    private void detachCurrentFragment() {
+        if (!isStartFragmentOpen()) {
+            getFragmentManager().beginTransaction()
+                    .detach(getCurrentFragment())
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                    .show(startFragment)
+                    .commit();
+        }
     }
 
     /**
@@ -69,21 +97,28 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
      * @return
      */
     protected Boolean isOpen(Class fragmentClass) {
-        Fragment currentFragment = getFragmentManager().findFragmentById(R.id.main_fragment);
-        return currentFragment.getClass().getName().equals(fragmentClass.getName());
+        return getCurrentFragment().getClass().getName().equals(fragmentClass.getName());
+    }
+
+    private Fragment getCurrentFragment() {
+        return getFragmentManager().findFragmentById(R.id.main_fragment);
     }
 
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        } else if (getFragmentManager().getBackStackEntryCount() == 1) {
+        } else if (getCurrentFragment().equals(startFragment)) {
             finish();
-        } else if (backStackFragmentClassName != null) {
-            getFragmentManager().popBackStack(backStackFragmentClassName, 0);
+        } else if (!isStartFragmentOpen()) {
+            detachCurrentFragment();
             KeyTools.hideInputMethod(this, getCurrentFocus());
         } else {
             super.onBackPressed();
         }
+    }
+
+    public boolean isStartFragmentOpen() {
+        return getCurrentFragment().getClass().getName().equals(startFragment.getClass().getName());
     }
 }
