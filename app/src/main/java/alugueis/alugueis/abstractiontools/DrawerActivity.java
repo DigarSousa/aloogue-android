@@ -51,7 +51,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
 
     /**
      * Receive a StandardFragment object and place it in the activity
-     * and put it on backstack mapped by the name of fragment class
      *
      * @param fragment
      */
@@ -66,12 +65,15 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
 
 
     public void setFragment(StandardFragment fragment) {
+        //The start fragment is hided, so you don't set it, you have show it
         if (fragment.getClass().getName().equals(startFragment.getClass().getName())) {
             detachCurrentFragment();
             return;
         }
 
         if (!isOpen(fragment.getClass())) {
+            detachCurrentFragment();
+
             getFragmentManager()
                     .beginTransaction()
                     .hide(startFragment).commit();

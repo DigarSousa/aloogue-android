@@ -60,6 +60,12 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
         return view;
     }
 
+
+    @Override
+    public Toolbar getToolBar() {
+        return null;
+    }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -83,8 +89,6 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
                 moveCamera();
             }
         });
-
-        moveCamera();
     }
 
     private void startLocationSettings() {
@@ -108,10 +112,15 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
     private void setMapsMarkers(LatLng latLng) {
         if (currentLocation == null && googleMap != null) {
             currentLocation = googleMap.addMarker(new MarkerOptions()
-                    .position(latLng));
-            myMarker = googleMap.addMarker(new MarkerOptions().position(latLng));
+                    .position(latLng)
+                    .icon(getIcon(R.drawable.ic_current_location_circle_blue)));
+
+            myMarker = googleMap.addMarker(new MarkerOptions().position(latLng)
+                    .icon(getIcon(R.drawable.ic_my_pin_location)));
+
             moveCamera();
         }
+
         if (currentLocation != null) {
             currentLocation.setPosition(latLng);
         }
@@ -123,19 +132,10 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
 
     private void moveCamera() {
         if (currentLocation != null) {
-            currentLocation.setIcon(getIcon(R.drawable.ic_current_location_circle_blue));
-
-            myMarker.setIcon(getIcon(R.drawable.ic_my_pin_location));
             myMarker.setPosition(currentLocation.getPosition());
-
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation.getPosition()));
             googleMap.animateCamera(CameraUpdateFactory.zoomTo(15.8f));
         }
-    }
-
-    @Override
-    public Toolbar getToolBar() {
-        return null;
     }
 
 
