@@ -22,7 +22,6 @@ public class MainActivity extends DrawerActivity {
         }
         super.onCreate(savedInstanceState);
         hoverHomeItem();
-        setBackStackFragmentClassName(MapFragmentView.class.getName());
     }
 
     @Override
@@ -58,7 +57,9 @@ public class MainActivity extends DrawerActivity {
 
     @Override
     public void onBackPressed() {
-        if (isOpen(ProductListFragment.class) && productListFragment.getProductAdapter().getSelectedItems().size() > 0) {
+        if (isOpen(ProductListFragment.class)
+                && productListFragment.getProductAdapter() != null
+                && productListFragment.getProductAdapter().getSelectedItems().size() > 0) {
             productListFragment.getProductAdapter().clearSelections();
             return;
         }

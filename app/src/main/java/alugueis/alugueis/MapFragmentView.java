@@ -129,7 +129,7 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
             myMarker.setPosition(currentLocation.getPosition());
 
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation.getPosition()));
-            googleMap.animateCamera(CameraUpdateFactory.zoomTo(17f));
+            googleMap.animateCamera(CameraUpdateFactory.zoomTo(15.8f));
         }
     }
 

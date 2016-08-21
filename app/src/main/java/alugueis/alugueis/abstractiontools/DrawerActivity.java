@@ -74,8 +74,12 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         if (!isOpen(fragment.getClass())) {
             getFragmentManager()
                     .beginTransaction()
-                    .hide(startFragment)
+                    .hide(startFragment).commit();
+
+            getFragmentManager()
+                    .beginTransaction()
                     .add(R.id.main_fragment, fragment)
+                    .hide(startFragment)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
         }
     }
