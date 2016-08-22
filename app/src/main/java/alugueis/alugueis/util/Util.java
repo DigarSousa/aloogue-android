@@ -3,13 +3,8 @@ package alugueis.alugueis.util;
 import alugueis.alugueis.R;
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-/**
- * Created by Pedreduardo on 15/10/2015.
- */
 public class Util {
 
     //For CPF and CNPJ validation
@@ -40,20 +35,6 @@ public class Util {
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(c, message, duration);
         toast.show();
-    }
-
-    public static void populeStatesSpinner(Context c, Spinner stateSpinner) {
-
-        String[] arrayState = new String[]{
-                "AC", "AL", "AP", "AM", "BA",
-                "CE", "DF", "ES", "GO", "MA",
-                "MT", "MS", "MG", "PA", "PB",
-                "PR", "PE", "PI", "RJ", "RN",
-                "RS", "RO", "RR", "SC", "SP",
-                "SE", "TO"
-        };
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(c.getApplicationContext(), R.layout.component_spinner_item_light, arrayState);
-        stateSpinner.setAdapter(adapter);
     }
 
     //For CPF and CNPJ validation
@@ -90,19 +71,4 @@ public class Util {
         }
         return false;
     }
-
-    public static void populeHoursSpinner(Context c, Spinner businessInitialHourSpinner) {
-        String[] arrayHours = new String[]{
-                "01H", "02H", "03H", "04H", "05H",
-                "06H", "07H", "08H", "09H", "10H",
-                "11H", "12H", "13H", "14H", "15H",
-                "16H", "17H", "18H", "19H", "20H",
-                "21H", "22H", "23H", "24H"
-        };
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(c.getApplicationContext(), R.layout.component_spinner_item_light,arrayHours);
-        businessInitialHourSpinner.setAdapter(adapter);
-    }
-
-
-
 }
