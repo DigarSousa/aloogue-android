@@ -96,20 +96,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         }
     }
 
-    /**
-     * Checks if the class name of the current fragment on the screen are equals of the class received
-     *
-     * @param fragmentClass
-     * @return
-     */
-    protected Boolean isOpen(Class fragmentClass) {
-        return getCurrentFragment().getClass().getName().equals(fragmentClass.getName());
-    }
-
-    private Fragment getCurrentFragment() {
-        return getFragmentManager().findFragmentById(R.id.main_fragment);
-    }
-
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -124,7 +110,22 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         }
     }
 
-    public boolean isStartFragmentOpen() {
+    /**
+     * Checks if the class name of the current fragment on the screen are equals of the class received
+     *
+     * @param fragmentClass
+     * @return
+     */
+    protected Boolean isOpen(Class fragmentClass) {
+        return getCurrentFragment().getClass().getName().equals(fragmentClass.getName());
+    }
+
+    private Fragment getCurrentFragment() {
+        return getFragmentManager().findFragmentById(R.id.main_fragment);
+    }
+
+
+    private boolean isStartFragmentOpen() {
         return getCurrentFragment().getClass().getName().equals(startFragment.getClass().getName());
     }
 }

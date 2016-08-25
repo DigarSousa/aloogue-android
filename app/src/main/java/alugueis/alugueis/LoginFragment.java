@@ -3,10 +3,10 @@ package alugueis.alugueis;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.services.StdService;
 import alugueis.alugueis.services.user.UserService;
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +51,6 @@ public class LoginFragment extends Fragment {
     @OnClick(R.id.enterButton)
     public void enter(View view) {
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.show();
 
         UserService userService = StdService.createService(UserService.class);
         Call<UserApp> call = userService.login(userNameLogin.getText().toString(), passwordLogin.getText().toString());
@@ -60,13 +59,11 @@ public class LoginFragment extends Fragment {
             public void onResponse(Call<UserApp> call, Response<UserApp> response) {
                 if (response.body() != null) {
                     ((StartActivity) getActivity()).startMainActivity();
-                    progressDialog.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Call<UserApp> call, Throwable t) {
-                progressDialog.dismiss();
                 Log.e(TAG, "Login failure", t);
             }
         });

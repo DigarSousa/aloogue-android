@@ -4,8 +4,9 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-    <fragment android:id="@+id/login_sign_up_fragment"
-              android:layout_height="match_parent"
-              android:layout_width="match_parent"
-              android:name="alugueis.alugueis.LoginFragment"/>
+    <FrameLayout
+            android:id="@+id/login_sign_up_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
 </RelativeLayout>
