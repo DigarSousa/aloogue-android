@@ -31,7 +31,7 @@ public class SignUpFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.sign_up_fragment, container, false);
+        View view = inflater.inflate(R.layout.signup_fragment, container, false);
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
@@ -43,7 +43,7 @@ public class SignUpFragment extends Fragment {
     }
 
     @OnClick(R.id.signEnterButton)
-    void signUp() {
+    void signUpAction() {
         UserApp userApp = new UserApp();
         userApp.setName(name.getText().toString());
         userApp.setEmail(mail.getText().toString());
