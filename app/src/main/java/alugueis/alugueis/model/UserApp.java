@@ -2,13 +2,15 @@ package alugueis.alugueis.model;
 
 import java.io.Serializable;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class UserApp implements Serializable {
 
-    private Long id;
-    private String name;
-    private String email;
-    private String password;
+    private  Long id;
+    private  String name;
+    private  String email;
+    private  String password;
 }
