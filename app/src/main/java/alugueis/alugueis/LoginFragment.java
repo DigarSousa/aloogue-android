@@ -65,7 +65,8 @@ public class LoginFragment extends Fragment {
     }
 
     @OnClick(R.id.enterButton)
-    public void enter(View view) {
+    void enter(View view) {
+        enterButton.setClickable(false);
         enterButton.setProgress(1);
         ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, false);
 
@@ -74,20 +75,25 @@ public class LoginFragment extends Fragment {
         call.enqueue(new Callback<UserApp>() {
             @Override
             public void onResponse(Call<UserApp> call, Response<UserApp> response) {
-                if (response.body() != null) {
-                    try {
-                        StaticUtil.setOject(getContext(), StaticUtil.LOGGED_USER, response.body());
-                        loadPlace(response.body());
-                    } catch (IOException e) {
-                        onFailure(call, e);
-                    }
+                if (response.code() == StdService.NOT_FOUND) {
+                    clearState();
+                    //todo: usuario  nao logado
+                    return;
+                }
+
+                try {
+                    StaticUtil.setOject(getContext(), StaticUtil.LOGGED_USER, response.body());
+                    loadPlace(response.body());
+                } catch (IOException e) {
+                    onFailure(call, e);
                 }
             }
 
             @Override
             public void onFailure(Call<UserApp> call, Throwable t) {
                 Log.e(TAG, "Login failure", t);
-                ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, false);
+                clearState();
+                //todo:error
             }
         });
     }
@@ -98,28 +104,33 @@ public class LoginFragment extends Fragment {
         call.enqueue(new Callback<Place>() {
             @Override
             public void onResponse(Call<Place> call, Response<Place> response) {
-                if (response.body() != null) {
+                if (response.code() == StdService.ACCEPTED) {
                     try {
                         StaticUtil.setOject(getContext(), StaticUtil.PLACE, response.body());
                     } catch (IOException e) {
                         onFailure(call, e);
                     }
                 }
-                enterButton.setProgress(100);
                 ((StartActivity) getActivity()).startMainActivity();
             }
 
             @Override
             public void onFailure(Call<Place> call, Throwable t) {
-                Log.e(TAG, "Login failure", t);
-                ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, false);
+                Log.e(TAG, "Load place failure", t);
+                clearState();
+                //todo:error
             }
         });
     }
 
+    private void clearState() {
+        ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, true);
+        enterButton.setProgress(0);
+        enterButton.setClickable(true);
+    }
 
     @OnClick(R.id.signUp)
-    public void createAccount(View view) {
+    void createAccount(View view) {
         ((StartActivity) getActivity()).loadSignUpFragment();
     }
 

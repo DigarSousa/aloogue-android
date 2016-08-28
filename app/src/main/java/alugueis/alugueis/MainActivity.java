@@ -3,12 +3,17 @@ package alugueis.alugueis;
 import alugueis.alugueis.abstractiontools.DrawerActivity;
 import alugueis.alugueis.abstractiontools.StandardFragment;
 import alugueis.alugueis.util.MapsUtil;
+import alugueis.alugueis.util.StaticUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.GravityCompat;
 import android.util.Log;
 import android.view.MenuItem;
+
+import java.io.IOException;
 
 public class MainActivity extends DrawerActivity {
     private static final String TAG = "MainActivity";
@@ -32,7 +37,7 @@ public class MainActivity extends DrawerActivity {
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id) {
             case R.id.action_aloogue:
@@ -45,11 +50,24 @@ public class MainActivity extends DrawerActivity {
                 productListFragment.setDrawerLayout(drawerLayout);
                 setFragment(productListFragment);
                 break;
+
+            case (R.id.action_logout):
+                logout();
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    private void logout() {
+        try {
+            StaticUtil.remove(this, StaticUtil.LOGGED_USER);
+            StaticUtil.remove(this, StaticUtil.PLACE);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        startActivity(new Intent(this, StartActivity.class));
+        this.finish();
+    }
 
     private void hoverHomeItem() {
         navigationView.getMenu().getItem(0).setChecked(true);
