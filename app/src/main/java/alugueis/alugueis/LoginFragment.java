@@ -1,19 +1,30 @@
 package alugueis.alugueis;
 
+import alugueis.alugueis.abstractiontools.ButterKnifeViewControls;
+import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.services.StdService;
+import alugueis.alugueis.services.place.PlaceService;
 import alugueis.alugueis.services.user.UserService;
+
 import android.app.Fragment;
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.dd.processbutton.iml.ActionProcessButton;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import alugueis.alugueis.util.StaticUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -24,6 +35,7 @@ import retrofit2.Response;
 
 public class LoginFragment extends Fragment {
     private String TAG = "LoginFragment";
+    private List<View> views;
 
     @BindView(R.id.userNameLogin)
     EditText userNameLogin;
@@ -32,7 +44,7 @@ public class LoginFragment extends Fragment {
     EditText passwordLogin;
 
     @BindView(R.id.enterButton)
-    Button enterButton;
+    ActionProcessButton enterButton;
 
     @BindView(R.id.signUp)
     TextView signUpButton;
@@ -45,12 +57,17 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.login_fragment, container, false);
         unbinder = ButterKnife.bind(this, view);
+        enterButton.setMode(ActionProcessButton.Mode.ENDLESS);
+
+        views = new ArrayList<>();
+        views.addAll(Arrays.asList(userNameLogin, passwordLogin, signUpButton));
         return view;
     }
 
     @OnClick(R.id.enterButton)
     public void enter(View view) {
-        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+        enterButton.setProgress(1);
+        ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, false);
 
         UserService userService = StdService.createService(UserService.class);
         Call<UserApp> call = userService.login(userNameLogin.getText().toString(), passwordLogin.getText().toString());
@@ -58,13 +75,44 @@ public class LoginFragment extends Fragment {
             @Override
             public void onResponse(Call<UserApp> call, Response<UserApp> response) {
                 if (response.body() != null) {
-                    ((StartActivity) getActivity()).startMainActivity();
+                    try {
+                        StaticUtil.setOject(getContext(), StaticUtil.LOGGED_USER, response.body());
+                        loadPlace(response.body());
+                    } catch (IOException e) {
+                        onFailure(call, e);
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<UserApp> call, Throwable t) {
                 Log.e(TAG, "Login failure", t);
+                ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, false);
+            }
+        });
+    }
+
+    private void loadPlace(UserApp user) {
+        PlaceService placeService = StdService.createService(PlaceService.class);
+        Call<Place> call = placeService.placeByUserId(user.getId());
+        call.enqueue(new Callback<Place>() {
+            @Override
+            public void onResponse(Call<Place> call, Response<Place> response) {
+                if (response.body() != null) {
+                    try {
+                        StaticUtil.setOject(getContext(), StaticUtil.PLACE, response.body());
+                    } catch (IOException e) {
+                        onFailure(call, e);
+                    }
+                }
+                enterButton.setProgress(100);
+                ((StartActivity) getActivity()).startMainActivity();
+            }
+
+            @Override
+            public void onFailure(Call<Place> call, Throwable t) {
+                Log.e(TAG, "Login failure", t);
+                ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, false);
             }
         });
     }

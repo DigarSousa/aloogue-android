@@ -14,5 +14,4 @@ public interface UserService {
     @POST("userapp")
     Call<UserApp> save(@Body UserApp userApp);
 
-
 }

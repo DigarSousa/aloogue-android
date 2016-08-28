@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
 import butterknife.ButterKnife;
 
 public class StartActivity extends AppCompatActivity {
@@ -30,12 +31,13 @@ public class StartActivity extends AppCompatActivity {
                 .beginTransaction()
                 .hide(loginFragment)
                 .add(R.id.login_sign_up_fragment, new SignUpFragment())
-                .setTransition(FragmentTransaction.TRANSIT_ENTER_MASK).commit();
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
     }
 
     void startMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        this.finish();
     }
 
     @Override
