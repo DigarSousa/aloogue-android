@@ -146,8 +146,12 @@
     <string name="ok">ok</string>
     <string name="enableLocationProviders">Ative os serviços de localização :(</string>
     <string name="locationSettings">Ativar</string>
+    <string name="place_address_hint">Endereço</string>
     <string name="place_name_hint">Nome</string>
-    <string name="place_register_code">Código</string>
+    <string name="place_register_code">CPF/CNPJ</string>
+    <string name="place_phone_hint">Telefone</string>
+    <string name="place_start_hour">Hora Inicial</string>
+    <string name="place_finish_hour">Hora Final</string>
     <string name="aloogue">Alugar</string>
     <string name="place_menu">Loja</string>
     <string name="profile_menu">Perfil</string>

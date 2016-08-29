@@ -43,7 +43,8 @@ public class MainActivity extends DrawerActivity {
             case R.id.action_aloogue:
                 setFragment(startFragment());
                 break;
-
+            case (R.id.action_place):
+                setFragment(new PlaceFragment());
             case (R.id.action_product_list):
                 productListFragment = new ProductListFragment();
                 productListFragment.setHomeAsUpEnabled(true).hasOptionMenu(true);

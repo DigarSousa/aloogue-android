@@ -13,7 +13,6 @@
             android:layout_marginTop="30dp"
             android:layout_marginLeft="20dp"
             android:scaleType="centerInside"
-            android:layout_below="@+id/bannerArea"
             android:src="@drawable/pin_laranja">
     </ImageView>
 
