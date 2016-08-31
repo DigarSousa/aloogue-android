@@ -158,4 +158,5 @@
     <string name="product_list">Produtos</string>
     <string name="signing_up">Cadastrar</string>
     <string name="logout">Sair</string>
+    <string name="savingPlace">Salvando Loja...</string>
 </resources>
