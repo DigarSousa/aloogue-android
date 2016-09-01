@@ -35,6 +35,7 @@ public class PlaceFragment extends StandardFragment {
     private List<View> views;
     private View view;
     private Menu menu;
+    private Place place;
 
     @BindView(R.id.reduced_toolbar)
     Toolbar toolbar;
@@ -68,13 +69,15 @@ public class PlaceFragment extends StandardFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ButterKnife.apply(views, ENABLED, false);
+        objectToView();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        unbinder.unbind();
+    private void objectToView() {
+        place = (Place) getArguments().getSerializable("place");
+        if (place != null) {
+            placeName.setText(place.getName());
+            placePhone.setText(place.getPhone());
+        }
     }
 
     @Override
@@ -86,7 +89,11 @@ public class PlaceFragment extends StandardFragment {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         this.menu = menu;
-        updateOptionMenu(false);
+        if (place != null) {
+            updateOptionMenu(false);
+            return;
+        }
+        updateOptionMenu(true);
     }
 
     @Override
@@ -98,14 +105,10 @@ public class PlaceFragment extends StandardFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.edit_action:
-                ButterKnife.apply(views, ENABLED, true);
                 updateOptionMenu(true);
-                KeyTools.showInputMethod(getActivity(), placeName);
                 break;
 
             case R.id.done_action:
-                KeyTools.hideInputMethod(getActivity(), this.getView());
-                ButterKnife.apply(views, ENABLED, false);
                 savePlace();
                 updateOptionMenu(false);
                 break;
@@ -116,26 +119,23 @@ public class PlaceFragment extends StandardFragment {
             default:
                 return true;
         }
-
         return true;
     }
 
     private void savePlace() {
         final ProgressDialog progress = new ProgressDialog(getContext());
         progress.setMessage(getString(R.string.savingPlace));
-
-        Place place = new Place();
-        place.setName(placeName.getText().toString());
-        place.setPhone(placePhone.getText().toString());
-        place.setUserApp((UserApp) getArguments().getSerializable("user"));
+        progress.show();
 
         PlaceService placeService = StdService.createService(PlaceService.class);
-        Call<Place> call = placeService.save(place);
+        Call<Place> call = placeService.save(placeFromView());
         call.enqueue(new Callback<Place>() {
             @Override
             public void onResponse(Call<Place> call, Response<Place> response) {
                 try {
                     StaticUtil.setOject(getContext(), StaticUtil.PLACE, response.body());
+                    ((MainActivity) getActivity()).invalidadeProductListVisibility();
+
                     progress.dismiss();
                 } catch (IOException e) {
                     onFailure(call, e);
@@ -151,11 +151,32 @@ public class PlaceFragment extends StandardFragment {
 
     }
 
+    private Place placeFromView() {
+        Place place = new Place();
+        place.setName(placeName.getText().toString());
+        place.setPhone(placePhone.getText().toString());
+        place.setUserApp((UserApp) getArguments().getSerializable("user"));
+        return place;
+    }
 
     private void updateOptionMenu(Boolean isInEditMode) {
         menu.findItem(R.id.edit_action).setVisible(!isInEditMode);
         menu.findItem(R.id.done_action).setVisible(isInEditMode);
+        ButterKnife.apply(views, ENABLED, isInEditMode);
+
+        if (isInEditMode) {
+            KeyTools.showInputMethod(getActivity(), placeName);
+        } else {
+            KeyTools.hideInputMethod(getActivity(), this.getView());
+        }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+    }
+
 
 }
 

@@ -38,11 +38,10 @@ public class MainActivity extends DrawerActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        existsPlace();
+        invalidadeProductListVisibility();
     }
 
-    private void existsPlace() {
-        //retirar se sempre for chamado no on Resume...
+    public void invalidadeProductListVisibility() {
         if (getPlace() != null && !navigationView.getMenu().findItem(R.id.action_product_list).isVisible()) {
             navigationView.getMenu().findItem(R.id.action_product_list).setVisible(true);
         }
@@ -90,6 +89,7 @@ public class MainActivity extends DrawerActivity {
 
     private void startPlaceFragment() {
         args.putSerializable("user", getUser());
+        args.putSerializable("place", getPlace());
 
         placeFragment = new PlaceFragment();
         placeFragment.setHomeAsUpEnabled(true).hasOptionMenu(true);

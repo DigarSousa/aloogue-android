@@ -58,7 +58,7 @@ public class ProductListFragment extends StandardFragment {
         unbinder = ButterKnife.bind(this, view);
         initValues();
         initComponents();
-        //loadProducts();
+        loadProducts();
         return view;
     }
 
