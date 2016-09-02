@@ -2,12 +2,15 @@ package alugueis.alugueis;
 
 import alugueis.alugueis.abstractiontools.KeyTools;
 import alugueis.alugueis.abstractiontools.StandardFragment;
+import alugueis.alugueis.dialogs.OnPlaceHourTouchListener;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.services.StdService;
 import alugueis.alugueis.services.place.PlaceService;
 import alugueis.alugueis.util.StaticUtil;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +18,7 @@ import android.util.Log;
 import android.view.*;
 
 import android.widget.EditText;
+import android.widget.TimePicker;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -33,9 +37,9 @@ public class PlaceFragment extends StandardFragment {
     private static final String TAG = "Place Fragment";
     private Unbinder unbinder;
     private List<View> views;
-    private View view;
     private Menu menu;
     private Place place;
+    private TimePickerDialog timePickerDialog;
 
     @BindView(R.id.reduced_toolbar)
     Toolbar toolbar;
@@ -58,12 +62,19 @@ public class PlaceFragment extends StandardFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.place_fragment, container, false);
+        View view = inflater.inflate(R.layout.place_fragment, container, false);
         unbinder = ButterKnife.bind(this, view);
 
         views = new ArrayList<>();
         views.addAll(Arrays.asList(placeAddress, placeName, placePhone, startHour, finisHour));
+
+        setupListeners();
         return view;
+    }
+
+    private void setupListeners() {
+        startHour.setOnTouchListener(new OnPlaceHourTouchListener(getContext(), startHour));
+        finisHour.setOnTouchListener(new OnPlaceHourTouchListener(getContext(), finisHour));
     }
 
     @Override
@@ -176,7 +187,5 @@ public class PlaceFragment extends StandardFragment {
         super.onDestroy();
         unbinder.unbind();
     }
-
-
 }
 
