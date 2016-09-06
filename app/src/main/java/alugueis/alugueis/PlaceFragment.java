@@ -73,8 +73,28 @@ public class PlaceFragment extends StandardFragment {
     }
 
     private void setupListeners() {
+        startHour.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                setKeyVisible(view, b);
+            }
+        });
+
+        finisHour.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                setKeyVisible(view, b);
+            }
+        });
+
         startHour.setOnTouchListener(new OnPlaceHourTouchListener(getContext(), startHour));
         finisHour.setOnTouchListener(new OnPlaceHourTouchListener(getContext(), finisHour));
+    }
+
+    private void setKeyVisible(View view, boolean keyVisible) {
+        if (!keyVisible) {
+            KeyTools.hideInputMethod(getContext(), view);
+        }
     }
 
     @Override
@@ -187,5 +207,6 @@ public class PlaceFragment extends StandardFragment {
         super.onDestroy();
         unbinder.unbind();
     }
+
 }
 
