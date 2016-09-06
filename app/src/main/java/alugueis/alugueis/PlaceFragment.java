@@ -10,7 +10,6 @@ import alugueis.alugueis.services.place.PlaceService;
 import alugueis.alugueis.util.StaticUtil;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -18,7 +17,6 @@ import android.util.Log;
 import android.view.*;
 
 import android.widget.EditText;
-import android.widget.TimePicker;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
