@@ -8,8 +8,8 @@ import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.services.StdService;
 import alugueis.alugueis.services.place.PlaceService;
 import alugueis.alugueis.util.StaticUtil;
+
 import android.app.ProgressDialog;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.*;
 
 import android.widget.EditText;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -37,7 +38,6 @@ public class PlaceFragment extends StandardFragment {
     private List<View> views;
     private Menu menu;
     private Place place;
-    private TimePickerDialog timePickerDialog;
 
     @BindView(R.id.reduced_toolbar)
     Toolbar toolbar;

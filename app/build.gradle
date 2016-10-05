@@ -4,7 +4,7 @@ apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion '24.0.1'
+    buildToolsVersion '24.0.3'
 
     defaultConfig {
         applicationId "alugueis.alugueis"
@@ -13,16 +13,8 @@ android {
         versionCode 1
         versionName "0.9"
 
-        //Render for blur imajages
-        renderscriptTargetApi 18
-        renderscriptSupportModeEnabled true
-
         multiDexEnabled true
 
-    }
-
-    dataBinding {
-        enabled = true
     }
 
     buildTypes {
@@ -31,26 +23,33 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/notice'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license'
+        exclude 'META-INF/license.txt'
+    }
+
 }
 
 repositories {
     mavenCentral()
 }
 
-
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
-
-    compile 'com.android.support:appcompat-v7:24.2.0'
-    compile 'com.android.support:design:24.2.0'
-    compile 'com.android.support:support-v4:24.2.0'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+    compile 'com.android.support:support-v4:24.2.1'
     compile 'com.google.maps.android:android-maps-utils:0.3.4'
-    compile 'com.google.android.gms:play-services-maps:9.4.0'
+    compile 'com.google.android.gms:play-services-maps:9.6.1'
     compile 'javax.annotation:javax.annotation-api:1.2-b01'
     compile 'org.projectlombok:lombok:1.16.6'
-    compile 'com.fasterxml.jackson.core:jackson-core:2.4.1'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.3'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.8.3'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.3'
     compile 'com.squareup.retrofit2:converter-jackson:2.0.0'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.okhttp:okhttp:2.7.2'
