@@ -38,6 +38,8 @@ public class PlaceFragment extends StandardFragment {
     private List<View> views;
     private Menu menu;
     private Place place;
+    private OnPlaceHourTouchListener startListener;
+    private OnPlaceHourTouchListener finishtListener;
 
     @BindView(R.id.reduced_toolbar)
     Toolbar toolbar;
@@ -66,33 +68,26 @@ public class PlaceFragment extends StandardFragment {
         views = new ArrayList<>();
         views.addAll(Arrays.asList(placeAddress, placeName, placePhone, startHour, finisHour));
 
+        startListener = new OnPlaceHourTouchListener(getContext(), startHour);
+        finishtListener = new OnPlaceHourTouchListener(getContext(), finisHour);
+
         setupListeners();
         return view;
     }
 
     private void setupListeners() {
-        startHour.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                setKeyVisible(view, b);
-            }
-        });
-
-        finisHour.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                setKeyVisible(view, b);
-            }
-        });
-
-        startHour.setOnTouchListener(new OnPlaceHourTouchListener(getContext(), startHour));
-        finisHour.setOnTouchListener(new OnPlaceHourTouchListener(getContext(), finisHour));
+        startHour.setOnFocusChangeListener(startListener);
+        startHour.setOnTouchListener(startListener);
+        finisHour.setOnFocusChangeListener(finishtListener);
+        finisHour.setOnTouchListener(finishtListener);
     }
 
-    private void setKeyVisible(View view, boolean keyVisible) {
-        if (!keyVisible) {
-            KeyTools.hideInputMethod(getContext(), view);
-        }
+    private void removeListeners() {
+        startHour.setOnFocusChangeListener(null);
+        startHour.setOnTouchListener(null);
+        finisHour.setOnFocusChangeListener(null);
+        finisHour.setOnTouchListener(null);
+
     }
 
     @Override
@@ -134,10 +129,12 @@ public class PlaceFragment extends StandardFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.edit_action:
+                setupListeners();
                 updateOptionMenu(true);
                 break;
 
             case R.id.done_action:
+                removeListeners();
                 savePlace();
                 updateOptionMenu(false);
                 break;
