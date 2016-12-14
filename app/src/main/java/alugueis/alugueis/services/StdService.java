@@ -9,7 +9,7 @@ public class StdService {
     public static final int ACCEPTED = 202;
 
     //private static final String API_BASE_URL = "http://52.67.29.228:8080/";
-    private static final String API_BASE_URL = "http://192.168.1.103:8080/";
+    private static final String API_BASE_URL = "https://aloogue.herokuapp.com/";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 

@@ -101,6 +101,10 @@ public class PlaceFragment extends StandardFragment {
         if (place != null) {
             placeName.setText(place.getName());
             placePhone.setText(place.getPhone());
+            startHour.setText(place.getStartHour());
+            finisHour.setText(place.getFinishHour());
+        } else {
+            place = new Place();
         }
     }
 
@@ -178,9 +182,10 @@ public class PlaceFragment extends StandardFragment {
     }
 
     private Place placeFromView() {
-        Place place = new Place();
         place.setName(placeName.getText().toString());
         place.setPhone(placePhone.getText().toString());
+        place.setStartHour(startHour.getText().toString());
+        place.setFinishHour(finisHour.getText().toString());
         place.setUserApp((UserApp) getArguments().getSerializable("user"));
         return place;
     }

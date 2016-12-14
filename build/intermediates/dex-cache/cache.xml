@@ -124,7 +124,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="99498b1286a810bea1c925517f308cdae03e865d">
+        sha1="16e8a7c21b934d7121c9852c01a4b76624cd9b91">
         <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_9928cab6b98e5fc64599fae937d694b788b52c77/classes.dex" />
     </item>
     <item
@@ -439,7 +439,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="491d259e57f6d5ec0ebd38bf8d5bde23839d321f">
+        sha1="d13565096ca2096bbdee99fa28eee2f7628d5157">
         <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_6d785acbfa80c6e2b4581b35109a3668c90f3cf6/classes.dex" />
     </item>
     <item
