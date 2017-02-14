@@ -159,4 +159,5 @@
     <string name="signing_up">Cadastrar</string>
     <string name="logout">Sair</string>
     <string name="savingPlace">Salvando Loja...</string>
+    <string name="title_activity_teste">TesteActivity</string>
 </resources>

@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="AppTheme" parent="AloogueBaseTheme"/>
+    <style name="AppTheme" parent="AloogueBaseTheme" />
 
     <style name="AloogueBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -8,9 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="editTextLight" parent="@android:style/Widget.EditText">
         <item name="android:textColorHint">@color/colorAccent</item>

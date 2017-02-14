@@ -30,21 +30,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.7.2/20f6463eb19ac61960c5d91a094c2f4f0727dc2e/okhttp-2.7.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="20f6463eb19ac61960c5d91a094c2f4f0727dc2e">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-2.7.2_4aec8aecad486b153099e8d6b7f791d11aa01c5f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.3/5e1dc37c96308851c3ff609c250dc849c4b12022/jackson-core-2.8.3.jar"
         jumboMode="false"
         optimize="true"
         revision="24.0.3"
         sha1="5e1dc37c96308851c3ff609c250dc849c4b12022">
         <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-core-2.8.3_74faf2b3ea7949168816330109990bbca4eaf50c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.7.2/20f6463eb19ac61960c5d91a094c2f4f0727dc2e/okhttp-2.7.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="20f6463eb19ac61960c5d91a094c2f4f0727dc2e">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-2.7.2_4aec8aecad486b153099e8d6b7f791d11aa01c5f/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -120,15 +120,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="16e8a7c21b934d7121c9852c01a4b76624cd9b91">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_9928cab6b98e5fc64599fae937d694b788b52c77/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.0.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -147,21 +138,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.6.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="62ff84124b89177abc0c27f3e38c9732f2d41617">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-9.6.1_fa4b68b5c176df42c4cdb19f50337e48caeacb19/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.maps.android/android-maps-utils/0.3.4/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="24.0.3"
         sha1="cf251baf39f5c5138224b67b4106eb6331abbd13">
         <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.maps.android-android-maps-utils-0.3.4_40847a387d6455d6ec799e30ffa2102d1376d0ac/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="62ff84124b89177abc0c27f3e38c9732f2d41617">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-9.6.1_fa4b68b5c176df42c4cdb19f50337e48caeacb19/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -183,21 +174,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.1_c72f13cb81cca58668d68045380a8e25ab02f723/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
         jumboMode="false"
         optimize="true"
         revision="24.0.3"
         sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
         <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_033a4b2a2a2a3a2feff6093a6384204e8a1a98e7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.1_c72f13cb81cca58668d68045380a8e25ab02f723/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -435,15 +426,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="d13565096ca2096bbdee99fa28eee2f7628d5157">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_6d785acbfa80c6e2b4581b35109a3668c90f3cf6/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -588,21 +570,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.1_1517fa2e0106b73ade345d908de67a8bd157ae0c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.8.0/5ea7af56cc7c567ed9856d99efb30740e9b17ff/okio-1.8.0.jar"
         jumboMode="false"
         optimize="true"
         revision="24.0.3"
         sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
         <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.8.0_b08e73f713578be5fcc276f86851735f0ccaa846/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.1_1517fa2e0106b73ade345d908de67a8bd157ae0c/classes.dex" />
     </item>
     <item
         is-multidex="true"
