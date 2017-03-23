@@ -3,30 +3,111 @@
 
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
+        jar="/home/edgar/.android/build-cache/03e744fec2a85e986f0eb27ecca5fbff59dd35e3/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.3"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.1_4d2bcda6ae939123ec45250ff517acedabdec779/classes.dex" />
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_15c19f4c40759c77c7b96fac6a3d042a94e0fd1f/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.6.1/jars/classes.jar"
-        jumboMode="false"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.3.0/2b802460eea20f8f2ad9c08c74e0f14718e88aa9/okhttp-3.3.0.jar"
+        jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="4a36600281a648769411ef642c331851732bf29e">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.6.1_375e65e7dfce7ebb18e32ea587d1dfa2cf71864c/classes.dex" />
+        revision="25.0.0"
+        sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.3.0_a4472dac6945072ad8e22618b4313bbf0b0eb473/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
+        jar="/home/edgar/.android/build-cache/151734346bd34930ea17dd126da1a1de5527bc78/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="19696dc358ac668e341f28c41e3387d61ccdb81d">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2fe9273d8c82128e5a9a37edba25a7e94e67a1d0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/f46ed0bf0c77c153c601773ff1c3a9fefb003c63/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
+        revision="25.0.0"
+        sha1="fbb206f7a119f66ce171d95aae1225a5b209a8b7">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f0ded9b378aa022a4dc27fdf4fb941d1312231cd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.16.6/9d3a47307466b28632bf35f8972ae9d703879416/lombok-1.16.6.jar"
+        jumboMode="true"
+        optimize="true"
         revision="24.0.3"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.1_52919cf9c4195915be5d82d92cc7756f96b94091/classes.dex" />
+        sha1="9d3a47307466b28632bf35f8972ae9d703879416">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/lombok-1.16.6_b83d90ee8d73acf4f2d39a6229cd4029464840c8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/3ba8f3f6c03a90111fa76001029c17382939c34f/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="cf251baf39f5c5138224b67b4106eb6331abbd13">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_77f85375465b6233e299ef524ec1a56b706af859/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/21317c8ba2a58b2655aefdf3554eca1675cb75fb/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="93c10d68ab5ea070f15782ae6d3a28d1f1d8f45e">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_715130cd039cf05de526a86e3a4ffe219e85e33d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.0.1/345b89f45d02d8b09400b472fab7b7e38f4ede1f/butterknife-annotations-8.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="345b89f45d02d8b09400b472fab7b7e38f4ede1f">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.0.1_723fe0eae5410e7349f7f158384a277ed7a4145a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/c15303c39a14fc0718e3e0a78e62c4aab32614c5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6003d64df88a6ce5e961fa2bad7f1b9b97689ac1">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4efe7c69154254e775e5d915f74c56e487976ed0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.1.0_1b3cf73816b29ca69751f2a83fb164861de661f5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.3/cea3788c72271d45676ce32c0665991674b24cc5/jackson-databind-2.8.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="cea3788c72271d45676ce32c0665991674b24cc5">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-databind-2.8.3_54b09b680e00c9962ede940125ebc6a8f7086413/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/942018d58443d610384caa4695e094e2f68c295e/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="93c1199fcb0a34b980e6fff8350daff62e696ec2">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d74e357abddf41632be77569acd0f0e0f8d4dc55/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -48,6 +129,42 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.1.0_1b3cf73816b29ca69751f2a83fb164861de661f5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/ca3355a4c364c7e62c56a83daefdbb13b32abbdb/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d469860a6431289f4be06e5e23a774f57e115966">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_452a7a98981602a64f71ef36795cf5c0b86e0001/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/be0d1e6f06ba201a350ebb6786ae4cc66cd9dc8e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d6a04527c17597019dad82777c5094a3d60d1c33">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_81bf16423a89d46c291767297fd42aba7181c50b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.3/5e1dc37c96308851c3ff609c250dc849c4b12022/jackson-core-2.8.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5e1dc37c96308851c3ff609c250dc849c4b12022">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-core-2.8.3_74faf2b3ea7949168816330109990bbca4eaf50c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.8.0/45b426f7796b741035581a176744d91090e2e6fb/jackson-annotations-2.8.0.jar"
         jumboMode="false"
         optimize="true"
@@ -57,336 +174,84 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.github.channguyen/rsv/1.0.1/jars/classes.jar"
+        jar="/home/edgar/.android/build-cache/294af0858c63bf148a0c82d4b0f3c6087b9dbc81/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.3"
-        sha1="d469860a6431289f4be06e5e23a774f57e115966">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.channguyen-rsv-1.0.1_632c0856f8c9d68ec1ed6ba1e879ab47a7d9163a/classes.dex" />
+        revision="25.0.0"
+        sha1="bdcc2a9572f18b8c90a3a157cab6cdfc97c6c736">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0c8f959b408ec469b074920d459b45b0e3b9b922/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.6.1/jars/classes.jar"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.3/5e1dc37c96308851c3ff609c250dc849c4b12022/jackson-core-2.8.3.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="eccaaa9ffa6bb4bfbd2e870f01aaf69655d353be">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.6.1_3c316394bc4321618da57095559c10444104e456/classes.dex" />
+        revision="25.0.0"
+        sha1="5e1dc37c96308851c3ff609c250dc849c4b12022">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-core-2.8.3_74faf2b3ea7949168816330109990bbca4eaf50c/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
+        jar="/home/edgar/.android/build-cache/df09feddc3560be0ac0496d27e486022ed9d2828/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.3"
-        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.1_672531ff9880ad8848c1dd30e84535d5886cf865/classes.dex" />
+        revision="25.0.0"
+        sha1="a3e61044038fb54cddf6b8dc79f41d2b57f42caf">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0cd1156d91ffa77bbdc52747bcb8aee6047ac90d/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_413c8ef3785187a3c1a40d1bd4f43bb7c097486c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jar="/home/edgar/.android/build-cache/be0d1e6f06ba201a350ebb6786ae4cc66cd9dc8e/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_314e5f730531dd810f8f5d49db63d538c13d278a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.1_52919cf9c4195915be5d82d92cc7756f96b94091/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-24.2.1_769c3430a2998427d89041ff21eaae71ef906999/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.0.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="74ca46e7da11e3d065eb64cdbe6568a7ed74c211">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.jakewharton-butterknife-8.0.1_803ff419ca82d93ab124bfdec70a6682aab0105d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Programas/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.1_96471662b72532895cef0c1d2720e0e9665a1b20/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.maps.android/android-maps-utils/0.3.4/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="cf251baf39f5c5138224b67b4106eb6331abbd13">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.maps.android-android-maps-utils-0.3.4_40847a387d6455d6ec799e30ffa2102d1376d0ac/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.6.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="62ff84124b89177abc0c27f3e38c9732f2d41617">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-9.6.1_fa4b68b5c176df42c4cdb19f50337e48caeacb19/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.1_b6453afa0b76f169de1b2363958375e9f21be5ee/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.2.1_3db79a534dd09cf72e12828074b179c76e4041a4/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_033a4b2a2a2a3a2feff6093a6384204e8a1a98e7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.1_c72f13cb81cca58668d68045380a8e25ab02f723/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.16.6/9d3a47307466b28632bf35f8972ae9d703879416/lombok-1.16.6.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="9d3a47307466b28632bf35f8972ae9d703879416">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/lombok-1.16.6_b83d90ee8d73acf4f2d39a6229cd4029464840c8/classes.dex" />
+        revision="25.0.0"
+        sha1="d6a04527c17597019dad82777c5094a3d60d1c33">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_81bf16423a89d46c291767297fd42aba7181c50b/classes.dex" />
     </item>
     <item
         is-multidex="true"
         jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.0.1/345b89f45d02d8b09400b472fab7b7e38f4ede1f/butterknife-annotations-8.0.1.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
-        revision="24.0.3"
+        revision="25.0.0"
         sha1="345b89f45d02d8b09400b472fab7b7e38f4ede1f">
         <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.0.1_723fe0eae5410e7349f7f158384a277ed7a4145a/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
-        jumboMode="true"
+        jar="/home/edgar/.android/build-cache/953b808bca16302f171fdb2fd144b9ac5beffdd3/output/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="24.0.3"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.1_4d2bcda6ae939123ec45250ff517acedabdec779/classes.dex" />
+        revision="25.0.0"
+        sha1="5cc5ef8347a6bafa14556cbd35230aa9b3431bb0">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e70c2877f4a68bcf0df19d2cfd7d0b7a9c96c67f/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.6.1/jars/classes.jar"
+        jar="/home/edgar/.android/build-cache/294af0858c63bf148a0c82d4b0f3c6087b9dbc81/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="4a36600281a648769411ef642c331851732bf29e">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.6.1_375e65e7dfce7ebb18e32ea587d1dfa2cf71864c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.1_672531ff9880ad8848c1dd30e84535d5886cf865/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.1.0_1b3cf73816b29ca69751f2a83fb164861de661f5/classes.dex" />
+        revision="25.0.0"
+        sha1="bdcc2a9572f18b8c90a3a157cab6cdfc97c6c736">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0c8f959b408ec469b074920d459b45b0e3b9b922/classes.dex" />
     </item>
     <item
         is-multidex="true"
         jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.7.2/20f6463eb19ac61960c5d91a094c2f4f0727dc2e/okhttp-2.7.2.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
-        revision="24.0.3"
+        revision="25.0.0"
         sha1="20f6463eb19ac61960c5d91a094c2f4f0727dc2e">
         <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-2.7.2_4aec8aecad486b153099e8d6b7f791d11aa01c5f/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/jars/classes.jar"
+        jar="/home/edgar/.android/build-cache/09496cf9fd64253c3d6a3a5770326624b7b81e97/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-24.2.1_769c3430a2998427d89041ff21eaae71ef906999/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.2.1_f76387959f9ace7a4d9369a67f55bd03c248f2a5/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-24.2.1_a74b801e101f0f66a2546e0de0ea08a22c39a7bb/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.1_b6453afa0b76f169de1b2363958375e9f21be5ee/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2-b01/268c3b9fa56499a664ceded289dfca835a7a7db6/javax.annotation-api-1.2-b01.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="268c3b9fa56499a664ceded289dfca835a7a7db6">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/javax.annotation-api-1.2-b01_771530043af00811d4543a0816a69399852bd3cd/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.1_601a953f2123b1e3d272c8b2d54c5548d7784adb/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.1_c72f13cb81cca58668d68045380a8e25ab02f723/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_033a4b2a2a2a3a2feff6093a6384204e8a1a98e7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.16.6/9d3a47307466b28632bf35f8972ae9d703879416/lombok-1.16.6.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="9d3a47307466b28632bf35f8972ae9d703879416">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/lombok-1.16.6_b83d90ee8d73acf4f2d39a6229cd4029464840c8/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.0.1/345b89f45d02d8b09400b472fab7b7e38f4ede1f/butterknife-annotations-8.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="345b89f45d02d8b09400b472fab7b7e38f4ede1f">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.0.1_723fe0eae5410e7349f7f158384a277ed7a4145a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.3/cea3788c72271d45676ce32c0665991674b24cc5/jackson-databind-2.8.3.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="cea3788c72271d45676ce32c0665991674b24cc5">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-databind-2.8.3_54b09b680e00c9962ede940125ebc6a8f7086413/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_76241cb7c12a2d44759229c3232c3b1c5b9b463d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.1.0_1b3cf73816b29ca69751f2a83fb164861de661f5/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.1_1517fa2e0106b73ade345d908de67a8bd157ae0c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_c65f16d9b95aad19cfbf61b69a913962374f2f3c/classes.dex" />
+        revision="25.0.0"
+        sha1="88ccdbf844995d5c9c845e087068d27588b2d026">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_09b3bb4f7264baee825b0ce94a6741a83430ce68/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -399,6 +264,33 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.8.0/45b426f7796b741035581a176744d91090e2e6fb/jackson-annotations-2.8.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="45b426f7796b741035581a176744d91090e2e6fb">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-annotations-2.8.0_d448af82c6d88276ec752ce2e631f51f49ec520e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2-b01/268c3b9fa56499a664ceded289dfca835a7a7db6/javax.annotation-api-1.2-b01.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="268c3b9fa56499a664ceded289dfca835a7a7db6">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/javax.annotation-api-1.2-b01_771530043af00811d4543a0816a69399852bd3cd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/ad61a86da650078e02f87828cf7d81d3b6f77767/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="425c7b17887e5c3f8cbdf67ba171bc246f29b42c">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8e30843968a0b2a77ecf40a165739e650c7a0793/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-jackson/2.0.0/9506825ddc5a43b38a3d104db913ff0f4cb2e323/converter-jackson-2.0.0.jar"
         jumboMode="true"
         optimize="true"
@@ -408,12 +300,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
+        jar="/home/edgar/.android/build-cache/95d53286b6ffeae84af96941ee5d2c943cdfe35e/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.2.1_3db79a534dd09cf72e12828074b179c76e4041a4/classes.dex" />
+        revision="25.0.0"
+        sha1="4b746ef0fd46acb5aaf3d9ab9a4cec22c28d3211">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f185fd91500d5655f8c5c04ad2edea9464ad8e27/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -426,21 +318,39 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
+        jar="/home/edgar/.android/build-cache/a66be89c6b4af3b5cbb20152ce64b2086868a749/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-24.2.1_a74b801e101f0f66a2546e0de0ea08a22c39a7bb/classes.dex" />
+        revision="25.0.0"
+        sha1="70f23cb87278f89aa51e6f57e8f0fd5266572d95">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_61796167bf40d46e7cfe1bd56e8ac573257b4054/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.4/jars/classes.jar"
+        jar="/home/edgar/.android/build-cache/4872a8caac1fa3d711b7d7678bcc5bde0b001882/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c7626a9aa507bbbdc16188bc9a9f9bf3370c1ddd">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f547d18440c44b4eed29f593828355c04ff22102/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.8.0/5ea7af56cc7c567ed9856d99efb30740e9b17ff/okio-1.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.8.0_b08e73f713578be5fcc276f86851735f0ccaa846/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.3/cea3788c72271d45676ce32c0665991674b24cc5/jackson-databind-2.8.3.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="88ccdbf844995d5c9c845e087068d27588b2d026">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.dmytrodanylyk.android-process-button-library-1.0.4_6e3c23fc4fa4d6fda80a5110a17233d637d47d79/classes.dex" />
+        revision="25.0.0"
+        sha1="cea3788c72271d45676ce32c0665991674b24cc5">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-databind-2.8.3_54b09b680e00c9962ede940125ebc6a8f7086413/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -453,12 +363,30 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.6.1/jars/classes.jar"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.16.6/9d3a47307466b28632bf35f8972ae9d703879416/lombok-1.16.6.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="af7582c6b327449c6d32518e6a10307860b7b5d6">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.6.1_1adfc43260a227a05bdd28409d9a14e02d5b51f6/classes.dex" />
+        revision="25.0.0"
+        sha1="9d3a47307466b28632bf35f8972ae9d703879416">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/lombok-1.16.6_b83d90ee8d73acf4f2d39a6229cd4029464840c8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/a070c051b8449563e0a67aa7800afddf822f123b/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="518768f3200963fbfec652f498da2c9d39245234">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c3df62d02d7c878cd851a859a839d83da2e52ea5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/Programas/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.0/support-annotations-25.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="dd84903d2e1af25a6081ef9038ad863cb14ca3a0">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.3.0_7294c3726a2158fff4e1492d389d1bffe3440bfe/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -471,30 +399,93 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
+        jar="/home/edgar/.android/build-cache/21317c8ba2a58b2655aefdf3554eca1675cb75fb/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.3"
-        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.2.1_f76387959f9ace7a4d9369a67f55bd03c248f2a5/classes.dex" />
+        revision="25.0.0"
+        sha1="93c10d68ab5ea070f15782ae6d3a28d1f1d8f45e">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_715130cd039cf05de526a86e3a4ffe219e85e33d/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.0.1/jars/classes.jar"
+        jar="/home/edgar/.android/build-cache/a66be89c6b4af3b5cbb20152ce64b2086868a749/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="70f23cb87278f89aa51e6f57e8f0fd5266572d95">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_61796167bf40d46e7cfe1bd56e8ac573257b4054/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-jackson/2.0.0/9506825ddc5a43b38a3d104db913ff0f4cb2e323/converter-jackson-2.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9506825ddc5a43b38a3d104db913ff0f4cb2e323">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/converter-jackson-2.0.0_5523886491119b5f833f79d7316b84253baa3a30/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/041f0da6e4f8acf8b3c4e1bdc2e2203064cb925a/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="74ca46e7da11e3d065eb64cdbe6568a7ed74c211">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.jakewharton-butterknife-8.0.1_803ff419ca82d93ab124bfdec70a6682aab0105d/classes.dex" />
+        revision="25.0.0"
+        sha1="9ab787a20aae245b5b3651ae0b9c38459eb37715">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_86ee168cd9a6a31488aeb6f5e37950762e6258bf/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.3"
-        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.1_601a953f2123b1e3d272c8b2d54c5548d7784adb/classes.dex" />
+        revision="25.0.0"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.1.0_1b3cf73816b29ca69751f2a83fb164861de661f5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/03e744fec2a85e986f0eb27ecca5fbff59dd35e3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_15c19f4c40759c77c7b96fac6a3d042a94e0fd1f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/95d53286b6ffeae84af96941ee5d2c943cdfe35e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4b746ef0fd46acb5aaf3d9ab9a4cec22c28d3211">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f185fd91500d5655f8c5c04ad2edea9464ad8e27/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/8b145d7b7a3746e7a1326ca0ca12147167b9fea3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="74ca46e7da11e3d065eb64cdbe6568a7ed74c211">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_90c5f45ff4279c778f6b402cd9e44148ec790c10/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/3ba8f3f6c03a90111fa76001029c17382939c34f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="cf251baf39f5c5138224b67b4106eb6331abbd13">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_77f85375465b6233e299ef524ec1a56b706af859/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/151734346bd34930ea17dd126da1a1de5527bc78/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="19696dc358ac668e341f28c41e3387d61ccdb81d">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2fe9273d8c82128e5a9a37edba25a7e94e67a1d0/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -507,21 +498,39 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.3.0/2b802460eea20f8f2ad9c08c74e0f14718e88aa9/okhttp-3.3.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.3"
-        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_76241cb7c12a2d44759229c3232c3b1c5b9b463d/classes.dex" />
+        revision="25.0.0"
+        sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.3.0_a4472dac6945072ad8e22618b4313bbf0b0eb473/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.7.2/20f6463eb19ac61960c5d91a094c2f4f0727dc2e/okhttp-2.7.2.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.3"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_c65f16d9b95aad19cfbf61b69a913962374f2f3c/classes.dex" />
+        revision="25.0.0"
+        sha1="20f6463eb19ac61960c5d91a094c2f4f0727dc2e">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-2.7.2_4aec8aecad486b153099e8d6b7f791d11aa01c5f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/c15303c39a14fc0718e3e0a78e62c4aab32614c5/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6003d64df88a6ce5e961fa2bad7f1b9b97689ac1">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4efe7c69154254e775e5d915f74c56e487976ed0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/953b808bca16302f171fdb2fd144b9ac5beffdd3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5cc5ef8347a6bafa14556cbd35230aa9b3431bb0">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e70c2877f4a68bcf0df19d2cfd7d0b7a9c96c67f/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -534,39 +543,111 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_413c8ef3785187a3c1a40d1bd4f43bb7c097486c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.6.1/jars/classes.jar"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.16.6/9d3a47307466b28632bf35f8972ae9d703879416/lombok-1.16.6.jar"
         jumboMode="false"
         optimize="true"
         revision="24.0.3"
-        sha1="eccaaa9ffa6bb4bfbd2e870f01aaf69655d353be">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.6.1_3c316394bc4321618da57095559c10444104e456/classes.dex" />
+        sha1="9d3a47307466b28632bf35f8972ae9d703879416">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/lombok-1.16.6_b83d90ee8d73acf4f2d39a6229cd4029464840c8/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.github.channguyen/rsv/1.0.1/jars/classes.jar"
-        jumboMode="true"
+        jar="/home/edgar/.android/build-cache/942018d58443d610384caa4695e094e2f68c295e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="93c1199fcb0a34b980e6fff8350daff62e696ec2">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d74e357abddf41632be77569acd0f0e0f8d4dc55/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.0.1/345b89f45d02d8b09400b472fab7b7e38f4ede1f/butterknife-annotations-8.0.1.jar"
+        jumboMode="false"
         optimize="true"
         revision="24.0.3"
+        sha1="345b89f45d02d8b09400b472fab7b7e38f4ede1f">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.0.1_723fe0eae5410e7349f7f158384a277ed7a4145a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/ca3355a4c364c7e62c56a83daefdbb13b32abbdb/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
         sha1="d469860a6431289f4be06e5e23a774f57e115966">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.channguyen-rsv-1.0.1_632c0856f8c9d68ec1ed6ba1e879ab47a7d9163a/classes.dex" />
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_452a7a98981602a64f71ef36795cf5c0b86e0001/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.6.1/jars/classes.jar"
+        jar="/home/edgar/.android/build-cache/09496cf9fd64253c3d6a3a5770326624b7b81e97/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="88ccdbf844995d5c9c845e087068d27588b2d026">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_09b3bb4f7264baee825b0ce94a6741a83430ce68/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.16.6/9d3a47307466b28632bf35f8972ae9d703879416/lombok-1.16.6.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9d3a47307466b28632bf35f8972ae9d703879416">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/lombok-1.16.6_b83d90ee8d73acf4f2d39a6229cd4029464840c8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.3/cea3788c72271d45676ce32c0665991674b24cc5/jackson-databind-2.8.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="cea3788c72271d45676ce32c0665991674b24cc5">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-databind-2.8.3_54b09b680e00c9962ede940125ebc6a8f7086413/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.1.0_1b3cf73816b29ca69751f2a83fb164861de661f5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/ad61a86da650078e02f87828cf7d81d3b6f77767/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="425c7b17887e5c3f8cbdf67ba171bc246f29b42c">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8e30843968a0b2a77ecf40a165739e650c7a0793/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.0.1/345b89f45d02d8b09400b472fab7b7e38f4ede1f/butterknife-annotations-8.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="345b89f45d02d8b09400b472fab7b7e38f4ede1f">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.0.1_723fe0eae5410e7349f7f158384a277ed7a4145a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/a070c051b8449563e0a67aa7800afddf822f123b/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="518768f3200963fbfec652f498da2c9d39245234">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c3df62d02d7c878cd851a859a839d83da2e52ea5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.7.2/20f6463eb19ac61960c5d91a094c2f4f0727dc2e/okhttp-2.7.2.jar"
         jumboMode="false"
         optimize="true"
         revision="24.0.3"
-        sha1="af7582c6b327449c6d32518e6a10307860b7b5d6">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.6.1_1adfc43260a227a05bdd28409d9a14e02d5b51f6/classes.dex" />
+        sha1="20f6463eb19ac61960c5d91a094c2f4f0727dc2e">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-2.7.2_4aec8aecad486b153099e8d6b7f791d11aa01c5f/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -579,21 +660,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2-b01/268c3b9fa56499a664ceded289dfca835a7a7db6/javax.annotation-api-1.2-b01.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.1_1517fa2e0106b73ade345d908de67a8bd157ae0c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_314e5f730531dd810f8f5d49db63d538c13d278a/classes.dex" />
+        revision="25.0.0"
+        sha1="268c3b9fa56499a664ceded289dfca835a7a7db6">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/javax.annotation-api-1.2-b01_771530043af00811d4543a0816a69399852bd3cd/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -606,12 +678,30 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.maps.android/android-maps-utils/0.3.4/jars/classes.jar"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.8.0/45b426f7796b741035581a176744d91090e2e6fb/jackson-annotations-2.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="45b426f7796b741035581a176744d91090e2e6fb">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-annotations-2.8.0_d448af82c6d88276ec752ce2e631f51f49ec520e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/8b145d7b7a3746e7a1326ca0ca12147167b9fea3/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="74ca46e7da11e3d065eb64cdbe6568a7ed74c211">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_90c5f45ff4279c778f6b402cd9e44148ec790c10/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/f46ed0bf0c77c153c601773ff1c3a9fefb003c63/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="cf251baf39f5c5138224b67b4106eb6331abbd13">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.maps.android-android-maps-utils-0.3.4_40847a387d6455d6ec799e30ffa2102d1376d0ac/classes.dex" />
+        revision="25.0.0"
+        sha1="fbb206f7a119f66ce171d95aae1225a5b209a8b7">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f0ded9b378aa022a4dc27fdf4fb941d1312231cd/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -624,30 +714,66 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.github.dmytrodanylyk.android-process-button/library/1.0.4/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="88ccdbf844995d5c9c845e087068d27588b2d026">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.dmytrodanylyk.android-process-button-library-1.0.4_6e3c23fc4fa4d6fda80a5110a17233d637d47d79/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.6.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="62ff84124b89177abc0c27f3e38c9732f2d41617">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-9.6.1_fa4b68b5c176df42c4cdb19f50337e48caeacb19/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/edgar/Programas/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
+        jar="/home/edgar/.android/build-cache/4872a8caac1fa3d711b7d7678bcc5bde0b001882/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
+        revision="25.0.0"
+        sha1="c7626a9aa507bbbdc16188bc9a9f9bf3370c1ddd">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f547d18440c44b4eed29f593828355c04ff22102/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/041f0da6e4f8acf8b3c4e1bdc2e2203064cb925a/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9ab787a20aae245b5b3651ae0b9c38459eb37715">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_86ee168cd9a6a31488aeb6f5e37950762e6258bf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.android/build-cache/df09feddc3560be0ac0496d27e486022ed9d2828/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a3e61044038fb54cddf6b8dc79f41d2b57f42caf">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0cd1156d91ffa77bbdc52747bcb8aee6047ac90d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.8.0/5ea7af56cc7c567ed9856d99efb30740e9b17ff/okio-1.8.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.8.0_b08e73f713578be5fcc276f86851735f0ccaa846/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/Programas/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.0/support-annotations-25.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="dd84903d2e1af25a6081ef9038ad863cb14ca3a0">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.3.0_7294c3726a2158fff4e1492d389d1bffe3440bfe/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-jackson/2.0.0/9506825ddc5a43b38a3d104db913ff0f4cb2e323/converter-jackson-2.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9506825ddc5a43b38a3d104db913ff0f4cb2e323">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/converter-jackson-2.0.0_5523886491119b5f833f79d7316b84253baa3a30/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2-b01/268c3b9fa56499a664ceded289dfca835a7a7db6/javax.annotation-api-1.2-b01.jar"
+        jumboMode="false"
+        optimize="true"
         revision="24.0.3"
-        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.1_96471662b72532895cef0c1d2720e0e9665a1b20/classes.dex" />
+        sha1="268c3b9fa56499a664ceded289dfca835a7a7db6">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/javax.annotation-api-1.2-b01_771530043af00811d4543a0816a69399852bd3cd/classes.dex" />
     </item>
 
 </items>
