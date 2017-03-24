@@ -7,7 +7,10 @@ import alugueis.alugueis.services.StdService;
 import alugueis.alugueis.services.place.PlaceService;
 import alugueis.alugueis.services.user.UserService;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -76,8 +79,14 @@ public class LoginFragment extends Fragment {
             @Override
             public void onResponse(Call<UserApp> call, Response<UserApp> response) {
                 if (response.code() == StdService.NOT_FOUND) {
-                    clearState();
-                    //todo: usuario  nao logado
+                    new AlertDialog.Builder(getActivity()).setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            clearState();
+                            dialogInterface.dismiss();
+                        }
+                    }).setTitle(getString(R.string.deniedlogintitle)).setIcon(R.drawable.ic_warning).show();
+
                     return;
                 }
 
@@ -107,11 +116,11 @@ public class LoginFragment extends Fragment {
                 if (response.code() == StdService.ACCEPTED) {
                     try {
                         StaticUtil.setOject(getContext(), StaticUtil.PLACE, response.body());
+                        ((StartActivity) getActivity()).startMainActivity();
                     } catch (IOException e) {
                         onFailure(call, e);
                     }
                 }
-                ((StartActivity) getActivity()).startMainActivity();
             }
 
             @Override

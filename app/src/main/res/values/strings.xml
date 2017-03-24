@@ -62,7 +62,7 @@
     <string name="invalidUser">Usuário inválido.</string>
     <string name="invalidCpfCnpj">Número inválido.</string>
     <string name="cpfCnpjLable">CPF/CNPJ</string>
-    <string name="uploadingFile">Carregando arquivo...</string>
+    <string name="uploadingFile">Carregando arquivo…</string>
     <string name="emptyName">Por favor, insira um nome.</string>
     <string name="emptyStreet">Por favor, insira uma rua válida.</string>
     <string name="emptyStreetNumber">Por favor, insira um número de rua válido.</string>
@@ -160,4 +160,5 @@
     <string name="logout">Sair</string>
     <string name="savingPlace">Salvando Loja...</string>
     <string name="title_activity_teste">TesteActivity</string>
+    <string name="deniedlogintitle">Login inválido</string>
 </resources>

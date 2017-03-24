@@ -444,6 +444,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="aac61ca9d3d7c6e81285bfc9a4e4a1cf9733e956">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_6d785acbfa80c6e2b4581b35109a3668c90f3cf6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/edgar/.android/build-cache/03e744fec2a85e986f0eb27ecca5fbff59dd35e3/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -576,6 +585,15 @@
         revision="25.0.0"
         sha1="d469860a6431289f4be06e5e23a774f57e115966">
         <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_452a7a98981602a64f71ef36795cf5c0b86e0001/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="/home/edgar/Sources/aloogueandroidapp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_9928cab6b98e5fc64599fae937d694b788b52c77/classes.dex" />
     </item>
     <item
         is-multidex="true"
