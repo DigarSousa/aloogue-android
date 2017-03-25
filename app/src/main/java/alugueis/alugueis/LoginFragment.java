@@ -1,14 +1,13 @@
 package alugueis.alugueis;
 
 import alugueis.alugueis.abstractiontools.ButterKnifeViewControls;
+import alugueis.alugueis.dialogs.ErrorDialog;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.services.StdService;
 import alugueis.alugueis.services.place.PlaceService;
 import alugueis.alugueis.services.user.UserService;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -36,7 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment implements DialogInterface.OnDismissListener {
     private String TAG = "LoginFragment";
     private List<View> views;
 
@@ -79,14 +78,9 @@ public class LoginFragment extends Fragment {
             @Override
             public void onResponse(Call<UserApp> call, Response<UserApp> response) {
                 if (response.code() == StdService.NOT_FOUND) {
-                    new AlertDialog.Builder(getActivity()).setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            clearState();
-                            dialogInterface.dismiss();
-                        }
-                    }).setTitle(getString(R.string.deniedlogintitle)).setIcon(R.drawable.ic_warning).show();
-
+                    new ErrorDialog(getActivity(), getString(R.string.deniedlogintitle))
+                            .setIcon(R.drawable.ic_warning)
+                            .setOnDimissListener(LoginFragment.this).show();
                     return;
                 }
 
@@ -100,9 +94,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onFailure(Call<UserApp> call, Throwable t) {
-                Log.e(TAG, "Login failure", t);
-                clearState();
-                //todo:error
+                falure(t);
             }
         });
     }
@@ -125,11 +117,15 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Place> call, Throwable t) {
-                Log.e(TAG, "Load place failure", t);
-                clearState();
-                //todo:error
+                falure(t);
             }
         });
+    }
+
+    private void falure(Throwable t) {
+        Log.e(TAG, "Load place failure", t);
+        new ErrorDialog(getActivity(), getString(R.string.errorLogin)).setOnDimissListener(LoginFragment.this).show();
+
     }
 
     private void clearState() {
@@ -147,5 +143,10 @@ public class LoginFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialogInterface) {
+        clearState();
     }
 }
