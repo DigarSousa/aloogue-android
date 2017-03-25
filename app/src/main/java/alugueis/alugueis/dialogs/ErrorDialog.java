@@ -28,7 +28,7 @@ public class ErrorDialog {
     }
 
     public ErrorDialog setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
+        alertDialog.setMessage(errorMsg);
         return this;
     }
 

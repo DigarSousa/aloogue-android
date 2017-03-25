@@ -108,11 +108,11 @@ public class LoginFragment extends Fragment implements DialogInterface.OnDismiss
                 if (response.code() == StdService.ACCEPTED) {
                     try {
                         StaticUtil.setOject(getContext(), StaticUtil.PLACE, response.body());
-                        ((StartActivity) getActivity()).startMainActivity();
                     } catch (IOException e) {
                         onFailure(call, e);
                     }
                 }
+                ((StartActivity) getActivity()).startMainActivity();
             }
 
             @Override
@@ -124,7 +124,9 @@ public class LoginFragment extends Fragment implements DialogInterface.OnDismiss
 
     private void falure(Throwable t) {
         Log.e(TAG, "Load place failure", t);
-        new ErrorDialog(getActivity(), getString(R.string.errorLogin)).setOnDimissListener(LoginFragment.this).show();
+        new ErrorDialog(getActivity(), getString(R.string.errorLoginTitle))
+                .setErrorMsg(getString(R.string.errorLoginMsg))
+                .setOnDimissListener(LoginFragment.this).show();
 
     }
 

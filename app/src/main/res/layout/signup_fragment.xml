@@ -12,27 +12,34 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="20dp">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
         <EditText
+            android:layout_marginEnd="3dp"
+            android:layout_weight="1"
             android:id="@+id/userNameSignUp"
-            android:layout_width="match_parent"
+            android:layout_width="1dp"
             android:layout_height="40dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:hint="@string/name"
             android:inputType="text"
             android:textColor="@color/colorAccent"
             android:textColorHint="@color/colorAccent" />
 
         <EditText
+            android:layout_marginStart="3dp"
+            android:layout_weight="1"
             android:id="@+id/userMailSignUp"
-            android:layout_width="match_parent"
+            android:layout_width="1dp"
             android:layout_height="40dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:hint="@string/emailLabel"
             android:inputType="textEmailAddress"
             android:textColor="@color/colorAccent"
             android:textColorHint="@color/colorAccent" />
-
+</LinearLayout>
 
         <EditText
             android:id="@+id/userPassSignUp"

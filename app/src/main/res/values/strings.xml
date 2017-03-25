@@ -161,5 +161,6 @@
     <string name="savingPlace">Salvando Loja...</string>
     <string name="title_activity_teste">TesteActivity</string>
     <string name="deniedlogintitle">Login inválido</string>
-    <string name="errorLogin">Ocorreu um erro ao tentar efetuar login, verifique sua conexão com a internet e tente novamente!</string>
+    <string name="errorLoginTitle">Erro ao efetuar login</string>
+    <string name="errorLoginMsg">Verifique sua conexão com a internet!</string>
 </resources>
