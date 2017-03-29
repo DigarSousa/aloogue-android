@@ -35,6 +35,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+//todo: Não permitir campos vazios
+//todo: Verificar email
 public class LoginFragment extends Fragment implements DialogInterface.OnDismissListener {
     private String TAG = "LoginFragment";
     private List<View> views;
