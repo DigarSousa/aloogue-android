@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import alugueis.alugueis.util.StaticUtil;
+import alugueis.alugueis.util.Util;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -70,6 +71,9 @@ public class LoginFragment extends Fragment implements DialogInterface.OnDismiss
 
     @OnClick(R.id.enterButton)
     void enter(View view) {
+
+        if (!validateFields()) return;
+
         enterButton.setClickable(false);
         enterButton.setProgress(1);
         ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, false);
@@ -96,9 +100,23 @@ public class LoginFragment extends Fragment implements DialogInterface.OnDismiss
 
             @Override
             public void onFailure(Call<UserApp> call, Throwable t) {
-                falure(t);
+                failure(t);
             }
         });
+    }
+
+    private Boolean validateFields() {
+        if (!Util.isValidEmail(userNameLogin.getText().toString())) {
+            userNameLogin.setError(getString(R.string.invalidEmail));
+            return false;
+        }
+
+        if (passwordLogin.getText().toString().isEmpty()) {
+            passwordLogin.setError(getString(R.string.emptyPassword));
+            return false;
+        }
+
+        return true;
     }
 
     private void loadPlace(UserApp user) {
@@ -119,12 +137,12 @@ public class LoginFragment extends Fragment implements DialogInterface.OnDismiss
 
             @Override
             public void onFailure(Call<Place> call, Throwable t) {
-                falure(t);
+                failure(t);
             }
         });
     }
 
-    private void falure(Throwable t) {
+    private void failure(Throwable t) {
         Log.e(TAG, "Load place failure", t);
         new ErrorDialog(getActivity(), getString(R.string.errorLoginTitle))
                 .setErrorMsg(getString(R.string.errorLoginMsg))
