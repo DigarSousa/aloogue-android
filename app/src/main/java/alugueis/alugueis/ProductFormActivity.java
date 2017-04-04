@@ -1,14 +1,17 @@
 package alugueis.alugueis;
 
 import alugueis.alugueis.abstractiontools.KeyTools;
+import alugueis.alugueis.dialogs.DialogsUtil;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.services.product.ProductService;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
@@ -24,11 +28,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import alugueis.alugueis.services.StdService;
 
+import java.net.ConnectException;
 import java.util.List;
 
 import static alugueis.alugueis.abstractiontools.ButterKnifeViewControls.ENABLED;
 
 public class ProductFormActivity extends AppCompatActivity {
+    private static final String TAG = "ProductFormActivity";
     private Product product;
     private Integer position;
     private Place place;
@@ -154,24 +160,30 @@ public class ProductFormActivity extends AppCompatActivity {
         progressDialog.setMessage(getString(R.string.saveProduct));
         progressDialog.show();
 
-        ProductService productService = StdService.createService(ProductService.class);
-        Call<Product> call = productService.save(product);
-        call.enqueue(new Callback<Product>() {
-            @Override
-            public void onResponse(Call<Product> call, Response<Product> response) {
-                product = response.body();
-                progressDialog.dismiss();
-            }
+        ProductService productService = null;
+        try {
+            productService = StdService.createService(ProductService.class, getApplicationContext());
+            Call<Product> call = productService.save(product);
+            call.enqueue(new Callback<Product>() {
+                @Override
+                public void onResponse(Call<Product> call, Response<Product> response) {
+                    product = response.body();
+                    progressDialog.dismiss();
+                }
 
-            @Override
-            public void onFailure(Call<Product> call, Throwable t) {
-                product = null; //dont put the object on list view
+                @Override
+                public void onFailure(Call<Product> call, Throwable t) {
+                    product = null; //dont put the object on list view
 
-                progressDialog.dismiss();
-                Toast.makeText(ProductFormActivity.this, getString(R.string.saveProductError), Toast.LENGTH_LONG).show();
-                t.printStackTrace();
-            }
-        });
+                    progressDialog.dismiss();
+                    Toast.makeText(ProductFormActivity.this, getString(R.string.saveProductError), Toast.LENGTH_LONG).show();
+                    t.printStackTrace();
+                }
+            });
+        } catch (ConnectException e) {
+            Log.e(TAG, "Load product error", e);
+            DialogsUtil.connectionError(this);
+        }
     }
 
     private void viewToObjcet() {

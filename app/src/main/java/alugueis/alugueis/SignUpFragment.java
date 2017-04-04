@@ -3,6 +3,7 @@ package alugueis.alugueis;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,13 @@ import android.widget.EditText;
 
 import com.dd.processbutton.iml.ActionProcessButton;
 
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import alugueis.alugueis.abstractiontools.ButterKnifeViewControls;
+import alugueis.alugueis.dialogs.DialogsUtil;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.services.StdService;
 import alugueis.alugueis.services.user.UserService;
@@ -72,19 +75,24 @@ public class SignUpFragment extends Fragment {
 
     private void doSignUp(UserApp userApp) {
         signUpButton.setProgress(1);
-        UserService userService = StdService.createService(UserService.class);
-        Call<UserApp> call = userService.save(userApp);
-        call.enqueue(new Callback<UserApp>() {
-            @Override
-            public void onResponse(Call<UserApp> call, Response<UserApp> response) {
-                ((StartActivity) getActivity()).startMainActivity();
-            }
+        UserService userService;
+        try {
+            userService = StdService.createService(UserService.class, getContext());
+            Call<UserApp> call = userService.save(userApp);
+            call.enqueue(new Callback<UserApp>() {
+                @Override
+                public void onResponse(Call<UserApp> call, Response<UserApp> response) {
+                    ((StartActivity) getActivity()).startMainActivity();
+                }
 
-            @Override
-            public void onFailure(Call<UserApp> call, Throwable t) {
-                ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, true);
-            }
-        });
-
+                @Override
+                public void onFailure(Call<UserApp> call, Throwable t) {
+                    ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, true);
+                }
+            });
+        }catch (ConnectException e){
+            Log.e(getClass().getCanonicalName(), "Save user error", e);
+            DialogsUtil.connectionError(getActivity());
+        }
     }
 }

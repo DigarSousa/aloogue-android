@@ -1,6 +1,7 @@
 package alugueis.alugueis;
 
 import alugueis.alugueis.abstractiontools.ButterKnifeViewControls;
+import alugueis.alugueis.dialogs.DialogsUtil;
 import alugueis.alugueis.dialogs.ErrorDialog;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.UserApp;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import com.dd.processbutton.iml.ActionProcessButton;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,8 +38,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-//todo: Não permitir campos vazios
-//todo: Verificar email
 public class LoginFragment extends Fragment implements DialogInterface.OnDismissListener {
     private String TAG = "LoginFragment";
     private List<View> views;
@@ -78,31 +78,38 @@ public class LoginFragment extends Fragment implements DialogInterface.OnDismiss
         enterButton.setProgress(1);
         ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, false);
 
-        UserService userService = StdService.createService(UserService.class);
-        Call<UserApp> call = userService.login(userNameLogin.getText().toString(), passwordLogin.getText().toString());
-        call.enqueue(new Callback<UserApp>() {
-            @Override
-            public void onResponse(Call<UserApp> call, Response<UserApp> response) {
-                if (response.code() == StdService.NOT_FOUND) {
-                    new ErrorDialog(getActivity(), getString(R.string.deniedlogintitle))
-                            .setIcon(R.drawable.ic_warning)
-                            .setOnDimissListener(LoginFragment.this).show();
-                    return;
+        UserService userService;
+        try {
+            userService = StdService.createService(UserService.class, getContext());
+            Call<UserApp> call = userService.login(userNameLogin.getText().toString(), passwordLogin.getText().toString());
+            call.enqueue(new Callback<UserApp>() {
+                @Override
+                public void onResponse(Call<UserApp> call, Response<UserApp> response) {
+                    if (response.code() == StdService.NOT_FOUND) {
+                        new ErrorDialog(getActivity(), getString(R.string.deniedlogintitle))
+                                .setIcon(R.drawable.ic_warning)
+                                .setOnDimissListener(LoginFragment.this).show();
+                        return;
+                    }
+
+                    try {
+                        StaticUtil.setOject(getContext(), StaticUtil.LOGGED_USER, response.body());
+                        loadPlace(response.body());
+                    } catch (IOException e) {
+                        onFailure(call, e);
+                    }
                 }
 
-                try {
-                    StaticUtil.setOject(getContext(), StaticUtil.LOGGED_USER, response.body());
-                    loadPlace(response.body());
-                } catch (IOException e) {
-                    onFailure(call, e);
+                @Override
+                public void onFailure(Call<UserApp> call, Throwable t) {
+                    failure(t);
                 }
-            }
+            });
 
-            @Override
-            public void onFailure(Call<UserApp> call, Throwable t) {
-                failure(t);
-            }
-        });
+        } catch (ConnectException e) {
+            Log.e("Error when try login", TAG);
+            DialogsUtil.connectionError(getActivity(),this);
+        }
     }
 
     private Boolean validateFields() {
@@ -120,26 +127,33 @@ public class LoginFragment extends Fragment implements DialogInterface.OnDismiss
     }
 
     private void loadPlace(UserApp user) {
-        PlaceService placeService = StdService.createService(PlaceService.class);
-        Call<Place> call = placeService.placeByUserId(user.getId());
-        call.enqueue(new Callback<Place>() {
-            @Override
-            public void onResponse(Call<Place> call, Response<Place> response) {
-                if (response.code() == StdService.ACCEPTED) {
-                    try {
-                        StaticUtil.setOject(getContext(), StaticUtil.PLACE, response.body());
-                    } catch (IOException e) {
-                        onFailure(call, e);
+        PlaceService placeService = null;
+        try {
+            placeService = StdService.createService(PlaceService.class, getContext());
+            Call<Place> call = placeService.placeByUserId(user.getId());
+            call.enqueue(new Callback<Place>() {
+                @Override
+                public void onResponse(Call<Place> call, Response<Place> response) {
+                    if (response.code() == StdService.ACCEPTED) {
+                        try {
+                            StaticUtil.setOject(getContext(), StaticUtil.PLACE, response.body());
+                        } catch (IOException e) {
+                            onFailure(call, e);
+                        }
                     }
+                    ((StartActivity) getActivity()).startMainActivity();
                 }
-                ((StartActivity) getActivity()).startMainActivity();
-            }
 
-            @Override
-            public void onFailure(Call<Place> call, Throwable t) {
-                failure(t);
-            }
-        });
+                @Override
+                public void onFailure(Call<Place> call, Throwable t) {
+                    failure(t);
+                }
+            });
+
+        } catch (ConnectException e) {
+            Log.e("Error on load place",TAG);
+            DialogsUtil.connectionError(getActivity(),this);
+        }
     }
 
     private void failure(Throwable t) {

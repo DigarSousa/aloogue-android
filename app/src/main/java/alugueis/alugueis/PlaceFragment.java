@@ -2,6 +2,7 @@ package alugueis.alugueis;
 
 import alugueis.alugueis.abstractiontools.KeyTools;
 import alugueis.alugueis.abstractiontools.StandardFragment;
+import alugueis.alugueis.dialogs.DialogsUtil;
 import alugueis.alugueis.dialogs.OnPlaceHourTouchListener;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.UserApp;
@@ -26,6 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -157,28 +159,34 @@ public class PlaceFragment extends StandardFragment {
         progress.setMessage(getString(R.string.savingPlace));
         progress.show();
 
-        PlaceService placeService = StdService.createService(PlaceService.class);
-        Call<Place> call = placeService.save(placeFromView());
-        call.enqueue(new Callback<Place>() {
-            @Override
-            public void onResponse(Call<Place> call, Response<Place> response) {
-                try {
-                    StaticUtil.setOject(getContext(), StaticUtil.PLACE, response.body());
-                    ((MainActivity) getActivity()).invalidadeProductListVisibility();
+        PlaceService placeService ;
+        try {
+            placeService = StdService.createService(PlaceService.class, getContext());
+            Call<Place> call = placeService.save(placeFromView());
+            call.enqueue(new Callback<Place>() {
+                @Override
+                public void onResponse(Call<Place> call, Response<Place> response) {
+                    try {
+                        StaticUtil.setOject(getContext(), StaticUtil.PLACE, response.body());
+                        ((MainActivity) getActivity()).invalidadeProductListVisibility();
 
-                    progress.dismiss();
-                } catch (IOException e) {
-                    onFailure(call, e);
+                        progress.dismiss();
+                    } catch (IOException e) {
+                        onFailure(call, e);
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Place> call, Throwable t) {
-                Log.e(TAG, "Save place error", t);
-                progress.dismiss();
-            }
-        });
+                @Override
+                public void onFailure(Call<Place> call, Throwable t) {
+                    Log.e(TAG, "Save place error", t);
+                    progress.dismiss();
+                }
+            });
 
+        } catch (ConnectException e) {
+            Log.e(TAG, "Save place error", e);
+            DialogsUtil.connectionError(getActivity());
+        }
     }
 
     private Place placeFromView() {

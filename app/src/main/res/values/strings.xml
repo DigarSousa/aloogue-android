@@ -163,4 +163,6 @@
     <string name="deniedlogintitle">Login inválido</string>
     <string name="errorLoginTitle">Erro ao efetuar login</string>
     <string name="errorLoginMsg">Verifique sua conexão com a internet!</string>
+    <string name="noConnected">Sem conexão</string>
+    <string name="notConnectedMsg">Verifique sua conexão com a internet</string>
 </resources>

@@ -3,10 +3,12 @@ package alugueis.alugueis;
 import alugueis.alugueis.abstractiontools.StandardFragment;
 import alugueis.alugueis.adapter.AdapterCallback;
 import alugueis.alugueis.adapter.ProductAdapter;
+import alugueis.alugueis.dialogs.DialogsUtil;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.services.product.ProductService;
 import alugueis.alugueis.util.StaticUtil;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +18,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.*;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -26,6 +29,7 @@ import retrofit2.Response;
 import alugueis.alugueis.services.StdService;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -175,38 +179,53 @@ public class ProductListFragment extends StandardFragment {
     }
 
     private void loadProducts() {
-        ProductService productService = StdService.createService(ProductService.class);
-        Call<List<Product>> call = productService.get(place.getId());
-        call.enqueue(new Callback<List<Product>>() {
-            @Override
-            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-                products.addAll(response.body());
-                productAdapter.notifyDataSetChanged();
-            }
+        ProductService productService;
+        try {
+            productService = StdService.createService(ProductService.class, getContext());
 
-            @Override
-            public void onFailure(Call<List<Product>> call, Throwable t) {
-                Log.e(TAG, "Load product error", t);
-                t.printStackTrace();
-            }
-        });
+            Call<List<Product>> call = productService.get(place.getId());
+            call.enqueue(new Callback<List<Product>>() {
+                @Override
+                public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                    products.addAll(response.body());
+                    productAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onFailure(Call<List<Product>> call, Throwable t) {
+                    Log.e(TAG, "Load product error", t);
+                    t.printStackTrace();
+                }
+            });
+        } catch (ConnectException e) {
+            Log.e(TAG, "Load product error", e);
+            DialogsUtil.connectionError(getActivity());
+        }
     }
 
     private void deleteProducts() {
-        ProductService productService = StdService.createService(ProductService.class);
+        ProductService productService;
+        try {
+            productService = StdService.createService(ProductService.class, getContext());
 
-        Call<ResponseBody> call = productService.delete(productAdapter.getSelectedItems());
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                productAdapter.removeSelectedItems();
-            }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
+            Call<ResponseBody> call = productService.delete(productAdapter.getSelectedItems());
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    productAdapter.removeSelectedItems();
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    t.printStackTrace();
+                }
+
+            });
+        } catch (ConnectException e) {
+            Log.e(TAG, "Delete product error", e);
+            DialogsUtil.connectionError(getActivity());
+        }
     }
 
 

@@ -1,5 +1,10 @@
 package alugueis.alugueis.services;
 
+import android.content.Context;
+
+import java.net.ConnectException;
+
+import alugueis.alugueis.util.Util;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
@@ -18,7 +23,11 @@ public class StdService {
                     .baseUrl(API_BASE_URL)
                     .addConverterFactory(JacksonConverterFactory.create());
 
-    public static <S> S createService(Class<S> serviceClass) {
+    public static <S> S createService(Class<S> serviceClass, Context c) throws ConnectException {
+        if(!Util.isOnline(c)){
+            throw new ConnectException("Device is nos connected");
+        }
+
         Retrofit retrofit = builder.client(httpClient.build()).build();
         return retrofit.create(serviceClass);
     }

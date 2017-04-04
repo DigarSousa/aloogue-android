@@ -2,6 +2,7 @@ package alugueis.alugueis;
 
 
 import alugueis.alugueis.adapter.ProductAdapter;
+import alugueis.alugueis.dialogs.DialogsUtil;
 import alugueis.alugueis.model.Place;
 import alugueis.alugueis.model.Product;
 import alugueis.alugueis.services.product.ProductService;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import alugueis.alugueis.services.StdService;
 
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +60,10 @@ public class ProductViewerListFragment extends Fragment {
 
 
     private void loadProducts(final Place place) {
-        ProductService productService = StdService.createService(ProductService.class);
+        ProductService productService = null;
+        try {
+            productService = StdService.createService(ProductService.class,getContext());
+
         Call<List<Product>> call = productService.get(place.getId());
         call.enqueue(new Callback<List<Product>>() {
             @Override
@@ -72,6 +78,10 @@ public class ProductViewerListFragment extends Fragment {
                 t.printStackTrace();
             }
         });
+    }catch (ConnectException e){
+            Log.e(this.getClass().getCanonicalName(), "Load product error", e);
+            DialogsUtil.connectionError(getActivity());
+    }
     }
 
 }
