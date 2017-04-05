@@ -18,6 +18,7 @@ import java.util.List;
 
 import alugueis.alugueis.abstractiontools.ButterKnifeViewControls;
 import alugueis.alugueis.dialogs.DialogsUtil;
+import alugueis.alugueis.dialogs.ErrorDialog;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.services.StdService;
 import alugueis.alugueis.services.user.UserService;
@@ -88,6 +89,9 @@ public class SignUpFragment extends Fragment {
                 @Override
                 public void onFailure(Call<UserApp> call, Throwable t) {
                     ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, true);
+                    Log.e("SignUpFragment", "Load place failure", t);
+                    new ErrorDialog(getActivity(), getString(R.string.errorLoginTitle))
+                            .setErrorMsg(getString(R.string.errorLoginMsg)).show();
                 }
             });
         }catch (ConnectException e){
