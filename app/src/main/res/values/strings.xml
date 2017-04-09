@@ -165,4 +165,6 @@
     <string name="errorLoginMsg">Verifique sua conexão com a internet!</string>
     <string name="noConnected">Sem conexão</string>
     <string name="notConnectedMsg">Verifique sua conexão com a internet</string>
+    <string name="emailconflict">Email cadastrado</string>
+    <string name="emailconflictmsg">Já existe uma conta para o email informado</string>
 </resources>

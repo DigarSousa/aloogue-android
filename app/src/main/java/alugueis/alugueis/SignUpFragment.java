@@ -1,6 +1,7 @@
 package alugueis.alugueis;
 
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -30,6 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+//todo: validar campos
 public class SignUpFragment extends Fragment {
 
     private Unbinder unbinder;
@@ -83,6 +85,21 @@ public class SignUpFragment extends Fragment {
             call.enqueue(new Callback<UserApp>() {
                 @Override
                 public void onResponse(Call<UserApp> call, Response<UserApp> response) {
+                    if (response.code() == StdService.CONFLICT) {
+
+                        new ErrorDialog(getActivity(), getString(R.string.emailconflict))
+                                .setIcon(R.drawable.ic_warning)
+                                .setErrorMsg(getString(R.string.emailconflictmsg))
+                                .setOnDimissListener(new DialogInterface.OnDismissListener() {
+                                    @Override
+                                    public void onDismiss(DialogInterface dialog) {
+                                        dialog.dismiss();
+                                    }
+                                }).show();
+
+                        clearState();
+                        return;
+                    }
                     ((StartActivity) getActivity()).startMainActivity();
                 }
 
@@ -94,9 +111,15 @@ public class SignUpFragment extends Fragment {
                             .setErrorMsg(getString(R.string.errorLoginMsg)).show();
                 }
             });
-        }catch (ConnectException e){
+        } catch (ConnectException e) {
             Log.e(getClass().getCanonicalName(), "Save user error", e);
             DialogsUtil.connectionError(getActivity());
         }
+    }
+
+    private void clearState() {
+        ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, true);
+        signUpButton.setProgress(0);
+        signUpButton.setClickable(true);
     }
 }
