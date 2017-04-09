@@ -23,6 +23,8 @@ import alugueis.alugueis.dialogs.ErrorDialog;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.services.StdService;
 import alugueis.alugueis.services.user.UserService;
+import alugueis.alugueis.util.StaticUtil;
+import alugueis.alugueis.util.Util;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -31,7 +33,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-//todo: validar campos
 public class SignUpFragment extends Fragment {
 
     private Unbinder unbinder;
@@ -66,6 +67,7 @@ public class SignUpFragment extends Fragment {
 
     @OnClick(R.id.signEnterButton)
     void signUpAction() {
+        if (!validateFields()) return;
 
         UserApp userApp = new UserApp();
         userApp.setName(name.getText().toString());
@@ -115,6 +117,30 @@ public class SignUpFragment extends Fragment {
             Log.e(getClass().getCanonicalName(), "Save user error", e);
             DialogsUtil.connectionError(getActivity());
         }
+    }
+
+    private Boolean validateFields() {
+        for (View v : views) {
+            if (v instanceof EditText) {
+                if (((EditText) v).getText().toString().isEmpty()) {
+                    ((EditText) v).setError(getString(R.string.noEmpty));
+                    return false;
+                }
+            }
+
+        }
+
+        if (!Util.isValidEmail(mail.getText().toString())) {
+            mail.setError(getString(R.string.invalidEmail));
+            return false;
+        }
+
+        if (!pass.getText().toString().isEmpty() && pass.getText().toString().length() < 6) {
+            pass.setError(getString(R.string.minMaxPasswordText));
+            return false;
+        }
+
+        return true;
     }
 
     private void clearState() {
