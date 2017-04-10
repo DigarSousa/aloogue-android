@@ -167,9 +167,9 @@ public class PlaceFragment extends StandardFragment {
                 @Override
                 public void onResponse(Call<Place> call, Response<Place> response) {
                     try {
+                        //todo: oferecer abrir tela de cadastro de produtos se loja nova
                         StaticUtil.setOject(getContext(), StaticUtil.PLACE, response.body());
                         ((MainActivity) getActivity()).invalidadeProductListVisibility();
-
                         progress.dismiss();
                     } catch (IOException e) {
                         onFailure(call, e);
