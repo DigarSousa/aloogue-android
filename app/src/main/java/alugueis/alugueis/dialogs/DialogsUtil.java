@@ -3,13 +3,14 @@ package alugueis.alugueis.dialogs;
 import android.content.Context;
 import android.content.DialogInterface;
 
-import alugueis.alugueis.LoginFragment;
 import alugueis.alugueis.R;
 
 public class DialogsUtil {
-    private Context context;
-
     public static void connectionError(Context context){
+        connectionError(context,null);
+    }
+
+    public static void connextionError(Context context){
         connectionError(context,null);
     }
 
@@ -21,7 +22,6 @@ public class DialogsUtil {
         if(onDismissListener!=null){
             errorDialog.setOnDimissListener(onDismissListener);
         }
-
         errorDialog.show();
     }
 }
