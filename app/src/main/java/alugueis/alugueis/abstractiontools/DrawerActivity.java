@@ -1,11 +1,13 @@
 package alugueis.alugueis.abstractiontools;
 
 import alugueis.alugueis.R;
+
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -67,16 +69,12 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
     public void setFragment(StandardFragment fragment) {
         //The start fragment is hided, so you don't set it, you have show it
         if (fragment.getClass().getName().equals(startFragment.getClass().getName())) {
-            detachCurrentFragment();
+            detachCurrentFragment(true);
             return;
         }
 
         if (!isOpen(fragment.getClass())) {
-            detachCurrentFragment();
-
-            getFragmentManager()
-                    .beginTransaction()
-                    .hide(startFragment).commit();
+            detachCurrentFragment(false);
 
             getFragmentManager()
                     .beginTransaction()
@@ -86,13 +84,13 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         }
     }
 
-    private void detachCurrentFragment() {
+    private void detachCurrentFragment(Boolean showStartFragment) {
         if (!isStartFragmentOpen()) {
-            getFragmentManager().beginTransaction()
-                    .detach(getCurrentFragment())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                    .show(startFragment)
-                    .commit();
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.detach(getCurrentFragment())
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+                    if(showStartFragment)fragmentTransaction.show(startFragment);
+                    fragmentTransaction.commit();
         }
     }
 
@@ -103,7 +101,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         } else if (getCurrentFragment().equals(startFragment)) {
             finish();
         } else if (!isStartFragmentOpen()) {
-            detachCurrentFragment();
+            detachCurrentFragment(true);
             KeyTools.hideInputMethod(this, getCurrentFocus());
         } else {
             super.onBackPressed();

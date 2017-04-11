@@ -128,7 +128,7 @@ public class MainActivity extends DrawerActivity {
         return null;
     }
 
-    private void hoverHomeItem() {
+    public void hoverHomeItem() {
         navigationView.getMenu().getItem(0).setChecked(true);
     }
 

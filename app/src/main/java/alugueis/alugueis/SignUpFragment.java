@@ -23,7 +23,6 @@ import alugueis.alugueis.dialogs.ErrorDialog;
 import alugueis.alugueis.model.UserApp;
 import alugueis.alugueis.services.StdService;
 import alugueis.alugueis.services.user.UserService;
-import alugueis.alugueis.util.StaticUtil;
 import alugueis.alugueis.util.Util;
 import butterknife.BindView;
 import butterknife.ButterKnife;

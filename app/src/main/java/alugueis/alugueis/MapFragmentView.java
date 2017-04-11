@@ -47,10 +47,17 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
     @Override
     public void onResume() {
         super.onResume();
-        //todo: chamar hover home
         if (getFragmentManager().findFragmentByTag("PermissionsFragment") == null && locationChangeListener == null) {
             startLocationSettings();
         }
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        if (!hidden) {
+            ((MainActivity) getActivity()).hoverHomeItem();
+        }
+        super.onHiddenChanged(hidden);
     }
 
     @Nullable
