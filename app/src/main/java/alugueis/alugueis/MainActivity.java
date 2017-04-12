@@ -79,7 +79,7 @@ public class MainActivity extends DrawerActivity {
         return true;
     }
 
-    private void startProductListFragment() {
+    public void startProductListFragment() {
         args.putSerializable("place", getPlace());
         productListFragment = new ProductListFragment();
         productListFragment.setHomeAsUpEnabled(true).hasOptionMenu(true);
@@ -87,7 +87,7 @@ public class MainActivity extends DrawerActivity {
         setFragment(productListFragment);
     }
 
-    private void startPlaceFragment() {
+    public void startPlaceFragment() {
         args.putSerializable("user", getUser());
         args.putSerializable("place", getPlace());
 

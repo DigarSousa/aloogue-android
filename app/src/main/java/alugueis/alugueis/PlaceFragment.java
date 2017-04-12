@@ -10,7 +10,9 @@ import alugueis.alugueis.services.StdService;
 import alugueis.alugueis.services.place.PlaceService;
 import alugueis.alugueis.util.StaticUtil;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -42,6 +44,7 @@ public class PlaceFragment extends StandardFragment {
     private Place place;
     private OnPlaceHourTouchListener startListener;
     private OnPlaceHourTouchListener finishtListener;
+    private MainActivity mainActivity;
 
     @BindView(R.id.reduced_toolbar)
     Toolbar toolbar;
@@ -95,6 +98,7 @@ public class PlaceFragment extends StandardFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mainActivity = (MainActivity) getActivity();
         objectToView();
     }
 
@@ -159,7 +163,7 @@ public class PlaceFragment extends StandardFragment {
         progress.setMessage(getString(R.string.savingPlace));
         progress.show();
 
-        PlaceService placeService ;
+        PlaceService placeService;
         try {
             placeService = StdService.createService(PlaceService.class, getContext());
             Call<Place> call = placeService.save(placeFromView());
@@ -167,10 +171,11 @@ public class PlaceFragment extends StandardFragment {
                 @Override
                 public void onResponse(Call<Place> call, Response<Place> response) {
                     try {
-                        //todo: oferecer abrir tela de cadastro de produtos se loja nova
                         StaticUtil.setOject(getContext(), StaticUtil.PLACE, response.body());
                         ((MainActivity) getActivity()).invalidadeProductListVisibility();
                         progress.dismiss();
+
+                        askOpenProductFragment();
                     } catch (IOException e) {
                         onFailure(call, e);
                     }
@@ -187,6 +192,28 @@ public class PlaceFragment extends StandardFragment {
             Log.e(TAG, "Save place error", e);
             DialogsUtil.connectionError(getActivity());
         }
+    }
+
+    private void askOpenProductFragment() {
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+        dialog.setNegativeButton(getString(R.string.cancelButton), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.setPositiveButton(getString(R.string.okButton), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mainActivity.getNavigationView().getMenu().findItem(R.id.action_product_list).setChecked(true);
+                mainActivity.startProductListFragment();
+            }
+        });
+
+        dialog.setTitle(getString(R.string.openProductListTitle));
+        dialog.setMessage(getString(R.string.openProductListMsg));
+        dialog.show();
     }
 
     private Place placeFromView() {

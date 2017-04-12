@@ -33,6 +33,7 @@ import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 
+//todo: mostrar loader ao bucar produtos
 public class ProductListFragment extends StandardFragment {
     private static final String TAG = "ProductListFragment";
     private static final Integer NEW_ITEM = 1;
