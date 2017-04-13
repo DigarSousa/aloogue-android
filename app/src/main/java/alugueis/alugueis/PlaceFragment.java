@@ -109,6 +109,7 @@ public class PlaceFragment extends StandardFragment {
             placePhone.setText(place.getPhone());
             startHour.setText(place.getStartHour());
             finisHour.setText(place.getFinishHour());
+            
         } else {
             place = new Place();
         }

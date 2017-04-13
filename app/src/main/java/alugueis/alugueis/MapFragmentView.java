@@ -33,6 +33,8 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.*;
 
+//todo: implementar busca
+//todo: implementar filtro
 public class MapFragmentView extends StandardFragment implements OnMapReadyCallback {
     private static String TAG = "MapFragmentView";
     private Unbinder unbinder;
@@ -125,7 +127,6 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
 
             myMarker = googleMap.addMarker(new MarkerOptions().position(latLng)
                     .icon(getIcon(R.drawable.ic_my_pin_location)));
-
             moveCamera();
         }
 

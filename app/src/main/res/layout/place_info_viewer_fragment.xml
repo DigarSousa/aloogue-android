@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background_material_light">
+    android:layout_height="match_parent">
 
 
     <ImageView
@@ -11,7 +9,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:scaleType="centerInside"
             android:src="@drawable/pin_laranja">
     </ImageView>
@@ -25,15 +23,15 @@
             android:maxLines="2"
             android:textColor="@color/colorSecondaryText"
             android:layout_alignTop="@+id/addressIcon"
-            android:layout_toRightOf="@+id/addressIcon"
-            android:layout_marginLeft="10dp"/>
+            android:layout_toEndOf="@+id/addressIcon"
+            android:layout_marginStart="10dp"/>
 
     <ImageView
             android:id="@+id/telIcon"
             android:layout_width="17dp"
             android:layout_height="17dp"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:scaleType="centerInside"
             android:layout_below="@+id/addressIcon"
             android:src="@drawable/phone_laranja">
@@ -47,15 +45,15 @@
             android:textSize="15sp"
         android:textColor="@color/colorSecondaryText"
         android:layout_alignTop="@+id/telIcon"
-            android:layout_toRightOf="@+id/telIcon"
-            android:layout_marginLeft="10dp"/>
+            android:layout_toEndOf="@+id/telIcon"
+            android:layout_marginStart="10dp"/>
 
     <ImageView
             android:id="@+id/workIcon"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:scaleType="centerInside"
             android:layout_below="@+id/telIcon"
             android:src="@drawable/work_period">
@@ -68,7 +66,7 @@
             android:textSize="15sp"
         android:textColor="@color/colorSecondaryText"
         android:layout_alignTop="@+id/workIcon"
-            android:layout_toRightOf="@+id/workIcon"
-            android:layout_marginLeft="10dp"/>
+            android:layout_toEndOf="@+id/workIcon"
+            android:layout_marginStart="10dp"/>
 
 </RelativeLayout>
