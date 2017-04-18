@@ -4,7 +4,7 @@ apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '25.0.2'
 
     defaultConfig {
         applicationId "alugueis.alugueis"
@@ -15,6 +15,9 @@ android {
 
         multiDexEnabled true
 
+        lintOptions {
+            abortOnError false
+        }
     }
 
     buildTypes {
@@ -56,4 +59,7 @@ dependencies {
     compile 'com.github.channguyen:rsv:1.0.1'
     compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
+
+    compile 'junit:junit:4.4'
+    compile 'org.mockito:mockito-core:1.10.19'
 }

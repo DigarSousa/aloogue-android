@@ -3,21 +3,39 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\vpaiva\Sources\aloogue\aloogue-android\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
+        jar="/Users/edgar/.gradle/caches/modules-2/files-2.1/org.objenesis/objenesis/2.1/87c0ea803b69252868d09308b4618f766f135a96/objenesis-2.1.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.0"
-        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
-        <dex dex="C:\Users\vpaiva\Sources\aloogue\aloogue-android\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_e4f6be37d5ac5cb8c471d5a75effa5dadc1f2fd7\classes.dex" />
+        revision="25.0.2"
+        sha1="87c0ea803b69252868d09308b4618f766f135a96">
+        <dex dex="/Users/edgar/Sources/aloogue-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/objenesis-2.1_3766e2ca0c3043588b48b2993403ab651cdfb9ab/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\vpaiva\Sources\aloogue\aloogue-android\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
+        jar="/Users/edgar/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.1/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.0"
-        sha1="d6f3eb71ff5df1d1ebff30cca9e25e54c91a1eee">
-        <dex dex="C:\Users\vpaiva\Sources\aloogue\aloogue-android\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_0ee8be68d234bec59714f211185670901e2a7728\classes.dex" />
+        revision="25.0.2"
+        sha1="860340562250678d1a344907ac75754e259cdb14">
+        <dex dex="/Users/edgar/Sources/aloogue-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/hamcrest-core-1.1_a61c67d62661713f5f89e7b1748f347ac57006dd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/edgar/.gradle/caches/modules-2/files-2.1/org.mockito/mockito-core/1.10.19/e8546f5bef4e061d8dd73895b4e8f40e3fe6effe/mockito-core-1.10.19.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e8546f5bef4e061d8dd73895b4e8f40e3fe6effe">
+        <dex dex="/Users/edgar/Sources/aloogue-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/mockito-core-1.10.19_3ec968bee1d9d033c2f68f76c5858e0fa55d4f11/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/edgar/.gradle/caches/modules-2/files-2.1/junit/junit/4.4/8f35ee1f35d2dadbb5029991449ee90c1bab4d4a/junit-4.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8f35ee1f35d2dadbb5029991449ee90c1bab4d4a">
+        <dex dex="/Users/edgar/Sources/aloogue-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/junit-4.4_06000a1bd25c4fc8396a3864971390a8ffcaab1e/classes.dex" />
     </item>
 
 </items>

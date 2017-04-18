@@ -170,4 +170,8 @@
     <string name="openProductListTitle">Mostrar produtos</string>
     <string name="openProductListMsg">Deseja abrir a lista de produtos?</string>
     <string name="placeImage">Logo da empresa</string>
+
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+        AIzaSyDpZYklW5WzaQNh7AUWZ4To2rJi-WdHUf4
+    </string>
 </resources>
