@@ -23,7 +23,6 @@
     <string name="nameLabel">NOME</string>
     <string name="emailLabel">Email</string>
     <string name="regionLabel">REGIÃO</string>
-    <string name="accountData">DADOS DA CONTA</string>
     <string name="passwordLabel">Senha</string>
     <string name="passwordConfirmLabel">CONFIRME A SENHA</string>
     <string name="professionLabel">PROFISSÃO</string>
@@ -45,12 +44,9 @@
     <string name="test">teste</string>
     <string name="testFileName">nome_do_arquivo.pdf</string>
     <string name="iAmDone">TERMINEI!</string>
-    <string name="acceptTerms">Eu li e concordo com os termos de uso.</string>
-    <string name="addressLabel">ENDEREÇO</string>
     <string name="streetLabel">RUA</string>
     <string name="streetNumberLabel">Nº</string>
     <string name="neighbourhoodLabel">BAIRRO</string>
-    <string name="cityLabel">CIDADE</string>
     <string name="stateLabel">ESTADO</string>
     <string name="profileLabel">PERFIL</string>
     <string name="businessHoursLabel">Horário de funcionamento</string>
@@ -74,7 +70,6 @@
     <string name="whatUHaveToRent">O que você tem pra alugar?</string>
     <string name="commonUser">Usuário comum</string>
     <string name="tenant">Locatário</string>
-    <string name="acceptTermsError">Você precisa aceitar os termos de uso para prosseguir.</string>
     <string name="emptyCity">Por favor, insira uma cidade.</string>
     <string name="invalidEmail">Por favor, insira um email válido.</string>
     <string name="welcomeUser">Seja bem vindo. (:</string>
@@ -84,7 +79,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_search">Buscar</string>
-    <string name="youAreHere">Você está aqui</string>
     <string name="search">Buscar</string>
     <string name="findAProduct">Digite um produto</string>
     <string name="title_activity_place_profile">Perfil da Loja</string>
@@ -106,8 +100,6 @@
     <string name="placeLabel">LOJA</string>
     <string name="createPlace">CRIAR LOJA</string>
     <string name="emptyPhone">Por favor, insira um telefone para contato.</string>
-    <string name="addAProduct">Adicione um produto...</string>
-    <string name="yourProducts">SEUS PRODUTOS</string>
     <string name="products">Produtos</string>
     <string name="productsTab">PRODUTOS</string>
     <string name="emptyProductName">Por favor, insira um nome ao produto para adicioná-lo.</string>
@@ -154,13 +146,13 @@
     <string name="aloogue">Alugar</string>
     <string name="place_menu">Loja</string>
     <string name="profile_menu">Perfil</string>
-    <string name="product_list">Produtos</string>
+    <string name="product_list">Products</string>
     <string name="signing_up">Cadastrar</string>
     <string name="logout">Sair</string>
     <string name="savingPlace">Salvando Loja...</string>
     <string name="title_activity_teste">TesteActivity</string>
     <string name="deniedlogintitle">Login inválido</string>
-    <string name="errorLoginTitle">Erro ao efetuar login</string>
+    <string name="errorLoginTitle">Erro ao efetuar com.aloogue.login</string>
     <string name="errorLoginMsg">Verifique sua conexão com a internet!</string>
     <string name="noConnected">Sem conexão</string>
     <string name="notConnectedMsg">Verifique sua conexão com a internet</string>
@@ -174,4 +166,8 @@
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
         AIzaSyDpZYklW5WzaQNh7AUWZ4To2rJi-WdHUf4
     </string>
+    <string name="product_label">Product</string>
+    <string name="product_code">Code</string>
+    <string name="product_description">Description</string>
+    <string name="product_price">Price</string>
 </resources>

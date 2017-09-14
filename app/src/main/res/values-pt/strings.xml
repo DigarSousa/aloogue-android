@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aloogue</string>
+    <string name="product_code">Código</string>
+    <string name="productFormTitle"></string>
+    <string name="product_label">Produto</string>
+    <string name="product_description">Descrião</string>
+    <string name="product_price">Preço</string>
+</resources>

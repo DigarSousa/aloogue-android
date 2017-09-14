@@ -14,19 +14,13 @@ import android.support.v7.app.AppCompatActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import lombok.Getter;
-import lombok.Setter;
 
 public abstract class DrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    @Getter
     @BindView(R.id.drawer_layout)
     protected DrawerLayout drawerLayout;
-    @Getter
     @BindView(R.id.nav_view)
     protected NavigationView navigationView;
 
-    @Getter
-    @Setter
     private String backStackFragmentClassName;
 
     private StandardFragment startFragment;

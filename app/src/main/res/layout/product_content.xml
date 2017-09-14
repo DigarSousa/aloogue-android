@@ -15,14 +15,15 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="15dp"
+            android:baselineAligned="false">
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/code_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:hint="Código">
+                android:hint="@string/product_code">
 
                 <EditText
                     android:id="@+id/code_text"
@@ -32,15 +33,14 @@
                     android:imeOptions="actionNext"
                     android:inputType="numberDecimal"
                     android:isScrollContainer="false"
-                    android:singleLine="true" />
+                    android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/name_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:hint="Nome">
+                android:layout_weight="1.5">
 
                 <EditText
                     android:id="@+id/name_text"
@@ -49,7 +49,8 @@
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@+id/name"
                     android:imeOptions="actionNext"
-                    android:singleLine="true" />
+                    android:hint="@string/product_label"
+                    android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
@@ -60,14 +61,14 @@
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
-            android:hint="Descrição">
+            android:hint="@string/product_description">
 
             <EditText
                 android:id="@+id/description_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
-                android:singleLine="true" />
+                android:maxLines="1" />
         </android.support.design.widget.TextInputLayout>
 
         <LinearLayout
@@ -81,7 +82,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Preço">
+                android:hint="@string/product_price">
 
                 <EditText
                     android:id="@+id/value_text"
@@ -89,10 +90,10 @@
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
                     android:inputType="numberDecimal"
-                    android:singleLine="true" />
+                    android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.v7.widget.AppCompatSpinner
+            <Spinner
                 android:id="@+id/time_type_spinner"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"

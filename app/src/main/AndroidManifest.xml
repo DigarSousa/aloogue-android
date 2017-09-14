@@ -37,16 +37,8 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="alugueis.alugueis" />
-
         <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ProductFormActivity"
-            android:label="@string/title_activity_product_form"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".StartActivity"
+            android:name=".AccessActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

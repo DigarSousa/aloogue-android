@@ -29,6 +29,7 @@
     <EditText
         android:id="@+id/passwordLogin"
         android:layout_width="match_parent"
+
         android:layout_height="40dp"
         android:layout_below="@+id/userNameLogin"
         android:layout_marginTop="40dp"
@@ -63,7 +64,6 @@
             android:layout_height="wrap_content"
             android:text="@string/notAccounted"
             android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorSecondaryText"
             android:textSize="14sp" />
 
         <TextView

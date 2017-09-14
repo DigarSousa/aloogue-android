@@ -1,10 +1,8 @@
 package alugueis.alugueis;
 
 import android.app.Fragment;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,25 +10,14 @@ import android.widget.EditText;
 
 import com.dd.processbutton.iml.ActionProcessButton;
 
-import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import alugueis.alugueis.abstractiontools.ButterKnifeViewControls;
-import alugueis.alugueis.dialogs.DialogsUtil;
-import alugueis.alugueis.dialogs.ErrorDialog;
-import alugueis.alugueis.model.UserApp;
-import alugueis.alugueis.services.StdService;
-import alugueis.alugueis.services.user.UserService;
-import alugueis.alugueis.util.Util;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class SignUpFragment extends Fragment {
 
@@ -64,83 +51,7 @@ public class SignUpFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick(R.id.signEnterButton)
-    void signUpAction() {
-        if (!validateFields()) return;
 
-        UserApp userApp = new UserApp();
-        userApp.setName(name.getText().toString());
-        userApp.setEmail(mail.getText().toString());
-        userApp.setPassword(pass.getText().toString());
-
-        ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, false);
-        doSignUp(userApp);
-    }
-
-    private void doSignUp(UserApp userApp) {
-        signUpButton.setProgress(1);
-        UserService userService;
-        try {
-            userService = StdService.createService(UserService.class, getContext());
-            Call<UserApp> call = userService.save(userApp);
-            call.enqueue(new Callback<UserApp>() {
-                @Override
-                public void onResponse(Call<UserApp> call, Response<UserApp> response) {
-                    if (response.code() == StdService.CONFLICT) {
-
-                        new ErrorDialog(getActivity(), getString(R.string.emailconflict))
-                                .setIcon(R.drawable.ic_warning)
-                                .setErrorMsg(getString(R.string.emailconflictmsg))
-                                .setOnDimissListener(new DialogInterface.OnDismissListener() {
-                                    @Override
-                                    public void onDismiss(DialogInterface dialog) {
-                                        dialog.dismiss();
-                                    }
-                                }).show();
-
-                        clearState();
-                        return;
-                    }
-                    ((StartActivity) getActivity()).startMainActivity();
-                }
-
-                @Override
-                public void onFailure(Call<UserApp> call, Throwable t) {
-                    ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, true);
-                    Log.e("SignUpFragment", "Load place failure", t);
-                    new ErrorDialog(getActivity(), getString(R.string.errorLoginTitle))
-                            .setErrorMsg(getString(R.string.errorLoginMsg)).show();
-                }
-            });
-        } catch (ConnectException e) {
-            Log.e(getClass().getCanonicalName(), "Save user error", e);
-            DialogsUtil.connectionError(getActivity());
-        }
-    }
-
-    private Boolean validateFields() {
-        for (View v : views) {
-            if (v instanceof EditText) {
-                if (((EditText) v).getText().toString().isEmpty()) {
-                    ((EditText) v).setError(getString(R.string.noEmpty));
-                    return false;
-                }
-            }
-
-        }
-
-        if (!Util.isValidEmail(mail.getText().toString())) {
-            mail.setError(getString(R.string.invalidEmail));
-            return false;
-        }
-
-        if (!pass.getText().toString().isEmpty() && pass.getText().toString().length() < 6) {
-            pass.setError(getString(R.string.minMaxPasswordText));
-            return false;
-        }
-
-        return true;
-    }
 
     private void clearState() {
         ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, true);

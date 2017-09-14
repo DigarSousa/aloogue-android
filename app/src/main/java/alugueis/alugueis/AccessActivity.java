@@ -6,10 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import alugueis.alugueis.login.LoginFragment;
 import butterknife.ButterKnife;
 
-public class StartActivity extends AppCompatActivity {
-    private static final String TAG = "StartActivity";
+public class AccessActivity extends AppCompatActivity {
+    private static final String TAG = "AccessActivity";
     private Fragment loginFragment;
 
     @Override
@@ -26,18 +27,12 @@ public class StartActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    void loadSignUpFragment() {
+    public void loadSignUpFragment() {
         getFragmentManager()
                 .beginTransaction()
                 .hide(loginFragment)
                 .add(R.id.login_sign_up_fragment, new SignUpFragment())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
-    }
-
-    void startMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        this.finish();
     }
 
     @Override
