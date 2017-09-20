@@ -1,36 +1,37 @@
-package com.aloogue.login;
+package com.aloogue.access.login;
 
+import com.aloogue.RxSchedulerTestSetup;
 
-import com.aloogue.AndroidMainThreadConfig;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static org.mockito.Mockito.when;
-
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-
-import alugueis.alugueis.login.LoginInteractor;
-import alugueis.alugueis.login.LoginService;
+import alugueis.alugueis.access.AccessService;
+import alugueis.alugueis.access.login.LoginInteractor;
 import alugueis.alugueis.model.User;
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class LoginInteractorTest extends AndroidMainThreadConfig {
+public class LoginInteractorTest {
 
     @Mock
-    LoginService loginService;
+    AccessService loginService;
 
     @InjectMocks
     LoginInteractor loginInteractor;
+
+    @BeforeClass
+    public static void setup() {
+        RxSchedulerTestSetup.setupRxScheduler();
+    }
 
     @Test
     public void findUserByEmailAndPassword() {
@@ -61,10 +62,10 @@ public class LoginInteractorTest extends AndroidMainThreadConfig {
     }
 
     @Test
-    public void holRightExceptionOnTryToFindUserByEmailAndPass() {
-        when(loginService.login("erro@erro.com", "erro")).thenReturn(Observable.error(new Throwable("errorToConect")));
+    public void holdRightExceptionOnTryToFindUserByEmailAndPass() {
+        when(loginService.login("erro@erro.com", "error")).thenReturn(Observable.error(new Throwable("errorToConnect")));
 
-        loginInteractor.login("erro@erro.com", "erro", new DisposableObserver<User>() {
+        loginInteractor.login("erro@erro.com", "error", new DisposableObserver<User>() {
             @Override
             public void onNext(@NonNull User user) {
 
@@ -72,7 +73,7 @@ public class LoginInteractorTest extends AndroidMainThreadConfig {
 
             @Override
             public void onError(@NonNull Throwable e) {
-                assertThat(e.getMessage()).isEqualTo("errorToConect");
+                assertThat(e.getMessage()).isEqualTo("errorToConnect");
             }
 
             @Override

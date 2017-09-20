@@ -3,8 +3,8 @@ package alugueis.alugueis.dagger;
 
 import javax.inject.Singleton;
 
-import alugueis.alugueis.login.LoginService;
-import alugueis.alugueis.services.StandardService;
+import alugueis.alugueis.access.AccessService;
+import alugueis.alugueis.retrofit.StandardService;
 import dagger.Module;
 import dagger.Provides;
 
@@ -13,7 +13,7 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    static LoginService provideLoginService() {
-        return StandardService.createService(LoginService.class);
+    static AccessService provideLoginService() {
+        return StandardService.createService(AccessService.class);
     }
 }

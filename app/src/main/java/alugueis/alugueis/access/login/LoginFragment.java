@@ -1,6 +1,7 @@
-package alugueis.alugueis.login;
+package alugueis.alugueis.access.login;
 
 import alugueis.alugueis.R;
+import alugueis.alugueis.dagger.DaggerApplicationComponent;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
@@ -19,6 +20,8 @@ import android.widget.TextView;
 import com.dd.processbutton.iml.ActionProcessButton;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 public class LoginFragment extends Fragment {
     private String TAG = "LoginFragment";
@@ -40,21 +43,28 @@ public class LoginFragment extends Fragment {
     List<View> views;
 
     private Unbinder unbinder;
-    private LoginPresenter loginPresenter;
+
+    @Inject
+    LoginPresenter loginPresenter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.login_fragment, container, false);
-
         unbinder = ButterKnife.bind(this, view);
-        loginPresenter = new LoginPresenter(view);
+
+        DaggerApplicationComponent.create().inject(this);
+        setupViews();
         return view;
+    }
+
+    private void setupViews() {
+        enterButton.setMode(ActionProcessButton.Mode.ENDLESS);
     }
 
     @OnClick(R.id.enterButton)
     public void doLogin() {
-        loginPresenter.onLoginPressed(userNameLogin.getText().toString(), passwordLogin.getText().toString());
+        loginPresenter.doLogin(userNameLogin.getText().toString(), passwordLogin.getText().toString());
     }
 
     @Override
@@ -62,5 +72,25 @@ public class LoginFragment extends Fragment {
         loginPresenter.onDestroy();
         unbinder.unbind();
         super.onDestroy();
+    }
+
+    public void startViewAnimations() {
+        enterButton.setProgress(1);
+    }
+
+    public void blockViews() {
+        //chamar butter knife
+    }
+
+    public void stopViewAnimations() {
+        enterButton.setProgress(0);
+    }
+
+    public void clearViewStates() {
+        //chamar butter knife
+    }
+
+    public void error() {
+        //chamar dialogo para mostrar erro
     }
 }

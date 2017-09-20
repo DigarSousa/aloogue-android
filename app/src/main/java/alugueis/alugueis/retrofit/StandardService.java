@@ -1,4 +1,4 @@
-package alugueis.alugueis.services;
+package alugueis.alugueis.retrofit;
 
 import java.util.concurrent.TimeUnit;
 

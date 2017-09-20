@@ -38,7 +38,7 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="alugueis.alugueis" />
         <activity
-            android:name=".AccessActivity"
+            android:name=".access.AccessActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

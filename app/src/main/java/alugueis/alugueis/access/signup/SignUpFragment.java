@@ -1,4 +1,4 @@
-package alugueis.alugueis;
+package alugueis.alugueis.access.signup;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -14,7 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import alugueis.alugueis.abstractiontools.ButterKnifeViewControls;
+import alugueis.alugueis.R;
+import alugueis.alugueis.butterknife.ButterKnifeViewControls;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

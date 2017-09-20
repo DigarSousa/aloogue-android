@@ -2,8 +2,6 @@ package alugueis.alugueis;
 
 import alugueis.alugueis.abstractiontools.StandardFragment;
 import alugueis.alugueis.dialogs.PermissionsDialog;
-import alugueis.alugueis.location.LocationChangeListener;
-import alugueis.alugueis.location.LocationSimpleListener;
 
 import alugueis.alugueis.util.MapsUtil;
 
@@ -39,18 +37,9 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
     private Marker currentLocation;
     private Marker myMarker;
     private GoogleMap googleMap;
-    private LocationChangeListener locationChangeListener;
 
     @BindView(R.id.location_button)
     FloatingActionButton locationButton;
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (getFragmentManager().findFragmentByTag("PermissionsFragment") == null && locationChangeListener == null) {
-            startLocationSettings();
-        }
-    }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
@@ -98,24 +87,6 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
         });
     }
 
-    private void startLocationSettings() {
-        if (ActivityCompat.checkSelfPermission(getAppCompatActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(getAppCompatActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 0);
-            return;
-        }
-        locationChangeListener = new LocationChangeListener(getAppCompatActivity(), new LocationSimpleListener() {
-            @Override
-            public void onLocationChange(Location location) {
-                setMapsMarkers(new LatLng(location.getLatitude(), location.getLongitude()));
-            }
-        });
-
-        locationChangeListener.startLocationListener();
-    }
-
     private void setMapsMarkers(LatLng latLng) {
         if (currentLocation == null && googleMap != null) {
             currentLocation = googleMap.addMarker(new MarkerOptions()
@@ -153,16 +124,6 @@ public class MapFragmentView extends StandardFragment implements OnMapReadyCallb
             permissionsDialog.setTargetFragment(this, 0);
             permissionsDialog.show(getFragmentManager(), "PermissionsFragment");
             return;
-        }
-        startLocationSettings();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (!MapsUtil.shouldShowRequest(getActivity())) {
-            MapsUtil.callApplicationPermissionsSettings(this);
-        } else {
-            startLocationSettings();
         }
     }
 

@@ -25,9 +25,6 @@ public class KeyTools {
         inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_FORCED);
     }
 
-    /**
-     * Are you reading this? Really? ¬¬
-     */
     public static void hideInputMethod(Context context, View view) {
         inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
