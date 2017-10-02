@@ -25,10 +25,10 @@ import static org.mockito.Mockito.when;
 public class LoginPresenterTest {
 
     @Mock
-    AccessService accessService;
+    private AccessService accessService;
 
     @Mock
-    AccessRouter accessRouter;
+    private AccessRouter accessRouter;
 
     @Mock
     private LoginFragment loginFragment;
@@ -79,8 +79,8 @@ public class LoginPresenterTest {
     }
 
     @Test
-    public void iflateSignupFragmentOnPressSignUp() {
+    public void inflateSignUpFragmentOnPressSignUp() {
         loginPresenter.openSignUpFragment();
-        verify(accessRouter).infalteSignUpFragment(loginFragment.getFragmentManager());
+        verify(accessRouter).swapToSignUpFragment(loginFragment.getFragmentManager());
     }
 }

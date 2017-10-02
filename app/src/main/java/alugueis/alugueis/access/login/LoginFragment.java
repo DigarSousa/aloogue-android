@@ -1,6 +1,7 @@
 package alugueis.alugueis.access.login;
 
 import alugueis.alugueis.R;
+import alugueis.alugueis.butterknife.ButterKnifeViewControls;
 import alugueis.alugueis.dagger.DaggerApplicationComponent;
 import butterknife.BindView;
 import butterknife.BindViews;
@@ -33,13 +34,13 @@ public class LoginFragment extends Fragment {
     EditText passwordLogin;
 
 
-    @BindView(R.id.enterButton)
+    @BindView(R.id.loginButton)
     ActionProcessButton enterButton;
 
     @BindView(R.id.signUp)
     TextView signUpButton;
 
-    @BindViews({R.id.userNameLogin, R.id.passwordLogin, R.id.enterButton, R.id.signUp})
+    @BindViews({R.id.userNameLogin, R.id.passwordLogin, R.id.loginButton, R.id.signUp})
     List<View> views;
 
     private Unbinder unbinder;
@@ -62,7 +63,7 @@ public class LoginFragment extends Fragment {
         enterButton.setMode(ActionProcessButton.Mode.ENDLESS);
     }
 
-    @OnClick(R.id.enterButton)
+    @OnClick(R.id.loginButton)
     public void doLogin() {
         loginPresenter.doLogin(userNameLogin.getText().toString(), passwordLogin.getText().toString());
     }
@@ -79,7 +80,7 @@ public class LoginFragment extends Fragment {
     }
 
     public void blockViews() {
-        //chamar butter knife
+        ButterKnife.apply(views, ButterKnifeViewControls.ENABLED, false);
     }
 
     public void stopViewAnimations() {

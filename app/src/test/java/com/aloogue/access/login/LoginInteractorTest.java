@@ -23,10 +23,10 @@ import static org.mockito.Mockito.when;
 public class LoginInteractorTest {
 
     @Mock
-    AccessService loginService;
+    private AccessService loginService;
 
     @InjectMocks
-    LoginInteractor loginInteractor;
+    private LoginInteractor loginInteractor;
 
     @BeforeClass
     public static void setup() {
@@ -41,7 +41,8 @@ public class LoginInteractorTest {
                 .id(1L)
                 .build();
 
-        when(loginService.login("user@mail.com", "123456")).thenReturn(Observable.just(user));
+        when(loginService.login("user@mail.com", "123456"))
+                .thenReturn(Observable.just(user));
 
         loginInteractor.login("user@mail.com", "123456", new DisposableObserver<User>() {
             @Override
@@ -63,7 +64,8 @@ public class LoginInteractorTest {
 
     @Test
     public void holdRightExceptionOnTryToFindUserByEmailAndPass() {
-        when(loginService.login("erro@erro.com", "error")).thenReturn(Observable.error(new Throwable("errorToConnect")));
+        when(loginService.login("erro@erro.com", "error"))
+                .thenReturn(Observable.error(new Throwable("errorToConnect")));
 
         loginInteractor.login("erro@erro.com", "error", new DisposableObserver<User>() {
             @Override

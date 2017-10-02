@@ -58,7 +58,7 @@ public class LoginPresenter {
     }
 
     public void openSignUpFragment() {
-        accessRouter.infalteSignUpFragment(loginFragment.getFragmentManager());
+        accessRouter.swapToSignUpFragment(loginFragment.getFragmentManager());
     }
 
     public void onDestroy() {

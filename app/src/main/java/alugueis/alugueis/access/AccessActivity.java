@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import alugueis.alugueis.R;
 import alugueis.alugueis.access.signup.SignUpFragment;
 import alugueis.alugueis.access.login.LoginFragment;
+import alugueis.alugueis.dagger.DaggerApplicationComponent;
 import butterknife.ButterKnife;
 
 public class AccessActivity extends AppCompatActivity {
@@ -23,10 +24,11 @@ public class AccessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_activity);
+        DaggerApplicationComponent.create().inject(this);
 
         loginFragment = new LoginFragment();
-
         loadSignUpFragment();
+
         ButterKnife.bind(this);
     }
 
